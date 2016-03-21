@@ -1,8 +1,12 @@
 #include <iostream>
 
-#include <Card.h>
+#include <Deck.h>
 
 int main(int argc, char* argv[]) {
-   Card c(0);
-   std::cout << "Hello world!" << std::endl;
+   Deck d;
+   int takenCards = 0;
+   while(d.hasMoreCards()) {
+      Card& c = d.takeNext();
+      std::cout << "took " << ++takenCards << std::endl;
+   }
 }
