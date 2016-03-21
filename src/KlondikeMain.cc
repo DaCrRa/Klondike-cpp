@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <Deck.h>
+#include <Pile.h>
 
 int main(int argc, char* argv[]) {
    Deck d;
@@ -9,4 +10,6 @@ int main(int argc, char* argv[]) {
       Card& c = d.takeNext();
       std::cout << "took " << ++takenCards << std::endl;
    }
+
+   Pile p;
 }

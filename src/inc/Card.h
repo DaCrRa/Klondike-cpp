@@ -1,8 +1,13 @@
+#ifndef CARD_H
+#define CARD_H
+
 class Card {
 
    private:
       int rank;
 
    public:
-      Card(int r) : rank(r) { }
+      Card(int r);
 };
+
+#endif
