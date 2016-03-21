@@ -1,7 +1,8 @@
 file(GLOB klondike_source_files
-    "*.h"
     "*.cc"
 )
+
+include_directories(".")
 
 add_executable(Klondike ${klondike_source_files})
 
