@@ -9,10 +9,10 @@ Deck::Deck() : remainingCards(NUM_CARDS) {
 }
 
 Card& Deck::takeNext() {
-   assert(hasMoreCards());
+   assert(hasCards());
    return cards[--remainingCards];
 }
 
-bool Deck::hasMoreCards() {
+bool Deck::hasCards() {
    return remainingCards > 0;
 }

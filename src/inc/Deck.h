@@ -14,5 +14,5 @@ class Deck {
 
       Card& takeNext();
 
-      bool hasMoreCards();
+      bool hasCards();
 };

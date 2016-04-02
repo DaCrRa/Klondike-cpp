@@ -8,6 +8,12 @@ class Card {
 
    public:
       Card(int r);
+
+      int getRank();
+
+      bool hasSameSuit(const Card* c);
+
+      int compareRank(const Card* c);
 };
 
 #endif
