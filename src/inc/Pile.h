@@ -6,19 +6,17 @@
 #include <vector>
 
 class Pile {
-   private:
-      std::vector<const Card*> cards;
+private:
+	std::vector<const Card*> cards;
 
-   public:
-      Pile() { }
+public:
+	Pile() { }
 
-      void add(const Card* c);
-
-      void add(const std::vector<const Card*>& cards);
-
-      bool hasCards();
-
-      const Card* top();
+	void add(const Card* c);
+	void add(const std::vector<const Card*>& cards);
+	bool hasCards();
+	const Card* top();
+	const Card* removeTop();
 };
 
 #endif

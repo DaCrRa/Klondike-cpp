@@ -3,6 +3,7 @@
 #include <Deck.h>
 #include <Pile.h>
 #include <Foundation.h>
+#include <TableauPile.h>
 
 int main(int argc, char* argv[]) {
    Deck d;
@@ -13,4 +14,5 @@ int main(int argc, char* argv[]) {
    }
 
    Foundation f;
+   TableauPile t;
 }

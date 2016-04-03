@@ -13,6 +13,8 @@ class Card {
 
       bool hasSameSuit(const Card* c);
 
+      bool hasSameColor(const Card* c);
+
       int compareRank(const Card* c);
 };
 

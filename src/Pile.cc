@@ -1,5 +1,7 @@
 #include <Pile.h>
 
+#include <assert.h>
+
 void Pile::add(const Card* c) {
    cards.push_back(c);
 }
@@ -13,5 +15,12 @@ bool Pile::hasCards() {
 }
 
 const Card* Pile::top() {
+	assert(hasCards());
 	return cards.back();
+}
+
+const Card* Pile::removeTop() {
+	const Card* top = this->top();
+	cards.pop_back();
+	return top;
 }
