@@ -21,3 +21,8 @@ bool Foundation::accept(Card* c) {
 		return c->hasSameSuit(pile.top()) && c->compareRank(pile.top()) == 1;
 	}
 }
+
+bool Foundation::isCompleted() {
+	return pile.getNumberOfCards() == 12; //TODO magic number
+}
+

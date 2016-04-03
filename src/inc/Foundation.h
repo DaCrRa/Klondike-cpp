@@ -16,6 +16,7 @@ class Foundation {
 	public:
 		void add(Card* c);
 		bool accept(Card* c);
+		bool isCompleted();
 };
 
 #endif

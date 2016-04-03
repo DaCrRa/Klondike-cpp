@@ -9,7 +9,7 @@ private:
 	Pile uncoveredCards;
 public:
 	void turnUp();
-	void addToCovered(Card* c);
+	void addToCovered(const Card* c);
 	void add(Card* c);
 	bool accept(Card* c);
 };
