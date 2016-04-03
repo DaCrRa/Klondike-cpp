@@ -8,9 +8,9 @@ Deck::Deck() : remainingCards(NUM_CARDS) {
    }
 }
 
-Card& Deck::takeNext() {
+const Card* Deck::removeTop() {
    assert(hasCards());
-   return cards[--remainingCards];
+   return &cards[--remainingCards];
 }
 
 bool Deck::hasCards() {

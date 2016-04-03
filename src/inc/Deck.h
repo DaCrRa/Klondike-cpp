@@ -12,7 +12,7 @@ class Deck {
 
       Deck();
 
-      Card& takeNext();
+      const Card* removeTop();
 
       bool hasCards();
 };
