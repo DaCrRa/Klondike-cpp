@@ -19,6 +19,10 @@ const Card* Pile::top() {
 	return cards.back();
 }
 
+int Pile::getNumberOfCards() {
+	return cards.size();
+}
+
 const Card* Pile::removeTop() {
 	const Card* top = this->top();
 	cards.pop_back();
