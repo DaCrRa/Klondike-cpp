@@ -30,3 +30,15 @@ void TableauPile::add(Card* c) {
 	assert(accept(c));
 	uncoveredCards.add(c);
 }
+
+int TableauPile::getNumCoveredCards() const {
+	return coveredCards.getNumberOfCards();
+}
+
+PileIterator TableauPile::uncoveredCardsBegin() const {
+	return uncoveredCards.begin();
+}
+
+PileIterator TableauPile::uncoveredCardsEnd() const {
+	return uncoveredCards.end();
+}

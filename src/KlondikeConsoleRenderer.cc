@@ -12,9 +12,13 @@
 #include <assert.h>
 
 void KlondikeConsoleRenderer::render() {
+	std::cout << std::endl;
 	renderStock();
+	std::cout << std::endl;
 	renderFoundations();
+	std::cout << std::endl;
 	renderTableau();
+	std::cout << std::endl;
 }
 
 void KlondikeConsoleRenderer::renderStock() {
@@ -24,7 +28,9 @@ void KlondikeConsoleRenderer::renderStock() {
 
 void KlondikeConsoleRenderer::renderFoundations() {
 	assert(foundations != nullptr);
+	char foundationId = 'A';
 	for (std::vector<Foundation>::const_iterator it = foundations->begin(); it != foundations->end(); ++it) {
+		std::cout << "Foundation " << foundationId++ << ": ";
 		renderFoundation(it.base());
 	}
 }
@@ -36,12 +42,20 @@ void KlondikeConsoleRenderer::renderFoundation(const Foundation* f) {
 
 void KlondikeConsoleRenderer::renderTableau() {
 	assert(tableau != nullptr);
+	int tableauPileId = 1;
 	for (std::vector<TableauPile>::const_iterator it = tableau->begin(); it != tableau->end(); ++it) {
+		std::cout << "Tableau Pile " << tableauPileId++ << ": ";
 		renderTableauPile(it.base());
 	}
 }
 
 void KlondikeConsoleRenderer::renderTableauPile(const TableauPile* tp) {
 	assert(tp != nullptr);
-	std::cout << "Rendering a tableau pile..." << std::endl;
+	for (int i = 0; i < tp->getNumCoveredCards(); ++i) {
+		std::cout << "[";
+	}
+	for (PileIterator it = tp->uncoveredCardsBegin(); it != tp->uncoveredCardsEnd(); ++it) {
+		std::cout << "[~]";
+	}
+	std::cout << std::endl;
 }

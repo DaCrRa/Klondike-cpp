@@ -12,6 +12,9 @@ public:
 	void addToCovered(const Card* c);
 	void add(Card* c);
 	bool accept(Card* c);
+	int getNumCoveredCards() const;
+	PileIterator uncoveredCardsBegin() const;
+	PileIterator uncoveredCardsEnd() const;
 };
 
 #endif
