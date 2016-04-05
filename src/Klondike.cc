@@ -20,7 +20,9 @@ void Klondike::initialize() {
 		}
 		it->turnUp();
 	}
-	// TODO Add cards to the Stock
+	while (deck.hasCards()) {
+		stock.addToCovered(deck.removeTop());
+	}
 }
 
 bool Klondike::isCompleted() {
