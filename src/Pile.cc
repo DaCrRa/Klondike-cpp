@@ -10,11 +10,11 @@ void Pile::add(const std::vector<const Card*>& cards) {
    this->cards.insert(this->cards.end(), cards.begin(), cards.end());
 }
 
-bool Pile::hasCards() {
+bool Pile::hasCards() const {
 	return !cards.empty();
 }
 
-const Card* Pile::top() {
+const Card* Pile::top() const {
 	assert(hasCards());
 	return cards.back();
 }
