@@ -18,9 +18,12 @@ private:
 	void rotate();
 
 public:
+	void addToCovered(const Card* c);
 	void move();
-	bool hasCardAvailable();
-	const Card* availableCard();
+	bool hasCardAvailable() const;
+	bool hasCoveredCards() const;
+	const Card* availableCard() const;
+	const Card* removeAvailableCard();
 };
 
 #endif

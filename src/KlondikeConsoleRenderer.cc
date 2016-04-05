@@ -23,7 +23,16 @@ void KlondikeConsoleRenderer::render() {
 
 void KlondikeConsoleRenderer::renderStock() {
 	assert(stock != nullptr);
-	std::cout << "Rendering stock..." << std::endl;
+	std::cout << "Stock: ";
+	if (stock->hasCoveredCards()) {
+		std::cout << "[~]";
+	} else {
+		std::cout << "[_]";
+	}
+	if (stock->hasCardAvailable()) {
+		std::cout << " --> [~]"; // TODO render available card
+	}
+	std::cout << std::endl;
 }
 
 void KlondikeConsoleRenderer::renderFoundations() {
@@ -37,7 +46,19 @@ void KlondikeConsoleRenderer::renderFoundations() {
 
 void KlondikeConsoleRenderer::renderFoundation(const Foundation* f) {
 	assert(f != nullptr);
-	std::cout << "Rendering a foundation..." << std::endl;
+	if (f->getNumCards() == 0) {
+		std::cout << "[_]";
+	}
+	if (f->getNumCards() > 1) {
+		std::cout << "...";
+	}
+	if (f->getNumCards() > 0) {
+		std::cout << "[~]"; //TODO Render foundation top
+	}
+	if (f->isCompleted()) {
+		std::cout << "  COMPLETED!";
+	}
+	std::cout << std::endl;
 }
 
 void KlondikeConsoleRenderer::renderTableau() {

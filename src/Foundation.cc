@@ -22,7 +22,11 @@ bool Foundation::accept(Card* c) {
 	}
 }
 
-bool Foundation::isCompleted() {
+bool Foundation::isCompleted() const {
 	return pile.getNumberOfCards() == 12; //TODO magic number
+}
+
+int Foundation::getNumCards() const {
+	return pile.getNumberOfCards();
 }
 

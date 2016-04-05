@@ -10,6 +10,11 @@
 #include <algorithm>
 #include <assert.h>
 
+void Stock::addToCovered(const Card* c) {
+	// TODO assert we are in initial state
+	covered.add(c);
+}
+
 void Stock::move() {
 	if (covered.hasCards()) {
 		int cardsToMove = std::min(3, covered.getNumberOfCards()); //TODO magic number!
@@ -28,11 +33,20 @@ void Stock::rotate() {
 	}
 }
 
-bool Stock::hasCardAvailable() {
+bool Stock::hasCardAvailable() const {
 	return waste.hasCards();
 }
 
-const Card* Stock::availableCard() {
+const Card* Stock::availableCard() const {
 	assert(hasCardAvailable());
-	return waste.removeTop();
+	return waste.top();
+}
+
+const Card* Stock::removeAvailableCard() {
+	assert(hasCardAvailable());
+    return waste.removeTop();
+}
+
+bool Stock::hasCoveredCards() const {
+	return covered.hasCards();
 }
