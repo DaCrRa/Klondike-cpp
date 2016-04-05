@@ -7,15 +7,15 @@
 
 #include <KlondikeRenderer.h>
 
-void KlondikeRenderer::setStock(Stock* s) {
+void KlondikeRenderer::setStock(const Stock* s) {
 	stock = s;
 }
 
-void KlondikeRenderer::setFoundations(std::vector<Foundation>* foundations) {
+void KlondikeRenderer::setFoundations(const std::vector<Foundation>* foundations) {
 	this->foundations = foundations;
 }
 
-void KlondikeRenderer::setTableau(std::vector<TableauPile>* tableau) {
+void KlondikeRenderer::setTableau(const std::vector<TableauPile>* tableau) {
 	this->tableau = tableau;
 }
 

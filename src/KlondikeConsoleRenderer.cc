@@ -24,24 +24,24 @@ void KlondikeConsoleRenderer::renderStock() {
 
 void KlondikeConsoleRenderer::renderFoundations() {
 	assert(foundations != nullptr);
-	for (std::vector<Foundation>::iterator it = foundations->begin(); it != foundations->end(); ++it) {
+	for (std::vector<Foundation>::const_iterator it = foundations->begin(); it != foundations->end(); ++it) {
 		renderFoundation(it.base());
 	}
 }
 
-void KlondikeConsoleRenderer::renderFoundation(Foundation* f) {
+void KlondikeConsoleRenderer::renderFoundation(const Foundation* f) {
 	assert(f != nullptr);
 	std::cout << "Rendering a foundation..." << std::endl;
 }
 
 void KlondikeConsoleRenderer::renderTableau() {
 	assert(tableau != nullptr);
-	for (std::vector<TableauPile>::iterator it = tableau->begin(); it != tableau->end(); ++it) {
+	for (std::vector<TableauPile>::const_iterator it = tableau->begin(); it != tableau->end(); ++it) {
 		renderTableauPile(it.base());
 	}
 }
 
-void KlondikeConsoleRenderer::renderTableauPile(TableauPile* tp) {
+void KlondikeConsoleRenderer::renderTableauPile(const TableauPile* tp) {
 	assert(tp != nullptr);
 	std::cout << "Rendering a tableau pile..." << std::endl;
 }

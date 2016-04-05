@@ -32,7 +32,7 @@ bool Klondike::isCompleted() {
 }
 
 void Klondike::configureRenderer(KlondikeRenderer* renderer) {
-	renderer->setStock(&stock);
-	renderer->setFoundations(&foundations);
-	renderer->setTableau(&tableau);
+	renderer->setStock((const Stock*)&stock);
+	renderer->setFoundations((const std::vector<Foundation>*)&foundations);
+	renderer->setTableau((const std::vector<TableauPile>*)&tableau);
 }

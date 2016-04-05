@@ -17,8 +17,8 @@ public:
 	void renderStock();
 	void renderFoundations();
 	void renderTableau();
-	void renderFoundation(Foundation* f);
-	void renderTableauPile(TableauPile* tp);
+	void renderFoundation(const Foundation* f);
+	void renderTableauPile(const TableauPile* tp);
 };
 
 #endif /* SRC_INC_KLONDIKECONSOLERENDERER_H_ */
