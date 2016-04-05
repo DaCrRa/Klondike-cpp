@@ -7,19 +7,32 @@
 
 #include <Klondike.h>
 
+Klondike::Klondike() :
+	tableau(7), //TODO magic number
+	foundations(4) //TODO magic number
+{}
+
 void Klondike::initialize() {
-	for (int i = 0; i < 7; i++) { //TODO magic number
+	int i = 0;
+	for (std::vector<TableauPile>::iterator it = tableau.begin(); it != tableau.end(); ++it) {
 		for (int j = 0; j < i + 1; j++) {
-			tableau[i].addToCovered(deck.removeTop());
+			it->addToCovered(deck.removeTop());
 		}
-		tableau[i].turnUp();
+		it->turnUp();
 	}
+	// TODO Add cards to the Stock
 }
 
 bool Klondike::isCompleted() {
 	bool completed = true;
-	for (int i = 0; i < 4 && completed; i++) { //TODO magic number
-		completed &= foundations[i].isCompleted();
+	for (std::vector<Foundation>::iterator it = foundations.begin(); it != foundations.end() && completed; ++it) {
+		completed &= it->isCompleted();
 	}
 	return completed;
+}
+
+void Klondike::configureRenderer(KlondikeRenderer* renderer) {
+	renderer->setStock(&stock);
+	renderer->setFoundations(&foundations);
+	renderer->setTableau(&tableau);
 }

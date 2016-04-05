@@ -12,16 +12,19 @@
 #include <Foundation.h>
 #include <TableauPile.h>
 #include <Stock.h>
+#include <KlondikeRenderer.h>
 
 class Klondike {
 private:
 	Deck deck;
 	Stock stock;
-	Foundation foundations[4]; // TODO magic number
-	TableauPile tableau[7]; //TODO magic number
+	std::vector<Foundation> foundations;
+	std::vector<TableauPile> tableau;
 public:
+	Klondike();
 	void initialize();
 	bool isCompleted();
+	void configureRenderer(KlondikeRenderer* renderer);
 };
 
 #endif
