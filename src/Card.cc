@@ -5,7 +5,7 @@ Card::Card(int r) :
 {
 }
 
-int Card::getRank() {
+int Card::getRank() const {
 	return rank;
 }
 

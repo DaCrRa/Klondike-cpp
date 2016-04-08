@@ -30,3 +30,7 @@ int Foundation::getNumCards() const {
 	return pile.getNumberOfCards();
 }
 
+const Card* Foundation::top() const {
+	return pile.top();
+}
+

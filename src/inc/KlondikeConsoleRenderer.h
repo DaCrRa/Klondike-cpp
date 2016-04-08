@@ -10,8 +10,11 @@
 
 #include <KlondikeRenderer.h>
 
+#include <CardConsoleRenderer.h>
 
 class KlondikeConsoleRenderer: public KlondikeRenderer {
+private:
+	CardConsoleRenderer cardRenderer;
 public:
 	void render();
 	void renderStock();

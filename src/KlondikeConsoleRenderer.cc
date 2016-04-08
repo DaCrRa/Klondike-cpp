@@ -30,7 +30,8 @@ void KlondikeConsoleRenderer::renderStock() {
 		std::cout << "[_]";
 	}
 	if (stock->hasCardAvailable()) {
-		std::cout << " --> [~]"; // TODO render available card
+		std::cout << " --> ";
+		cardRenderer.renderCard(stock->availableCard());
 	}
 	std::cout << std::endl;
 }
@@ -53,7 +54,7 @@ void KlondikeConsoleRenderer::renderFoundation(const Foundation* f) {
 		std::cout << "...";
 	}
 	if (f->getNumCards() > 0) {
-		std::cout << "[~]"; //TODO Render foundation top
+		cardRenderer.renderCard(f->top());
 	}
 	if (f->isCompleted()) {
 		std::cout << "  COMPLETED!";
@@ -76,7 +77,7 @@ void KlondikeConsoleRenderer::renderTableauPile(const TableauPile* tp) {
 		std::cout << "[";
 	}
 	for (PileIterator it = tp->uncoveredCardsBegin(); it != tp->uncoveredCardsEnd(); ++it) {
-		std::cout << "[~]";
+		cardRenderer.renderCard(*it);
 	}
 	std::cout << std::endl;
 }

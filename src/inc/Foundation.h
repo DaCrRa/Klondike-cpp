@@ -18,6 +18,7 @@ class Foundation {
 		bool accept(Card* c);
 		bool isCompleted() const;
 		int getNumCards() const;
+		const Card* top() const;
 };
 
 #endif

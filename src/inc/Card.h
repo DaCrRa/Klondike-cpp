@@ -9,7 +9,7 @@ class Card {
    public:
       Card(int r);
 
-      int getRank();
+      int getRank() const;
 
       bool hasSameSuit(const Card* c);
 
