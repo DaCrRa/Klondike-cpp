@@ -38,3 +38,7 @@ void Klondike::configureRenderer(KlondikeRenderer* renderer) {
 	renderer->setFoundations((const std::vector<Foundation>*)&foundations);
 	renderer->setTableau((const std::vector<TableauPile>*)&tableau);
 }
+
+Stock* Klondike::getStock() {
+	return &stock;
+}

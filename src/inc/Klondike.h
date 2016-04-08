@@ -25,6 +25,7 @@ public:
 	void initialize();
 	bool isCompleted();
 	void configureRenderer(KlondikeRenderer* renderer);
+	Stock* getStock();
 };
 
 #endif
