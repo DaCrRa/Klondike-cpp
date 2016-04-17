@@ -28,7 +28,7 @@ void Stock::move() {
 
 void Stock::rotate() {
 	assert(!covered.hasCards());
-	for (int i = 0; i < waste.getNumberOfCards(); i++) {
+	while (waste.hasCards()) {
 		covered.add(waste.removeTop());
 	}
 }
