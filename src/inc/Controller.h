@@ -8,9 +8,11 @@
 #ifndef SRC_CONTROLLER_H_
 #define SRC_CONTROLLER_H_
 
+class ControllerVisitor;
+
 class Controller {
 public:
-	virtual void operate() = 0;
+	virtual void accept(ControllerVisitor* v) = 0;
 	virtual ~Controller() {}
 };
 

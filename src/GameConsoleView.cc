@@ -5,7 +5,7 @@
  *      Author: dancre
  */
 
-#include "GameConsoleView.h"
+#include <GameConsoleView.h>
 
 #include <stdio.h>
 
@@ -14,6 +14,10 @@ GameConsoleView::GameConsoleView(Klondike* k) {
 }
 
 void GameConsoleView::interact(Controller* c) {
+	c->accept(this);
+}
+
+void GameConsoleView::visit(StockController* c) {
 	renderer.render();
 	getchar();
 	c->operate();

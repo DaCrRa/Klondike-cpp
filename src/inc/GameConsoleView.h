@@ -9,15 +9,18 @@
 #define SRC_GAMECONSOLEVIEW_H_
 
 #include <Controller.h>
+#include <ControllerVisitor.h>
+#include <StockController.h>
 #include <KlondikeConsoleRenderer.h>
 #include <Klondike.h>
 
-class GameConsoleView {
+class GameConsoleView : public ControllerVisitor {
 private:
 	KlondikeConsoleRenderer renderer;
 public:
 	GameConsoleView(Klondike* k);
 	void interact(Controller* c);
+	void visit(StockController* c);
 };
 
 #endif

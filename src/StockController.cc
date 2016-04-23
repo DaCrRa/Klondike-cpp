@@ -14,3 +14,7 @@ stock(s)
 void StockController::operate() {
 	stock->move();
 }
+
+void StockController::accept(ControllerVisitor* visitor) {
+	visitor->visit(this);
+}
