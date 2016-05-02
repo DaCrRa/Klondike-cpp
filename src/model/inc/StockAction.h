@@ -8,8 +8,8 @@
 #ifndef SRC_INC_STOCKACTION_H_
 #define SRC_INC_STOCKACTION_H_
 
-#include <GameAction.h>
 #include <GameActionVisitor.h>
+#include <GameAction.h>
 
 class StockAction: public GameAction {
 public:

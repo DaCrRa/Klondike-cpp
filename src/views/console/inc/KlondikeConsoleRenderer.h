@@ -8,9 +8,8 @@
 #ifndef SRC_INC_KLONDIKECONSOLERENDERER_H_
 #define SRC_INC_KLONDIKECONSOLERENDERER_H_
 
-#include <KlondikeRenderer.h>
-
 #include <CardConsoleRenderer.h>
+#include <KlondikeRenderer.h>
 
 class KlondikeConsoleRenderer: public KlondikeRenderer {
 private:

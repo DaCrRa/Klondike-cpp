@@ -10,9 +10,9 @@
 
 #include <Deck.h>
 #include <Foundation.h>
-#include <TableauPile.h>
-#include <Stock.h>
 #include <KlondikeRenderer.h>
+#include <Stock.h>
+#include <TableauPile.h>
 
 class Klondike {
 private:

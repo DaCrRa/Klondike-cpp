@@ -8,11 +8,10 @@
 #ifndef SRC_INC_KLONDIKERENDERER_H_
 #define SRC_INC_KLONDIKERENDERER_H_
 
+#include <vector>
+#include <Foundation.h>
 #include <Stock.h>
 #include <TableauPile.h>
-#include <Foundation.h>
-
-#include <vector>
 
 class KlondikeRenderer {
 protected:

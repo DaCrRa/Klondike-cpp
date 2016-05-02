@@ -1,8 +1,10 @@
-file(GLOB klondike_source_files
-    "*.cc"
-)
+add_subdirectory(cards)
+add_subdirectory(model)
+add_subdirectory(controllers)
+add_subdirectory(views)
 
-include_directories("inc")
+add_executable(Klondike KlondikeMain.cc)
 
-add_executable(Klondike ${klondike_source_files})
-
+target_link_libraries(Klondike KlondikeModel
+                               KlondikeController
+                               KlondikeConsoleView)
