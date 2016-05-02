@@ -7,7 +7,8 @@
 
 #include <GameConsoleView.h>
 
-#include <stdio.h>
+#include <SelectActionView.h>
+#include <StockAction.h>
 
 GameConsoleView::GameConsoleView(Klondike* k) {
 	k->configureRenderer(&renderer);
@@ -17,8 +18,8 @@ void GameConsoleView::interact(Controller* c) {
 	c->accept(this);
 }
 
-void GameConsoleView::visit(StockController* c) {
+void GameConsoleView::visit(GameActionController* c) {
 	renderer.render();
-	getchar();
-	c->operate();
+	SelectActionView selectActionView;
+	c->doAction(selectActionView.getAction());
 }

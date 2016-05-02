@@ -10,7 +10,7 @@
 
 #include <Controller.h>
 #include <ControllerVisitor.h>
-#include <StockController.h>
+#include <GameActionController.h>
 #include <KlondikeConsoleRenderer.h>
 #include <Klondike.h>
 
@@ -20,7 +20,7 @@ private:
 public:
 	GameConsoleView(Klondike* k);
 	void interact(Controller* c);
-	void visit(StockController* c);
+	void visit(GameActionController* c);
 };
 
 #endif

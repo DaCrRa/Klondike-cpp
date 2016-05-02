@@ -8,11 +8,11 @@
 #ifndef SRC_INC_CONTROLLERVISITOR_H_
 #define SRC_INC_CONTROLLERVISITOR_H_
 
-class StockController;
+class GameActionController;
 
 class ControllerVisitor {
 public:
-	virtual void visit(StockController* sc) = 0;
+	virtual void visit(GameActionController* sc) = 0;
 	virtual ~ControllerVisitor() {}
 };
 
