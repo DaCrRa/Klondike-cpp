@@ -25,5 +25,30 @@ GameActionPtr SelectActionView::getAction() {
 		std::cin >> userInput;
 		selected = availableActions.find(userInput);
 	}
-	return selected->second;
+	GameActionPtr selectedAction = selected->second->duplicate();
+	completeActionInfo(selectedAction);
+	return selectedAction;
+}
+
+void SelectActionView::completeActionInfo(GameActionPtr& action) {
+	action->accept(this);
+}
+
+void SelectActionView::visit(StockAction* stockAction) {
+	// Nothing to complete for a StockAction
+	std::cout << "Stock action selected!" << std::endl;
+}
+
+void SelectActionView::visit(Move* move) {
+	std::cout << "Move from: ";
+	char userFromInput;
+	std::cin >> userFromInput;
+	if (userFromInput >= 'A' && userFromInput <= 'D') {
+		std::cout << "will index foundations" << std::endl;
+	} else if (userFromInput >= '1' && userFromInput <= '7') {
+		std::cout << "will index tableau piles" << std::endl;
+	}
+	std::cout << "Move to: ";
+	char userToInput;
+	std::cin >> userToInput;
 }
