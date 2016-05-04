@@ -13,6 +13,7 @@
 
 class StockAction: public GameAction {
 public:
+	GameActionPtr duplicate();
 	void accept(GameActionVisitor* actionVisitor);
 };
 

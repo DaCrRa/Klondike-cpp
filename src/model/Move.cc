@@ -18,3 +18,7 @@ void Move::setDest(MoveDest* d) {
 void Move::accept(GameActionVisitor* visitor) {
 	visitor->visit(this);
 }
+
+GameActionPtr Move::duplicate() {
+	return GameActionPtr(new Move(*this));
+}

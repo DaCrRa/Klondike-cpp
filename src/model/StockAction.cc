@@ -10,3 +10,7 @@
 void StockAction::accept(GameActionVisitor* actionVisitor) {
 	actionVisitor->visit(this);
 }
+
+GameActionPtr StockAction::duplicate() {
+	return GameActionPtr(new StockAction(*this));
+}

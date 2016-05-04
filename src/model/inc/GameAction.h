@@ -18,6 +18,7 @@ typedef std::shared_ptr<GameAction> GameActionPtr;
 class GameAction {
 public:
 	virtual void accept(GameActionVisitor* visitor) = 0;
+	virtual GameActionPtr duplicate() = 0;
 	virtual ~GameAction() {}
 };
 
