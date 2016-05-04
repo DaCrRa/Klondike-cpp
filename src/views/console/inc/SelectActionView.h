@@ -9,17 +9,15 @@
 #define SRC_INC_SELECTACTIONVIEW_H_
 
 #include <GameAction.h>
-#include <StockAction.h>
 
 #include <map>
 
 class SelectActionView {
 private:
-	StockAction stockAction;
-	std::map<char, GameAction*> availableActions;
+	std::map<char, GameActionPtr> availableActions;
 public:
 	SelectActionView();
-	GameAction* getAction();
+	GameActionPtr getAction();
 };
 
 #endif /* SRC_INC_SELECTACTIONVIEW_H_ */

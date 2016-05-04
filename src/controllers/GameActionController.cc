@@ -16,7 +16,7 @@ void GameActionController::accept(ControllerVisitor* visitor) {
 	visitor->visit(this);
 }
 
-void GameActionController::doAction(GameAction* action) {
+void GameActionController::doAction(GameActionPtr action) {
 	action->accept(this);
 }
 

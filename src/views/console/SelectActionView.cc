@@ -7,14 +7,18 @@
 
 #include <SelectActionView.h>
 
+#include <StockAction.h>
+#include <Move.h>
+
 #include <iostream>
 
 SelectActionView::SelectActionView() {
-	availableActions.insert(std::pair<char, GameAction*>('s', &stockAction));
+	availableActions.insert(std::pair<char, GameActionPtr>('s', GameActionPtr(new StockAction())));
+	availableActions.insert(std::pair<char, GameActionPtr>('m', GameActionPtr(new Move())));
 }
 
-GameAction* SelectActionView::getAction() {
-	std::map<char, GameAction*>::iterator selected = availableActions.end();
+GameActionPtr SelectActionView::getAction() {
+	std::map<char, GameActionPtr>::iterator selected = availableActions.end();
 	while (selected == availableActions.end()) {
 		std::cout << "Select action: ";
 		char userInput;

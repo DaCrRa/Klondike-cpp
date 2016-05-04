@@ -8,7 +8,12 @@
 #ifndef SRC_INC_GAMEACTION_H_
 #define SRC_INC_GAMEACTION_H_
 
+#include <memory>
+
 class GameActionVisitor;
+
+class GameAction;
+typedef std::shared_ptr<GameAction> GameActionPtr;
 
 class GameAction {
 public:
