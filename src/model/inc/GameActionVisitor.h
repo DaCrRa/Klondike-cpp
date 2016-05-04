@@ -9,10 +9,12 @@
 #define SRC_INC_GAMEACTIONVISITOR_H_
 
 class StockAction;
+class Move;
 
 class GameActionVisitor {
 public:
 	virtual void visit(StockAction* stockAction) = 0;
+	virtual void visit(Move* move) = 0;
 	virtual ~GameActionVisitor() {}
 };
 

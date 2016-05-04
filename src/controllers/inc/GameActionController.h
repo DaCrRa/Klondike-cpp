@@ -22,6 +22,7 @@ public:
 	void doAction(GameAction* action);
 	void accept(ControllerVisitor* visitor);
 	void visit(StockAction* stockAction);
+	void visit(Move* move);
 };
 
 #endif /* SRC_INC_GAMEACTIONCONTROLLER_H_ */

@@ -23,3 +23,7 @@ void GameActionController::doAction(GameAction* action) {
 void GameActionController::visit(StockAction* stockAction) {
 	game->getStock()->move();
 }
+
+void GameActionController::visit(Move* move) {
+	//TODO
+}
