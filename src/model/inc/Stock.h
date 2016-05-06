@@ -9,8 +9,9 @@
 #define STOCK_H_
 
 #include <Pile.h>
+#include <MoveOrigin.h>
 
-class Stock {
+class Stock : public MoveOrigin {
 private:
 	Pile covered;
 	Pile waste;
@@ -22,7 +23,7 @@ public:
 	void move();
 	bool hasCardAvailable() const;
 	bool hasCoveredCards() const;
-	const Card* availableCard() const;
+	const Card* showAvailableCard() const;
 	const Card* removeAvailableCard();
 };
 

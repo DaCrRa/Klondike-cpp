@@ -12,8 +12,8 @@
 
 class MoveOrigin {
 public:
-	virtual Card* showAvailableCard() = 0;
-	virtual Card* removeAvaiblableCard() = 0;
+	virtual const Card* showAvailableCard() const = 0;
+	virtual const Card* removeAvailableCard() = 0;
 	virtual ~MoveOrigin() {}
 };
 

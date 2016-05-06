@@ -31,7 +31,7 @@ void KlondikeConsoleRenderer::renderStock() {
 	}
 	if (stock->hasCardAvailable()) {
 		std::cout << " --> ";
-		cardRenderer.renderCard(stock->availableCard());
+		cardRenderer.renderCard(stock->showAvailableCard());
 	}
 	std::cout << std::endl;
 }

@@ -37,7 +37,7 @@ bool Stock::hasCardAvailable() const {
 	return waste.hasCards();
 }
 
-const Card* Stock::availableCard() const {
+const Card* Stock::showAvailableCard() const {
 	assert(hasCardAvailable());
 	return waste.top();
 }
