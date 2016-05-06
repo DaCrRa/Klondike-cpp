@@ -23,6 +23,10 @@ public:
 	void accept(ControllerVisitor* visitor);
 	void visit(StockAction* stockAction);
 	void visit(Move* move);
+
+	Stock* getStock();
+	std::vector<MoveOrigin*> getAvailableOrigins();
+
 };
 
 #endif /* SRC_INC_GAMEACTIONCONTROLLER_H_ */

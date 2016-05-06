@@ -12,9 +12,13 @@
 
 #include <iostream>
 
-SelectActionView::SelectActionView() {
+SelectActionView::SelectActionView(GameActionController* c) :
+	controller(c) {
+
 	availableActions.insert(std::pair<char, GameActionPtr>('s', GameActionPtr(new StockAction())));
 	availableActions.insert(std::pair<char, GameActionPtr>('m', GameActionPtr(new Move())));
+
+	origins.insert(std::pair<MoveOrigin*, char>(controller->getStock(), 's'));
 }
 
 GameActionPtr SelectActionView::getAction() {
@@ -40,15 +44,28 @@ void SelectActionView::visit(StockAction* stockAction) {
 }
 
 void SelectActionView::visit(Move* move) {
-	std::cout << "Move from: ";
-	char userFromInput;
-	std::cin >> userFromInput;
-	if (userFromInput >= 'A' && userFromInput <= 'D') {
-		std::cout << "will index foundations" << std::endl;
-	} else if (userFromInput >= '1' && userFromInput <= '7') {
-		std::cout << "will index tableau piles" << std::endl;
+	std::map<char, MoveOrigin*> possibleOrigins = getPossibleOrigins();
+
+	std::map<char, MoveOrigin*>::iterator selected = possibleOrigins.end();
+	while (selected == possibleOrigins.end()) {
+		std::cout << "Move from: ";
+		char userInput;
+		std::cin >> userInput;
+		selected = possibleOrigins.find(userInput);
 	}
+	move->setOrigin(selected->second);
 	std::cout << "Move to: ";
 	char userToInput;
 	std::cin >> userToInput;
 }
+
+std::map<char, MoveOrigin*> SelectActionView::getPossibleOrigins() {
+	std::map<char, MoveOrigin*> possibleOrigins;
+	std::vector<MoveOrigin*> availableOrigins = controller->getAvailableOrigins();
+	for (std::vector<MoveOrigin*>::iterator it = availableOrigins.begin(); it != availableOrigins.end(); ++it) {
+		possibleOrigins[origins[*it]] = *it;
+	}
+	return possibleOrigins;
+}
+
+

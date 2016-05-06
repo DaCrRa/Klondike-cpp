@@ -10,15 +10,22 @@
 
 #include <GameAction.h>
 #include <GameActionVisitor.h>
+#include <MoveOrigin.h>
+#include <GameActionController.h>
 
 #include <map>
 
 class SelectActionView : public GameActionVisitor {
 private:
 	std::map<char, GameActionPtr> availableActions;
+
+	GameActionController* controller;
+	std::map<MoveOrigin*, char> origins;
+
 	void completeActionInfo(GameActionPtr& action);
+	std::map<char, MoveOrigin*> getPossibleOrigins();
 public:
-	SelectActionView();
+	SelectActionView(GameActionController* c);
 	GameActionPtr getAction();
 	void visit(StockAction* stockAction);
 	void visit(Move* move);

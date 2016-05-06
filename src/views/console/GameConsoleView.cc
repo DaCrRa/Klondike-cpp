@@ -20,6 +20,6 @@ void GameConsoleView::interact(Controller* c) {
 
 void GameConsoleView::visit(GameActionController* c) {
 	renderer.render();
-	SelectActionView selectActionView;
+	SelectActionView selectActionView(c);
 	c->doAction(selectActionView.getAction());
 }
