@@ -3,6 +3,7 @@ file(GLOB klondike_console_view_source_files
 )
 
 add_library(KlondikeConsoleView SHARED ${klondike_console_view_source_files})
+target_link_libraries(KlondikeConsoleView ItemSelectionDialog)
 target_include_directories(KlondikeConsoleView PUBLIC "inc")
 target_include_directories(KlondikeConsoleView PRIVATE
              $<TARGET_PROPERTY:KlondikeController,INTERFACE_INCLUDE_DIRECTORIES>

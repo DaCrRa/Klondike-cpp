@@ -7,6 +7,7 @@
 
 #include <SelectActionView.h>
 
+#include <ItemSelectionDialog.h>
 #include <StockAction.h>
 #include <Move.h>
 
@@ -22,14 +23,8 @@ SelectActionView::SelectActionView(GameActionController* c) :
 }
 
 GameActionPtr SelectActionView::getAction() {
-	std::map<char, GameActionPtr>::iterator selected = availableActions.end();
-	while (selected == availableActions.end()) {
-		std::cout << "Select action: ";
-		char userInput;
-		std::cin >> userInput;
-		selected = availableActions.find(userInput);
-	}
-	GameActionPtr selectedAction = selected->second->duplicate();
+	ItemSelectionDialog<GameActionPtr> dialog("Select action: ", availableActions, 'c');
+	GameActionPtr selectedAction = dialog.getSelectedItem()->duplicate();
 	completeActionInfo(selectedAction);
 	return selectedAction;
 }
@@ -45,15 +40,8 @@ void SelectActionView::visit(StockAction* stockAction) {
 
 void SelectActionView::visit(Move* move) {
 	std::map<char, MoveOrigin*> possibleOrigins = getPossibleOrigins();
-
-	std::map<char, MoveOrigin*>::iterator selected = possibleOrigins.end();
-	while (selected == possibleOrigins.end()) {
-		std::cout << "Move from: ";
-		char userInput;
-		std::cin >> userInput;
-		selected = possibleOrigins.find(userInput);
-	}
-	move->setOrigin(selected->second);
+	ItemSelectionDialog<MoveOrigin*> dialog("Move from: ", possibleOrigins, 'c');
+	move->setOrigin(dialog.getSelectedItem());
 	std::cout << "Move to: ";
 	char userToInput;
 	std::cin >> userToInput;

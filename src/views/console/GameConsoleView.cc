@@ -10,6 +10,8 @@
 #include <SelectActionView.h>
 #include <StockAction.h>
 
+#include <iostream>
+
 GameConsoleView::GameConsoleView(Klondike* k) {
 	k->configureRenderer(&renderer);
 }
@@ -20,6 +22,10 @@ void GameConsoleView::interact(Controller* c) {
 
 void GameConsoleView::visit(GameActionController* c) {
 	renderer.render();
-	SelectActionView selectActionView(c);
-	c->doAction(selectActionView.getAction());
+	try {
+		SelectActionView selectActionView(c);
+		c->doAction(selectActionView.getAction());
+	} catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
 }

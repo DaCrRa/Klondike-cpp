@@ -1,4 +1,5 @@
 add_subdirectory(cards)
+add_subdirectory(utils)
 add_subdirectory(model)
 add_subdirectory(controllers)
 add_subdirectory(views)
