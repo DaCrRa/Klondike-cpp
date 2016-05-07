@@ -27,15 +27,3 @@ void GameActionController::visit(StockAction* stockAction) {
 void GameActionController::visit(Move* move) {
 	//TODO
 }
-
-Stock* GameActionController::getStock() {
-	return game->getStock();
-}
-
-std::vector<MoveOrigin*> GameActionController::getAvailableOrigins() {
-	std::vector<MoveOrigin*> availableOrigins;
-	if (game->getStock()->hasCardAvailable()) {
-		availableOrigins.push_back(game->getStock());
-	}
-	return availableOrigins;
-}

@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-SelectActionView::SelectActionView(GameActionController* c) :
+SelectActionView::SelectActionView(MoveCardController* c) :
 	controller(c) {
 
 	availableActions.insert(std::pair<char, GameActionPtr>('s', GameActionPtr(new StockAction())));

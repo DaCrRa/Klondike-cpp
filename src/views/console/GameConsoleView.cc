@@ -12,7 +12,9 @@
 
 #include <iostream>
 
-GameConsoleView::GameConsoleView(Klondike* k) {
+GameConsoleView::GameConsoleView(Klondike* k) :
+	game(k)
+{
 	k->configureRenderer(&renderer);
 }
 
@@ -23,7 +25,8 @@ void GameConsoleView::interact(Controller* c) {
 void GameConsoleView::visit(GameActionController* c) {
 	renderer.render();
 	try {
-		SelectActionView selectActionView(c);
+		MoveCardController moveController(game);
+		SelectActionView selectActionView(&moveController);
 		c->doAction(selectActionView.getAction());
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
