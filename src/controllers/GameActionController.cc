@@ -25,5 +25,5 @@ void GameActionController::visit(StockAction* stockAction) {
 }
 
 void GameActionController::visit(Move* move) {
-	//TODO
+	move->doMove();
 }

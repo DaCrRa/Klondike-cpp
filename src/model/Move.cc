@@ -7,12 +7,19 @@
 
 #include <Move.h>
 
+#include <assert.h>
+
 void Move::setOrigin(MoveOrigin* o) {
 	origin = o;
 }
 
 void Move::setDest(MoveDest* d) {
 	dest = d;
+}
+
+void Move::doMove() {
+	assert(dest->accept(origin->showAvailableCard()));
+	dest->add(origin->removeAvailableCard());
 }
 
 void Move::accept(GameActionVisitor* visitor) {

@@ -20,6 +20,7 @@ private:
 public:
 	void setOrigin(MoveOrigin* o);
 	void setDest(MoveDest* d);
+	void doMove();
 	GameActionPtr duplicate();
 	void accept(GameActionVisitor* visitor);
 };

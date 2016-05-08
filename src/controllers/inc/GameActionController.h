@@ -13,6 +13,7 @@
 #include <ControllerVisitor.h>
 #include <GameAction.h>
 #include <GameActionVisitor.h>
+#include <Move.h>
 
 class GameActionController: public Controller, public GameActionVisitor {
 private:
