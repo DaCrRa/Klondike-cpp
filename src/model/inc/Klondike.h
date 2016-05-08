@@ -26,6 +26,7 @@ public:
 	bool isCompleted();
 	void configureRenderer(KlondikeRenderer* renderer);
 	Stock* getStock();
+	std::vector<Foundation>& getFoundations();
 };
 
 #endif

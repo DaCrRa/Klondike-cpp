@@ -42,3 +42,7 @@ void Klondike::configureRenderer(KlondikeRenderer* renderer) {
 Stock* Klondike::getStock() {
 	return &stock;
 }
+
+std::vector<Foundation>& Klondike::getFoundations() {
+	return foundations;
+}
