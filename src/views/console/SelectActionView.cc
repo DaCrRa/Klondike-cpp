@@ -19,7 +19,6 @@ SelectActionView::SelectActionView(MoveCardController* c) :
 	availableActions.insert(std::pair<char, GameActionPtr>('s', GameActionPtr(new StockAction())));
 	availableActions.insert(std::pair<char, GameActionPtr>('m', GameActionPtr(new Move())));
 
-	origins.insert(std::pair<MoveOrigin*, char>(controller->getStock(), 's'));
 }
 
 GameActionPtr SelectActionView::getAction() {

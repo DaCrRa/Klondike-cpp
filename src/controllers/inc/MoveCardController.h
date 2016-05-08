@@ -15,7 +15,7 @@
 class MoveCardController {
 public:
 	MoveCardController(Klondike* k);
-	Stock* getStock();
+	Klondike* getGame();
 	std::vector<MoveOrigin*> getAvailableOrigins();
 	std::vector<MoveDest*> getAvailableDests(MoveOrigin* origin);
 private:

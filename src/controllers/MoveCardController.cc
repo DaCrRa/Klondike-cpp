@@ -11,8 +11,8 @@ MoveCardController::MoveCardController(Klondike* k) :
 	game(k) {}
 
 
-Stock* MoveCardController::getStock() {
-	return game->getStock();
+Klondike* MoveCardController::getGame() {
+	return game;
 }
 
 std::vector<MoveOrigin*> MoveCardController::getAvailableOrigins() {
