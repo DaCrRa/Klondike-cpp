@@ -9,8 +9,9 @@
 #define FOUNDATION_H
 
 #include <Pile.h>
+#include <MoveDest.h>
 
-class Foundation {
+class Foundation : public MoveDest {
 	private:
 		Pile pile;
 	public:
