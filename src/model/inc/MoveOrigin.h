@@ -9,8 +9,9 @@
 #define SRC_MODEL_INC_MOVEORIGIN_H_
 
 #include <Card.h>
+#include <GameElement.h>
 
-class MoveOrigin {
+class MoveOrigin : public GameElement {
 public:
 	virtual const Card* showAvailableCard() const = 0;
 	virtual const Card* removeAvailableCard() = 0;

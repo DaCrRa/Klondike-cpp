@@ -9,8 +9,9 @@
 #define SRC_MODEL_INC_MOVEDEST_H_
 
 #include <Card.h>
+#include <GameElement.h>
 
-class MoveDest {
+class MoveDest : public GameElement {
 public:
 	virtual bool accept(const Card* c) = 0;
 	virtual void add(const Card* c) = 0;
