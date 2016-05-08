@@ -14,8 +14,8 @@ class Foundation {
 	private:
 		Pile pile;
 	public:
-		void add(Card* c);
-		bool accept(Card* c);
+		void add(const Card* c);
+		bool accept(const Card* c);
 		bool isCompleted() const;
 		int getNumCards() const;
 		const Card* top() const;

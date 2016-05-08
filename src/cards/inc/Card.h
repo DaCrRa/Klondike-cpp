@@ -11,11 +11,11 @@ class Card {
 
       int getRank() const;
 
-      bool hasSameSuit(const Card* c);
+      bool hasSameSuit(const Card* c) const;
 
-      bool hasSameColor(const Card* c);
+      bool hasSameColor(const Card* c) const;
 
-      int compareRank(const Card* c);
+      int compareRank(const Card* c) const;
 };
 
 #endif

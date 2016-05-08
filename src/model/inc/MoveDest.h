@@ -12,8 +12,8 @@
 
 class MoveDest {
 public:
-	virtual bool accept(Card* c) = 0;
-	virtual void add(Card* c) = 0;
+	virtual bool accept(const Card* c) = 0;
+	virtual void add(const Card* c) = 0;
 	virtual ~MoveDest() {}
 };
 
