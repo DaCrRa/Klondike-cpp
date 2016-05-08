@@ -10,7 +10,7 @@
 
 #include <GameAction.h>
 #include <GameActionVisitor.h>
-#include <MoveOrigin.h>
+#include <MoveCardView.h>
 #include <MoveCardController.h>
 
 #include <map>
@@ -18,12 +18,9 @@
 class SelectActionView : public GameActionVisitor {
 private:
 	std::map<char, GameActionPtr> availableActions;
-
-	MoveCardController* controller;
-	std::map<MoveOrigin*, char> origins;
+	MoveCardView moveCardView;
 
 	void completeActionInfo(GameActionPtr& action);
-	std::map<char, MoveOrigin*> getPossibleOrigins();
 public:
 	SelectActionView(MoveCardController* c);
 	GameActionPtr getAction();

@@ -14,7 +14,7 @@
 #include <iostream>
 
 SelectActionView::SelectActionView(MoveCardController* c) :
-	controller(c) {
+	moveCardView(c) {
 
 	availableActions.insert(std::pair<char, GameActionPtr>('s', GameActionPtr(new StockAction())));
 	availableActions.insert(std::pair<char, GameActionPtr>('m', GameActionPtr(new Move())));
@@ -38,21 +38,7 @@ void SelectActionView::visit(StockAction* stockAction) {
 }
 
 void SelectActionView::visit(Move* move) {
-	std::map<char, MoveOrigin*> possibleOrigins = getPossibleOrigins();
-	ItemSelectionDialog<MoveOrigin*> dialog("Move from: ", possibleOrigins, 'c');
-	move->setOrigin(dialog.getSelectedItem());
-	std::cout << "Move to: ";
-	char userToInput;
-	std::cin >> userToInput;
-}
-
-std::map<char, MoveOrigin*> SelectActionView::getPossibleOrigins() {
-	std::map<char, MoveOrigin*> possibleOrigins;
-	std::vector<MoveOrigin*> availableOrigins = controller->getAvailableOrigins();
-	for (std::vector<MoveOrigin*>::iterator it = availableOrigins.begin(); it != availableOrigins.end(); ++it) {
-		possibleOrigins[origins[*it]] = *it;
-	}
-	return possibleOrigins;
+	moveCardView.completeMove(move);
 }
 
 
