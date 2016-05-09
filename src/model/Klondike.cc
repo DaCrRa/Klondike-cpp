@@ -12,6 +12,9 @@ Klondike::Klondike() :
 	foundations(4) //TODO magic number
 {
 	moveOrigins.push_back(&stock);
+	for (std::vector<Foundation>::iterator it = foundations.begin(); it != foundations.end(); ++it) {
+		moveDests.push_back(it.base());
+	}
 }
 
 void Klondike::initialize() {
@@ -51,4 +54,8 @@ std::vector<Foundation>& Klondike::getFoundations() {
 
 std::vector<MoveOrigin*>& Klondike::getAllMoveOrigins() {
 	return moveOrigins;
+}
+
+std::vector<MoveDest*>& Klondike::getAllMoveDests() {
+	return moveDests;
 }

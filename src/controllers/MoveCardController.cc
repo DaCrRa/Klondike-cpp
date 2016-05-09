@@ -27,9 +27,9 @@ std::vector<MoveOrigin*> MoveCardController::getAvailableOrigins() {
 
 std::vector<MoveDest*> MoveCardController::getAvailableDests(MoveOrigin* o) {
 	std::vector<MoveDest*> availableDests;
-	for (std::vector<Foundation>::iterator it = game->getFoundations().begin() ; it != game->getFoundations().end() ; ++it) {
-		if (it->accept(o->showAvailableCard())) {
-			availableDests.push_back(it.base());
+	for (std::vector<MoveDest*>::iterator it = game->getAllMoveDests().begin() ; it != game->getAllMoveDests().end() ; ++it) {
+		if ((*it)->accept(o->showAvailableCard())) {
+			availableDests.push_back(*it);
 		}
 	}
 	return availableDests;

@@ -21,6 +21,7 @@ private:
 	std::vector<Foundation> foundations;
 	std::vector<TableauPile> tableau;
 	std::vector<MoveOrigin*> moveOrigins;
+	std::vector<MoveDest*> moveDests;
 public:
 	Klondike();
 	void initialize();
@@ -29,6 +30,7 @@ public:
 	Stock* getStock();
 	std::vector<Foundation>& getFoundations();
 	std::vector<MoveOrigin*>& getAllMoveOrigins();
+	std::vector<MoveDest*>& getAllMoveDests();
 };
 
 #endif
