@@ -15,6 +15,10 @@ Klondike::Klondike() :
 	for (std::vector<Foundation>::iterator it = foundations.begin(); it != foundations.end(); ++it) {
 		moveDests.push_back(it.base());
 	}
+	for (std::vector<TableauPile>::iterator it = tableau.begin(); it != tableau.end(); ++it) {
+		moveOrigins.push_back(it.base());
+		moveDests.push_back(it.base());
+	}
 }
 
 void Klondike::initialize() {
