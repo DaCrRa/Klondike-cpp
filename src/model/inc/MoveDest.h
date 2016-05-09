@@ -11,7 +11,7 @@
 #include <Card.h>
 #include <GameElement.h>
 
-class MoveDest : public GameElement {
+class MoveDest : virtual public GameElement {
 public:
 	virtual bool accept(const Card* c) = 0;
 	virtual void add(const Card* c) = 0;
