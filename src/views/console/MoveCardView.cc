@@ -18,6 +18,10 @@ MoveCardView::MoveCardView(MoveCardController* c) :
 	for (std::vector<Foundation>::iterator it = game->getFoundations().begin() ; it != game->getFoundations().end() ; ++it) {
 		origins.insert(std::pair<GameElement*, char>(it.base(), foundationTag++));
 	}
+	char tableauPileTag = '1';
+	for (std::vector<TableauPile>::iterator it = game->getTableau().begin() ; it != game->getTableau().end() ; ++it) {
+		origins.insert(std::pair<GameElement*, char>(it.base(), tableauPileTag++));
+	}
 }
 
 void MoveCardView::completeMove(Move* move) {
