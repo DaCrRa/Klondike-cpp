@@ -13,6 +13,7 @@
 
 class MoveOrigin : public GameElement {
 public:
+	virtual bool hasCardAvailable() const = 0;
 	virtual const Card* showAvailableCard() const = 0;
 	virtual const Card* removeAvailableCard() = 0;
 	virtual ~MoveOrigin() {}
