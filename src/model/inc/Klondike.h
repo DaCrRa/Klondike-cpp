@@ -29,6 +29,7 @@ public:
 	void configureRenderer(KlondikeRenderer* renderer);
 	Stock* getStock();
 	std::vector<Foundation>& getFoundations();
+	std::vector<TableauPile>& getTableau();
 	std::vector<MoveOrigin*>& getAllMoveOrigins();
 	std::vector<MoveDest*>& getAllMoveDests();
 };

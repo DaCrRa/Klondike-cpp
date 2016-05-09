@@ -56,6 +56,10 @@ std::vector<Foundation>& Klondike::getFoundations() {
 	return foundations;
 }
 
+std::vector<TableauPile>& Klondike::getTableau() {
+	return tableau;
+}
+
 std::vector<MoveOrigin*>& Klondike::getAllMoveOrigins() {
 	return moveOrigins;
 }
