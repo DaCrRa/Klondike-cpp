@@ -11,7 +11,7 @@ int Card::getRank() const {
 
 bool Card::hasSameSuit(const Card* c) const {
 	//TODO
-	return false;
+	return true;
 }
 
 bool Card::hasSameColor(const Card* c) const {
