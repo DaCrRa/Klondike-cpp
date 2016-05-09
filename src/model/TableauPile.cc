@@ -42,3 +42,15 @@ PileIterator TableauPile::uncoveredCardsBegin() const {
 PileIterator TableauPile::uncoveredCardsEnd() const {
 	return uncoveredCards.end();
 }
+
+bool TableauPile::hasCardAvailable() const {
+	return uncoveredCards.hasCards();
+}
+
+const Card* TableauPile::showAvailableCard() const {
+	return uncoveredCards.top();
+}
+
+const Card* TableauPile::removeAvailableCard() {
+	return uncoveredCards.removeTop();
+}
