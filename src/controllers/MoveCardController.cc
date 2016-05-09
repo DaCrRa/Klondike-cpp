@@ -17,8 +17,10 @@ Klondike* MoveCardController::getGame() {
 
 std::vector<MoveOrigin*> MoveCardController::getAvailableOrigins() {
 	std::vector<MoveOrigin*> availableOrigins;
-	if (game->getStock()->hasCardAvailable()) {
-		availableOrigins.push_back(game->getStock());
+	for (std::vector<MoveOrigin*>::iterator it = game->getAllMoveOrigins().begin() ; it != game->getAllMoveOrigins().end() ; ++it) {
+		if ((*it)->hasCardAvailable()) {
+			availableOrigins.push_back(*it);
+		}
 	}
 	return availableOrigins;
 }

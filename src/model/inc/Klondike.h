@@ -20,6 +20,7 @@ private:
 	Stock stock;
 	std::vector<Foundation> foundations;
 	std::vector<TableauPile> tableau;
+	std::vector<MoveOrigin*> moveOrigins;
 public:
 	Klondike();
 	void initialize();
@@ -27,6 +28,7 @@ public:
 	void configureRenderer(KlondikeRenderer* renderer);
 	Stock* getStock();
 	std::vector<Foundation>& getFoundations();
+	std::vector<MoveOrigin*>& getAllMoveOrigins();
 };
 
 #endif

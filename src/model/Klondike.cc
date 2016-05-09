@@ -10,7 +10,9 @@
 Klondike::Klondike() :
 	tableau(7), //TODO magic number
 	foundations(4) //TODO magic number
-{}
+{
+	moveOrigins.push_back(&stock);
+}
 
 void Klondike::initialize() {
 	int i = 0;
@@ -45,4 +47,8 @@ Stock* Klondike::getStock() {
 
 std::vector<Foundation>& Klondike::getFoundations() {
 	return foundations;
+}
+
+std::vector<MoveOrigin*>& Klondike::getAllMoveOrigins() {
+	return moveOrigins;
 }
