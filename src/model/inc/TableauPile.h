@@ -2,8 +2,10 @@
 #define TABLEAUPILE_H
 
 #include <Pile.h>
+#include <MoveOrigin.h>
+#include <MoveDest.h>
 
-class TableauPile {
+class TableauPile : public MoveOrigin, public MoveDest {
 private:
 	Pile coveredCards;
 	Pile uncoveredCards;
