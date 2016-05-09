@@ -10,8 +10,8 @@ private:
 public:
 	void turnUp();
 	void addToCovered(const Card* c);
-	void add(Card* c);
-	bool accept(Card* c);
+	void add(const Card* c);
+	bool accept(const Card* c);
 	int getNumCoveredCards() const;
 	PileIterator uncoveredCardsBegin() const;
 	PileIterator uncoveredCardsEnd() const;
