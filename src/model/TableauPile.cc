@@ -20,7 +20,7 @@ void TableauPile::addToCovered(const Card* c) {
 
 bool TableauPile::accept(const Card* c) {
 	if (uncoveredCards.hasCards()) {
-		return c->hasSameColor(uncoveredCards.top()) && c->compareRank(uncoveredCards.top()) == -1;
+		return !c->hasSameColor(uncoveredCards.top()) && c->compareRank(uncoveredCards.top()) == -1;
 	} else {
 		return !coveredCards.hasCards() && c->getRank() == 12;
 	}
