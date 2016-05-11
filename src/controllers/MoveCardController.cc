@@ -16,22 +16,10 @@ Klondike* MoveCardController::getGame() {
 }
 
 std::vector<MoveOrigin*> MoveCardController::getAvailableOrigins() {
-	std::vector<MoveOrigin*> availableOrigins;
-	for (std::vector<MoveOrigin*>::iterator it = game->getAllMoveOrigins().begin() ; it != game->getAllMoveOrigins().end() ; ++it) {
-		if ((*it)->hasCardAvailable()) {
-			availableOrigins.push_back(*it);
-		}
-	}
-	return availableOrigins;
+	return game->getPossibleMoveOrigins();
 }
 
 std::vector<MoveDest*> MoveCardController::getAvailableDests(MoveOrigin* o) {
-	std::vector<MoveDest*> availableDests;
-	for (std::vector<MoveDest*>::iterator it = game->getAllMoveDests().begin() ; it != game->getAllMoveDests().end() ; ++it) {
-		if ((*it)->accept(o->showAvailableCard())) {
-			availableDests.push_back(*it);
-		}
-	}
-	return availableDests;
+	return game->getPossibleMoveDests(o);
 }
 

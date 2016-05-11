@@ -60,10 +60,22 @@ std::vector<TableauPile>& Klondike::getTableau() {
 	return tableau;
 }
 
-std::vector<MoveOrigin*>& Klondike::getAllMoveOrigins() {
-	return moveOrigins;
+std::vector<MoveOrigin*> Klondike::getPossibleMoveOrigins() {
+	std::vector<MoveOrigin*> possibleMoveOrigins;
+	for (std::vector<MoveOrigin*>::iterator it = moveOrigins.begin(); it != moveOrigins.end(); ++it) {
+		if ((*it)->hasCardAvailable()) {
+			possibleMoveOrigins.push_back(*it);
+		}
+	}
+	return possibleMoveOrigins;
 }
 
-std::vector<MoveDest*>& Klondike::getAllMoveDests() {
-	return moveDests;
+std::vector<MoveDest*> Klondike::getPossibleMoveDests(MoveOrigin* origin) {
+	std::vector<MoveDest*> possibleMoveDests;
+	for (std::vector<MoveDest*>::iterator it = moveDests.begin(); it != moveDests.end(); ++it) {
+		if ((*it)->accept(origin->showAvailableCard())) {
+			possibleMoveDests.push_back(*it);
+		}
+	}
+	return possibleMoveDests;
 }

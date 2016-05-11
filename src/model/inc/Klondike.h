@@ -30,8 +30,8 @@ public:
 	Stock* getStock();
 	std::vector<Foundation>& getFoundations();
 	std::vector<TableauPile>& getTableau();
-	std::vector<MoveOrigin*>& getAllMoveOrigins();
-	std::vector<MoveDest*>& getAllMoveDests();
+	std::vector<MoveOrigin*> getPossibleMoveOrigins();
+	std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* orig);
 };
 
 #endif
