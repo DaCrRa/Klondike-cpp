@@ -23,6 +23,7 @@ public:
 	void move();
 	bool hasCardAvailable() const;
 	bool hasCoveredCards() const;
+	bool hasCards() const;
 	const Card* showAvailableCard() const;
 	const Card* removeAvailableCard();
 };

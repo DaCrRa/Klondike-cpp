@@ -50,3 +50,7 @@ const Card* Stock::removeAvailableCard() {
 bool Stock::hasCoveredCards() const {
 	return covered.hasCards();
 }
+
+bool Stock::hasCards() const {
+	return hasCoveredCards() || hasCardAvailable();
+}
