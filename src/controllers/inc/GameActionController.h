@@ -14,12 +14,15 @@
 #include <GameAction.h>
 #include <GameActionVisitor.h>
 #include <Move.h>
+#include <MoveCardController.h>
 
 class GameActionController: public Controller, public GameActionVisitor {
 private:
 	Klondike* game;
+	MoveCardController moveCardController;
 public:
 	GameActionController(Klondike* g);
+	MoveCardController* getMoveCardController();
 	void doAction(GameActionPtr action);
 	void accept(ControllerVisitor* visitor);
 	void visit(StockAction* stockAction);

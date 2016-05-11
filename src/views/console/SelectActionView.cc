@@ -10,22 +10,23 @@
 #include <ItemSelectionDialog.h>
 #include <StockAction.h>
 #include <Move.h>
+#include <MoveCardView.h>
 
 #include <iostream>
 
-SelectActionView::SelectActionView(MoveCardController* c) :
-	moveCardView(c) {
-
-	availableActions.insert(std::pair<char, GameActionPtr>('s', GameActionPtr(new StockAction())));
-	availableActions.insert(std::pair<char, GameActionPtr>('m', GameActionPtr(new Move())));
+SelectActionView::SelectActionView(GameActionController* c) :
+	actionController(c)
+{
 
 }
 
-GameActionPtr SelectActionView::getAction() {
+void SelectActionView::getAction(GameActionPtr& c) {
+	std::map<char, GameActionPtr> availableActions;
+	availableActions.insert(std::pair<char, GameActionPtr>('s', GameActionPtr(new StockAction())));
+	availableActions.insert(std::pair<char, GameActionPtr>('m', GameActionPtr(new Move())));
 	ItemSelectionDialog<GameActionPtr> dialog("Select action: ", availableActions, 'c');
-	GameActionPtr selectedAction = dialog.getSelectedItem()->duplicate();
-	completeActionInfo(selectedAction);
-	return selectedAction;
+	c = dialog.getSelectedItem();
+	completeActionInfo(c);
 }
 
 void SelectActionView::completeActionInfo(GameActionPtr& action) {
@@ -38,6 +39,7 @@ void SelectActionView::visit(StockAction* stockAction) {
 }
 
 void SelectActionView::visit(Move* move) {
+	MoveCardView moveCardView(actionController->getMoveCardController());
 	moveCardView.completeMove(move);
 }
 

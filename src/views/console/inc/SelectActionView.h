@@ -10,20 +10,17 @@
 
 #include <GameAction.h>
 #include <GameActionVisitor.h>
-#include <MoveCardView.h>
-#include <MoveCardController.h>
+#include <GameActionController.h>
 
 #include <map>
 
 class SelectActionView : public GameActionVisitor {
 private:
-	std::map<char, GameActionPtr> availableActions;
-	MoveCardView moveCardView;
-
 	void completeActionInfo(GameActionPtr& action);
+	GameActionController* actionController;
 public:
-	SelectActionView(MoveCardController* c);
-	GameActionPtr getAction();
+	SelectActionView(GameActionController* c);
+	void getAction(GameActionPtr& action);
 	void visit(StockAction* stockAction);
 	void visit(Move* move);
 };

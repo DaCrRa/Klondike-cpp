@@ -24,10 +24,11 @@ void GameConsoleView::interact(Controller* c) {
 
 void GameConsoleView::visit(GameActionController* c) {
 	renderer.render();
+	GameActionPtr action;
+	SelectActionView v(c);
 	try {
-		MoveCardController moveController(game);
-		SelectActionView selectActionView(&moveController);
-		c->doAction(selectActionView.getAction());
+		v.getAction(action);
+		c->doAction(action);
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}

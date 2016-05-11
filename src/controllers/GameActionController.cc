@@ -8,7 +8,8 @@
 #include <GameActionController.h>
 
 GameActionController::GameActionController(Klondike* g) :
-	game(g) {
+	game(g),
+	moveCardController(g) {
 
 }
 
@@ -26,4 +27,8 @@ void GameActionController::visit(StockAction* stockAction) {
 
 void GameActionController::visit(Move* move) {
 	move->doMove();
+}
+
+MoveCardController* GameActionController::getMoveCardController() {
+	return &moveCardController;
 }
