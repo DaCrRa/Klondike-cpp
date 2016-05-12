@@ -7,6 +7,8 @@
 
 #include <GameActionController.h>
 
+#include <Move.h>
+
 GameActionController::GameActionController(Klondike* g) :
 	game(g)
 {
