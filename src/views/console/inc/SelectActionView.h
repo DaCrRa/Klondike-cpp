@@ -10,16 +10,16 @@
 
 #include <GameAction.h>
 #include <GameActionVisitor.h>
-#include <GameActionController.h>
+#include <UserGameActionController.h>
 
 #include <map>
 
 class SelectActionView : public GameActionVisitor {
 private:
 	void completeActionInfo(GameActionPtr& action);
-	GameActionController* actionController;
+	UserGameActionController* actionController;
 public:
-	SelectActionView(GameActionController* c);
+	SelectActionView(UserGameActionController* c);
 	void getAction(GameActionPtr& action);
 	void visit(StockAction* stockAction);
 	void visit(Move* move);

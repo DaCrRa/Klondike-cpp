@@ -3,12 +3,12 @@
 
 #include <Klondike.h>
 #include <GameConsoleView.h>
-#include <GameActionController.h>
+#include <UserGameActionController.h>
 
 int main(int argc, char* argv[]) {
 	Klondike k;
 	GameConsoleView view(&k);
-	GameActionController controller(&k);
+	UserGameActionController controller(&k);
 
 	k.initialize();
 

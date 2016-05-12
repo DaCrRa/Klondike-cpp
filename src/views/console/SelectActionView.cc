@@ -14,7 +14,7 @@
 
 #include <iostream>
 
-SelectActionView::SelectActionView(GameActionController* c) :
+SelectActionView::SelectActionView(UserGameActionController* c) :
 	actionController(c)
 {
 
