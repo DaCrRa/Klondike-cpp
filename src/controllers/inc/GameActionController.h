@@ -19,6 +19,7 @@ private:
 	Klondike* game;
 public:
 	GameActionController(Klondike* g);
+	Klondike* getGame();
 	void doAction(GameActionPtr action);
 	void accept(ControllerVisitor* visitor);
 	void visit(StockAction* stockAction);

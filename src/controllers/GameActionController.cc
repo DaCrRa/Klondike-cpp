@@ -19,6 +19,10 @@ void GameActionController::accept(ControllerVisitor* visitor) {
 	visitor->visit(this);
 }
 
+Klondike* GameActionController::getGame() {
+	return game;
+}
+
 void GameActionController::doAction(GameActionPtr action) {
 	action->accept(this);
 }
