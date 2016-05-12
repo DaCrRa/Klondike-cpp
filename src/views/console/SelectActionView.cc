@@ -39,7 +39,7 @@ void SelectActionView::visit(StockAction* stockAction) {
 }
 
 void SelectActionView::visit(Move* move) {
-	MoveCardView moveCardView(actionController->getMoveCardController());
+	MoveCardView moveCardView(actionController);
 	moveCardView.completeMove(move);
 }
 

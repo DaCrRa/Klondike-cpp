@@ -8,20 +8,20 @@
 #ifndef SRC_VIEWS_CONSOLE_MOVECARDVIEW_H_
 #define SRC_VIEWS_CONSOLE_MOVECARDVIEW_H_
 
-#include <MoveCardController.h>
+#include <GameActionController.h>
 #include <Move.h>
 
 #include <map>
 
 class MoveCardView {
 private:
-	MoveCardController* controller;
+       GameActionController* controller;
 	std::map<GameElement*, char> origins;
 
 	std::map<char, MoveOrigin*> getPossibleOrigins();
 	std::map<char, MoveDest*> getPossibleDests(MoveOrigin* origin);
 public:
-	MoveCardView(MoveCardController* c);
+	MoveCardView(GameActionController* c);
 	void completeMove(Move* m);
 };
 

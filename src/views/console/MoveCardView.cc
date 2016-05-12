@@ -9,7 +9,7 @@
 
 #include <ItemSelectionDialog.h>
 
-MoveCardView::MoveCardView(MoveCardController* c) :
+MoveCardView::MoveCardView(GameActionController* c) :
 	controller(c)
 {
 	Klondike* game = controller->getGame();
