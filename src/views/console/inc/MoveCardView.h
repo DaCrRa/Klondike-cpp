@@ -15,11 +15,11 @@
 
 class MoveCardView {
 private:
-       GameActionController* controller;
-	std::map<GameElement*, char> origins;
+	GameActionController* controller;
+	std::map<GameElement*, char> gameElementTag;
 
-	std::map<char, MoveOrigin*> getPossibleOrigins();
-	std::map<char, MoveDest*> getPossibleDests(MoveOrigin* origin);
+	std::map<char, MoveOrigin*> tagPossibleOrigins();
+	std::map<char, MoveDest*> tagPossibleDests(MoveOrigin* origin);
 public:
 	MoveCardView(GameActionController* c);
 	void completeMove(Move* m);
