@@ -18,9 +18,14 @@ GameConsoleView::GameConsoleView(Klondike* k) :
 	k->configureRenderer(&renderer);
 }
 
-void GameConsoleView::interact(GameActionController* c) {
+void GameConsoleView::interact(GameActionController* controller) {
 	renderer.render();
-	c->acceptGameActionControllerVisitor(this);
+	try {
+		GameActionPtr gameAction = getGameAction(controller);
+		controller->doAction(gameAction);
+	} catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
 }
 
 void GameConsoleView::visit(UserGameActionController* c) {
@@ -29,7 +34,16 @@ void GameConsoleView::visit(UserGameActionController* c) {
 	try {
 		v.getAction(action);
 		c->doAction(action);
+
+}
+
+void GameConsoleView::visit(RandomGameActionController* c) {
+	/*GameActionPtr action;
+	SelectActionView v(c);
+	try {
+		v.getAction(action);
+		c->doAction(action);
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
-	}
+	}*/
 }

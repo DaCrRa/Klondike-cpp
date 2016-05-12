@@ -21,6 +21,7 @@ public:
 	GameConsoleView(Klondike* k);
 	void interact(GameActionController* c);
 	void visit(UserGameActionController* c);
+	void visit(RandomGameActionController* c);
 };
 
 #endif

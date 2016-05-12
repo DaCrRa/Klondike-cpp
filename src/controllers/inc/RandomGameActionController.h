@@ -9,14 +9,14 @@
 #define SRC_CONTROLLERS_RANDOMGAMEACTIONCONTROLLER_H_
 
 #include <Klondike.h>
-#include <Controller.h>
-#include <GameAction.h>
+#include <GameActionController.h>
 
-class RandomGameActionController {
+class RandomGameActionController : public GameActionController {
 private:
 	Klondike* game;
 public:
 	RandomGameActionController(Klondike* game);
+	void acceptGameActionControllerVisitor(GameActionControllerVisitor* v);
 	GameActionPtr getAction();
 };
 

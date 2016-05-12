@@ -10,9 +10,10 @@
 #include <Move.h>
 
 #include <vector>
+#include <cstdlib>
 
 RandomGameActionController::RandomGameActionController(Klondike* g) :
-	game(g)
+	GameActionController(g)
 {
 
 }
@@ -31,6 +32,10 @@ GameActionPtr RandomGameActionController::getAction() {
 			actions.push_back(GameActionPtr(&m));
 		}
 	}
-	return actions[0];
+	return actions[std::rand() % actions.size()];
+}
+
+void RandomGameActionController::acceptGameActionControllerVisitor(GameActionControllerVisitor* v) {
+	v->visit(this);
 }
 
