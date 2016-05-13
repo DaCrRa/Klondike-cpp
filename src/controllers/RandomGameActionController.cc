@@ -23,13 +23,14 @@ GameActionPtr RandomGameActionController::getAction() {
 	if(game->getStock()->hasCards()) {
 		actions.push_back(GameActionPtr(new StockAction()));
 	}
-	for (std::vector<MoveOrigin*>::iterator it = game->getPossibleMoveOrigins().begin(); it != game->getPossibleMoveOrigins().begin(); ++it) {
+	std::vector<MoveOrigin*> possibleMoveOrigins = game->getPossibleMoveOrigins();
+	for (std::vector<MoveOrigin*>::iterator it = possibleMoveOrigins.begin(); it != possibleMoveOrigins.end(); ++it) {
 		std::vector<MoveDest*> moveDests = game->getPossibleMoveDests(*it);
-		for (std::vector<MoveDest*>::iterator destIt = moveDests.begin(); destIt != moveDests.begin(); ++destIt) {
+		for (std::vector<MoveDest*>::iterator destIt = moveDests.begin(); destIt != moveDests.end(); ++destIt) {
 			Move m;
 			m.setOrigin(*it);
 			m.setDest(*destIt);
-			actions.push_back(GameActionPtr(&m));
+			actions.push_back(GameActionPtr(m.duplicate()));
 		}
 	}
 	return actions[std::rand() % actions.size()];
