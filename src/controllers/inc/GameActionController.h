@@ -16,7 +16,7 @@
 #include <GameActionControllerVisitor.h>
 
 class GameActionController: public Controller, public GameActionVisitor {
-private:
+protected:
 	Klondike* game;
 public:
 	GameActionController(Klondike* g);

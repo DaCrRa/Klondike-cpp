@@ -17,6 +17,9 @@ class GameConsoleView : public GameActionControllerVisitor {
 private:
 	KlondikeConsoleRenderer renderer;
 	Klondike* game;
+	GameActionPtr gameAction;
+
+	void selectGameAction(GameActionController* controller);
 public:
 	GameConsoleView(Klondike* k);
 	void interact(GameActionController* c);

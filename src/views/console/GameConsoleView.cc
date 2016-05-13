@@ -9,6 +9,7 @@
 
 #include <SelectActionView.h>
 #include <StockAction.h>
+#include <RandomGameActionController.h>
 
 #include <iostream>
 
@@ -21,29 +22,22 @@ GameConsoleView::GameConsoleView(Klondike* k) :
 void GameConsoleView::interact(GameActionController* controller) {
 	renderer.render();
 	try {
-		GameActionPtr gameAction = getGameAction(controller);
+		selectGameAction(controller);
 		controller->doAction(gameAction);
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
 }
 
-void GameConsoleView::visit(UserGameActionController* c) {
-	GameActionPtr action;
-	SelectActionView v(c);
-	try {
-		v.getAction(action);
-		c->doAction(action);
+void GameConsoleView::selectGameAction(GameActionController* controller) {
+	controller->acceptGameActionControllerVisitor(this);
+}
 
+void GameConsoleView::visit(UserGameActionController* c) {
+	SelectActionView v(c);
+	v.getAction(gameAction);
 }
 
 void GameConsoleView::visit(RandomGameActionController* c) {
-	/*GameActionPtr action;
-	SelectActionView v(c);
-	try {
-		v.getAction(action);
-		c->doAction(action);
-	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
-	}*/
+	gameAction = c->getAction();
 }

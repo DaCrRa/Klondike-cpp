@@ -12,8 +12,6 @@
 #include <GameActionController.h>
 
 class RandomGameActionController : public GameActionController {
-private:
-	Klondike* game;
 public:
 	RandomGameActionController(Klondike* game);
 	void acceptGameActionControllerVisitor(GameActionControllerVisitor* v);
