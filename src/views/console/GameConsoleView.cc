@@ -8,6 +8,7 @@
 #include <GameConsoleView.h>
 
 #include <SelectActionView.h>
+#include <ShowActionView.h>
 #include <StockAction.h>
 #include <RandomGameActionController.h>
 
@@ -40,4 +41,5 @@ void GameConsoleView::visit(UserGameActionController* c) {
 
 void GameConsoleView::visit(RandomGameActionController* c) {
 	gameAction = c->getAction();
+	ShowActionView(gameAction).show();
 }
