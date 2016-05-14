@@ -24,7 +24,7 @@ public:
 template <typename T>
 class ItemSelectionDialog {
 public:
-	ItemSelectionDialog(const std::string& t, std::map<char, T>& allowed, const char flag) :
+	ItemSelectionDialog(const std::string& t, const std::map<char, T>& allowed, const char flag) :
 		title(t),
 		allowedChars(allowed),
 		cancelFlag(flag)
@@ -32,7 +32,7 @@ public:
 		assert(allowedChars.count(cancelFlag) == 0);
 	};
 	T getSelectedItem() {
-		typename std::map<char, T>::iterator selected = allowedChars.end();
+		typename std::map<char, T>::const_iterator selected = allowedChars.end();
 		while (selected == allowedChars.end()) {
 			std::cout << title;
 			char userInput;
@@ -47,7 +47,7 @@ public:
 private:
 	const std::string& title;
 	char cancelFlag;
-	typename std::map<char, T>& allowedChars;
+	const typename std::map<char, T>& allowedChars;
 };
 
 #endif /* SRC_UTILS_CHARINPUTDIALOG_H_ */

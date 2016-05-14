@@ -21,10 +21,12 @@ SelectActionView::SelectActionView(UserGameActionController* c) :
 }
 
 void SelectActionView::getAction(GameActionPtr& c) {
-	std::map<char, GameActionPtr> availableActions;
-	availableActions.insert(std::pair<char, GameActionPtr>('s', GameActionPtr(new StockAction())));
-	availableActions.insert(std::pair<char, GameActionPtr>('m', GameActionPtr(new Move())));
-	ItemSelectionDialog<GameActionPtr> dialog("Select action: ", availableActions, 'c');
+	ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
+		std::map<char, GameActionPtr>({
+			{ 's', GameActionPtr(new StockAction()) },
+			{ 'm', GameActionPtr(new Move()) }
+		}),
+		'c');
 	c = dialog.getSelectedItem();
 	completeActionInfo(c);
 }
