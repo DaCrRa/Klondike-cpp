@@ -7,27 +7,21 @@
 #include <RandomGameActionController.h>
 #include <ItemSelectionDialog.h>
 #include <Menu.h>
+#include <MainMenuView.h>
 
 int main(int argc, char* argv[]) {
 	Klondike k;
 	GameConsoleView view(&k);
-	GameActionController* controller;
-
-	UserGameActionController userController(&k);
-	RandomGameActionController randomController(&k);
-
-	Menu<GameActionController*> m("Options:", std::vector<std::pair<MenuOption, GameActionController*> >({
-		{ MenuOption("Start one-player klondike", 0), &userController },
-		{ MenuOption("Demo", 0), &randomController }
-	}));
-	controller = m.getUserSelection();
+	MainMenuView menuView;
 
 	try {
+
+		std::shared_ptr<GameActionController> controller = menuView.getSelection(&k);
 
 		k.initialize();
 
 		for (int i = 0; i < 20; ++i) {
-			view.interact(controller);
+			view.interact(controller.get());
 		}
 	} catch (CancelledDialogException& e) {
 		std::cout << e.what() << std::endl;
