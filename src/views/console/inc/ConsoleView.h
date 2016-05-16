@@ -15,6 +15,7 @@ class ConsoleView : public ControllerVisitor {
 public:
 	void interact(Controller* c);
 	void visit(GameActionController* c);
+	void visit(StartController* c);
 };
 
 #endif /* SRC_VIEWS_CONSOLE_CONSOLEVIEW_H_ */

@@ -9,10 +9,12 @@
 #define SRC_INC_CONTROLLERVISITOR_H_
 
 class GameActionController;
+class StartController;
 
 class ControllerVisitor {
 public:
 	virtual void visit(GameActionController* sc) = 0;
+	virtual void visit(StartController* sc) = 0;
 	virtual ~ControllerVisitor() {}
 };
 

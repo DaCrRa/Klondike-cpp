@@ -16,3 +16,7 @@ void ConsoleView::visit(GameActionController* controller) {
 	GameConsoleView view(controller->getGame());
 	view.interact(controller);
 }
+
+void ConsoleView::visit(StartController* controller) {
+	//TODO
+}
