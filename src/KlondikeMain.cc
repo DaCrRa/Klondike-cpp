@@ -3,23 +3,26 @@
 
 #include <Klondike.h>
 #include <ConsoleView.h>
-#include <UserGameActionController.h>
-#include <RandomGameActionController.h>
-#include <MainMenuView.h>
+#include <StartController.h>
+#include <GameActionController.h>
 
 int main(int argc, char* argv[]) {
 	Klondike k;
 	ConsoleView view;
-	MainMenuView menuView;
+	StartController startController(&k);
+	Controller* nextController = &startController;
+
+
+
 
 	try {
-
-		std::shared_ptr<GameActionController> controller = menuView.getSelection(&k);
-
-		k.initialize();
-
 		for (int i = 0; i < 20; ++i) {
-			view.interact(controller.get());
+			view.interact(nextController);
+			if (k.isActive()) {
+				nextController = startController.getSelectedGameActionController();
+			} else {
+				nextController = &startController;
+			}
 		}
 	} catch (std::exception& e) {
 		//TODO Do not capture here
