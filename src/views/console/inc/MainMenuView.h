@@ -8,14 +8,19 @@
 #ifndef SRC_VIEWS_CONSOLE_MAINMENUVIEW_H_
 #define SRC_VIEWS_CONSOLE_MAINMENUVIEW_H_
 
-#include <GameActionController.h>
-#include <Klondike.h>
+#include <StartController.h>
+#include <GameActionControllerVisitor.h>
 
 #include <memory>
 
-class MainMenuView {
+class MainMenuView : public GameActionControllerVisitor {
+private:
+	std::shared_ptr<GameActionController> userController;
+	std::shared_ptr<GameActionController> randomController;
 public:
-	std::shared_ptr<GameActionController> getSelection(Klondike* k);
+	void interact(StartController* controller);
+	void visit(UserGameActionController* userController);
+	void visit(RandomGameActionController* randomController);
 };
 
 #endif /* SRC_VIEWS_CONSOLE_MAINMENUVIEW_H_ */

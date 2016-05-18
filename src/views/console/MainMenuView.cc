@@ -11,9 +11,18 @@
 #include <RandomGameActionController.h>
 #include <Menu.h>
 
-std::shared_ptr<GameActionController> MainMenuView::getSelection(Klondike* k) {
-	std::shared_ptr<GameActionController> userController(new UserGameActionController(k));
-	std::shared_ptr<GameActionController> randomController(new RandomGameActionController(k));
+#include <assert.h>
+
+void MainMenuView::interact(StartController* controller) {
+
+	std::vector<std::shared_ptr<GameActionController> > gameActionControllers = controller->getGameActionControllers();
+
+	for (auto controller : gameActionControllers) {
+		controller->acceptGameActionControllerVisitor(this);
+	}
+
+	assert(userController);
+	assert(randomController);
 
 	std::cout << std::endl;
 	std::cout << "  ...---=== KLONDIKE ===---..." << std::endl;
@@ -24,6 +33,14 @@ std::shared_ptr<GameActionController> MainMenuView::getSelection(Klondike* k) {
 		{ MenuOption("Demo", 0), randomController }
 	}));
 
-	return m.getUserSelection();
+	controller->setSelectedGameActionController(m.getUserSelection());
+	controller->startGame();
 }
 
+void MainMenuView::visit(UserGameActionController* userController) {
+	this->userController = std::shared_ptr<GameActionController>(new UserGameActionController(*userController));
+}
+
+void MainMenuView::visit(RandomGameActionController* randomController) {
+	this->randomController = std::shared_ptr<GameActionController>(new RandomGameActionController(*randomController));
+}
