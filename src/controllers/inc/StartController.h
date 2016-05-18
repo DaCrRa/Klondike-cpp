@@ -12,9 +12,19 @@
 #include <ControllerVisitor.h>
 #include <Klondike.h>
 
-class StartController: public Controller {
+#include <memory>
+#include <vector>
+
+class StartController : public Controller {
+private:
+	Klondike* game;
+	std::shared_ptr<GameActionController> selectedGameActionController;
 public:
 	StartController(Klondike* k);
+	std::vector<std::shared_ptr<GameActionController> > getGameActionControllers();
+	void setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller);
+	GameActionController* getSelectedGameActionController();
+	void startGame();
 	void accept(ControllerVisitor* v);
 };
 

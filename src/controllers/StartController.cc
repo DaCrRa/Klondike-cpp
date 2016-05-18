@@ -6,10 +6,35 @@
  */
 
 #include <StartController.h>
+#include <UserGameActionController.h>
+#include <RandomGameActionController.h>
 
-StartController::StartController(Klondike* k) {
-	// TODO Auto-generated constructor stub
+#include <assert.h>
 
+StartController::StartController(Klondike* k) :
+	game(k)
+{
+
+}
+
+void StartController::startGame() {
+	assert(selectedGameActionController);
+	game->initialize();
+}
+
+std::vector<std::shared_ptr<GameActionController> > StartController::getGameActionControllers() {
+	return std::vector<std::shared_ptr<GameActionController> >({
+		std::shared_ptr<GameActionController>(new UserGameActionController(game)),
+		std::shared_ptr<RandomGameActionController>(new RandomGameActionController(game))
+	});
+}
+
+void StartController::setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller) {
+	selectedGameActionController = controller;
+}
+
+GameActionController* StartController::getSelectedGameActionController() {
+	return selectedGameActionController.get();
 }
 
 void StartController::accept(ControllerVisitor* v) {
