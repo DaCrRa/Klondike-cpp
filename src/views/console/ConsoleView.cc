@@ -7,6 +7,7 @@
 
 #include <ConsoleView.h>
 #include <GameConsoleView.h>
+#include <MainMenuView.h>
 
 void ConsoleView::interact(Controller* controller) {
 	controller->accept(this);
@@ -18,5 +19,6 @@ void ConsoleView::visit(GameActionController* controller) {
 }
 
 void ConsoleView::visit(StartController* controller) {
-	//TODO
+	MainMenuView menu;
+	menu.interact(controller);
 }
