@@ -9,7 +9,8 @@
 
 Klondike::Klondike() :
 	tableau(7), //TODO magic number
-	foundations(4) //TODO magic number
+	foundations(4), //TODO magic number
+	active(false)
 {
 	moveOrigins.push_back(&stock);
 	for (std::vector<Foundation>::iterator it = foundations.begin(); it != foundations.end(); ++it) {
@@ -32,6 +33,7 @@ void Klondike::initialize() {
 	while (deck.hasCards()) {
 		stock.addToCovered(deck.removeTop());
 	}
+	active = true;
 }
 
 bool Klondike::isCompleted() {
@@ -79,3 +81,11 @@ std::vector<MoveDest*> Klondike::getPossibleMoveDests(MoveOrigin* origin) {
 	}
 	return possibleMoveDests;
 }
+
+bool Klondike::isActive() {
+	return active;
+}
+
+
+
+

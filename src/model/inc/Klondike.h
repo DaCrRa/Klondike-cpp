@@ -22,6 +22,7 @@ private:
 	std::vector<TableauPile> tableau;
 	std::vector<MoveOrigin*> moveOrigins;
 	std::vector<MoveDest*> moveDests;
+	bool active;
 public:
 	Klondike();
 	void initialize();
@@ -32,6 +33,7 @@ public:
 	std::vector<TableauPile>& getTableau();
 	std::vector<MoveOrigin*> getPossibleMoveOrigins();
 	std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* orig);
+	bool isActive();
 };
 
 #endif
