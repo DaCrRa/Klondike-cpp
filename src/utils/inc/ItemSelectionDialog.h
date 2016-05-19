@@ -41,7 +41,7 @@ public:
 	T getSelectedItem() {
 		typename std::map<char, T>::const_iterator selected = allowedChars.end();
 		while (selected == allowedChars.end()) {
-			std::cout << title;
+			std::cout << title.c_str() << std::flush;
 			char userInput;
 			std::cin >> userInput;
 			if (userInput == cancelFlag) {
