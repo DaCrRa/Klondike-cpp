@@ -20,12 +20,12 @@ private:
 	std::map<char, T> tags;
 	std::vector<MenuOption> options;
 public:
-	Menu(const std::string& title, const std::vector<std::pair<MenuOption, T> >& options) :
+	Menu(const std::string& title, std::vector<std::pair<MenuOption, T> >&& options) :
 		menuTitle(title)
 	{
-		for (typename std::vector<std::pair<MenuOption, T> >::const_iterator it = options.begin(); it != options.end(); ++it) {
+		for (typename std::vector<std::pair<MenuOption, T> >::iterator it = options.begin(); it != options.end(); ++it) {
 			tags[it->first.getHighlightedChar()] = it->second;
-			this->options.push_back(it->first);
+			this->options.push_back(std::move(it->first));
 		}
 	};
 

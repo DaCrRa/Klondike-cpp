@@ -29,10 +29,11 @@ void MainMenuView::interact(StartController* controller) {
 	std::cout << "  ...---=== KLONDIKE ===---..." << std::endl;
 	std::cout << std::endl;
 
-	Menu<std::shared_ptr<GameActionController> > m("Options:", std::vector<std::pair<MenuOption, std::shared_ptr<GameActionController> > >({
-		{ MenuOption("Start one-player klondike", 0), userController },
-		{ MenuOption("Demo", 0), randomController }
-	}));
+	std::vector<std::pair<MenuOption, std::shared_ptr<GameActionController> > > options;
+	options.push_back(std::make_pair(MenuOption("Start one-player klondike", 0), userController));
+	options.push_back(std::make_pair(MenuOption("Demo", 0), randomController));
+
+	Menu<std::shared_ptr<GameActionController> > m("Options:", std::move(options));
 
 	controller->setSelectedGameActionController(m.getUserSelection());
 	controller->startGame();

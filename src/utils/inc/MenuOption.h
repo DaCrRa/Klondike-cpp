@@ -13,10 +13,14 @@
 
 class MenuOption {
 private:
-	std::shared_ptr<std::string> title;
-	std::string::const_iterator highlightedCharIt;
+	std::string title;
+	std::string::iterator highlightedCharIt;
+	MenuOption(const MenuOption& that) = delete;
 public:
-	MenuOption(const std::string& optionTitle, int highlightedCharPosition);
+	MenuOption(MenuOption&& other) :
+		title(std::move(other.title)),
+		highlightedCharIt(std::move(other.highlightedCharIt)) {}
+	MenuOption(std::string&& optionTitle, int highlightedCharPosition);
 	char getHighlightedChar() const;
 	const std::string toString() const;
 };
