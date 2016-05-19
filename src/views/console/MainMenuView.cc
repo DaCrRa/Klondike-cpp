@@ -18,6 +18,7 @@ void MainMenuView::interact(StartController* controller) {
 	std::vector<std::shared_ptr<GameActionController> > gameActionControllers = controller->getGameActionControllers();
 
 	for (auto controller : gameActionControllers) {
+		initController = [&](std::shared_ptr<GameActionController>& c){ c = controller; };
 		controller->acceptGameActionControllerVisitor(this);
 	}
 
@@ -38,9 +39,11 @@ void MainMenuView::interact(StartController* controller) {
 }
 
 void MainMenuView::visit(UserGameActionController* userController) {
-	this->userController = std::shared_ptr<GameActionController>(new UserGameActionController(*userController));
+	assert(initController);
+	initController(this->userController);
 }
 
 void MainMenuView::visit(RandomGameActionController* randomController) {
-	this->randomController = std::shared_ptr<GameActionController>(new RandomGameActionController(*randomController));
+	assert(initController);
+	initController(this->randomController);
 }
