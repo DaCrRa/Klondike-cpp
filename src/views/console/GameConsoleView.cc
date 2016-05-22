@@ -25,7 +25,9 @@ void GameConsoleView::interact(GameActionController* controller) {
 	try {
 		selectGameAction(controller);
 		controller->doAction(gameAction);
-	} catch (std::exception& e) {
+	} catch (IncompleteMoveException& e) {
+		std::cout << e.what() << std::endl;
+	} catch (NoActionException& e) {
 		std::cout << e.what() << std::endl;
 		controller->getGame()->togglePause();
 	}

@@ -14,6 +14,20 @@
 
 #include <map>
 
+class NoActionException : public std::exception {
+public:
+	const char* what() const throw() {
+		return "No action selected!";
+	}
+};
+
+class IncompleteMoveException : public std::exception {
+public:
+	const char* what() const throw() {
+		return "Movement cancelled!";
+	}
+};
+
 class SelectActionView : public GameActionVisitor {
 private:
 	void completeActionInfo(GameActionPtr& action);

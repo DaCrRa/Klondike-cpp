@@ -21,13 +21,17 @@ SelectActionView::SelectActionView(UserGameActionController* c) :
 }
 
 void SelectActionView::getAction(GameActionPtr& c) {
-	ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
-		std::map<char, GameActionPtr>({
-			{ 's', GameActionPtr(new StockAction()) },
-			{ 'm', GameActionPtr(new Move()) }
-		}),
+	try {
+		ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
+			std::map<char, GameActionPtr>({
+				{ 's', GameActionPtr(new StockAction()) },
+				{ 'm', GameActionPtr(new Move()) }
+			}),
 		'c');
-	c = dialog.getSelectedItem();
+		c = dialog.getSelectedItem();
+	} catch (CancelledDialogException& e) {
+		throw NoActionException();
+	}
 	completeActionInfo(c);
 }
 
@@ -41,8 +45,12 @@ void SelectActionView::visit(StockAction* stockAction) {
 }
 
 void SelectActionView::visit(Move* move) {
-	MoveCardView moveCardView(actionController);
-	moveCardView.completeMove(move);
+	try {
+		MoveCardView moveCardView(actionController);
+		moveCardView.completeMove(move);
+	} catch (std::exception& e) {
+		throw IncompleteMoveException();
+	}
 }
 
 
