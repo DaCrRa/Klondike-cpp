@@ -6,28 +6,28 @@
  */
 
 #include <MenuOption.h>
-#include <sstream>
 
-MenuOption::MenuOption(std::string&& optionTitle, int highlightedCharPosition) :
+#include <sstream>
+#include <assert.h>
+
+MenuOption::MenuOption(std::string&& optionTitle, size_t highlightedCharPos) :
 	title(optionTitle),
-	highlightedCharIt(title.begin())
+	highlightedCharPos(highlightedCharPos)
 {
-	for (int i = 0; i < highlightedCharPosition; ++i) {
-		++highlightedCharIt;
-	}
+	assert(this->highlightedCharPos < title.size());
 }
 
 char MenuOption::getHighlightedChar() const {
-	return *highlightedCharIt;
+	return title[highlightedCharPos];
 }
 
 const std::string MenuOption::toString() const {
 	std::stringstream ss;
-	for (std::string::const_iterator it = title.begin(); it != title.end(); ++it) {
-		if (it == highlightedCharIt) {
-			ss << '[' << *it << ']';
+	for (size_t pos = 0; pos < title.size(); ++pos) {
+		if (pos == highlightedCharPos) {
+			ss << '[' << title[pos] << ']';
 		} else {
-			ss << *it;
+			ss << title[pos];
 		}
 	}
 	return ss.str();
