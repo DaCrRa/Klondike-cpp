@@ -28,16 +28,16 @@ public:
 		title(t),
 		allowedChars(allowed),
 		cancelFlag(flag)
+{
+		assert(allowedChars.count(cancelFlag) == 0);
+};
+	ItemSelectionDialog(const std::string& t, const std::map<char, T>& allowed, const char flag) :
+		title(t),
+		allowedChars(std::move(allowed)),
+		cancelFlag(flag)
 	{
 		assert(allowedChars.count(cancelFlag) == 0);
 	};
-        ItemSelectionDialog(const std::string& t, const std::map<char, T>& allowed, const char flag) :
-                title(t),
-                allowedChars(std::move(allowed)),
-                cancelFlag(flag)
-        {
-                assert(allowedChars.count(cancelFlag) == 0);
-        };
 	T getSelectedItem() {
 		typename std::map<char, T>::const_iterator selected = allowedChars.end();
 		while (selected == allowedChars.end()) {
