@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
 	try {
 		for (int i = 0; i < 20; ++i) {
 			view.interact(nextController);
-			if (k->isActive()) {
+			if (k && !k->isPaused()) {
 				nextController = startController.getSelectedGameActionController();
 			} else {
 				nextController = &startController;
