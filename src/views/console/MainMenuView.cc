@@ -13,13 +13,15 @@
 
 #include <assert.h>
 
-void MainMenuView::interact(StartController* controller) {
+void MainMenuView::interact(StartController* startController) {
 
-	std::vector<std::shared_ptr<GameActionController> > gameActionControllers = controller->getGameActionControllers();
+	std::vector<std::shared_ptr<GameActionController> > gameActionControllers = startController->getGameActionControllers();
 
-	for (auto controller : gameActionControllers) {
-		initController = [&](std::shared_ptr<GameActionController>& c){ c = controller; };
-		controller->acceptGameActionControllerVisitor(this);
+	for (auto gameActionController : gameActionControllers) {
+		assignGameActionController = [&](std::shared_ptr<GameActionController>& gameActionControllerReference){
+			gameActionControllerReference = gameActionController;
+		};
+		gameActionController->acceptGameActionControllerVisitor(this);
 	}
 
 	assert(userController);
@@ -35,16 +37,16 @@ void MainMenuView::interact(StartController* controller) {
 
 	Menu<std::shared_ptr<GameActionController> > m("Options:", std::move(options));
 
-	controller->setSelectedGameActionController(m.getUserSelection());
-	controller->startGame();
+	startController->setSelectedGameActionController(m.getUserSelection());
+	startController->startGame();
 }
 
 void MainMenuView::visit(UserGameActionController* userController) {
-	assert(initController);
-	initController(this->userController);
+	assert(assignGameActionController);
+	assignGameActionController(this->userController);
 }
 
 void MainMenuView::visit(RandomGameActionController* randomController) {
-	assert(initController);
-	initController(this->randomController);
+	assert(assignGameActionController);
+	assignGameActionController(this->randomController);
 }
