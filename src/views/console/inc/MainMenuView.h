@@ -18,6 +18,8 @@ private:
 	std::shared_ptr<GameActionController> userController;
 	std::shared_ptr<GameActionController> randomController;
 
+	void startGame(StartController* startController, std::shared_ptr<GameActionController> gameActionController);
+
 	std::function<void(std::shared_ptr<GameActionController>&)> assignGameActionController;
 public:
 	void interact(StartController* controller);

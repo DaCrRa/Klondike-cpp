@@ -31,18 +31,28 @@ void MainMenuView::interact(StartController* startController) {
 	std::cout << "  ...---=== KLONDIKE ===---..." << std::endl;
 	std::cout << std::endl;
 
-	std::vector<std::pair<MenuOption, std::shared_ptr<GameActionController> > > options;
+	std::vector<std::pair<MenuOption, std::function<void()> > > options;
 
 	if (startController->isGameInProgress()) {
-		options.push_back(std::make_pair(MenuOption("Resume game", 0), std::shared_ptr<GameActionController>()));
+		options.push_back(std::make_pair(MenuOption("Resume game", 0), [&]{
+			startController->resumeGame();
+		}));
 	}
 
-	options.push_back(std::make_pair(MenuOption("Start one-player klondike", 0), userController));
-	options.push_back(std::make_pair(MenuOption("Demo", 0), randomController));
+	options.push_back(std::make_pair(MenuOption("Start one-player klondike", 0), [&]{
+		startGame(startController, userController);
+	}));
+	options.push_back(std::make_pair(MenuOption("Demo", 0), [&]{
+		startGame(startController, randomController);
+	}));
 
-	Menu<std::shared_ptr<GameActionController> > m("Options:", std::move(options));
+	Menu<std::function<void()>> m("Options:", std::move(options));
 
-	startController->setSelectedGameActionController(m.getUserSelection());
+	(m.getUserSelection())();
+}
+
+void MainMenuView::startGame(StartController* startController, std::shared_ptr<GameActionController> gameActionController) {
+	startController->setSelectedGameActionController(gameActionController);
 	startController->startGame();
 }
 

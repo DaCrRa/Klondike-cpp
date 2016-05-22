@@ -24,6 +24,11 @@ void StartController::startGame() {
 	game->initialize();
 }
 
+void StartController::resumeGame() {
+	assert(game->isPaused());
+	game->togglePause();
+}
+
 bool StartController::isGameInProgress() {
 	return (bool)game;
 }

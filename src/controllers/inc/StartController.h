@@ -26,6 +26,7 @@ public:
 	void setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller);
 	GameActionController* getSelectedGameActionController();
 	void startGame();
+	void resumeGame();
 	void accept(ControllerVisitor* v);
 };
 
