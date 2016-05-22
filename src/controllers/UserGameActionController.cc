@@ -7,12 +7,6 @@
 
 #include <UserGameActionController.h>
 
-UserGameActionController::UserGameActionController(Klondike* game) :
-GameActionController(game)
-{
-
-}
-
 void UserGameActionController::acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) {
 	visitor->visit(this);
 }

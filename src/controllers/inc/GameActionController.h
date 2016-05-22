@@ -19,8 +19,8 @@ class GameActionController: public Controller, public GameActionVisitor {
 protected:
 	Klondike* game;
 public:
-	GameActionController(Klondike* g);
 	Klondike* getGame();
+	void setGame(Klondike* k);
 	void doAction(GameActionPtr action);
 	virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
 	void accept(ControllerVisitor* visitor);

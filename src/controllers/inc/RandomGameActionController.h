@@ -13,7 +13,6 @@
 
 class RandomGameActionController : public GameActionController {
 public:
-	RandomGameActionController(Klondike* game);
 	void acceptGameActionControllerVisitor(GameActionControllerVisitor* v);
 	GameActionPtr getAction();
 };

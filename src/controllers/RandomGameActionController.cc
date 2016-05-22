@@ -12,12 +12,6 @@
 #include <vector>
 #include <cstdlib>
 
-RandomGameActionController::RandomGameActionController(Klondike* g) :
-	GameActionController(g)
-{
-
-}
-
 GameActionPtr RandomGameActionController::getAction() {
 	std::vector<GameActionPtr> actions;
 	if(game->getStock()->hasCards()) {

@@ -11,7 +11,7 @@
 
 #include <assert.h>
 
-StartController::StartController(Klondike* k) :
+StartController::StartController(std::shared_ptr<Klondike>& k) :
 	game(k)
 {
 
@@ -19,13 +19,15 @@ StartController::StartController(Klondike* k) :
 
 void StartController::startGame() {
 	assert(selectedGameActionController);
+	game = std::shared_ptr<Klondike>(new Klondike());
+	selectedGameActionController->setGame(game.get());
 	game->initialize();
 }
 
 std::vector<std::shared_ptr<GameActionController> > StartController::getGameActionControllers() {
 	return std::vector<std::shared_ptr<GameActionController> >({
-		std::shared_ptr<GameActionController>(new UserGameActionController(game)),
-		std::shared_ptr<RandomGameActionController>(new RandomGameActionController(game))
+		std::shared_ptr<GameActionController>(new UserGameActionController()),
+		std::shared_ptr<RandomGameActionController>(new RandomGameActionController())
 	});
 }
 

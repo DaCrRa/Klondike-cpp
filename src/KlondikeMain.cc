@@ -1,5 +1,6 @@
 #include <iostream>
-#include <string.h>
+#include <string>
+#include <memory>
 
 #include <Klondike.h>
 #include <ConsoleView.h>
@@ -7,9 +8,9 @@
 #include <GameActionController.h>
 
 int main(int argc, char* argv[]) {
-	Klondike k;
+	std::shared_ptr<Klondike> k;
 	ConsoleView view;
-	StartController startController(&k);
+	StartController startController(k);
 	Controller* nextController = &startController;
 
 
@@ -18,7 +19,7 @@ int main(int argc, char* argv[]) {
 	try {
 		for (int i = 0; i < 20; ++i) {
 			view.interact(nextController);
-			if (k.isActive()) {
+			if (k->isActive()) {
 				nextController = startController.getSelectedGameActionController();
 			} else {
 				nextController = &startController;

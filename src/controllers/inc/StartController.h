@@ -17,10 +17,10 @@
 
 class StartController : public Controller {
 private:
-	Klondike* game;
+	std::shared_ptr<Klondike>& game;
 	std::shared_ptr<GameActionController> selectedGameActionController;
 public:
-	StartController(Klondike* k);
+	StartController(std::shared_ptr<Klondike>& k);
 	std::vector<std::shared_ptr<GameActionController> > getGameActionControllers();
 	void setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller);
 	GameActionController* getSelectedGameActionController();

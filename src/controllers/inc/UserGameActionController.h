@@ -12,7 +12,6 @@
 
 class UserGameActionController: public GameActionController {
 public:
-	UserGameActionController(Klondike* g);
 	void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor);
 };
 
