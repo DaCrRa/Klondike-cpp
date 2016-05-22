@@ -33,8 +33,8 @@ public:
 	std::vector<TableauPile>& getTableau();
 	std::vector<MoveOrigin*> getPossibleMoveOrigins();
 	std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* orig);
-       bool isPaused();
-	void pause();
+	bool isPaused();
+	void togglePause();
 };
 
 #endif
