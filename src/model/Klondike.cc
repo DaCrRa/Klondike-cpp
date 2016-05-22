@@ -86,6 +86,8 @@ bool Klondike::isActive() {
 	return active;
 }
 
-
+void Klondike::pause() {
+	active = false;
+}
 
 

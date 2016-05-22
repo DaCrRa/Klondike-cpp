@@ -27,6 +27,7 @@ void GameConsoleView::interact(GameActionController* controller) {
 		controller->doAction(gameAction);
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
+		controller->getGame()->pause();
 	}
 }
 

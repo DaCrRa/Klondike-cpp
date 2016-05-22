@@ -34,6 +34,7 @@ public:
 	std::vector<MoveOrigin*> getPossibleMoveOrigins();
 	std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* orig);
 	bool isActive();
+	void pause();
 };
 
 #endif
