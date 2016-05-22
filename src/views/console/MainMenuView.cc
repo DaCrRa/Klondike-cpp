@@ -32,6 +32,11 @@ void MainMenuView::interact(StartController* startController) {
 	std::cout << std::endl;
 
 	std::vector<std::pair<MenuOption, std::shared_ptr<GameActionController> > > options;
+
+	if (startController->isGameInProgress()) {
+		options.push_back(std::make_pair(MenuOption("Resume game", 0), std::shared_ptr<GameActionController>()));
+	}
+
 	options.push_back(std::make_pair(MenuOption("Start one-player klondike", 0), userController));
 	options.push_back(std::make_pair(MenuOption("Demo", 0), randomController));
 

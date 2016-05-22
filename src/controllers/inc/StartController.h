@@ -21,6 +21,7 @@ private:
 	std::shared_ptr<GameActionController> selectedGameActionController;
 public:
 	StartController(std::shared_ptr<Klondike>& k);
+	bool isGameInProgress();
 	std::vector<std::shared_ptr<GameActionController> > getGameActionControllers();
 	void setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller);
 	GameActionController* getSelectedGameActionController();

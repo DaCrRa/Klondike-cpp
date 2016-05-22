@@ -24,6 +24,10 @@ void StartController::startGame() {
 	game->initialize();
 }
 
+bool StartController::isGameInProgress() {
+	return (bool)game;
+}
+
 std::vector<std::shared_ptr<GameActionController> > StartController::getGameActionControllers() {
 	return std::vector<std::shared_ptr<GameActionController> >({
 		std::shared_ptr<GameActionController>(new UserGameActionController()),
