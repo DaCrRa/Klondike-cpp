@@ -12,7 +12,7 @@
 #include <assert.h>
 
 StartController::StartController(std::shared_ptr<Klondike>& k) :
-	game(k)
+	game(k), terminateAppFlag(false)
 {
 
 }
@@ -27,6 +27,14 @@ void StartController::startGame() {
 void StartController::resumeGame() {
 	assert(game->isPaused());
 	game->togglePause();
+}
+
+void StartController::terminateApp() {
+	terminateAppFlag = true;
+}
+
+bool StartController::continueApp() {
+	return !terminateAppFlag;
 }
 
 bool StartController::isGameInProgress() {

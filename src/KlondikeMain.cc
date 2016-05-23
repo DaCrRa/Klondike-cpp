@@ -1,32 +1,10 @@
-#include <iostream>
-#include <string>
-#include <memory>
-
-#include <Klondike.h>
 #include <ConsoleView.h>
-#include <StartController.h>
-#include <GameActionController.h>
+#include <Logic.h>
+#include <KlondikeApp.h>
 
 int main(int argc, char* argv[]) {
-	std::shared_ptr<Klondike> k;
 	ConsoleView view;
-	StartController startController(k);
-	Controller* nextController = &startController;
+	Logic logic;
 
-
-
-
-	try {
-		for (int i = 0; i < 20; ++i) {
-			view.interact(nextController);
-			if (k && !k->isPaused()) {
-				nextController = startController.getSelectedGameActionController();
-			} else {
-				nextController = &startController;
-			}
-		}
-	} catch (std::exception& e) {
-		//TODO Do not capture here
-		std::cout << e.what() << std::endl;
-	}
+	KlondikeApp(&view, &logic).run();
 }

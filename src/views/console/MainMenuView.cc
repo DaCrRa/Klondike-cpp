@@ -46,9 +46,13 @@ void MainMenuView::interact(StartController* startController) {
 		startGame(startController, randomController);
 	}));
 
-	Menu<std::function<void()>> m("Options:", std::move(options));
-
-	(m.getUserSelection())();
+	try {
+		Menu<std::function<void()>> m("Options:", std::move(options));
+		(m.getUserSelection())();
+	} catch (CancelledDialogException& e) {
+		std::cout << "Bye!" << std::endl;
+		startController->terminateApp();
+	}
 }
 
 void MainMenuView::startGame(StartController* startController, std::shared_ptr<GameActionController> gameActionController) {

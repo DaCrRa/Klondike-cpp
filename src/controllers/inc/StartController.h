@@ -19,6 +19,7 @@ class StartController : public Controller {
 private:
 	std::shared_ptr<Klondike>& game;
 	std::shared_ptr<GameActionController> selectedGameActionController;
+	bool terminateAppFlag;
 public:
 	StartController(std::shared_ptr<Klondike>& k);
 	bool isGameInProgress();
@@ -27,6 +28,8 @@ public:
 	GameActionController* getSelectedGameActionController();
 	void startGame();
 	void resumeGame();
+	void terminateApp();
+	bool continueApp();
 	void accept(ControllerVisitor* v);
 };
 

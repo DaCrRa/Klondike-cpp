@@ -27,7 +27,7 @@ void SelectActionView::getAction(GameActionPtr& c) {
 				{ 's', GameActionPtr(new StockAction()) },
 				{ 'm', GameActionPtr(new Move()) }
 			}),
-		'c');
+			'c');
 		c = dialog.getSelectedItem();
 	} catch (CancelledDialogException& e) {
 		throw NoActionException();
