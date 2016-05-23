@@ -10,7 +10,7 @@
 
 class GameElement {
 public:
-	virtual ~GameElement() {}
+    virtual ~GameElement() {}
 };
 
 #endif /* SRC_MODEL_INC_GAMEELEMENT_H_ */

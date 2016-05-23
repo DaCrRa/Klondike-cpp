@@ -10,27 +10,27 @@
 #include <assert.h>
 
 void Foundation::add(const Card* c) {
-	assert(accept(c));
-	pile.add(c);
+    assert(accept(c));
+    pile.add(c);
 }
 
 bool Foundation::accept(const Card* c) {
-	if (!pile.hasCards()) {
-		return c->getRank() == 1;
-	} else {
-		return c->hasSameSuit(pile.top()) && c->compareRank(pile.top()) == 1;
-	}
+    if (!pile.hasCards()) {
+        return c->getRank() == 1;
+    } else {
+        return c->hasSameSuit(pile.top()) && c->compareRank(pile.top()) == 1;
+    }
 }
 
 bool Foundation::isCompleted() const {
-	return pile.getNumberOfCards() == 12; //TODO magic number
+    return pile.getNumberOfCards() == 12; //TODO magic number
 }
 
 int Foundation::getNumCards() const {
-	return pile.getNumberOfCards();
+    return pile.getNumberOfCards();
 }
 
 const Card* Foundation::top() const {
-	return pile.top();
+    return pile.top();
 }
 

@@ -13,9 +13,9 @@ class StartController;
 
 class ControllerVisitor {
 public:
-	virtual void visit(GameActionController* sc) = 0;
-	virtual void visit(StartController* sc) = 0;
-	virtual ~ControllerVisitor() {}
+    virtual void visit(GameActionController* sc) = 0;
+    virtual void visit(StartController* sc) = 0;
+    virtual ~ControllerVisitor() {}
 };
 
 #endif /* SRC_INC_CONTROLLERVISITOR_H_ */

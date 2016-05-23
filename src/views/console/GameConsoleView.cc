@@ -15,34 +15,34 @@
 #include <iostream>
 
 GameConsoleView::GameConsoleView(Klondike* k) :
-	game(k)
+    game(k)
 {
-	k->configureRenderer(&renderer);
+    k->configureRenderer(&renderer);
 }
 
 void GameConsoleView::interact(GameActionController* controller) {
-	renderer.render();
-	try {
-		selectGameAction(controller);
-		controller->doAction(gameAction);
-	} catch (IncompleteMoveException& e) {
-		std::cout << e.what() << std::endl;
-	} catch (NoActionException& e) {
-		std::cout << e.what() << std::endl;
-		controller->getGame()->togglePause();
-	}
+    renderer.render();
+    try {
+        selectGameAction(controller);
+        controller->doAction(gameAction);
+    } catch (IncompleteMoveException& e) {
+        std::cout << e.what() << std::endl;
+    } catch (NoActionException& e) {
+        std::cout << e.what() << std::endl;
+        controller->getGame()->togglePause();
+    }
 }
 
 void GameConsoleView::selectGameAction(GameActionController* controller) {
-	controller->acceptGameActionControllerVisitor(this);
+    controller->acceptGameActionControllerVisitor(this);
 }
 
 void GameConsoleView::visit(UserGameActionController* c) {
-	SelectActionView v(c);
-	v.getAction(gameAction);
+    SelectActionView v(c);
+    v.getAction(gameAction);
 }
 
 void GameConsoleView::visit(RandomGameActionController* c) {
-	gameAction = c->getAction();
-	ShowActionView(gameAction).show();
+    gameAction = c->getAction();
+    ShowActionView(gameAction).show();
 }

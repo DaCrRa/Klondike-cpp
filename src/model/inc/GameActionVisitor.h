@@ -13,9 +13,9 @@ class Move;
 
 class GameActionVisitor {
 public:
-	virtual void visit(StockAction* stockAction) = 0;
-	virtual void visit(Move* move) = 0;
-	virtual ~GameActionVisitor() {}
+    virtual void visit(StockAction* stockAction) = 0;
+    virtual void visit(Move* move) = 0;
+    virtual ~GameActionVisitor() {}
 };
 
 #endif /* SRC_INC_GAMEACTIONVISITOR_H_ */

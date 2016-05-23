@@ -3,16 +3,16 @@
 #include <vector>
 
 class Deck {
-   private:
-      std::vector<Card> cards;
-      int remainingCards;
+private:
+    std::vector<Card> cards;
+    int remainingCards;
 
-   public:
-      static const int NUM_CARDS = 52;
+public:
+    static const int NUM_CARDS = 52;
 
-      Deck();
+    Deck();
 
-      const Card* removeTop();
+    const Card* removeTop();
 
-      bool hasCards();
+    bool hasCards();
 };

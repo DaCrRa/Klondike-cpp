@@ -13,11 +13,11 @@
 
 class KlondikeApp {
 private:
-	ConsoleView* view;
-	Logic* logic;
+    ConsoleView* view;
+    Logic* logic;
 public:
-	KlondikeApp(ConsoleView* view, Logic* logic);
-	void run();
+    KlondikeApp(ConsoleView* view, Logic* logic);
+    void run();
 };
 
 #endif /* SRC_APP_KLONDIKEAPP_H_ */

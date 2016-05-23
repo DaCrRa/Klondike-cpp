@@ -12,14 +12,14 @@
 #include <MoveDest.h>
 
 class Foundation : public MoveDest {
-	private:
-		Pile pile;
-	public:
-		void add(const Card* c);
-		bool accept(const Card* c);
-		bool isCompleted() const;
-		int getNumCards() const;
-		const Card* top() const;
+private:
+    Pile pile;
+public:
+    void add(const Card* c);
+    bool accept(const Card* c);
+    bool isCompleted() const;
+    int getNumCards() const;
+    const Card* top() const;
 };
 
 #endif

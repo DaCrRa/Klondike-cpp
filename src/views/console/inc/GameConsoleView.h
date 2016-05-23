@@ -15,16 +15,16 @@
 
 class GameConsoleView : public GameActionControllerVisitor {
 private:
-	KlondikeConsoleRenderer renderer;
-	Klondike* game;
-	GameActionPtr gameAction;
+    KlondikeConsoleRenderer renderer;
+    Klondike* game;
+    GameActionPtr gameAction;
 
-	void selectGameAction(GameActionController* controller);
+    void selectGameAction(GameActionController* controller);
 public:
-	GameConsoleView(Klondike* k);
-	void interact(GameActionController* c);
-	void visit(UserGameActionController* c);
-	void visit(RandomGameActionController* c);
+    GameConsoleView(Klondike* k);
+    void interact(GameActionController* c);
+    void visit(UserGameActionController* c);
+    void visit(RandomGameActionController* c);
 };
 
 #endif

@@ -12,14 +12,14 @@
 Logic::Logic() : startController(game) {}
 
 Controller* Logic::getNextController() {
-	// game in progress?
-	if (game && !game->isPaused()) {
-		assert(startController.getSelectedGameActionController() != nullptr);
-		return startController.getSelectedGameActionController();
-	}
-	if (startController.continueApp()) {
-		return &startController;
-	}
-	throw NoMoreControllersException();
+    // game in progress?
+    if (game && !game->isPaused()) {
+        assert(startController.getSelectedGameActionController() != nullptr);
+        return startController.getSelectedGameActionController();
+    }
+    if (startController.continueApp()) {
+        return &startController;
+    }
+    throw NoMoreControllersException();
 }
 

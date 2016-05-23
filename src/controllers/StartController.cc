@@ -12,50 +12,50 @@
 #include <assert.h>
 
 StartController::StartController(std::shared_ptr<Klondike>& k) :
-	game(k), terminateAppFlag(false)
+    game(k), terminateAppFlag(false)
 {
 
 }
 
 void StartController::startGame() {
-	assert(selectedGameActionController);
-	game = std::shared_ptr<Klondike>(new Klondike());
-	selectedGameActionController->setGame(game.get());
-	game->initialize();
+    assert(selectedGameActionController);
+    game = std::shared_ptr<Klondike>(new Klondike());
+    selectedGameActionController->setGame(game.get());
+    game->initialize();
 }
 
 void StartController::resumeGame() {
-	assert(game->isPaused());
-	game->togglePause();
+    assert(game->isPaused());
+    game->togglePause();
 }
 
 void StartController::terminateApp() {
-	terminateAppFlag = true;
+    terminateAppFlag = true;
 }
 
 bool StartController::continueApp() {
-	return !terminateAppFlag;
+    return !terminateAppFlag;
 }
 
 bool StartController::isGameInProgress() {
-	return (bool)game;
+    return (bool)game;
 }
 
 std::vector<std::shared_ptr<GameActionController> > StartController::getGameActionControllers() {
-	return std::vector<std::shared_ptr<GameActionController> >({
-		std::shared_ptr<GameActionController>(new UserGameActionController()),
-		std::shared_ptr<RandomGameActionController>(new RandomGameActionController())
-	});
+    return std::vector<std::shared_ptr<GameActionController> >({
+        std::shared_ptr<GameActionController>(new UserGameActionController()),
+        std::shared_ptr<RandomGameActionController>(new RandomGameActionController())
+    });
 }
 
 void StartController::setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller) {
-	selectedGameActionController = controller;
+    selectedGameActionController = controller;
 }
 
 GameActionController* StartController::getSelectedGameActionController() {
-	return selectedGameActionController.get();
+    return selectedGameActionController.get();
 }
 
 void StartController::accept(ControllerVisitor* v) {
-	v->visit(this);
+    v->visit(this);
 }

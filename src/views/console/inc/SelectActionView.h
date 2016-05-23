@@ -16,27 +16,27 @@
 
 class NoActionException : public std::exception {
 public:
-	const char* what() const throw() {
-		return "No action selected!";
-	}
+    const char* what() const throw() {
+        return "No action selected!";
+    }
 };
 
 class IncompleteMoveException : public std::exception {
 public:
-	const char* what() const throw() {
-		return "Movement cancelled!";
-	}
+    const char* what() const throw() {
+        return "Movement cancelled!";
+    }
 };
 
 class SelectActionView : public GameActionVisitor {
 private:
-	void completeActionInfo(GameActionPtr& action);
-	UserGameActionController* actionController;
+    void completeActionInfo(GameActionPtr& action);
+    UserGameActionController* actionController;
 public:
-	SelectActionView(UserGameActionController* c);
-	void getAction(GameActionPtr& action);
-	void visit(StockAction* stockAction);
-	void visit(Move* move);
+    SelectActionView(UserGameActionController* c);
+    void getAction(GameActionPtr& action);
+    void visit(StockAction* stockAction);
+    void visit(Move* move);
 };
 
 #endif /* SRC_INC_SELECTACTIONVIEW_H_ */

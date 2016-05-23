@@ -13,8 +13,8 @@
 
 class RandomGameActionController : public GameActionController {
 public:
-	void acceptGameActionControllerVisitor(GameActionControllerVisitor* v);
-	GameActionPtr getAction();
+    void acceptGameActionControllerVisitor(GameActionControllerVisitor* v);
+    GameActionPtr getAction();
 };
 
 #endif /* SRC_CONTROLLERS_RANDOMGAMEACTIONCONTROLLER_H_ */

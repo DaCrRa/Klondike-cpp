@@ -13,9 +13,9 @@ class RandomGameActionController;
 
 class GameActionControllerVisitor {
 public:
-	virtual void visit(UserGameActionController* controller) = 0;
-	virtual void visit(RandomGameActionController* controller) = 0;
-	virtual ~GameActionControllerVisitor() {}
+    virtual void visit(UserGameActionController* controller) = 0;
+    virtual void visit(RandomGameActionController* controller) = 0;
+    virtual ~GameActionControllerVisitor() {}
 };
 
 #endif /* SRC_INC_GAMEACTIONCONTROLLERVISITOR_H_ */

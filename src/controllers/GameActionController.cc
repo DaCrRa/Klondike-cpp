@@ -10,25 +10,25 @@
 #include <Move.h>
 
 void GameActionController::accept(ControllerVisitor* visitor) {
-	visitor->visit(this);
+    visitor->visit(this);
 }
 
 Klondike* GameActionController::getGame() {
-	return game;
+    return game;
 }
 
 void GameActionController::setGame(Klondike* k) {
-	game = k;
+    game = k;
 }
 
 void GameActionController::doAction(GameActionPtr action) {
-	action->accept(this);
+    action->accept(this);
 }
 
 void GameActionController::visit(StockAction* stockAction) {
-	game->getStock()->move();
+    game->getStock()->move();
 }
 
 void GameActionController::visit(Move* move) {
-	move->doMove();
+    move->doMove();
 }

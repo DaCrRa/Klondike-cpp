@@ -16,18 +16,18 @@
 
 class NoMoreControllersException : public std::exception {
 public:
-	const char* what() const throw() {
-		return "No more controllers!";
-	}
+    const char* what() const throw() {
+        return "No more controllers!";
+    }
 };
 
 class Logic {
 private:
-	std::shared_ptr<Klondike> game;
-	StartController startController;
+    std::shared_ptr<Klondike> game;
+    StartController startController;
 public:
-	Logic();
-	Controller* getNextController();
+    Logic();
+    Controller* getNextController();
 };
 
 #endif /* SRC_CONTROLLERS_LOGIC_H_ */

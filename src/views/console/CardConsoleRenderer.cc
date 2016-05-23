@@ -10,6 +10,6 @@
 #include <iostream>
 
 void CardConsoleRenderer::renderCard(const Card* c) {
-	std::cout << "{" << c->getRank() << "}";
+    std::cout << "{" << c->getRank() << "}";
 }
 

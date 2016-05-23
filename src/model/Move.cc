@@ -10,22 +10,22 @@
 #include <assert.h>
 
 void Move::setOrigin(MoveOrigin* o) {
-	origin = o;
+    origin = o;
 }
 
 void Move::setDest(MoveDest* d) {
-	dest = d;
+    dest = d;
 }
 
 void Move::doMove() {
-	assert(dest->accept(origin->showAvailableCard()));
-	dest->add(origin->removeAvailableCard());
+    assert(dest->accept(origin->showAvailableCard()));
+    dest->add(origin->removeAvailableCard());
 }
 
 void Move::accept(GameActionVisitor* visitor) {
-	visitor->visit(this);
+    visitor->visit(this);
 }
 
 GameActionPtr Move::duplicate() {
-	return GameActionPtr(new Move(*this));
+    return GameActionPtr(new Move(*this));
 }

@@ -10,15 +10,15 @@
 #include <MainMenuView.h>
 
 void ConsoleView::interact(Controller* controller) {
-	controller->accept(this);
+    controller->accept(this);
 }
 
 void ConsoleView::visit(GameActionController* controller) {
-	GameConsoleView view(controller->getGame());
-	view.interact(controller);
+    GameConsoleView view(controller->getGame());
+    view.interact(controller);
 }
 
 void ConsoleView::visit(StartController* controller) {
-	MainMenuView menu;
-	menu.interact(controller);
+    MainMenuView menu;
+    menu.interact(controller);
 }

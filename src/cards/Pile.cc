@@ -3,36 +3,36 @@
 #include <assert.h>
 
 void Pile::add(const Card* c) {
-   cards.push_back(c);
+    cards.push_back(c);
 }
 
 void Pile::add(const std::vector<const Card*>& cards) {
-   this->cards.insert(this->cards.end(), cards.begin(), cards.end());
+    this->cards.insert(this->cards.end(), cards.begin(), cards.end());
 }
 
 bool Pile::hasCards() const {
-	return !cards.empty();
+    return !cards.empty();
 }
 
 const Card* Pile::top() const {
-	assert(hasCards());
-	return cards.back();
+    assert(hasCards());
+    return cards.back();
 }
 
 int Pile::getNumberOfCards() const {
-	return cards.size();
+    return cards.size();
 }
 
 const Card* Pile::removeTop() {
-	const Card* top = this->top();
-	cards.pop_back();
-	return top;
+    const Card* top = this->top();
+    cards.pop_back();
+    return top;
 }
 
 PileIterator Pile::begin() const {
-	return cards.begin();
+    return cards.begin();
 }
 
 PileIterator Pile::end() const {
-	return cards.end();
+    return cards.end();
 }

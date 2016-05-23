@@ -12,7 +12,7 @@
 
 class UserGameActionController: public GameActionController {
 public:
-	void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor);
+    void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor);
 };
 
 #endif /* SRC_CONTROLLERS_INC_USERGAMEACTIONCONTROLLER_H_ */

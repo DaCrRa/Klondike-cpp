@@ -13,19 +13,19 @@
 
 class Stock : public MoveOrigin {
 private:
-	Pile covered;
-	Pile waste;
+    Pile covered;
+    Pile waste;
 
-	void rotate();
+    void rotate();
 
 public:
-	void addToCovered(const Card* c);
-	void move();
-	bool hasCardAvailable() const;
-	bool hasCoveredCards() const;
-	bool hasCards() const;
-	const Card* showAvailableCard() const;
-	const Card* removeAvailableCard();
+    void addToCovered(const Card* c);
+    void move();
+    bool hasCardAvailable() const;
+    bool hasCoveredCards() const;
+    bool hasCards() const;
+    const Card* showAvailableCard() const;
+    const Card* removeAvailableCard();
 };
 
 #endif

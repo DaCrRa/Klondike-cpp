@@ -13,10 +13,10 @@
 
 class MoveOrigin : virtual public GameElement {
 public:
-	virtual bool hasCardAvailable() const = 0;
-	virtual const Card* showAvailableCard() const = 0;
-	virtual const Card* removeAvailableCard() = 0;
-	virtual ~MoveOrigin() {}
+    virtual bool hasCardAvailable() const = 0;
+    virtual const Card* showAvailableCard() const = 0;
+    virtual const Card* removeAvailableCard() = 0;
+    virtual ~MoveOrigin() {}
 };
 
 #endif /* SRC_MODEL_INC_MOVEORIGIN_H_ */

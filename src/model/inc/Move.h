@@ -15,14 +15,14 @@
 
 class Move : public GameAction {
 private:
-	MoveOrigin* origin;
-	MoveDest* dest;
+    MoveOrigin* origin;
+    MoveDest* dest;
 public:
-	void setOrigin(MoveOrigin* o);
-	void setDest(MoveDest* d);
-	void doMove();
-	GameActionPtr duplicate();
-	void accept(GameActionVisitor* visitor);
+    void setOrigin(MoveOrigin* o);
+    void setDest(MoveDest* d);
+    void doMove();
+    GameActionPtr duplicate();
+    void accept(GameActionVisitor* visitor);
 };
 
 #endif /* SRC_MODEL_INC_MOVE_H_ */

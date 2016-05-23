@@ -9,48 +9,48 @@
 #include <assert.h>
 
 void TableauPile::turnUp() {
-	assert(!uncoveredCards.hasCards());
-	uncoveredCards.add(coveredCards.removeTop());
+    assert(!uncoveredCards.hasCards());
+    uncoveredCards.add(coveredCards.removeTop());
 }
 
 void TableauPile::addToCovered(const Card* c) {
-	//TODO Assert we are in initial state of Klondike
-	coveredCards.add(c);
+    //TODO Assert we are in initial state of Klondike
+    coveredCards.add(c);
 }
 
 bool TableauPile::accept(const Card* c) {
-	if (uncoveredCards.hasCards()) {
-		return !c->hasSameColor(uncoveredCards.top()) && c->compareRank(uncoveredCards.top()) == -1;
-	} else {
-		return !coveredCards.hasCards() && c->getRank() == 12;
-	}
+    if (uncoveredCards.hasCards()) {
+        return !c->hasSameColor(uncoveredCards.top()) && c->compareRank(uncoveredCards.top()) == -1;
+    } else {
+        return !coveredCards.hasCards() && c->getRank() == 12;
+    }
 }
 
 void TableauPile::add(const Card* c) {
-	assert(accept(c));
-	uncoveredCards.add(c);
+    assert(accept(c));
+    uncoveredCards.add(c);
 }
 
 int TableauPile::getNumCoveredCards() const {
-	return coveredCards.getNumberOfCards();
+    return coveredCards.getNumberOfCards();
 }
 
 PileIterator TableauPile::uncoveredCardsBegin() const {
-	return uncoveredCards.begin();
+    return uncoveredCards.begin();
 }
 
 PileIterator TableauPile::uncoveredCardsEnd() const {
-	return uncoveredCards.end();
+    return uncoveredCards.end();
 }
 
 bool TableauPile::hasCardAvailable() const {
-	return uncoveredCards.hasCards();
+    return uncoveredCards.hasCards();
 }
 
 const Card* TableauPile::showAvailableCard() const {
-	return uncoveredCards.top();
+    return uncoveredCards.top();
 }
 
 const Card* TableauPile::removeAvailableCard() {
-	return uncoveredCards.removeTop();
+    return uncoveredCards.removeTop();
 }

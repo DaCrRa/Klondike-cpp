@@ -15,42 +15,42 @@
 #include <iostream>
 
 SelectActionView::SelectActionView(UserGameActionController* c) :
-	actionController(c)
+    actionController(c)
 {
 
 }
 
 void SelectActionView::getAction(GameActionPtr& c) {
-	try {
-		ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
-			std::map<char, GameActionPtr>({
-				{ 's', GameActionPtr(new StockAction()) },
-				{ 'm', GameActionPtr(new Move()) }
-			}),
-			'c');
-		c = dialog.getSelectedItem();
-	} catch (CancelledDialogException& e) {
-		throw NoActionException();
-	}
-	completeActionInfo(c);
+    try {
+        ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
+        std::map<char, GameActionPtr>({
+            { 's', GameActionPtr(new StockAction()) },
+            { 'm', GameActionPtr(new Move()) }
+        }),
+        'c');
+        c = dialog.getSelectedItem();
+    } catch (CancelledDialogException& e) {
+        throw NoActionException();
+    }
+    completeActionInfo(c);
 }
 
 void SelectActionView::completeActionInfo(GameActionPtr& action) {
-	action->accept(this);
+    action->accept(this);
 }
 
 void SelectActionView::visit(StockAction* stockAction) {
-	// Nothing to complete for a StockAction
-	std::cout << "Stock action selected!" << std::endl;
+    // Nothing to complete for a StockAction
+    std::cout << "Stock action selected!" << std::endl;
 }
 
 void SelectActionView::visit(Move* move) {
-	try {
-		MoveCardView moveCardView(actionController);
-		moveCardView.completeMove(move);
-	} catch (std::exception& e) {
-		throw IncompleteMoveException();
-	}
+    try {
+        MoveCardView moveCardView(actionController);
+        moveCardView.completeMove(move);
+    } catch (std::exception& e) {
+        throw IncompleteMoveException();
+    }
 }
 
 

@@ -13,9 +13,9 @@
 
 class MoveDest : virtual public GameElement {
 public:
-	virtual bool accept(const Card* c) = 0;
-	virtual void add(const Card* c) = 0;
-	virtual ~MoveDest() {}
+    virtual bool accept(const Card* c) = 0;
+    virtual void add(const Card* c) = 0;
+    virtual ~MoveDest() {}
 };
 
 #endif /* SRC_MODEL_INC_MOVEDEST_H_ */

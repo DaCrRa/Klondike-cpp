@@ -11,24 +11,24 @@
 #include <assert.h>
 
 MenuOption::MenuOption(std::string&& optionTitle, size_t highlightedCharPos) :
-	title(optionTitle),
-	highlightedCharPos(highlightedCharPos)
+    title(optionTitle),
+    highlightedCharPos(highlightedCharPos)
 {
-	assert(this->highlightedCharPos < title.size());
+    assert(this->highlightedCharPos < title.size());
 }
 
 char MenuOption::getHighlightedChar() const {
-	return title[highlightedCharPos];
+    return title[highlightedCharPos];
 }
 
 const std::string MenuOption::toString() const {
-	std::stringstream ss;
-	for (size_t pos = 0; pos < title.size(); ++pos) {
-		if (pos == highlightedCharPos) {
-			ss << '[' << title[pos] << ']';
-		} else {
-			ss << title[pos];
-		}
-	}
-	return ss.str();
+    std::stringstream ss;
+    for (size_t pos = 0; pos < title.size(); ++pos) {
+        if (pos == highlightedCharPos) {
+            ss << '[' << title[pos] << ']';
+        } else {
+            ss << title[pos];
+        }
+    }
+    return ss.str();
 }

@@ -13,12 +13,12 @@
 
 class ShowActionView : public GameActionVisitor {
 private:
-	GameActionPtr action;
+    GameActionPtr action;
 public:
-	ShowActionView(GameActionPtr action);
-	void visit(StockAction* action);
-	void visit(Move* action);
-	void show();
+    ShowActionView(GameActionPtr action);
+    void visit(StockAction* action);
+    void visit(Move* action);
+    void show();
 };
 
 #endif /* SRC_VIEWS_CONSOLE_SHOWACTIONVIEW_H_ */

@@ -17,20 +17,20 @@
 
 class StartController : public Controller {
 private:
-	std::shared_ptr<Klondike>& game;
-	std::shared_ptr<GameActionController> selectedGameActionController;
-	bool terminateAppFlag;
+    std::shared_ptr<Klondike>& game;
+    std::shared_ptr<GameActionController> selectedGameActionController;
+    bool terminateAppFlag;
 public:
-	StartController(std::shared_ptr<Klondike>& k);
-	bool isGameInProgress();
-	std::vector<std::shared_ptr<GameActionController> > getGameActionControllers();
-	void setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller);
-	GameActionController* getSelectedGameActionController();
-	void startGame();
-	void resumeGame();
-	void terminateApp();
-	bool continueApp();
-	void accept(ControllerVisitor* v);
+    StartController(std::shared_ptr<Klondike>& k);
+    bool isGameInProgress();
+    std::vector<std::shared_ptr<GameActionController> > getGameActionControllers();
+    void setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller);
+    GameActionController* getSelectedGameActionController();
+    void startGame();
+    void resumeGame();
+    void terminateApp();
+    bool continueApp();
+    void accept(ControllerVisitor* v);
 };
 
 #endif /* SRC_CONTROLLERS_STARTCONTROLLER_H_ */

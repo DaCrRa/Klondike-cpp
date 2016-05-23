@@ -12,8 +12,8 @@ class ControllerVisitor;
 
 class Controller {
 public:
-	virtual void accept(ControllerVisitor* v) = 0;
-	virtual ~Controller() {}
+    virtual void accept(ControllerVisitor* v) = 0;
+    virtual ~Controller() {}
 };
 
 #endif

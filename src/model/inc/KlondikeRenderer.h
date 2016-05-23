@@ -15,22 +15,22 @@
 
 class KlondikeRenderer {
 protected:
-	const Stock* stock = nullptr;
-	const std::vector<TableauPile>* tableau = nullptr;
-	const std::vector<Foundation>* foundations = nullptr;
+    const Stock* stock = nullptr;
+    const std::vector<TableauPile>* tableau = nullptr;
+    const std::vector<Foundation>* foundations = nullptr;
 public:
-	void setStock(const Stock* s);
-	void setTableau(const std::vector<TableauPile>* tableau);
-	void setFoundations(const std::vector<Foundation>* foundations);
+    void setStock(const Stock* s);
+    void setTableau(const std::vector<TableauPile>* tableau);
+    void setFoundations(const std::vector<Foundation>* foundations);
 
-	virtual void render() = 0;
-	virtual void renderStock() = 0;
-	virtual void renderFoundations() = 0;
-	virtual void renderTableau() = 0;
-	virtual void renderTableauPile(const TableauPile* tp) = 0;
-	virtual void renderFoundation(const Foundation* f) = 0;
+    virtual void render() = 0;
+    virtual void renderStock() = 0;
+    virtual void renderFoundations() = 0;
+    virtual void renderTableau() = 0;
+    virtual void renderTableauPile(const TableauPile* tp) = 0;
+    virtual void renderFoundation(const Foundation* f) = 0;
 
-	virtual ~KlondikeRenderer() { }
+    virtual ~KlondikeRenderer() { }
 };
 
 #endif /* SRC_INC_KLONDIKERENDERER_H_ */

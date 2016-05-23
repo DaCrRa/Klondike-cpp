@@ -3,19 +3,19 @@
 
 class Card {
 
-   private:
-      int rank;
+private:
+    int rank;
 
-   public:
-      Card(int r);
+public:
+    Card(int r);
 
-      int getRank() const;
+    int getRank() const;
 
-      bool hasSameSuit(const Card* c) const;
+    bool hasSameSuit(const Card* c) const;
 
-      bool hasSameColor(const Card* c) const;
+    bool hasSameColor(const Card* c) const;
 
-      int compareRank(const Card* c) const;
+    int compareRank(const Card* c) const;
 };
 
 #endif

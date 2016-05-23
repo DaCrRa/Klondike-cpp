@@ -13,8 +13,8 @@
 
 class StockAction: public GameAction {
 public:
-	GameActionPtr duplicate();
-	void accept(GameActionVisitor* actionVisitor);
+    GameActionPtr duplicate();
+    void accept(GameActionVisitor* actionVisitor);
 };
 
 #endif /* SRC_INC_STOCKACTION_H_ */

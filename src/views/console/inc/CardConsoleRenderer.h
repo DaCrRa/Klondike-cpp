@@ -12,7 +12,7 @@
 
 class CardConsoleRenderer {
 public:
-	void renderCard(const Card* c);
+    void renderCard(const Card* c);
 };
 
 #endif

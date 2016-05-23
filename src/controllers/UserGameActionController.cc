@@ -8,6 +8,6 @@
 #include <UserGameActionController.h>
 
 void UserGameActionController::acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) {
-	visitor->visit(this);
+    visitor->visit(this);
 }
 

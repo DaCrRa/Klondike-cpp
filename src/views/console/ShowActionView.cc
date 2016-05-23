@@ -10,22 +10,22 @@
 #include <iostream>
 
 ShowActionView::ShowActionView(GameActionPtr act) :
-	action(act)
+    action(act)
 {
 
 }
 
 void ShowActionView::show() {
-	std::cout << "Press enter for next move...";
-	std::cin.get();
-	std::cout << std::endl;
-	action->accept(this);
+    std::cout << "Press enter for next move...";
+    std::cin.get();
+    std::cout << std::endl;
+    action->accept(this);
 }
 
 void ShowActionView::visit(StockAction* action) {
-	std::cout << "Stock move!" << std::endl;
+    std::cout << "Stock move!" << std::endl;
 }
 
 void ShowActionView::visit(Move* m) {
-	std::cout << "Move card!" << std::endl;
+    std::cout << "Move card!" << std::endl;
 }

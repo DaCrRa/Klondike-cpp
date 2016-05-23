@@ -16,25 +16,25 @@
 
 class Klondike {
 private:
-	Deck deck;
-	Stock stock;
-	std::vector<Foundation> foundations;
-	std::vector<TableauPile> tableau;
-	std::vector<MoveOrigin*> moveOrigins;
-	std::vector<MoveDest*> moveDests;
-	bool paused;
+    Deck deck;
+    Stock stock;
+    std::vector<Foundation> foundations;
+    std::vector<TableauPile> tableau;
+    std::vector<MoveOrigin*> moveOrigins;
+    std::vector<MoveDest*> moveDests;
+    bool paused;
 public:
-	Klondike();
-	void initialize();
-	bool isCompleted();
-	void configureRenderer(KlondikeRenderer* renderer);
-	Stock* getStock();
-	std::vector<Foundation>& getFoundations();
-	std::vector<TableauPile>& getTableau();
-	std::vector<MoveOrigin*> getPossibleMoveOrigins();
-	std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* orig);
-	bool isPaused();
-	void togglePause();
+    Klondike();
+    void initialize();
+    bool isCompleted();
+    void configureRenderer(KlondikeRenderer* renderer);
+    Stock* getStock();
+    std::vector<Foundation>& getFoundations();
+    std::vector<TableauPile>& getTableau();
+    std::vector<MoveOrigin*> getPossibleMoveOrigins();
+    std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* orig);
+    bool isPaused();
+    void togglePause();
 };
 
 #endif
