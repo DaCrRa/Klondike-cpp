@@ -9,13 +9,16 @@
 
 #include <assert.h>
 
-Logic::Logic() : startController(game) {}
+Logic::Logic() :
+    actionControllerCatalog(game),
+    startController(game, actionControllerCatalog) {}
 
 Controller* Logic::getNextController() {
     // game in progress?
     if (game && !game->isPaused()) {
-        assert(startController.getSelectedGameActionController() != nullptr);
-        return startController.getSelectedGameActionController();
+        std::shared_ptr<GameActionController> selectedGameActionController = actionControllerCatalog.getSelectedGameActionController();
+        selectedGameActionController->setGame(game.get());
+        return selectedGameActionController.get();
     }
     if (startController.continueApp()) {
         return &startController;

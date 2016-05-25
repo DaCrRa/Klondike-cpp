@@ -15,12 +15,12 @@
 
 class MainMenuView : public GameActionControllerVisitor {
 private:
-    std::shared_ptr<GameActionController> userController;
-    std::shared_ptr<GameActionController> randomController;
+    size_t userControllerIndex;
+    size_t randomControllerIndex;
 
-    void startGame(StartController* startController, std::shared_ptr<GameActionController> gameActionController);
+    void startGame(StartController* startController, size_t gameActionControllerIndex);
 
-    std::function<void(std::shared_ptr<GameActionController>&)> assignGameActionController;
+    std::function<void(size_t&)> assignGameActionControllerIndex;
 public:
     void interact(StartController* controller);
     void visit(UserGameActionController* userController);

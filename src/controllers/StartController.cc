@@ -11,22 +11,20 @@
 
 #include <assert.h>
 
-StartController::StartController(std::shared_ptr<Klondike>& k) :
-    game(k), terminateAppFlag(false)
+StartController::StartController(std::shared_ptr<Klondike>& k, GameActionControllerCatalog& catalog) :
+    gameStatusController(k),
+    gameActionControllerCatalog(catalog),
+    terminateAppFlag(false)
 {
 
 }
 
 void StartController::startGame() {
-    assert(selectedGameActionController);
-    game = std::shared_ptr<Klondike>(new Klondike());
-    selectedGameActionController->setGame(game.get());
-    game->initialize();
+    gameStatusController.startNewGame();
 }
 
 void StartController::resumeGame() {
-    assert(game->isPaused());
-    game->togglePause();
+    gameStatusController.resumeGame();
 }
 
 void StartController::terminateApp() {
@@ -38,22 +36,15 @@ bool StartController::continueApp() {
 }
 
 bool StartController::isGameInProgress() {
-    return (bool)game;
+    return gameStatusController.isGameInProgress();
 }
 
-std::vector<std::shared_ptr<GameActionController> > StartController::getGameActionControllers() {
-    return std::vector<std::shared_ptr<GameActionController> >({
-        std::shared_ptr<GameActionController>(new UserGameActionController()),
-        std::shared_ptr<RandomGameActionController>(new RandomGameActionController())
-    });
+const std::vector<std::shared_ptr<GameActionController> > StartController::getAvailableGameActionControllers() {
+    return gameActionControllerCatalog.getAvailableGameActionControllers();
 }
 
-void StartController::setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller) {
-    selectedGameActionController = controller;
-}
-
-GameActionController* StartController::getSelectedGameActionController() {
-    return selectedGameActionController.get();
+void StartController::setSelectedGameActionController(size_t controller) {
+    gameActionControllerCatalog.selectGameActionController(controller);
 }
 
 void StartController::accept(ControllerVisitor* v) {

@@ -9,8 +9,8 @@
 #define SRC_CONTROLLERS_LOGIC_H_
 
 #include <StartController.h>
-#include <GameActionController.h>
 #include <Klondike.h>
+#include <GameActionControllerCatalog.h>
 
 #include <memory>
 
@@ -24,6 +24,7 @@ public:
 class Logic {
 private:
     std::shared_ptr<Klondike> game;
+    GameActionControllerCatalog actionControllerCatalog;
     StartController startController;
 public:
     Logic();

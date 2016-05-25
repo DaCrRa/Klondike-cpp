@@ -10,6 +10,8 @@
 
 #include <Controller.h>
 #include <ControllerVisitor.h>
+#include <GameStatusController.h>
+#include <GameActionControllerCatalog.h>
 #include <Klondike.h>
 
 #include <memory>
@@ -17,15 +19,14 @@
 
 class StartController : public Controller {
 private:
-    std::shared_ptr<Klondike>& game;
-    std::shared_ptr<GameActionController> selectedGameActionController;
+    GameStatusController gameStatusController;
+    GameActionControllerCatalog& gameActionControllerCatalog;
     bool terminateAppFlag;
 public:
-    StartController(std::shared_ptr<Klondike>& k);
+    StartController(std::shared_ptr<Klondike>& k, GameActionControllerCatalog& catalog);
     bool isGameInProgress();
-    std::vector<std::shared_ptr<GameActionController> > getGameActionControllers();
-    void setSelectedGameActionController(const std::shared_ptr<GameActionController>& controller);
-    GameActionController* getSelectedGameActionController();
+    const std::vector<std::shared_ptr<GameActionController> > getAvailableGameActionControllers();
+    void setSelectedGameActionController(size_t controller);
     void startGame();
     void resumeGame();
     void terminateApp();

@@ -15,17 +15,16 @@
 
 void MainMenuView::interact(StartController* startController) {
 
-    std::vector<std::shared_ptr<GameActionController> > gameActionControllers = startController->getGameActionControllers();
+    const std::vector<std::shared_ptr<GameActionController> >& gameActionControllers = startController->getAvailableGameActionControllers();
 
+    size_t index = 0;
     for (auto gameActionController : gameActionControllers) {
-        assignGameActionController = [&](std::shared_ptr<GameActionController>& gameActionControllerReference) {
-            gameActionControllerReference = gameActionController;
+        assignGameActionControllerIndex = [&](size_t& gameActionControllerIndexReference) {
+            gameActionControllerIndexReference = index;
         };
         gameActionController->acceptGameActionControllerVisitor(this);
+        ++index;
     }
-
-    assert(userController);
-    assert(randomController);
 
     std::cout << std::endl;
     std::cout << "  ...---=== KLONDIKE ===---..." << std::endl;
@@ -40,10 +39,10 @@ void MainMenuView::interact(StartController* startController) {
     }
 
     options.push_back(std::make_pair(MenuOption("Start one-player klondike", 0), [&] {
-        startGame(startController, userController);
+        startGame(startController, userControllerIndex);
     }));
     options.push_back(std::make_pair(MenuOption("Demo", 0), [&] {
-        startGame(startController, randomController);
+        startGame(startController, randomControllerIndex);
     }));
 
     try {
@@ -55,17 +54,17 @@ void MainMenuView::interact(StartController* startController) {
     }
 }
 
-void MainMenuView::startGame(StartController* startController, std::shared_ptr<GameActionController> gameActionController) {
-    startController->setSelectedGameActionController(gameActionController);
+void MainMenuView::startGame(StartController* startController, size_t gameActionControllerIndex) {
+    startController->setSelectedGameActionController(gameActionControllerIndex);
     startController->startGame();
 }
 
 void MainMenuView::visit(UserGameActionController* userController) {
-    assert(assignGameActionController);
-    assignGameActionController(this->userController);
+    assert(assignGameActionControllerIndex);
+    assignGameActionControllerIndex(this->userControllerIndex);
 }
 
 void MainMenuView::visit(RandomGameActionController* randomController) {
-    assert(assignGameActionController);
-    assignGameActionController(this->randomController);
+    assert(assignGameActionControllerIndex);
+    assignGameActionControllerIndex(this->randomControllerIndex);
 }
