@@ -35,3 +35,5 @@ add_dependencies(${GTEST_LIBRARY} ${GTEST_MAIN_LIBRARY})
 add_executable(ATest ATest.cc)
 target_include_directories(ATest PRIVATE ${GTEST_INCLUDE_DIR})
 target_link_libraries(ATest gtest)
+
+add_custom_command(TARGET ATest POST_BUILD COMMAND ATest)
