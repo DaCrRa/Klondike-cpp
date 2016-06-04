@@ -31,9 +31,15 @@ set_property(TARGET ${GTEST_LIBRARY} PROPERTY INTERFACE_LINK_LIBRARIES
 add_dependencies(${GTEST_MAIN_LIBRARY} googletest)
 add_dependencies(${GTEST_LIBRARY} ${GTEST_MAIN_LIBRARY})
 
-
 add_executable(ATest ATest.cc)
 target_include_directories(ATest PRIVATE ${GTEST_INCLUDE_DIR})
 target_link_libraries(ATest gtest)
 
-add_custom_command(TARGET ATest POST_BUILD COMMAND ATest)
+add_test(NAME ATestTest COMMAND ATest)
+
+add_custom_command(TARGET ATest POST_BUILD
+                   COMMAND ${CMAKE_COMMAND}
+                           -DTEST=ATest
+                           -DTARGET=$<TARGET_FILE:ATest>
+                           -P ${CMAKE_CURRENT_SOURCE_DIR}/test_runner.cmake
+)
