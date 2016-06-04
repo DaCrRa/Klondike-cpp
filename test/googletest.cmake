@@ -31,3 +31,11 @@ set_property(TARGET ${GTEST_LIBRARY} PROPERTY INTERFACE_LINK_LIBRARIES
 add_dependencies(${GTEST_MAIN_LIBRARY} googletest)
 add_dependencies(${GTEST_LIBRARY} ${GTEST_MAIN_LIBRARY})
 
+macro(build_googletest_executable executable_name sources dependencies)
+   add_executable(${executable_name} ${sources})
+   target_include_directories(${executable_name} PRIVATE ${GTEST_INCLUDE_DIR})
+   target_link_libraries(${executable_name} gtest)
+   if(NOT "${dependecies}" STREQUAL "")
+      add_dependencies(${executable_name} ${dependencies})
+   endif()
+endmacro()
