@@ -10,6 +10,7 @@
 Klondike::Klondike() :
     tableau(7), //TODO magic number
     foundations(4), //TODO magic number
+    score(0),
     paused(true)
 {
     moveOrigins.push_back(&stock);
@@ -75,6 +76,14 @@ std::vector<MoveDest*> Klondike::getPossibleMoveDests(MoveOrigin* origin) {
         }
     }
     return possibleMoveDests;
+}
+
+int Klondike::getScore() const {
+    return score;
+}
+
+void Klondike::updateScore(int delta) {
+    score += delta;
 }
 
 bool Klondike::isPaused() {

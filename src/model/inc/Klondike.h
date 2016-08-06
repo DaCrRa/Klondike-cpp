@@ -21,6 +21,7 @@ private:
     std::vector<TableauPile> tableau;
     std::vector<MoveOrigin*> moveOrigins;
     std::vector<MoveDest*> moveDests;
+    int score;
     bool paused;
 public:
     Klondike();
@@ -31,6 +32,8 @@ public:
     std::vector<TableauPile>& getTableau();
     std::vector<MoveOrigin*> getPossibleMoveOrigins();
     std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* orig);
+    int getScore() const;
+    void updateScore(int delta);
     bool isPaused();
     void togglePause();
 };

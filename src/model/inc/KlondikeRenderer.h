@@ -18,6 +18,7 @@ public:
     void setGame(Klondike* game);
 
     virtual void render() = 0;
+    virtual void renderScore() = 0;
     virtual void renderStock() = 0;
     virtual void renderFoundations() = 0;
     virtual void renderTableau() = 0;

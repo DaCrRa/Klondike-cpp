@@ -16,6 +16,7 @@ private:
     CardConsoleRenderer cardRenderer;
 public:
     void render();
+    void renderScore();
     void renderStock();
     void renderFoundations();
     void renderTableau();

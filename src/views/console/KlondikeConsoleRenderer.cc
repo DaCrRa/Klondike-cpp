@@ -12,6 +12,8 @@
 #include <assert.h>
 
 void KlondikeConsoleRenderer::render() {
+	std::cout << std::endl;
+	renderScore();
     std::cout << std::endl;
     renderStock();
     std::cout << std::endl;
@@ -19,6 +21,11 @@ void KlondikeConsoleRenderer::render() {
     std::cout << std::endl;
     renderTableau();
     std::cout << std::endl;
+}
+
+void KlondikeConsoleRenderer::renderScore() {
+	assert(game != nullptr);
+	std::cout << "Score: " << game->getScore() << std::endl;
 }
 
 void KlondikeConsoleRenderer::renderStock() {
