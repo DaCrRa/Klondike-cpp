@@ -10,13 +10,17 @@
 
 #include <Pile.h>
 #include <MoveDest.h>
+#include <MoveOrigin.h>
 
-class Foundation : public MoveDest {
+class Foundation : public MoveDest, public MoveOrigin {
 private:
     Pile pile;
 public:
     void add(const Card* c);
     bool accept(const Card* c);
+    bool hasCardAvailable() const;
+    const Card* showAvailableCard() const;
+    const Card* removeAvailableCard();
     bool isCompleted() const;
     int getNumCards() const;
     const Card* top() const;

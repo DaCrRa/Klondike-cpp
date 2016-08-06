@@ -34,3 +34,14 @@ const Card* Foundation::top() const {
     return pile.top();
 }
 
+bool Foundation::hasCardAvailable() const {
+    return pile.hasCards();
+}
+
+const Card* Foundation::showAvailableCard() const {
+    return pile.top();
+}
+
+const Card* Foundation::removeAvailableCard() {
+    return pile.removeTop();
+}
