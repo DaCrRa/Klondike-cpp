@@ -22,6 +22,8 @@ void KlondikeConsoleRenderer::render() {
 }
 
 void KlondikeConsoleRenderer::renderStock() {
+    assert(game != nullptr);
+    const Stock* stock = game->getStock();
     assert(stock != nullptr);
     std::cout << "Stock: ";
     if (stock->hasCoveredCards()) {
@@ -37,9 +39,10 @@ void KlondikeConsoleRenderer::renderStock() {
 }
 
 void KlondikeConsoleRenderer::renderFoundations() {
-    assert(foundations != nullptr);
+    assert(game != nullptr);
+    std::vector<Foundation>& foundations = game->getFoundations();
     char foundationId = 'A';
-    for (std::vector<Foundation>::const_iterator it = foundations->begin(); it != foundations->end(); ++it) {
+    for (std::vector<Foundation>::const_iterator it = foundations.begin(); it != foundations.end(); ++it) {
         std::cout << "Foundation " << foundationId++ << ": ";
         renderFoundation(it.base());
     }
@@ -63,9 +66,10 @@ void KlondikeConsoleRenderer::renderFoundation(const Foundation* f) {
 }
 
 void KlondikeConsoleRenderer::renderTableau() {
-    assert(tableau != nullptr);
+    assert(game != nullptr);
+    std::vector<TableauPile>& tableau = game->getTableau();
     int tableauPileId = 1;
-    for (std::vector<TableauPile>::const_iterator it = tableau->begin(); it != tableau->end(); ++it) {
+    for (std::vector<TableauPile>::const_iterator it = tableau.begin(); it != tableau.end(); ++it) {
         std::cout << "Tableau Pile " << tableauPileId++ << ": ";
         renderTableauPile(it.base());
     }

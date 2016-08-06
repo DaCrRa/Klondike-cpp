@@ -9,19 +9,13 @@
 #define SRC_INC_KLONDIKERENDERER_H_
 
 #include <vector>
-#include <Foundation.h>
-#include <Stock.h>
-#include <TableauPile.h>
+#include <Klondike.h>
 
 class KlondikeRenderer {
 protected:
-    const Stock* stock = nullptr;
-    const std::vector<TableauPile>* tableau = nullptr;
-    const std::vector<Foundation>* foundations = nullptr;
+    Klondike* game = nullptr;
 public:
-    void setStock(const Stock* s);
-    void setTableau(const std::vector<TableauPile>* tableau);
-    void setFoundations(const std::vector<Foundation>* foundations);
+    void setGame(Klondike* game);
 
     virtual void render() = 0;
     virtual void renderStock() = 0;

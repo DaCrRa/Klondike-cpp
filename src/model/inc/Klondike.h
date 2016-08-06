@@ -10,7 +10,6 @@
 
 #include <Deck.h>
 #include <Foundation.h>
-#include <KlondikeRenderer.h>
 #include <Stock.h>
 #include <TableauPile.h>
 
@@ -27,7 +26,6 @@ public:
     Klondike();
     void initialize();
     bool isCompleted();
-    void configureRenderer(KlondikeRenderer* renderer);
     Stock* getStock();
     std::vector<Foundation>& getFoundations();
     std::vector<TableauPile>& getTableau();

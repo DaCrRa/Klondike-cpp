@@ -17,7 +17,7 @@
 GameConsoleView::GameConsoleView(Klondike* k) :
     game(k)
 {
-    k->configureRenderer(&renderer);
+    renderer.setGame(game);
 }
 
 void GameConsoleView::interact(GameActionController* controller) {
