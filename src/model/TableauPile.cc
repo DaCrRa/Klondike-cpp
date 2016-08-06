@@ -52,5 +52,9 @@ const Card* TableauPile::showAvailableCard() const {
 }
 
 const Card* TableauPile::removeAvailableCard() {
-    return uncoveredCards.removeTop();
+    const Card* removedCard = uncoveredCards.removeTop();
+    if (!uncoveredCards.hasCards() && coveredCards.hasCards()) {
+        uncoveredCards.add(coveredCards.removeTop());
+    }
+    return removedCard;
 }
