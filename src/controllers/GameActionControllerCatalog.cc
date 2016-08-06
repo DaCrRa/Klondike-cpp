@@ -13,8 +13,8 @@
 
 GameActionControllerCatalog::GameActionControllerCatalog(std::shared_ptr<Klondike>& game) :
     availableControllers({
-    std::make_shared<UserGameActionController>(),
-    std::make_shared<RandomGameActionController>()
+    std::make_shared<UserGameActionController>(game),
+    std::make_shared<RandomGameActionController>(game)
 }),
 selected(0) {}
 

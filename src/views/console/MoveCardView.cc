@@ -12,7 +12,7 @@
 MoveCardView::MoveCardView(GameActionController* c) :
     controller(c)
 {
-    Klondike* game = controller->getGame();
+    std::shared_ptr<Klondike>& game = controller->getGame();
     gameElementTag.insert(std::pair<GameElement*, char>(game->getStock(), 's'));
     char foundationTag = 'A';
     for (std::vector<Foundation>::iterator it = game->getFoundations().begin() ; it != game->getFoundations().end() ; ++it) {

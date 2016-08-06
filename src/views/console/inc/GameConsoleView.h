@@ -16,12 +16,11 @@
 class GameConsoleView : public GameActionControllerVisitor {
 private:
     KlondikeConsoleRenderer renderer;
-    Klondike* game;
     GameActionPtr gameAction;
 
     void selectGameAction(GameActionController* controller);
 public:
-    GameConsoleView(Klondike* k);
+    GameConsoleView(std::shared_ptr<Klondike>& game) : renderer(game) {};
     void interact(GameActionController* c);
     void visit(UserGameActionController* c);
     void visit(RandomGameActionController* c);

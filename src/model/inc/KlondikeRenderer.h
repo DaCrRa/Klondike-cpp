@@ -11,11 +11,13 @@
 #include <vector>
 #include <Klondike.h>
 
+#include <memory>
+
 class KlondikeRenderer {
 protected:
-    Klondike* game = nullptr;
+    std::shared_ptr<Klondike>& game;
 public:
-    void setGame(Klondike* game);
+    KlondikeRenderer(std::shared_ptr<Klondike>& g) : game(g) {};
 
     virtual void render() = 0;
     virtual void renderScore() = 0;

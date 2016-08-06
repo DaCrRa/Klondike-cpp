@@ -17,10 +17,10 @@
 
 class GameActionController: public Controller, public GameActionVisitor {
 protected:
-    Klondike* game;
+    std::shared_ptr<Klondike>& game;
 public:
-    Klondike* getGame();
-    void setGame(Klondike* k);
+    GameActionController(std::shared_ptr<Klondike>& game);
+    std::shared_ptr<Klondike>& getGame();
     void doAction(GameActionPtr action);
     virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
     void accept(ControllerVisitor* visitor);

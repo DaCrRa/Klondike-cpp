@@ -17,7 +17,6 @@ Controller* Logic::getNextController() {
     // game in progress?
     if (game && !game->isPaused()) {
         std::shared_ptr<GameActionController> selectedGameActionController = actionControllerCatalog.getSelectedGameActionController();
-        selectedGameActionController->setGame(game.get());
         return selectedGameActionController.get();
     }
     if (startController.continueApp()) {

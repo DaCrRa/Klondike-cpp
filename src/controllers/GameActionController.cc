@@ -9,16 +9,17 @@
 
 #include <Move.h>
 
+GameActionController::GameActionController(std::shared_ptr<Klondike>& g) :
+    game(g) {
+
+}
+
 void GameActionController::accept(ControllerVisitor* visitor) {
     visitor->visit(this);
 }
 
-Klondike* GameActionController::getGame() {
+std::shared_ptr<Klondike>& GameActionController::getGame() {
     return game;
-}
-
-void GameActionController::setGame(Klondike* k) {
-    game = k;
 }
 
 void GameActionController::doAction(GameActionPtr action) {

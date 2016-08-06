@@ -15,6 +15,7 @@ class KlondikeConsoleRenderer: public KlondikeRenderer {
 private:
     CardConsoleRenderer cardRenderer;
 public:
+    KlondikeConsoleRenderer(std::shared_ptr<Klondike>& g) : KlondikeRenderer(g) {};
     void render();
     void renderScore();
     void renderStock();

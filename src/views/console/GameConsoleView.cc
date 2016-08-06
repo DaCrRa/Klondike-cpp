@@ -14,12 +14,6 @@
 
 #include <iostream>
 
-GameConsoleView::GameConsoleView(Klondike* k) :
-    game(k)
-{
-    renderer.setGame(game);
-}
-
 void GameConsoleView::interact(GameActionController* controller) {
     renderer.render();
     try {

@@ -12,6 +12,7 @@
 
 class UserGameActionController: public GameActionController {
 public:
+    UserGameActionController(std::shared_ptr<Klondike>& game) : GameActionController(game) {};
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor);
 };
 
