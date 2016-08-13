@@ -29,3 +29,7 @@ void Move::accept(GameActionVisitor* visitor) {
 GameActionPtr Move::duplicate() {
     return GameActionPtr(new Move(*this));
 }
+
+void Move::acceptOriginVisitor(MoveOriginVisitor* origVisitor) {
+    origin->accept(origVisitor);
+}

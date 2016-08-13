@@ -23,6 +23,7 @@ public:
     void doMove();
     GameActionPtr duplicate();
     void accept(GameActionVisitor* visitor);
+    void acceptOriginVisitor(MoveOriginVisitor* origVisitor);
 };
 
 #endif /* SRC_MODEL_INC_MOVE_H_ */

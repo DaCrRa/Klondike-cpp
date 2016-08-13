@@ -28,5 +28,6 @@ void ScoreController::visit(StockAction* stockAction) {
 }
 
 void ScoreController::visit(Move* move) {
-    std::cout << "calculate score for movement....................." << std::endl;
+    MoveScoreCalculator calculator;
+    move->acceptOriginVisitor(&calculator);
 }
