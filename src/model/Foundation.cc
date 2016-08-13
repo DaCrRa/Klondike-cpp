@@ -49,3 +49,7 @@ const Card* Foundation::removeAvailableCard() {
 void Foundation::accept(MoveOriginVisitor* v) {
     v->visit(this);
 }
+
+void Foundation::accept(MoveDestVisitor* v) {
+    v->visit(this);
+}

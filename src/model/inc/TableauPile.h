@@ -21,6 +21,7 @@ public:
     PileIterator uncoveredCardsBegin() const;
     PileIterator uncoveredCardsEnd() const;
     void accept(MoveOriginVisitor* v);
+    void accept(MoveDestVisitor* v);
 };
 
 #endif

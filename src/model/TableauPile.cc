@@ -62,3 +62,7 @@ const Card* TableauPile::removeAvailableCard() {
 void TableauPile::accept(MoveOriginVisitor* v) {
     v->visit(this);
 }
+
+void TableauPile::accept(MoveDestVisitor* v) {
+    v->visit(this);
+}

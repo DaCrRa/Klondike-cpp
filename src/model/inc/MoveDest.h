@@ -10,11 +10,13 @@
 
 #include <Card.h>
 #include <GameElement.h>
+#include <MoveDestVisitor.h>
 
 class MoveDest : virtual public GameElement {
 public:
     virtual bool cardCanBeAdded(const Card* c) = 0;
     virtual void add(const Card* c) = 0;
+    virtual void accept(MoveDestVisitor* visitor) = 0;
     virtual ~MoveDest() {}
 };
 

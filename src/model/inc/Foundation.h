@@ -25,6 +25,7 @@ public:
     int getNumCards() const;
     const Card* top() const;
     void accept(MoveOriginVisitor* v);
+    void accept(MoveDestVisitor* v);
 };
 
 #endif
