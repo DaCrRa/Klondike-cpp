@@ -45,3 +45,7 @@ const Card* Foundation::showAvailableCard() const {
 const Card* Foundation::removeAvailableCard() {
     return pile.removeTop();
 }
+
+void Foundation::accept(MoveOriginVisitor* v) {
+    v->visit(this);
+}

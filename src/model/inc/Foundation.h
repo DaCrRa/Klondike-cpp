@@ -24,6 +24,7 @@ public:
     bool isCompleted() const;
     int getNumCards() const;
     const Card* top() const;
+    void accept(MoveOriginVisitor* v);
 };
 
 #endif

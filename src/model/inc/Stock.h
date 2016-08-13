@@ -24,6 +24,7 @@ public:
     bool hasCardAvailable() const;
     bool hasCoveredCards() const;
     bool hasCards() const;
+    void accept(MoveOriginVisitor* v);
     const Card* showAvailableCard() const;
     const Card* removeAvailableCard();
 };

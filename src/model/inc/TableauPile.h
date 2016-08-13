@@ -20,6 +20,7 @@ public:
     int getNumCoveredCards() const;
     PileIterator uncoveredCardsBegin() const;
     PileIterator uncoveredCardsEnd() const;
+    void accept(MoveOriginVisitor* v);
 };
 
 #endif

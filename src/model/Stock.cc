@@ -37,6 +37,10 @@ bool Stock::hasCardAvailable() const {
     return waste.hasCards();
 }
 
+void Stock::accept(MoveOriginVisitor* v) {
+    v->visit(this);
+}
+
 const Card* Stock::showAvailableCard() const {
     assert(hasCardAvailable());
     return waste.top();

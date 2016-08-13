@@ -10,12 +10,14 @@
 
 #include <Card.h>
 #include <GameElement.h>
+#include <MoveOriginVisitor.h>
 
 class MoveOrigin : virtual public GameElement {
 public:
     virtual bool hasCardAvailable() const = 0;
     virtual const Card* showAvailableCard() const = 0;
     virtual const Card* removeAvailableCard() = 0;
+    virtual void accept(MoveOriginVisitor* v) = 0;
     virtual ~MoveOrigin() {}
 };
 
