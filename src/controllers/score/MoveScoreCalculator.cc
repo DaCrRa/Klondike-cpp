@@ -12,27 +12,27 @@ int MoveScoreCalculator::DestScoreCalculator::getScoreDelta() const {
 }
 
 void MoveScoreCalculator::FromStock::visit(TableauPile* tableauPile) {
-
+    scoreDelta = MoveScoreCalculator::WASTE_TO_TABLEAU;
 }
 
 void MoveScoreCalculator::FromStock::visit(Foundation* foundation) {
-
+    scoreDelta = MoveScoreCalculator::WASTE_TO_FOUNDATION;
 }
 
 void MoveScoreCalculator::FromTableauPile::visit(TableauPile* tableauPile) {
-
+    scoreDelta = 0;
 }
 
 void MoveScoreCalculator::FromTableauPile::visit(Foundation* foundation) {
-
+    scoreDelta = MoveScoreCalculator::TABLEAU_TO_FOUNDATION;
 }
 
 void MoveScoreCalculator::FromFoundation::visit(TableauPile* tableauPile) {
-
+    scoreDelta = MoveScoreCalculator::FOUNDATION_TO_TABLEAU;
 }
 
 void MoveScoreCalculator::FromFoundation::visit(Foundation* foundation) {
-
+    scoreDelta = 0;
 }
 
 void MoveScoreCalculator::visit(Stock* stock) {

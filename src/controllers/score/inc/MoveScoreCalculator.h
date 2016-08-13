@@ -14,8 +14,15 @@
 
 class MoveScoreCalculator : public MoveOriginVisitor {
 private:
+
+    static const int WASTE_TO_TABLEAU = 5;
+    static const int WASTE_TO_FOUNDATION = 10;
+    static const int TABLEAU_TO_FOUNDATION = 10;
+    static const int TURN_UP_TABLEAU_CARD = 5;
+    static const int FOUNDATION_TO_TABLEAU = -15;
+
     class DestScoreCalculator : public MoveDestVisitor {
-    private:
+    protected:
         int scoreDelta;
     public:
         int getScoreDelta() const;
