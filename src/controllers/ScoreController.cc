@@ -14,20 +14,12 @@ ScoreController::ScoreController(std::shared_ptr<Klondike>& g) :
 }
 
 int ScoreController::calculateScoreDelta(GameActionPtr gameAction) {
-    gameAction->accept(this);
-    return 0;
+    GameActionScoreCalculator calculator;
+    gameAction->accept(&calculator);
+    return calculator.getScoreDelta();
 }
 
 void ScoreController::updateScore(GameActionPtr gameAction) {
     game->updateScore(calculateScoreDelta(gameAction));
 }
 
-#include <iostream>
-void ScoreController::visit(StockAction* stockAction) {
-    std::cout << "calculate score for stock action @@@@@@@@@@" << std::endl;
-}
-
-void ScoreController::visit(Move* move) {
-    MoveScoreCalculator calculator(move);
-    move->acceptOriginVisitor(&calculator);
-}
