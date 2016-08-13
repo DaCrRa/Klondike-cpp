@@ -10,7 +10,8 @@
 #include <Move.h>
 
 GameActionController::GameActionController(std::shared_ptr<Klondike>& g) :
-    game(g) {
+    game(g),
+    scoreController(game) {
 
 }
 
@@ -24,6 +25,7 @@ std::shared_ptr<Klondike>& GameActionController::getGame() {
 
 void GameActionController::doAction(GameActionPtr action) {
     action->accept(this);
+    scoreController.updateScore(action);
 }
 
 void GameActionController::visit(StockAction* stockAction) {
