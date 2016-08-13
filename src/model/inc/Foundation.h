@@ -17,7 +17,7 @@ private:
     Pile pile;
 public:
     void add(const Card* c);
-    bool accept(const Card* c);
+    bool cardCanBeAdded(const Card* c);
     bool hasCardAvailable() const;
     const Card* showAvailableCard() const;
     const Card* removeAvailableCard();

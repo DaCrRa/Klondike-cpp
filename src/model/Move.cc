@@ -18,7 +18,7 @@ void Move::setDest(MoveDest* d) {
 }
 
 void Move::doMove() {
-    assert(dest->accept(origin->showAvailableCard()));
+    assert(dest->cardCanBeAdded(origin->showAvailableCard()));
     dest->add(origin->removeAvailableCard());
 }
 

@@ -10,11 +10,11 @@
 #include <assert.h>
 
 void Foundation::add(const Card* c) {
-    assert(accept(c));
+    assert(cardCanBeAdded(c));
     pile.add(c);
 }
 
-bool Foundation::accept(const Card* c) {
+bool Foundation::cardCanBeAdded(const Card* c) {
     if (!pile.hasCards()) {
         return c->getRank() == 1;
     } else {

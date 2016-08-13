@@ -18,7 +18,7 @@ void TableauPile::addToCovered(const Card* c) {
     coveredCards.add(c);
 }
 
-bool TableauPile::accept(const Card* c) {
+bool TableauPile::cardCanBeAdded(const Card* c) {
     if (uncoveredCards.hasCards()) {
         return !c->hasSameColor(uncoveredCards.top()) && c->compareRank(uncoveredCards.top()) == -1;
     } else {
@@ -27,7 +27,7 @@ bool TableauPile::accept(const Card* c) {
 }
 
 void TableauPile::add(const Card* c) {
-    assert(accept(c));
+    assert(cardCanBeAdded(c));
     uncoveredCards.add(c);
 }
 

@@ -71,7 +71,7 @@ std::vector<MoveOrigin*> Klondike::getPossibleMoveOrigins() {
 std::vector<MoveDest*> Klondike::getPossibleMoveDests(MoveOrigin* origin) {
     std::vector<MoveDest*> possibleMoveDests;
     for (std::vector<MoveDest*>::iterator it = moveDests.begin(); it != moveDests.end(); ++it) {
-        if ((*it)->accept(origin->showAvailableCard())) {
+        if ((*it)->cardCanBeAdded(origin->showAvailableCard())) {
             possibleMoveDests.push_back(*it);
         }
     }
