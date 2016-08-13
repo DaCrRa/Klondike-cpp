@@ -14,16 +14,56 @@
 #include <Move.h>
 
 #include <iostream>
-class MoveScoreCalculator : public MoveOriginVisitor {
+
+class FromStock : public MoveDestVisitor {
 public:
-    void visit(Stock* stock) {
-        std::cout << "calculate score for move, origin is waste (stock)" << std::endl;
-    }
     void visit(TableauPile* tableauPile) {
-        std::cout << "calculate score for move, origin is a tableau pile" << std::endl;
+        std::cout << "...and dest is a tableau pile" << std::endl;
     }
     void visit(Foundation* foundation) {
-        std::cout << "calculate score for move, origin is a foundation" << std::endl;
+        std::cout << "...and dest is is a foundation" << std::endl;
+    }
+};
+
+class FromTableauPile : public MoveDestVisitor {
+public:
+    void visit(TableauPile* tableauPile) {
+        std::cout << "...and dest is a tableau pile" << std::endl;
+    }
+    void visit(Foundation* foundation) {
+        std::cout << "...and dest is is a foundation" << std::endl;
+    }
+};
+
+class FromFoundation : public MoveDestVisitor {
+public:
+    void visit(TableauPile* tableauPile) {
+        std::cout << "...and dest is a tableau pile" << std::endl;
+    }
+    void visit(Foundation* foundation) {
+        std::cout << "...and dest is is a foundation" << std::endl;
+    }
+};
+
+class MoveScoreCalculator : public MoveOriginVisitor {
+private:
+    Move* move;
+public:
+    MoveScoreCalculator(Move* m) : move(m) {}
+    void visit(Stock* stock) {
+        std::cout << "calculate score for move, origin is waste (stock)";
+        FromStock destVisitor;
+        move->acceptDestVisitor(&destVisitor);
+    }
+    void visit(TableauPile* tableauPile) {
+        std::cout << "calculate score for move, origin is a tableau pile";
+        FromTableauPile destVisitor;
+        move->acceptDestVisitor(&destVisitor);
+    }
+    void visit(Foundation* foundation) {
+        std::cout << "calculate score for move, origin is a foundation";
+        FromFoundation destVisitor;
+        move->acceptDestVisitor(&destVisitor);
     }
 };
 

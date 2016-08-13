@@ -24,6 +24,7 @@ public:
     GameActionPtr duplicate();
     void accept(GameActionVisitor* visitor);
     void acceptOriginVisitor(MoveOriginVisitor* origVisitor);
+    void acceptDestVisitor(MoveDestVisitor* destVisitor);
 };
 
 #endif /* SRC_MODEL_INC_MOVE_H_ */

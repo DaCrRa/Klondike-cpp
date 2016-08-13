@@ -28,6 +28,6 @@ void ScoreController::visit(StockAction* stockAction) {
 }
 
 void ScoreController::visit(Move* move) {
-    MoveScoreCalculator calculator;
+    MoveScoreCalculator calculator(move);
     move->acceptOriginVisitor(&calculator);
 }

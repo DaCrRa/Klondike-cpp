@@ -33,3 +33,7 @@ GameActionPtr Move::duplicate() {
 void Move::acceptOriginVisitor(MoveOriginVisitor* origVisitor) {
     origin->accept(origVisitor);
 }
+
+void Move::acceptDestVisitor(MoveDestVisitor* destVisitor) {
+    dest->accept(destVisitor);
+}
