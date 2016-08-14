@@ -8,9 +8,20 @@
 
 #include <assert.h>
 
+void TableauPile::setObserver(TableauPileObserver* obs) {
+    observer = obs;
+}
+
+void TableauPile::unsetObserver() {
+    observer = nullptr;
+}
+
 void TableauPile::turnUpCard() {
     assert(cardCanBeTurnUp());
     uncoveredCards.add(coveredCards.removeTop());
+    if (observer != nullptr) {
+        observer->onCardTurnUp();
+    }
 }
 
 bool TableauPile::cardCanBeTurnUp() {

@@ -4,13 +4,18 @@
 #include <Pile.h>
 #include <MoveOrigin.h>
 #include <MoveDest.h>
+#include <TableauPileObserver.h>
 
 class TableauPile : public MoveOrigin, public MoveDest {
 private:
     Pile coveredCards;
     Pile uncoveredCards;
+    TableauPileObserver* observer;
     bool cardCanBeTurnUp();
 public:
+    TableauPile() : observer(nullptr) {}
+    void setObserver(TableauPileObserver* observer);
+    void unsetObserver();
     void turnUpCard();
     void addToCovered(const Card* c);
     void add(const Card* c);
