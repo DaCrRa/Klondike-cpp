@@ -4,9 +4,8 @@ void GameActionScoreCalculator::visit(StockAction* stockAction) {
     scoreDelta = 0;
 }
 void GameActionScoreCalculator::visit(Move* move) {
-    MoveScoreCalculator calculator(move);
-    move->acceptOriginVisitor(&calculator);
-    scoreDelta = calculator.getScoreDelta();
+    moveScoreCalculator = std::make_shared<MoveScoreCalculator>(move, scoreDelta);
+    move->acceptOriginVisitor(moveScoreCalculator.get());
 }
 int GameActionScoreCalculator::getScoreDelta() const {
     return scoreDelta;

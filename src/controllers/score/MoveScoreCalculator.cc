@@ -50,6 +50,3 @@ void MoveScoreCalculator::visit(Foundation* foundation) {
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();
 }
-int MoveScoreCalculator::getScoreDelta() const {
-    return scoreDelta;
-}

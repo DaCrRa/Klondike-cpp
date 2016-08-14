@@ -24,8 +24,9 @@ std::shared_ptr<Klondike>& GameActionController::getGame() {
 }
 
 void GameActionController::doAction(GameActionPtr action) {
+    scoreController.calculateScoreDelta(action);
     action->accept(this);
-    scoreController.updateScore(action);
+    scoreController.updateScore();
 }
 
 void GameActionController::visit(StockAction* stockAction) {

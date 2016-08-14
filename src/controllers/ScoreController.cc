@@ -13,13 +13,12 @@ ScoreController::ScoreController(std::shared_ptr<Klondike>& g) :
 
 }
 
-int ScoreController::calculateScoreDelta(GameActionPtr gameAction) {
-    GameActionScoreCalculator calculator;
-    gameAction->accept(&calculator);
-    return calculator.getScoreDelta();
+void ScoreController::calculateScoreDelta(GameActionPtr gameAction) {
+    gameActionScoreCalculator = std::make_shared<GameActionScoreCalculator>();
+    gameAction->accept(gameActionScoreCalculator.get());
 }
 
-void ScoreController::updateScore(GameActionPtr gameAction) {
-    game->updateScore(calculateScoreDelta(gameAction));
+void ScoreController::updateScore() {
+    game->updateScore(gameActionScoreCalculator->getScoreDelta());
 }
 

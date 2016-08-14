@@ -12,8 +12,10 @@
 
 class GameActionScoreCalculator : public GameActionVisitor {
 private:
+    std::shared_ptr<MoveScoreCalculator> moveScoreCalculator;
     int scoreDelta;
 public:
+    GameActionScoreCalculator() : scoreDelta(0) {}
     void visit(StockAction* stockAction);
     void visit(Move* move);
     int getScoreDelta() const;

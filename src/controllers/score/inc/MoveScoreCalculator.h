@@ -48,13 +48,12 @@ private:
     };
 
     Move* move;
-    int scoreDelta;
+    int& scoreDelta;
 public:
-    MoveScoreCalculator(Move* m) : move(m), scoreDelta(0) {}
+    MoveScoreCalculator(Move* m, int& scoreDelta) : move(m), scoreDelta(scoreDelta) {}
     void visit(Stock* stock);
     void visit(TableauPile* tableauPile);
     void visit(Foundation* foundation);
-    int getScoreDelta() const;
 };
 
 #endif /* SRC_CONTROLLERS_SCORE_INC_MOVESCORECALCULATOR_H_ */

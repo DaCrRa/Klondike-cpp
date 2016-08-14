@@ -15,11 +15,11 @@
 class ScoreController {
 private:
     std::shared_ptr<Klondike>& game;
-    int calculateScoreDelta(GameActionPtr gameAction);
-    int scoreDelta;
+    std::shared_ptr<GameActionScoreCalculator> gameActionScoreCalculator;
 public:
     ScoreController(std::shared_ptr<Klondike>& game);
-    void updateScore(GameActionPtr gameAction);
+    void calculateScoreDelta(GameActionPtr gameAction);
+    void updateScore();
 };
 
 #endif /* SRC_CONTROLLERS_SCORECONTROLLER_H_ */
