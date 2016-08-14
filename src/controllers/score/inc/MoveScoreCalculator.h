@@ -9,10 +9,12 @@
 #define SRC_CONTROLLERS_SCORE_INC_MOVESCORECALCULATOR_H_
 
 #include <Move.h>
+#include <TableauPile.h>
+#include <TableauPileObserver.h>
 
 #include <iostream>
 
-class MoveScoreCalculator : public MoveOriginVisitor {
+class MoveScoreCalculator : public MoveOriginVisitor, public TableauPileObserver {
 private:
 
     static const int WASTE_TO_TABLEAU = 5;
@@ -48,12 +50,18 @@ private:
     };
 
     Move* move;
+    TableauPile* observedTableauPile;
     int& scoreDelta;
 public:
-    MoveScoreCalculator(Move* m, int& scoreDelta) : move(m), scoreDelta(scoreDelta) {}
+    MoveScoreCalculator(Move* m, int& scoreDelta) :
+        move(m),
+        observedTableauPile(nullptr),
+        scoreDelta(scoreDelta) {}
+    void onCardTurnUp();
     void visit(Stock* stock);
     void visit(TableauPile* tableauPile);
     void visit(Foundation* foundation);
+    ~MoveScoreCalculator();
 };
 
 #endif /* SRC_CONTROLLERS_SCORE_INC_MOVESCORECALCULATOR_H_ */

@@ -35,12 +35,18 @@ void MoveScoreCalculator::FromFoundation::visit(Foundation* foundation) {
     scoreDelta = 0;
 }
 
+void MoveScoreCalculator::onCardTurnUp() {
+    scoreDelta += TURN_UP_TABLEAU_CARD;
+}
+
 void MoveScoreCalculator::visit(Stock* stock) {
     FromStock destVisitor;
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();
 }
 void MoveScoreCalculator::visit(TableauPile* tableauPile) {
+    observedTableauPile = tableauPile;
+    tableauPile->setObserver(this);
     FromTableauPile destVisitor;
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();
@@ -49,4 +55,10 @@ void MoveScoreCalculator::visit(Foundation* foundation) {
     FromFoundation destVisitor;
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();
+}
+
+MoveScoreCalculator::~MoveScoreCalculator() {
+    if (observedTableauPile != nullptr) {
+        observedTableauPile->unsetObserver();
+    }
 }
