@@ -30,7 +30,7 @@ void Klondike::initialize() {
         for (int j = 0; j < i + 1; j++) {
             it->addToCovered(deck.removeTop());
         }
-        it->turnUp();
+        it->turnUpCard();
     }
     while (deck.hasCards()) {
         stock.addToCovered(deck.removeTop());

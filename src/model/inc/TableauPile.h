@@ -9,8 +9,9 @@ class TableauPile : public MoveOrigin, public MoveDest {
 private:
     Pile coveredCards;
     Pile uncoveredCards;
+    bool cardCanBeTurnUp();
 public:
-    void turnUp();
+    void turnUpCard();
     void addToCovered(const Card* c);
     void add(const Card* c);
     bool cardCanBeAdded(const Card* c);

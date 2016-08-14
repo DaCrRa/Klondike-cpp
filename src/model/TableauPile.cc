@@ -8,9 +8,13 @@
 
 #include <assert.h>
 
-void TableauPile::turnUp() {
-    assert(!uncoveredCards.hasCards());
+void TableauPile::turnUpCard() {
+    assert(cardCanBeTurnUp());
     uncoveredCards.add(coveredCards.removeTop());
+}
+
+bool TableauPile::cardCanBeTurnUp() {
+    return !uncoveredCards.hasCards() && coveredCards.hasCards();
 }
 
 void TableauPile::addToCovered(const Card* c) {
@@ -53,8 +57,8 @@ const Card* TableauPile::showAvailableCard() const {
 
 const Card* TableauPile::removeAvailableCard() {
     const Card* removedCard = uncoveredCards.removeTop();
-    if (!uncoveredCards.hasCards() && coveredCards.hasCards()) {
-        uncoveredCards.add(coveredCards.removeTop());
+    if (cardCanBeTurnUp()) {
+        turnUpCard();
     }
     return removedCard;
 }
