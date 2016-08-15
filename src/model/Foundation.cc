@@ -23,7 +23,7 @@ bool Foundation::cardCanBeAdded(const Card* c) {
 }
 
 bool Foundation::isCompleted() const {
-    return pile.getNumberOfCards() == 12; //TODO magic number
+    return pile.getNumberOfCards() == NUM_CARDS_TO_COMPLETE;
 }
 
 int Foundation::getNumCards() const {

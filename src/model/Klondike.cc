@@ -9,7 +9,7 @@
 
 Klondike::Klondike() :
     tableau(7), //TODO magic number
-    foundations(4), //TODO magic number
+    foundations(deck.getNumSuits(), Foundation(2)), //TODO 2 is a test value, should be deck.getNumCardsPerSuit()
     score(0),
     paused(true)
 {

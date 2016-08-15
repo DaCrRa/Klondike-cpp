@@ -15,7 +15,9 @@
 class Foundation : public MoveDest, public MoveOrigin {
 private:
     Pile pile;
+    const int NUM_CARDS_TO_COMPLETE;
 public:
+    Foundation(const int n) : NUM_CARDS_TO_COMPLETE(n) {}
     void add(const Card* c);
     bool cardCanBeAdded(const Card* c);
     bool hasCardAvailable() const;
