@@ -8,6 +8,9 @@
 #include <ConsoleView.h>
 #include <GameView.h>
 #include <MainMenuView.h>
+#include <GameFinishedView.h>
+
+#include <BestScoresController.h>
 
 void ConsoleView::interact(Controller* controller) {
     controller->accept(this);
@@ -21,4 +24,8 @@ void ConsoleView::visit(GameActionController* controller) {
 void ConsoleView::visit(StartController* controller) {
     MainMenuView menu;
     menu.interact(controller);
+}
+
+void ConsoleView::visit(BestScoresController* bsc) {
+    GameFinishedView(bsc->getGame()).show();
 }

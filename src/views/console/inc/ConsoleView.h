@@ -16,6 +16,7 @@ public:
     void interact(Controller* c);
     void visit(GameActionController* c);
     void visit(StartController* c);
+    void visit(BestScoresController* sc);
 };
 
 #endif /* SRC_VIEWS_CONSOLE_CONSOLEVIEW_H_ */

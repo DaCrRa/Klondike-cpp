@@ -11,10 +11,16 @@
 
 Logic::Logic() :
     actionControllerCatalog(game),
-    startController(game, actionControllerCatalog) {}
+    startController(game, actionControllerCatalog),
+    bestScoresController(game) {}
+
+#include <iostream>
 
 Controller* Logic::getNextController() {
     // game in progress?
+    if (game && game->isCompleted()) {
+        return &bestScoresController;
+    }
     if (game && !game->isPaused()) {
         std::shared_ptr<GameActionController> selectedGameActionController = actionControllerCatalog.getSelectedGameActionController();
         return selectedGameActionController.get();

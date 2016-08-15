@@ -10,11 +10,13 @@
 
 class GameActionController;
 class StartController;
+class BestScoresController;
 
 class ControllerVisitor {
 public:
     virtual void visit(GameActionController* sc) = 0;
     virtual void visit(StartController* sc) = 0;
+    virtual void visit(BestScoresController* sc) = 0;
     virtual ~ControllerVisitor() {}
 };
 

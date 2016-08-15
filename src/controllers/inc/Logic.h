@@ -11,6 +11,7 @@
 #include <StartController.h>
 #include <Klondike.h>
 #include <GameActionControllerCatalog.h>
+#include <BestScoresController.h>
 
 #include <memory>
 
@@ -26,6 +27,7 @@ private:
     std::shared_ptr<Klondike> game;
     GameActionControllerCatalog actionControllerCatalog;
     StartController startController;
+    BestScoresController bestScoresController;
 public:
     Logic();
     Controller* getNextController();
