@@ -6,7 +6,7 @@
  */
 
 #include <ConsoleView.h>
-#include <GameConsoleView.h>
+#include <GameView.h>
 #include <MainMenuView.h>
 
 void ConsoleView::interact(Controller* controller) {
@@ -14,7 +14,7 @@ void ConsoleView::interact(Controller* controller) {
 }
 
 void ConsoleView::visit(GameActionController* controller) {
-    GameConsoleView view(controller->getGame());
+    GameView view(controller->getGame());
     view.interact(controller);
 }
 

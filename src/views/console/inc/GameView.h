@@ -13,14 +13,14 @@
 #include <KlondikeConsoleRenderer.h>
 #include <Klondike.h>
 
-class GameConsoleView : public GameActionControllerVisitor {
+class GameView : public GameActionControllerVisitor {
 private:
     KlondikeConsoleRenderer renderer;
     GameActionPtr gameAction;
 
     void selectGameAction(GameActionController* controller);
 public:
-    GameConsoleView(std::shared_ptr<Klondike>& game) : renderer(game) {};
+    GameView(std::shared_ptr<Klondike>& game) : renderer(game) {};
     void interact(GameActionController* c);
     void visit(UserGameActionController* c);
     void visit(RandomGameActionController* c);

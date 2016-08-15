@@ -5,8 +5,7 @@
  *      Author: dancre
  */
 
-#include <GameConsoleView.h>
-
+#include <GameView.h>
 #include <SelectActionView.h>
 #include <ShowActionView.h>
 #include <StockAction.h>
@@ -14,7 +13,7 @@
 
 #include <iostream>
 
-void GameConsoleView::interact(GameActionController* controller) {
+void GameView::interact(GameActionController* controller) {
     renderer.render();
     try {
         selectGameAction(controller);
@@ -27,16 +26,16 @@ void GameConsoleView::interact(GameActionController* controller) {
     }
 }
 
-void GameConsoleView::selectGameAction(GameActionController* controller) {
+void GameView::selectGameAction(GameActionController* controller) {
     controller->acceptGameActionControllerVisitor(this);
 }
 
-void GameConsoleView::visit(UserGameActionController* c) {
+void GameView::visit(UserGameActionController* c) {
     SelectActionView v(c);
     v.getAction(gameAction);
 }
 
-void GameConsoleView::visit(RandomGameActionController* c) {
+void GameView::visit(RandomGameActionController* c) {
     gameAction = c->getAction();
     ShowActionView(gameAction).show();
 }
