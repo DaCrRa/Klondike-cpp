@@ -39,6 +39,10 @@ void MoveScoreCalculator::onCardTurnUp() {
     scoreDelta += TURN_UP_TABLEAU_CARD;
 }
 
+void MoveScoreCalculator::tableauPileDestroyed() {
+    observedTableauPile = nullptr;
+}
+
 void MoveScoreCalculator::visit(Stock* stock) {
     FromStock destVisitor;
     move->acceptDestVisitor(&destVisitor);

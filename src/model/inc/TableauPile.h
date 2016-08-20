@@ -28,6 +28,7 @@ public:
     PileIterator uncoveredCardsEnd() const;
     void accept(MoveOriginVisitor* v);
     void accept(MoveDestVisitor* v);
+    ~TableauPile();
 };
 
 #endif

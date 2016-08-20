@@ -81,3 +81,9 @@ void TableauPile::accept(MoveOriginVisitor* v) {
 void TableauPile::accept(MoveDestVisitor* v) {
     v->visit(this);
 }
+
+TableauPile::~TableauPile() {
+    if (observer != nullptr) {
+        observer->tableauPileDestroyed();
+    }
+}

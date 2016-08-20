@@ -11,6 +11,7 @@
 class TableauPileObserver {
 public:
     virtual void onCardTurnUp() = 0;
+    virtual void tableauPileDestroyed() = 0;
     virtual ~TableauPileObserver() {}
 };
 

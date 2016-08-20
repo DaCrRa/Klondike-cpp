@@ -58,6 +58,7 @@ public:
         observedTableauPile(nullptr),
         scoreDelta(scoreDelta) {}
     void onCardTurnUp();
+    void tableauPileDestroyed();
     void visit(Stock* stock);
     void visit(TableauPile* tableauPile);
     void visit(Foundation* foundation);
