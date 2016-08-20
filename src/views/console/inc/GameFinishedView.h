@@ -1,5 +1,6 @@
 
 #include <KlondikeConsoleRenderer.h>
+#include <BestScoresController.h>
 
 class GameFinishedView {
 private:
@@ -9,5 +10,5 @@ public:
     GameFinishedView(std::shared_ptr<Klondike>& g) :
         game(g),
         renderer(game) {}
-    void show();
+    void show(BestScoresController* bsc);
 };

@@ -6,10 +6,11 @@
  */
 
 #include <GameFinishedView.h>
+#include <BestScoresView.h>
 
 #include <iostream>
 
-void GameFinishedView::show() {
+void GameFinishedView::show(BestScoresController* bsc) {
     renderer.render();
     std::cout << std::endl;
     std::cout << "Game completed!!" << std::endl;
@@ -18,5 +19,10 @@ void GameFinishedView::show() {
     std::cin.get();
     std::cin.get();
     std::cout << std::endl;
+    if (bsc->gameScoreIsInRanking()) {
+        std::cout << "CONGRATULATIONS!! Your score is in top " << BestScoresController::MAX_BEST_SCORES << std::endl;
+        std::cout << std::endl;
+        BestScoresView().showBestScores(bsc);
+    }
     game.reset();
 }

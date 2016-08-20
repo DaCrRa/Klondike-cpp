@@ -19,6 +19,7 @@ Logic::Logic() :
 Controller* Logic::getNextController() {
     // game in progress?
     if (game && game->isCompleted()) {
+        bestScoresController.registerScore();
         return &bestScoresController;
     }
     if (game && !game->isPaused()) {
