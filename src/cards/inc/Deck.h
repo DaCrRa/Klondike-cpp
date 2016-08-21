@@ -4,8 +4,9 @@
 
 class Deck {
 private:
-    static const int NUM_CARDS_PER_SUIT = 13;
-    static const int NUM_SUITS = 4;
+    // 52 cards
+    static const int NUM_CARDS_PER_SUIT = 2;
+    static const int NUM_SUITS = 26;
 
     std::vector<Card> cards;
     int remainingCards;

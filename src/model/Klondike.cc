@@ -9,7 +9,7 @@
 
 Klondike::Klondike() :
     tableau(NUM_TABLEAU_PILES, TableauPile(deck.getNumCardsPerSuit())),
-    foundations(deck.getNumSuits(), Foundation(deck.getNumCardsPerSuit())),
+    foundations(/*deck.getNumSuits()*/ 4, Foundation(deck.getNumCardsPerSuit())),
     score(0),
     paused(true)
 {
