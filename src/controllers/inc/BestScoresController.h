@@ -29,6 +29,7 @@ public:
         bestScores(0),
         lastRegisteredPosition(-1) {}
     void accept(ControllerVisitor* visitor);
+    int getLastRegisteredPosition() const;
     std::shared_ptr<Klondike>& getGame();
     bool gameScoreIsInRanking();
     void registerScore();

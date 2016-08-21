@@ -22,6 +22,10 @@ std::vector<int>& BestScoresController::getBestScores() {
     return bestScores;
 }
 
+int BestScoresController::getLastRegisteredPosition() const {
+    return lastRegisteredPosition;
+}
+
 int BestScoresController::insertScore(int newScore) {
     std::vector<int>::iterator scorePostion = std::lower_bound(bestScores.begin(), bestScores.end(), newScore);
     int insertionPosition = bestScores.end() - scorePostion;

@@ -19,6 +19,8 @@ void BestScoresView::showBestScores(BestScoresController* bsc) {
     int i = 0;
     for (std::vector<int>::reverse_iterator it = bestScores.rbegin(); it != bestScores.rend(); ++it) {
         std::cout << "   ";
+        std::cout << ( (i == bsc->getLastRegisteredPosition()) ? ">" : " ");
+        std::cout << " ";
         std::cout << std::setw(postionColumnWidth) << ++i;
         std::cout << ".  ";
         std::cout << std::setw(scoresColumnWidth) << *it << std::endl;
