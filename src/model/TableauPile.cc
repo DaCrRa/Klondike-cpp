@@ -37,7 +37,7 @@ bool TableauPile::cardCanBeAdded(const Card* c) {
     if (uncoveredCards.hasCards()) {
         return !c->hasSameColor(uncoveredCards.top()) && c->compareRank(uncoveredCards.top()) == -1;
     } else {
-        return !coveredCards.hasCards() && c->getRank() == 12;
+        return !coveredCards.hasCards() && c->getRank() == MAX_RANK_ACCEPTED;
     }
 }
 

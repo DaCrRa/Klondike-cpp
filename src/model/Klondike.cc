@@ -8,8 +8,8 @@
 #include <Klondike.h>
 
 Klondike::Klondike() :
-    tableau(7), //TODO magic number
-    foundations(deck.getNumSuits(), Foundation(2)), //TODO 2 is a test value, should be deck.getNumCardsPerSuit()
+    tableau(NUM_TABLEAU_PILES, TableauPile(deck.getNumCardsPerSuit())),
+    foundations(deck.getNumSuits(), Foundation(deck.getNumCardsPerSuit())),
     score(0),
     paused(true)
 {

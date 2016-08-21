@@ -15,6 +15,7 @@
 
 class Klondike {
 private:
+    const int NUM_TABLEAU_PILES = 7;
     Deck deck;
     Stock stock;
     std::vector<Foundation> foundations;

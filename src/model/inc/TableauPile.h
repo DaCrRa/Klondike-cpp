@@ -11,9 +11,12 @@ private:
     Pile coveredCards;
     Pile uncoveredCards;
     TableauPileObserver* observer;
+    const int MAX_RANK_ACCEPTED;
     bool cardCanBeTurnUp();
 public:
-    TableauPile() : observer(nullptr) {}
+    TableauPile(const int n) :
+        observer(nullptr),
+        MAX_RANK_ACCEPTED(n) {}
     void setObserver(TableauPileObserver* observer);
     void unsetObserver();
     void turnUpCard();
