@@ -14,3 +14,15 @@ void StockAction::accept(GameActionVisitor* actionVisitor) {
 GameActionPtr StockAction::duplicate() {
     return GameActionPtr(new StockAction(*this));
 }
+
+bool StockAction::canBeDone() {
+    return stock->hasCards();
+}
+
+void StockAction::action() {
+    stock->move();
+}
+
+void StockAction::undoAction() {
+
+}

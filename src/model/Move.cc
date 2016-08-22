@@ -17,9 +17,16 @@ void Move::setDest(MoveDest* d) {
     dest = d;
 }
 
-void Move::doMove() {
-    assert(dest->cardCanBeAdded(origin->showAvailableCard()));
+void Move::action() {
     dest->add(origin->removeAvailableCard());
+}
+
+bool Move::canBeDone() {
+    return dest->cardCanBeAdded(origin->showAvailableCard());
+}
+
+void Move::undoAction() {
+
 }
 
 void Move::accept(GameActionVisitor* visitor) {

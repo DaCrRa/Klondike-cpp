@@ -24,7 +24,7 @@ void SelectActionView::getAction(GameActionPtr& c) {
     try {
         ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
         std::map<char, GameActionPtr>({
-            { 's', GameActionPtr(new StockAction()) },
+            { 's', GameActionPtr(new StockAction(actionController->getGame()->getStock())) },
             { 'm', GameActionPtr(new Move()) }
         }),
         'c');

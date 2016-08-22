@@ -10,10 +10,18 @@
 
 #include <GameActionVisitor.h>
 #include <GameAction.h>
+#include <Stock.h>
 
 class StockAction: public GameAction {
+private:
+    Stock* stock;
+protected:
+    void action();
 public:
+    StockAction(Stock* s) : stock(s) { }
     GameActionPtr duplicate();
+    bool canBeDone();
+    void undoAction();
     void accept(GameActionVisitor* actionVisitor);
 };
 

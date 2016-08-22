@@ -17,10 +17,13 @@ class Move : public GameAction {
 private:
     MoveOrigin* origin;
     MoveDest* dest;
+protected:
+    void action();
 public:
     void setOrigin(MoveOrigin* o);
     void setDest(MoveDest* d);
-    void doMove();
+    bool canBeDone();
+    void undoAction();
     GameActionPtr duplicate();
     void accept(GameActionVisitor* visitor);
     void acceptOriginVisitor(MoveOriginVisitor* origVisitor);

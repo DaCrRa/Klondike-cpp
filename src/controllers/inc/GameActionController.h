@@ -16,7 +16,7 @@
 #include <GameActionControllerVisitor.h>
 #include <ScoreController.h>
 
-class GameActionController: public Controller, public GameActionVisitor {
+class GameActionController: public Controller {
 protected:
     std::shared_ptr<Klondike>& game;
     ScoreController scoreController;
@@ -26,8 +26,6 @@ public:
     void doAction(GameActionPtr action);
     virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
     void accept(ControllerVisitor* visitor);
-    void visit(StockAction* stockAction);
-    void visit(Move* move);
     ~GameActionController() {}
 };
 
