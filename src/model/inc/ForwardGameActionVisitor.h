@@ -11,11 +11,11 @@
 class StockAction;
 class Move;
 
-class GameActionVisitor {
+class ForwardGameActionVisitor {
 public:
     virtual void visit(StockAction* stockAction) = 0;
     virtual void visit(Move* move) = 0;
-    virtual ~GameActionVisitor() {}
+    virtual ~ForwardGameActionVisitor() {}
 };
 
 #endif /* SRC_INC_GAMEACTIONVISITOR_H_ */

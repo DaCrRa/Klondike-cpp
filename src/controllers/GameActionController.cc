@@ -5,8 +5,7 @@
  *      Author: dancre
  */
 
-#include <GameActionController.h>
-
+#include <ForwardGameActionController.h>
 #include <Move.h>
 
 GameActionController::GameActionController(std::shared_ptr<Klondike>& g) :
@@ -23,7 +22,7 @@ std::shared_ptr<Klondike>& GameActionController::getGame() {
     return game;
 }
 
-void GameActionController::doAction(GameActionPtr action) {
+void GameActionController::doAction(ForwardGameActionPtr action) {
     scoreController.calculateScoreDelta(action);
     action->doAction();
     scoreController.updateScore();

@@ -11,8 +11,8 @@
 #include <Klondike.h>
 #include <Controller.h>
 #include <ControllerVisitor.h>
-#include <GameAction.h>
-#include <GameActionVisitor.h>
+#include <ForwardGameAction.h>
+#include <ForwardGameActionVisitor.h>
 #include <GameActionControllerVisitor.h>
 #include <ScoreController.h>
 
@@ -23,7 +23,7 @@ protected:
 public:
     GameActionController(std::shared_ptr<Klondike>& game);
     std::shared_ptr<Klondike>& getGame();
-    void doAction(GameActionPtr action);
+    void doAction(ForwardGameActionPtr action);
     virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
     void accept(ControllerVisitor* visitor);
     ~GameActionController() {}

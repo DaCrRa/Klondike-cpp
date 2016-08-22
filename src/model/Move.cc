@@ -29,12 +29,12 @@ void Move::undoAction() {
 
 }
 
-void Move::accept(GameActionVisitor* visitor) {
+void Move::accept(ForwardGameActionVisitor* visitor) {
     visitor->visit(this);
 }
 
-GameActionPtr Move::duplicate() {
-    return GameActionPtr(new Move(*this));
+ForwardGameActionPtr Move::duplicate() {
+    return ForwardGameActionPtr(new Move(*this));
 }
 
 void Move::acceptOriginVisitor(MoveOriginVisitor* origVisitor) {

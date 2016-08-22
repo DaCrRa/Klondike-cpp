@@ -8,14 +8,14 @@
 #ifndef SRC_VIEWS_CONSOLE_SHOWACTIONVIEW_H_
 #define SRC_VIEWS_CONSOLE_SHOWACTIONVIEW_H_
 
-#include <GameActionVisitor.h>
-#include <GameAction.h>
+#include <ForwardGameAction.h>
+#include <ForwardGameActionVisitor.h>
 
-class ShowActionView : public GameActionVisitor {
+class ShowActionView : public ForwardGameActionVisitor {
 private:
-    GameActionPtr action;
+    ForwardGameActionPtr action;
 public:
-    ShowActionView(GameActionPtr action);
+    ShowActionView(ForwardGameActionPtr action);
     void visit(StockAction* action);
     void visit(Move* action);
     void show();

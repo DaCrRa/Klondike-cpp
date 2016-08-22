@@ -7,12 +7,12 @@
 
 #include <StockAction.h>
 
-void StockAction::accept(GameActionVisitor* actionVisitor) {
+void StockAction::accept(ForwardGameActionVisitor* actionVisitor) {
     actionVisitor->visit(this);
 }
 
-GameActionPtr StockAction::duplicate() {
-    return GameActionPtr(new StockAction(*this));
+ForwardGameActionPtr StockAction::duplicate() {
+    return ForwardGameActionPtr(new StockAction(*this));
 }
 
 bool StockAction::canBeDone() {

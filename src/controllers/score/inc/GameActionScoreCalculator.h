@@ -10,7 +10,7 @@
 
 #include <MoveScoreCalculator.h>
 
-class GameActionScoreCalculator : public GameActionVisitor {
+class GameActionScoreCalculator : public ForwardGameActionVisitor {
 private:
     std::shared_ptr<MoveScoreCalculator> moveScoreCalculator;
     int scoreDelta;

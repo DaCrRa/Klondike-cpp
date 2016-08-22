@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-ShowActionView::ShowActionView(GameActionPtr act) :
+ShowActionView::ShowActionView(ForwardGameActionPtr act) :
     action(act)
 {
 

@@ -11,24 +11,24 @@
 #include <memory>
 #include <assert.h>
 
-class GameActionVisitor;
+class ForwardGameActionVisitor;
 
-class GameAction;
-typedef std::shared_ptr<GameAction> GameActionPtr;
+class ForwardGameAction;
+typedef std::shared_ptr<ForwardGameAction> ForwardGameActionPtr;
 
-class GameAction {
+class ForwardGameAction {
 protected:
     virtual void action() = 0;
 public:
-    virtual void accept(GameActionVisitor* visitor) = 0;
-    virtual GameActionPtr duplicate() = 0;
+    virtual void accept(ForwardGameActionVisitor* visitor) = 0;
+    virtual ForwardGameActionPtr duplicate() = 0;
     virtual bool canBeDone() = 0;
     void doAction() {
         assert(canBeDone());
         action();
     }
     virtual void undoAction() = 0;
-    virtual ~GameAction() {}
+    virtual ~ForwardGameAction() {}
 };
 
 #endif /* SRC_INC_GAMEACTION_H_ */

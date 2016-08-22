@@ -8,8 +8,8 @@
 #ifndef SRC_CONTROLLERS_SCORECONTROLLER_H_
 #define SRC_CONTROLLERS_SCORECONTROLLER_H_
 
+#include <ForwardGameAction.h>
 #include <Klondike.h>
-#include <GameAction.h>
 #include <GameActionScoreCalculator.h>
 
 class ScoreController {
@@ -18,7 +18,7 @@ private:
     std::shared_ptr<GameActionScoreCalculator> gameActionScoreCalculator;
 public:
     ScoreController(std::shared_ptr<Klondike>& game);
-    void calculateScoreDelta(GameActionPtr gameAction);
+    void calculateScoreDelta(ForwardGameActionPtr gameAction);
     void updateScore();
 };
 

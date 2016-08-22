@@ -8,12 +8,12 @@
 #ifndef SRC_MODEL_INC_MOVE_H_
 #define SRC_MODEL_INC_MOVE_H_
 
+#include <ForwardGameAction.h>
+#include <ForwardGameActionVisitor.h>
 #include <MoveOrigin.h>
 #include <MoveDest.h>
-#include <GameActionVisitor.h>
-#include <GameAction.h>
 
-class Move : public GameAction {
+class Move : public ForwardGameAction {
 private:
     MoveOrigin* origin;
     MoveDest* dest;
@@ -24,8 +24,8 @@ public:
     void setDest(MoveDest* d);
     bool canBeDone();
     void undoAction();
-    GameActionPtr duplicate();
-    void accept(GameActionVisitor* visitor);
+    ForwardGameActionPtr duplicate();
+    void accept(ForwardGameActionVisitor* visitor);
     void acceptOriginVisitor(MoveOriginVisitor* origVisitor);
     void acceptDestVisitor(MoveDestVisitor* destVisitor);
 };

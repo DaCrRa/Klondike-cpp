@@ -8,14 +8,14 @@
 #ifndef SRC_CONTROLLERS_RANDOMGAMEACTIONCONTROLLER_H_
 #define SRC_CONTROLLERS_RANDOMGAMEACTIONCONTROLLER_H_
 
+#include <ForwardGameActionController.h>
 #include <Klondike.h>
-#include <GameActionController.h>
 
 class RandomGameActionController : public GameActionController {
 public:
     RandomGameActionController(std::shared_ptr<Klondike>& game) : GameActionController(game) {};
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* v);
-    GameActionPtr getAction();
+    ForwardGameActionPtr getAction();
 };
 
 #endif /* SRC_CONTROLLERS_RANDOMGAMEACTIONCONTROLLER_H_ */

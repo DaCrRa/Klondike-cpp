@@ -12,10 +12,10 @@
 #include <vector>
 #include <cstdlib>
 
-GameActionPtr RandomGameActionController::getAction() {
-    std::vector<GameActionPtr> actions;
+ForwardGameActionPtr RandomGameActionController::getAction() {
+    std::vector<ForwardGameActionPtr> actions;
     if(game->getStock()->hasCards()) {
-        actions.push_back(GameActionPtr(new StockAction(game->getStock())));
+        actions.push_back(ForwardGameActionPtr(new StockAction(game->getStock())));
     }
     std::vector<MoveOrigin*> possibleMoveOrigins = game->getPossibleMoveOrigins();
     for (std::vector<MoveOrigin*>::iterator it = possibleMoveOrigins.begin(); it != possibleMoveOrigins.end(); ++it) {
@@ -24,7 +24,7 @@ GameActionPtr RandomGameActionController::getAction() {
             Move m;
             m.setOrigin(*it);
             m.setDest(*destIt);
-            actions.push_back(GameActionPtr(m.duplicate()));
+            actions.push_back(ForwardGameActionPtr(m.duplicate()));
         }
     }
     return actions[std::rand() % actions.size()];

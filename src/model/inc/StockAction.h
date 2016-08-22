@@ -8,21 +8,21 @@
 #ifndef SRC_INC_STOCKACTION_H_
 #define SRC_INC_STOCKACTION_H_
 
-#include <GameActionVisitor.h>
-#include <GameAction.h>
+#include <ForwardGameAction.h>
+#include <ForwardGameActionVisitor.h>
 #include <Stock.h>
 
-class StockAction: public GameAction {
+class StockAction: public ForwardGameAction {
 private:
     Stock* stock;
 protected:
     void action();
 public:
     StockAction(Stock* s) : stock(s) { }
-    GameActionPtr duplicate();
+    ForwardGameActionPtr duplicate();
     bool canBeDone();
     void undoAction();
-    void accept(GameActionVisitor* actionVisitor);
+    void accept(ForwardGameActionVisitor* actionVisitor);
 };
 
 #endif /* SRC_INC_STOCKACTION_H_ */

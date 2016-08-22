@@ -8,9 +8,8 @@
 #ifndef SRC_CONTROLLERS_GAMEACTIONCONTROLLERCATALOG_H_
 #define SRC_CONTROLLERS_GAMEACTIONCONTROLLERCATALOG_H_
 
+#include <ForwardGameActionController.h>
 #include <Klondike.h>
-#include <GameActionController.h>
-
 #include <memory>
 #include <vector>
 

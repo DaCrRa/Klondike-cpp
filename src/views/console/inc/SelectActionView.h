@@ -8,8 +8,8 @@
 #ifndef SRC_INC_SELECTACTIONVIEW_H_
 #define SRC_INC_SELECTACTIONVIEW_H_
 
-#include <GameAction.h>
-#include <GameActionVisitor.h>
+#include <ForwardGameAction.h>
+#include <ForwardGameActionVisitor.h>
 #include <UserGameActionController.h>
 
 #include <map>
@@ -28,13 +28,13 @@ public:
     }
 };
 
-class SelectActionView : public GameActionVisitor {
+class SelectActionView : public ForwardGameActionVisitor {
 private:
-    void completeActionInfo(GameActionPtr& action);
+    void completeActionInfo(ForwardGameActionPtr& action);
     UserGameActionController* actionController;
 public:
     SelectActionView(UserGameActionController* c);
-    void getAction(GameActionPtr& action);
+    void getAction(ForwardGameActionPtr& action);
     void visit(StockAction* stockAction);
     void visit(Move* move);
 };

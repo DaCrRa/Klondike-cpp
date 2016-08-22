@@ -8,7 +8,7 @@
 #ifndef SRC_GAMECONSOLEVIEW_H_
 #define SRC_GAMECONSOLEVIEW_H_
 
-#include <GameActionController.h>
+#include <ForwardGameActionController.h>
 #include <GameActionControllerVisitor.h>
 #include <KlondikeConsoleRenderer.h>
 #include <Klondike.h>
@@ -16,7 +16,7 @@
 class GameView : public GameActionControllerVisitor {
 private:
     KlondikeConsoleRenderer renderer;
-    GameActionPtr gameAction;
+    ForwardGameActionPtr gameAction;
 
     void selectGameAction(GameActionController* controller);
 public:

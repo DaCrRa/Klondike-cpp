@@ -20,12 +20,12 @@ SelectActionView::SelectActionView(UserGameActionController* c) :
 
 }
 
-void SelectActionView::getAction(GameActionPtr& c) {
+void SelectActionView::getAction(ForwardGameActionPtr& c) {
     try {
-        ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
-        std::map<char, GameActionPtr>({
-            { 's', GameActionPtr(new StockAction(actionController->getGame()->getStock())) },
-            { 'm', GameActionPtr(new Move()) }
+        ItemSelectionDialog<ForwardGameActionPtr> dialog("Select action: ",
+        std::map<char, ForwardGameActionPtr>({
+            { 's', ForwardGameActionPtr(new StockAction(actionController->getGame()->getStock())) },
+            { 'm', ForwardGameActionPtr(new Move()) }
         }),
         'c');
         c = dialog.getSelectedItem();
@@ -35,7 +35,7 @@ void SelectActionView::getAction(GameActionPtr& c) {
     completeActionInfo(c);
 }
 
-void SelectActionView::completeActionInfo(GameActionPtr& action) {
+void SelectActionView::completeActionInfo(ForwardGameActionPtr& action) {
     action->accept(this);
 }
 
