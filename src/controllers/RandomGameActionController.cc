@@ -14,8 +14,9 @@
 
 ForwardGameActionPtr RandomGameActionController::getAction() {
     std::vector<ForwardGameActionPtr> actions;
-    if(game->getStock()->hasCards()) {
-        actions.push_back(ForwardGameActionPtr(new StockAction(game->getStock())));
+    ForwardGameActionPtr stockAction(new StockAction(game->getStock()));
+    if(stockAction->canBeDone()) {
+        actions.push_back(stockAction);
     }
     std::vector<MoveOrigin*> possibleMoveOrigins = game->getPossibleMoveOrigins();
     for (std::vector<MoveOrigin*>::iterator it = possibleMoveOrigins.begin(); it != possibleMoveOrigins.end(); ++it) {

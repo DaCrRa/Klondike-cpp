@@ -22,12 +22,16 @@ SelectActionView::SelectActionView(UserGameActionController* c) :
 
 void SelectActionView::getAction(ForwardGameActionPtr& c) {
     try {
-        ItemSelectionDialog<ForwardGameActionPtr> dialog("Select action: ",
-        std::map<char, ForwardGameActionPtr>({
-            { 's', ForwardGameActionPtr(new StockAction(actionController->getGame()->getStock())) },
+        std::map<char, ForwardGameActionPtr> possibleActions({
             { 'm', ForwardGameActionPtr(new Move()) }
-        }),
-        'c');
+        });
+        ForwardGameActionPtr stockAction(new StockAction(actionController->getGame()->getStock()));
+        if (stockAction->canBeDone()) {
+            possibleActions.insert({ 's', stockAction});
+        }
+        ItemSelectionDialog<ForwardGameActionPtr> dialog("Select action: ",
+                std::move(possibleActions),
+                'c');
         c = dialog.getSelectedItem();
     } catch (CancelledDialogException& e) {
         throw NoActionException();
