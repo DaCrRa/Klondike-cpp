@@ -8,6 +8,8 @@
 #ifndef SRC_INC_GAMEACTION_H_
 #define SRC_INC_GAMEACTION_H_
 
+#include <GameAction.h>
+
 #include <memory>
 #include <assert.h>
 
@@ -16,17 +18,10 @@ class ForwardGameActionVisitor;
 class ForwardGameAction;
 typedef std::shared_ptr<ForwardGameAction> ForwardGameActionPtr;
 
-class ForwardGameAction {
-protected:
-    virtual void action() = 0;
+class ForwardGameAction : public GameAction {
 public:
     virtual void accept(ForwardGameActionVisitor* visitor) = 0;
     virtual ForwardGameActionPtr duplicate() = 0;
-    virtual bool canBeDone() = 0;
-    void doAction() {
-        assert(canBeDone());
-        action();
-    }
     virtual void undoAction() = 0;
     virtual ~ForwardGameAction() {}
 };
