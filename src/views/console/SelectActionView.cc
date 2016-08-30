@@ -20,17 +20,17 @@ SelectActionView::SelectActionView(UserGameActionController* c) :
 
 }
 
-void SelectActionView::getAction(ForwardGameActionPtr& c) {
+void SelectActionView::getAction(GameActionPtr& c) {
     try {
-        std::map<char, ForwardGameActionPtr> possibleActions({
+        std::map<char, GameActionPtr> possibleActions({
             { 'm', ForwardGameActionPtr(new Move()) }
         });
         ForwardGameActionPtr stockAction(new StockAction(actionController->getGame()->getStock()));
         if (stockAction->canBeDone()) {
             possibleActions.insert({ 's', stockAction});
         }
-        GameActionPtr undoAction(new UndoGameAction());
-        ItemSelectionDialog<ForwardGameActionPtr> dialog("Select action: ",
+        possibleActions.insert({'u', GameActionPtr(new UndoGameAction())});
+        ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
                 std::move(possibleActions),
                 'c');
         c = dialog.getSelectedItem();
@@ -40,8 +40,8 @@ void SelectActionView::getAction(ForwardGameActionPtr& c) {
     completeActionInfo(c);
 }
 
-void SelectActionView::completeActionInfo(ForwardGameActionPtr& action) {
-    action->accept(this);
+void SelectActionView::completeActionInfo(GameActionPtr& action) {
+    action->acceptGameActionVisitor(this);
 }
 
 void SelectActionView::visit(StockAction* stockAction) {
@@ -58,4 +58,12 @@ void SelectActionView::visit(Move* move) {
     }
 }
 
+void SelectActionView::visit(ForwardGameAction* fwdGameAction) {
+	fwdGameAction->accept(this);
+}
+
+void SelectActionView::visit(UndoGameAction* undoGameAction) {
+	// Nothing to complete for a UndoGameAction
+	std::cout << "Undo last action..." << std::endl;
+}
 

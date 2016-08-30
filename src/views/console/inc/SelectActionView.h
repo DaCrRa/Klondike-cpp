@@ -10,6 +10,7 @@
 
 #include <ForwardGameAction.h>
 #include <UndoGameAction.h>
+#include <GameActionVisitor.h>
 #include <ForwardGameActionVisitor.h>
 #include <UserGameActionController.h>
 
@@ -29,15 +30,17 @@ public:
     }
 };
 
-class SelectActionView : public ForwardGameActionVisitor {
+class SelectActionView : public ForwardGameActionVisitor, public GameActionVisitor {
 private:
-    void completeActionInfo(ForwardGameActionPtr& action);
+    void completeActionInfo(GameActionPtr& action);
     UserGameActionController* actionController;
 public:
     SelectActionView(UserGameActionController* c);
-    void getAction(ForwardGameActionPtr& action);
+    void getAction(GameActionPtr& action);
     void visit(StockAction* stockAction);
     void visit(Move* move);
+    void visit(ForwardGameAction* fwdGameAction);
+    void visit(UndoGameAction* undoGameAction);
 };
 
 #endif /* SRC_INC_SELECTACTIONVIEW_H_ */

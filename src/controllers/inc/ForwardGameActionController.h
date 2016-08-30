@@ -23,7 +23,7 @@ protected:
 public:
     GameActionController(std::shared_ptr<Klondike>& game);
     std::shared_ptr<Klondike>& getGame();
-    void doAction(ForwardGameActionPtr action);
+    void doAction(GameActionPtr action);
     virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
     void accept(ControllerVisitor* visitor);
     ~GameActionController() {}
