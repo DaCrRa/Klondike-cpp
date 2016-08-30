@@ -9,6 +9,10 @@
 #define SRC_MODEL_INC_GAMEACTION_H_
 
 #include <assert.h>
+#include <memory>
+
+class GameAction;
+typedef std::shared_ptr<GameAction> GameActionPtr;
 
 class GameAction {
 protected:
