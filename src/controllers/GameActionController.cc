@@ -22,7 +22,7 @@ std::shared_ptr<Klondike>& GameActionController::getGame() {
     return game;
 }
 
-void GameActionController::doAction(ForwardGameActionPtr action) {
+void GameActionController::doAction(GameActionPtr action) {
     //scoreController.calculateScoreDelta(action);
     action->doAction();
     //scoreController.updateScore();

@@ -10,13 +10,14 @@
 
 #include <ForwardGameActionController.h>
 #include <GameActionControllerVisitor.h>
+#include <GameAction.h>
 #include <KlondikeConsoleRenderer.h>
 #include <Klondike.h>
 
 class GameView : public GameActionControllerVisitor {
 private:
     KlondikeConsoleRenderer renderer;
-    ForwardGameActionPtr gameAction;
+    GameActionPtr gameAction;
 
     void selectGameAction(GameActionController* controller);
 public:
