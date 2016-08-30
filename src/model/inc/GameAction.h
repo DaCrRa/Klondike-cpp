@@ -25,6 +25,7 @@ public:
         assert(canBeDone());
         action();
     }
+    virtual void acceptGameActionVisitor(GameActionVisitor* visitor) = 0;
     virtual ~GameAction() {}
 };
 
