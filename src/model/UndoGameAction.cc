@@ -19,3 +19,7 @@ void UndoGameAction::action() {
 bool UndoGameAction::canBeDone() {
     return true;
 }
+
+void UndoGameAction::acceptGameActionVisitor(GameActionVisitor* visitor) {
+    visitor->visit(this);
+}

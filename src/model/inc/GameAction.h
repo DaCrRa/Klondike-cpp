@@ -8,6 +8,8 @@
 #ifndef SRC_MODEL_INC_GAMEACTION_H_
 #define SRC_MODEL_INC_GAMEACTION_H_
 
+#include <GameActionVisitor.h>
+
 #include <assert.h>
 #include <memory>
 

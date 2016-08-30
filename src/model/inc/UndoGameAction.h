@@ -16,6 +16,7 @@ protected:
 public:
     UndoGameAction();
     bool canBeDone();
+    void acceptGameActionVisitor(GameActionVisitor* visitor);
 };
 
 #endif /* SRC_MODEL_INC_UNDOGAMEACTION_H_ */

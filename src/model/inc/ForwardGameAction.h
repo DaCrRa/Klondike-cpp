@@ -20,6 +20,9 @@ typedef std::shared_ptr<ForwardGameAction> ForwardGameActionPtr;
 
 class ForwardGameAction : public GameAction {
 public:
+    void acceptGameActionVisitor(GameActionVisitor* visitor) {
+        visitor->visit(this);
+    }
     virtual void accept(ForwardGameActionVisitor* visitor) = 0;
     virtual ForwardGameActionPtr duplicate() = 0;
     virtual void undoAction() = 0;
