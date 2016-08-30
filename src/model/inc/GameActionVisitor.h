@@ -13,8 +13,8 @@ class UndoGameAction;
 
 class GameActionVisitor {
 public:
-    virtual void visit(ForwardGameAction* fwdGameAction);
-    virtual void visit(UndoGameAction* undoGameAction);
+    virtual void visit(ForwardGameAction* fwdGameAction) = 0;
+    virtual void visit(UndoGameAction* undoGameAction) = 0;
     virtual ~GameActionVisitor() {}
 };
 
