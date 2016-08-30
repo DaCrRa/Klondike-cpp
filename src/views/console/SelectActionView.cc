@@ -29,6 +29,7 @@ void SelectActionView::getAction(ForwardGameActionPtr& c) {
         if (stockAction->canBeDone()) {
             possibleActions.insert({ 's', stockAction});
         }
+        GameActionPtr undoAction(new UndoGameAction());
         ItemSelectionDialog<ForwardGameActionPtr> dialog("Select action: ",
                 std::move(possibleActions),
                 'c');

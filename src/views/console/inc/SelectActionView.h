@@ -9,6 +9,7 @@
 #define SRC_INC_SELECTACTIONVIEW_H_
 
 #include <ForwardGameAction.h>
+#include <UndoGameAction.h>
 #include <ForwardGameActionVisitor.h>
 #include <UserGameActionController.h>
 
