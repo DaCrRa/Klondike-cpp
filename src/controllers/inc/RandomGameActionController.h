@@ -8,8 +8,8 @@
 #ifndef SRC_CONTROLLERS_RANDOMGAMEACTIONCONTROLLER_H_
 #define SRC_CONTROLLERS_RANDOMGAMEACTIONCONTROLLER_H_
 
-#include <ForwardGameActionController.h>
 #include <Klondike.h>
+#include <GameActionController.h>
 
 class RandomGameActionController : public GameActionController {
 public:

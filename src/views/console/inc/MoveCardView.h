@@ -8,7 +8,7 @@
 #ifndef SRC_VIEWS_CONSOLE_MOVECARDVIEW_H_
 #define SRC_VIEWS_CONSOLE_MOVECARDVIEW_H_
 
-#include <ForwardGameActionController.h>
+#include <GameActionController.h>
 #include <Move.h>
 
 #include <map>

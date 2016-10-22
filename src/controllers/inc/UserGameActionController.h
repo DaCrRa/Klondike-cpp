@@ -8,7 +8,7 @@
 #ifndef SRC_CONTROLLERS_INC_USERGAMEACTIONCONTROLLER_H_
 #define SRC_CONTROLLERS_INC_USERGAMEACTIONCONTROLLER_H_
 
-#include <ForwardGameActionController.h>
+#include <GameActionController.h>
 
 class UserGameActionController: public GameActionController {
 public:

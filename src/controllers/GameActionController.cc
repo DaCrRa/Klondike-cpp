@@ -5,7 +5,8 @@
  *      Author: dancre
  */
 
-#include <ForwardGameActionController.h>
+#include <GameActionController.h>
+
 #include <Move.h>
 
 GameActionController::GameActionController(std::shared_ptr<Klondike>& g) :
