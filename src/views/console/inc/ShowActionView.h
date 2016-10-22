@@ -11,11 +11,13 @@
 #include <ForwardGameAction.h>
 #include <ForwardGameActionVisitor.h>
 
-class ShowActionView : public ForwardGameActionVisitor {
+class ShowActionView : public GameActionVisitor, public ForwardGameActionVisitor {
 private:
-    ForwardGameActionPtr action;
+    GameActionPtr action;
 public:
-    ShowActionView(ForwardGameActionPtr action);
+    ShowActionView(GameActionPtr action);
+    void visit(ForwardGameAction* fwdGameAction);
+    void visit(UndoGameAction* undoGameAction);
     void visit(StockAction* action);
     void visit(Move* action);
     void show();

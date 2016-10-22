@@ -9,9 +9,17 @@
 
 #include <iostream>
 
-ShowActionView::ShowActionView(ForwardGameActionPtr act) :
+ShowActionView::ShowActionView(GameActionPtr act) :
     action(act)
 {
+
+}
+
+void ShowActionView::visit(ForwardGameAction* fwdGameAction) {
+	fwdGameAction->accept(this);
+}
+
+void ShowActionView::visit(UndoGameAction* undoGameAction) {
 
 }
 
@@ -19,7 +27,7 @@ void ShowActionView::show() {
     std::cout << "Press enter for next move...";
     std::cin.get();
     std::cout << std::endl;
-    action->accept(this);
+    action->acceptGameActionVisitor(this);
 }
 
 void ShowActionView::visit(StockAction* action) {

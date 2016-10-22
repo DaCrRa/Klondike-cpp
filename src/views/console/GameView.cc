@@ -37,5 +37,5 @@ void GameView::visit(UserGameActionController* c) {
 
 void GameView::visit(RandomGameActionController* c) {
     gameAction = c->getAction();
-    //ShowActionView(gameAction).show();
+    ShowActionView(gameAction).show();
 }
