@@ -10,12 +10,14 @@
 
 #include <MoveScoreCalculator.h>
 
-class GameActionScoreCalculator : public ForwardGameActionVisitor {
+class GameActionScoreCalculator : public GameActionVisitor, public ForwardGameActionVisitor {
 private:
     std::shared_ptr<MoveScoreCalculator> moveScoreCalculator;
     int scoreDelta;
 public:
     GameActionScoreCalculator() : scoreDelta(0) {}
+    void visit(ForwardGameAction* fwdGameAction);
+    void visit(UndoGameAction* undoGameAction);
     void visit(StockAction* stockAction);
     void visit(Move* move);
     int getScoreDelta() const;

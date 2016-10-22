@@ -18,7 +18,7 @@ private:
     std::shared_ptr<GameActionScoreCalculator> gameActionScoreCalculator;
 public:
     ScoreController(std::shared_ptr<Klondike>& game);
-    void calculateScoreDelta(ForwardGameActionPtr gameAction);
+    void calculateScoreDelta(GameActionPtr gameAction);
     void updateScore();
 };
 
