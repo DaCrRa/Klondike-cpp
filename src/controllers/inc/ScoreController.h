@@ -8,7 +8,7 @@
 #ifndef SRC_CONTROLLERS_SCORECONTROLLER_H_
 #define SRC_CONTROLLERS_SCORECONTROLLER_H_
 
-#include <ForwardGameAction.h>
+#include <GameAction.h>
 #include <Klondike.h>
 #include <GameActionScoreCalculator.h>
 

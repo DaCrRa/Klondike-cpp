@@ -8,11 +8,11 @@
 #ifndef SRC_GAMECONSOLEVIEW_H_
 #define SRC_GAMECONSOLEVIEW_H_
 
-#include <ForwardGameActionController.h>
 #include <GameActionControllerVisitor.h>
 #include <GameAction.h>
 #include <KlondikeConsoleRenderer.h>
 #include <Klondike.h>
+#include <GameActionController.h>
 
 class GameView : public GameActionControllerVisitor {
 private:
