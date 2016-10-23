@@ -59,11 +59,11 @@ void SelectActionView::visit(Move* move) {
 }
 
 void SelectActionView::visit(ForwardGameAction* fwdGameAction) {
-	fwdGameAction->accept(this);
+    fwdGameAction->accept(this);
 }
 
 void SelectActionView::visit(UndoGameAction* undoGameAction) {
-	// Nothing to complete for a UndoGameAction
-	std::cout << "Undo last action..." << std::endl;
+    // Nothing to complete for a UndoGameAction
+    std::cout << "Undo last action..." << std::endl;
 }
 

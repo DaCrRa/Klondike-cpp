@@ -12,9 +12,9 @@
 #include <assert.h>
 
 GameActionControllerCatalog::GameActionControllerCatalog(std::shared_ptr<Klondike>& game) :
-    availableControllers({
+    availableControllers( {
     std::make_shared<UserGameActionController>(game),
-    std::make_shared<RandomGameActionController>(game)
+        std::make_shared<RandomGameActionController>(game)
 }),
 selected(0) {}
 

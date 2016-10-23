@@ -16,7 +16,7 @@ ShowActionView::ShowActionView(GameActionPtr act) :
 }
 
 void ShowActionView::visit(ForwardGameAction* fwdGameAction) {
-	fwdGameAction->accept(this);
+    fwdGameAction->accept(this);
 }
 
 void ShowActionView::visit(UndoGameAction* undoGameAction) {
