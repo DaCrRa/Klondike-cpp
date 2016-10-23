@@ -12,17 +12,7 @@ Klondike::Klondike() :
     foundations(/*deck.getNumSuits()*/ 4, Foundation(deck.getNumCardsPerSuit())),
     score(0),
     paused(true)
-{
-    moveOrigins.push_back(&stock);
-    for (std::vector<Foundation>::iterator it = foundations.begin(); it != foundations.end(); ++it) {
-        moveOrigins.push_back(it.base());
-        moveDests.push_back(it.base());
-    }
-    for (std::vector<TableauPile>::iterator it = tableau.begin(); it != tableau.end(); ++it) {
-        moveOrigins.push_back(it.base());
-        moveDests.push_back(it.base());
-    }
-}
+{}
 
 void Klondike::initialize() {
     int i = 0;
@@ -56,26 +46,6 @@ std::vector<Foundation>& Klondike::getFoundations() {
 
 std::vector<TableauPile>& Klondike::getTableau() {
     return tableau;
-}
-
-std::vector<MoveOrigin*> Klondike::getPossibleMoveOrigins() {
-    std::vector<MoveOrigin*> possibleMoveOrigins;
-    for (std::vector<MoveOrigin*>::iterator it = moveOrigins.begin(); it != moveOrigins.end(); ++it) {
-        if ((*it)->hasCardAvailable()) {
-            possibleMoveOrigins.push_back(*it);
-        }
-    }
-    return possibleMoveOrigins;
-}
-
-std::vector<MoveDest*> Klondike::getPossibleMoveDests(MoveOrigin* origin) {
-    std::vector<MoveDest*> possibleMoveDests;
-    for (std::vector<MoveDest*>::iterator it = moveDests.begin(); it != moveDests.end(); ++it) {
-        if ((*it)->cardCanBeAdded(origin->showAvailableCard())) {
-            possibleMoveDests.push_back(*it);
-        }
-    }
-    return possibleMoveDests;
 }
 
 int Klondike::getScore() const {

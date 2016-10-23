@@ -37,7 +37,7 @@ void MoveCardView::completeMove(Move* move) {
 
 std::map<char, MoveOrigin*> MoveCardView::tagPossibleOrigins() {
     std::map<char, MoveOrigin*> possibleOrigins;
-    std::vector<MoveOrigin*> availableOrigins = controller->getGame()->getPossibleMoveOrigins();
+    std::vector<MoveOrigin*> availableOrigins = controller->getPossibleMoveOrigins();
     for (std::vector<MoveOrigin*>::iterator it = availableOrigins.begin(); it != availableOrigins.end(); ++it) {
         possibleOrigins[gameElementTag[*it]] = *it;
     }
@@ -46,7 +46,7 @@ std::map<char, MoveOrigin*> MoveCardView::tagPossibleOrigins() {
 
 std::map<char, MoveDest*> MoveCardView::tagPossibleDests(MoveOrigin* origin) {
     std::map<char, MoveDest*> possibleDests;
-    std::vector<MoveDest*> availableDests = controller->getGame()->getPossibleMoveDests(origin);
+    std::vector<MoveDest*> availableDests = controller->getPossibleMoveDests(origin);
     for (std::vector<MoveDest*>::iterator it = availableDests.begin(); it != availableDests.end(); ++it) {
         possibleDests[gameElementTag[*it]] = *it;
     }

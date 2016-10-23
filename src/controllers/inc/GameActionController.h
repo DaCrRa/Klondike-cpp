@@ -24,6 +24,8 @@ public:
     void doAction(GameActionPtr action);
     virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
     void accept(ControllerVisitor* visitor);
+    std::vector<MoveOrigin*> getPossibleMoveOrigins();
+    std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* origin);
     ~GameActionController() {}
 };
 

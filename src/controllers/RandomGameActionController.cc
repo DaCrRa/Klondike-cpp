@@ -18,9 +18,9 @@ ForwardGameActionPtr RandomGameActionController::getAction() {
     if(stockAction->canBeDone()) {
         actions.push_back(stockAction);
     }
-    std::vector<MoveOrigin*> possibleMoveOrigins = game->getPossibleMoveOrigins();
+    std::vector<MoveOrigin*> possibleMoveOrigins = getPossibleMoveOrigins();
     for (std::vector<MoveOrigin*>::iterator it = possibleMoveOrigins.begin(); it != possibleMoveOrigins.end(); ++it) {
-        std::vector<MoveDest*> moveDests = game->getPossibleMoveDests(*it);
+        std::vector<MoveDest*> moveDests = getPossibleMoveDests(*it);
         for (std::vector<MoveDest*>::iterator destIt = moveDests.begin(); destIt != moveDests.end(); ++destIt) {
             Move m;
             m.setOrigin(*it);
