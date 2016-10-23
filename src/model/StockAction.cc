@@ -19,7 +19,7 @@ bool StockAction::canBeDone() {
     return stock->hasCards();
 }
 
-void StockAction::action() {
+void StockAction::forwardAction() {
     stock->move();
 }
 

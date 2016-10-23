@@ -8,18 +8,32 @@
 #ifndef SRC_INC_GAMEACTION_H_
 #define SRC_INC_GAMEACTION_H_
 
-#include <GameAction.h>
-
 #include <memory>
 #include <assert.h>
-
-class ForwardGameActionVisitor;
 
 class ForwardGameAction;
 typedef std::shared_ptr<ForwardGameAction> ForwardGameActionPtr;
 
+#include <GameAction.h>
+#include <ForwardGameActionObserver.h>
+
+
+class ForwardGameActionVisitor;
+
 class ForwardGameAction : public GameAction {
+private:
+	ForwardGameActionObserverPtr observer;
+protected:
+	virtual void forwardAction() = 0;
+	void action() {
+		forwardAction();
+		if (observer) {
+			observer->onActionDone(duplicate());
+		}
+	}
 public:
+	ForwardGameAction(ForwardGameActionObserverPtr o) :
+		observer(o) {};
     void acceptGameActionVisitor(GameActionVisitor* visitor) {
         visitor->visit(this);
     }

@@ -17,7 +17,7 @@ void Move::setDest(MoveDest* d) {
     dest = d;
 }
 
-void Move::action() {
+void Move::forwardAction() {
     dest->add(origin->removeAvailableCard());
 }
 

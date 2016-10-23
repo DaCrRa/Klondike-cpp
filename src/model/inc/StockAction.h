@@ -16,9 +16,11 @@ class StockAction: public ForwardGameAction {
 private:
     Stock* stock;
 protected:
-    void action();
+    void forwardAction();
 public:
-    StockAction(Stock* s) : stock(s) { }
+    StockAction(Stock* s, ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
+    	ForwardGameAction(o),
+    	stock(s) { }
     ForwardGameActionPtr duplicate();
     bool canBeDone();
     void undoAction();
