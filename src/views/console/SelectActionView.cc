@@ -23,12 +23,13 @@ SelectActionView::SelectActionView(UserGameActionController* c) :
 void SelectActionView::getAction(GameActionPtr& c) {
     try {
         std::map<char, GameActionPtr> possibleActions({
-            { 'm', ForwardGameActionPtr(new Move(
-            		ForwardGameActionObserverPtr(actionController->getGameActionHistoryController()))) }
+            {   'm', ForwardGameActionPtr(new Move(
+                    ForwardGameActionObserverPtr(actionController->getGameActionHistoryController())))
+            }
         });
 
         ForwardGameActionPtr stockAction(new StockAction(actionController->getGame()->getStock(),
-                ForwardGameActionObserverPtr(actionController->getGameActionHistoryController())));
+                                         ForwardGameActionObserverPtr(actionController->getGameActionHistoryController())));
 
         if (stockAction->canBeDone()) {
             possibleActions.insert({'s', stockAction});

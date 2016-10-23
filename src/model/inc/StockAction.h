@@ -20,8 +20,8 @@ protected:
     void forwardAction();
 public:
     StockAction(Stock* s, ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
-    	ForwardGameAction(o),
-    	stock(s) { }
+        ForwardGameAction(o),
+        stock(s) { }
     ForwardGameActionPtr duplicate();
     bool canBeDone();
     void undoAction();

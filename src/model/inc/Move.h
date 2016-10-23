@@ -21,9 +21,9 @@ protected:
     void forwardAction();
 public:
     Move(ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
-    	ForwardGameAction(o),
-		origin(nullptr),
-		dest(nullptr) {}
+        ForwardGameAction(o),
+        origin(nullptr),
+        dest(nullptr) {}
     void setOrigin(MoveOrigin* o);
     void setDest(MoveDest* d);
     bool canBeDone();

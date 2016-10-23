@@ -17,8 +17,8 @@ typedef std::shared_ptr<ForwardGameActionObserver> ForwardGameActionObserverPtr;
 
 class ForwardGameActionObserver {
 public:
-	virtual void onActionDone(ForwardGameActionPtr action) = 0;
-	virtual ~ForwardGameActionObserver() {}
+    virtual void onActionDone(ForwardGameActionPtr action) = 0;
+    virtual ~ForwardGameActionObserver() {}
 };
 
 #endif /* SRC_MODEL_INC_FORWARDGAMEACTIONOBSERVER_H_ */

@@ -13,10 +13,10 @@
 
 class GameActionHistoryController : public ForwardGameActionObserver {
 private:
-	ForwardGameActionPtr lastAction;
+    ForwardGameActionPtr lastAction;
 public:
-	void onActionDone(ForwardGameActionPtr action);
-	ForwardGameActionPtr getLastAction();
+    void onActionDone(ForwardGameActionPtr action);
+    ForwardGameActionPtr getLastAction();
 };
 
 #endif /* SRC_CONTROLLERS_GAMEACTIONHISTORYCONTOLLER_H_ */

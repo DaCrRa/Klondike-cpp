@@ -13,12 +13,12 @@
 
 class UndoGameAction: public GameAction {
 private:
-	std::shared_ptr<GameActionHistoryController> historyController;
+    std::shared_ptr<GameActionHistoryController> historyController;
 protected:
     void action();
 public:
     UndoGameAction(const std::shared_ptr<GameActionHistoryController>& hc) :
-    	historyController(hc) {};
+        historyController(hc) {};
     bool canBeDone();
     void acceptGameActionVisitor(GameActionVisitor* visitor);
 };

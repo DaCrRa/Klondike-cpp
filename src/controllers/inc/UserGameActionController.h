@@ -15,11 +15,11 @@
 
 class UserGameActionController: public GameActionController {
 private:
-	std::shared_ptr<GameActionHistoryController> historyController;
+    std::shared_ptr<GameActionHistoryController> historyController;
 public:
     UserGameActionController(std::shared_ptr<Klondike>& game) :
-    	GameActionController(game),
-		historyController(new GameActionHistoryController()) {};
+        GameActionController(game),
+        historyController(new GameActionHistoryController()) {};
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor);
     std::shared_ptr<GameActionHistoryController> getGameActionHistoryController();
 };

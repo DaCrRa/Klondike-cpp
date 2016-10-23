@@ -13,5 +13,5 @@ void GameActionHistoryController::onActionDone(ForwardGameActionPtr action) {
 }
 
 ForwardGameActionPtr GameActionHistoryController::getLastAction() {
-	return lastAction;
+    return lastAction;
 }

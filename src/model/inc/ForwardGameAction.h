@@ -22,18 +22,18 @@ class ForwardGameActionVisitor;
 
 class ForwardGameAction : public GameAction {
 private:
-	ForwardGameActionObserverPtr observer;
+    ForwardGameActionObserverPtr observer;
 protected:
-	virtual void forwardAction() = 0;
-	void action() {
-		forwardAction();
-		if (observer) {
-			observer->onActionDone(duplicate());
-		}
-	}
+    virtual void forwardAction() = 0;
+    void action() {
+        forwardAction();
+        if (observer) {
+            observer->onActionDone(duplicate());
+        }
+    }
 public:
-	ForwardGameAction(ForwardGameActionObserverPtr o) :
-		observer(o) {};
+    ForwardGameAction(ForwardGameActionObserverPtr o) :
+        observer(o) {};
     void acceptGameActionVisitor(GameActionVisitor* visitor) {
         visitor->visit(this);
     }

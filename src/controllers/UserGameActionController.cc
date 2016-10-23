@@ -12,5 +12,5 @@ void UserGameActionController::acceptGameActionControllerVisitor(GameActionContr
 }
 
 std::shared_ptr<GameActionHistoryController> UserGameActionController::getGameActionHistoryController() {
-	return std::shared_ptr<GameActionHistoryController>(historyController);
+    return std::shared_ptr<GameActionHistoryController>(historyController);
 }
