@@ -14,8 +14,6 @@ Logic::Logic() :
     startController(game, actionControllerCatalog),
     bestScoresController(game) {}
 
-#include <iostream>
-
 Controller* Logic::getNextController() {
     // game in progress?
     if (game && game->isCompleted()) {
