@@ -23,17 +23,24 @@ SelectActionView::SelectActionView(UserGameActionController* c) :
 void SelectActionView::getAction(GameActionPtr& c) {
     try {
         std::map<char, GameActionPtr> possibleActions({
-            { 'm', ForwardGameActionPtr(new Move()) }
+            { 'm', ForwardGameActionPtr(new Move(
+            		ForwardGameActionObserverPtr(actionController->getGameActionHistoryController()))) }
         });
-        ForwardGameActionPtr stockAction(new StockAction(actionController->getGame()->getStock()));
+
+        ForwardGameActionPtr stockAction(new StockAction(actionController->getGame()->getStock(),
+                ForwardGameActionObserverPtr(actionController->getGameActionHistoryController())));
+
         if (stockAction->canBeDone()) {
-            possibleActions.insert({ 's', stockAction});
+            possibleActions.insert({'s', stockAction});
         }
-        possibleActions.insert({'u', GameActionPtr(new UndoGameAction())});
+
+        possibleActions.insert({'u', GameActionPtr(new UndoGameAction(actionController->getGameActionHistoryController()))});
+
         ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
                 std::move(possibleActions),
                 'c');
         c = dialog.getSelectedItem();
+
     } catch (CancelledDialogException& e) {
         throw NoActionException();
     }

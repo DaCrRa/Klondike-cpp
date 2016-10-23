@@ -15,6 +15,7 @@
 class StockAction: public ForwardGameAction {
 private:
     Stock* stock;
+    int cardsMoved = 0;
 protected:
     void forwardAction();
 public:

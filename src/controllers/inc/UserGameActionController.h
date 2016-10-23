@@ -9,11 +9,19 @@
 #define SRC_CONTROLLERS_INC_USERGAMEACTIONCONTROLLER_H_
 
 #include <GameActionController.h>
+#include <GameActionHistoryController.h>
+
+#include <memory>
 
 class UserGameActionController: public GameActionController {
+private:
+	std::shared_ptr<GameActionHistoryController> historyController;
 public:
-    UserGameActionController(std::shared_ptr<Klondike>& game) : GameActionController(game) {};
+    UserGameActionController(std::shared_ptr<Klondike>& game) :
+    	GameActionController(game),
+		historyController(new GameActionHistoryController()) {};
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor);
+    std::shared_ptr<GameActionHistoryController> getGameActionHistoryController();
 };
 
 #endif /* SRC_CONTROLLERS_INC_USERGAMEACTIONCONTROLLER_H_ */

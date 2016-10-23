@@ -7,17 +7,12 @@
 
 #include <UndoGameAction.h>
 
-UndoGameAction::UndoGameAction() {
-    // TODO Auto-generated constructor stub
-
-}
-
 void UndoGameAction::action() {
-
+    historyController->getLastAction()->undoAction();
 }
 
 bool UndoGameAction::canBeDone() {
-    return true;
+    return (bool)historyController->getLastAction();
 }
 
 void UndoGameAction::acceptGameActionVisitor(GameActionVisitor* visitor) {

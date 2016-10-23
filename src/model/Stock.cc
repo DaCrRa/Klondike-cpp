@@ -15,7 +15,7 @@ void Stock::addToCovered(const Card* c) {
     covered.add(c);
 }
 
-void Stock::move() {
+void Stock::moveForward() {
     if (covered.hasCards()) {
         int cardsToMove = std::min(3, covered.getNumberOfCards()); //TODO magic number!
         for (int i = 0; i < cardsToMove; i++) {

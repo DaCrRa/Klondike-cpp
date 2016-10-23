@@ -20,7 +20,7 @@ private:
 
 public:
     void addToCovered(const Card* c);
-    void move();
+    void moveForward();
     bool hasCardAvailable() const;
     bool hasCoveredCards() const;
     bool hasCards() const;
