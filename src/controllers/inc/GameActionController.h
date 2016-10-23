@@ -14,12 +14,10 @@
 #include <ForwardGameAction.h>
 #include <ForwardGameActionVisitor.h>
 #include <GameActionControllerVisitor.h>
-#include <ScoreController.h>
 
 class GameActionController: public Controller {
 protected:
     std::shared_ptr<Klondike>& game;
-    ScoreController scoreController;
 public:
     GameActionController(std::shared_ptr<Klondike>& game);
     std::shared_ptr<Klondike>& getGame();

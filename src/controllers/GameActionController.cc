@@ -6,14 +6,11 @@
  */
 
 #include <GameActionController.h>
-
+#include <GameActionScoreCalculator.h>
 #include <Move.h>
 
 GameActionController::GameActionController(std::shared_ptr<Klondike>& g) :
-    game(g),
-    scoreController(game) {
-
-}
+    game(g) {}
 
 void GameActionController::accept(ControllerVisitor* visitor) {
     visitor->visit(this);
@@ -24,7 +21,8 @@ std::shared_ptr<Klondike>& GameActionController::getGame() {
 }
 
 void GameActionController::doAction(GameActionPtr action) {
-    scoreController.calculateScoreDelta(action);
+    GameActionScoreCalculator gameActionScoreCalculator;
+    action->acceptGameActionVisitor(&gameActionScoreCalculator);
     action->doAction();
-    scoreController.updateScore();
+    game->updateScore(gameActionScoreCalculator.getScoreDelta());
 }
