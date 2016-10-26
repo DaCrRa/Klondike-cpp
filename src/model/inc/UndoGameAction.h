@@ -9,17 +9,18 @@
 #define SRC_MODEL_INC_UNDOGAMEACTION_H_
 
 #include <GameAction.h>
-#include <GameActionHistoryController.h>
+#include <ForwardGameAction.h>
 
 class UndoGameAction: public GameAction {
 private:
-    std::shared_ptr<GameActionHistoryController> historyController;
+    ForwardGameActionPtr forwardGameAction;
 protected:
     void action();
 public:
-    UndoGameAction(const std::shared_ptr<GameActionHistoryController>& hc) :
-        historyController(hc) {};
+    UndoGameAction(ForwardGameActionPtr actionToUndo) :
+        forwardGameAction(actionToUndo) {};
     bool canBeDone();
+    ForwardGameActionPtr getForwardGameAction();
     void acceptGameActionVisitor(GameActionVisitor* visitor);
 };
 

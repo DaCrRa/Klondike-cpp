@@ -8,13 +8,17 @@
 #include <UndoGameAction.h>
 
 void UndoGameAction::action() {
-    historyController->getLastAction()->undoAction();
+    forwardGameAction->undoAction();
 }
 
 bool UndoGameAction::canBeDone() {
-    return (bool)historyController->getLastAction();
+    return (bool)forwardGameAction;
 }
 
 void UndoGameAction::acceptGameActionVisitor(GameActionVisitor* visitor) {
     visitor->visit(this);
+}
+
+ForwardGameActionPtr UndoGameAction::getForwardGameAction() {
+    return forwardGameAction;
 }

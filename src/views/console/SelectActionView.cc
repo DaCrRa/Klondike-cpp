@@ -35,7 +35,10 @@ void SelectActionView::getAction(GameActionPtr& c) {
             possibleActions.insert({'s', stockAction});
         }
 
-        possibleActions.insert({'u', GameActionPtr(new UndoGameAction(actionController->getGameActionHistoryController()))});
+        GameActionPtr undoAction(new UndoGameAction(actionController->getGameActionHistoryController()->getLastAction()));
+        if (undoAction->canBeDone()) {
+            possibleActions.insert({'u', undoAction});
+        }
 
         ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
                 std::move(possibleActions),
