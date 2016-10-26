@@ -15,21 +15,34 @@ void Stock::addToCovered(const Card* c) {
     covered.add(c);
 }
 
-void Stock::moveForward() {
-    if (covered.hasCards()) {
-        int cardsToMove = std::min(3, covered.getNumberOfCards()); //TODO magic number!
-        for (int i = 0; i < cardsToMove; i++) {
-            waste.add(covered.removeTop());
-        }
+int Stock::moveForward() {
+    return stockMovement(covered, waste, 3); // TODO Magic number!
+}
+
+void Stock::moveBackward(int numCards) {
+    stockMovement(waste, covered, numCards);
+}
+
+int Stock::stockMovement(Pile& from, Pile& to, int n) {
+    if (from.hasCards()) {
+        int cardsToMove = std::min(n, from.getNumberOfCards());
+        transferCards(from, to, cardsToMove);
+        return cardsToMove;
     } else {
-        rotate();
+        transferAllCards(to, from);
+        return from.getNumberOfCards();
     }
 }
 
-void Stock::rotate() {
-    assert(!covered.hasCards());
-    while (waste.hasCards()) {
-        covered.add(waste.removeTop());
+void Stock::transferAllCards(Pile& from, Pile& to) {
+    assert(!to.hasCards());
+    transferCards(from, to, from.getNumberOfCards());
+}
+
+void Stock::transferCards(Pile& from, Pile& to, int n) {
+    assert(from.getNumberOfCards() >= n);
+    for (int i = 0; i < n; i++) {
+        to.add(from.removeTop());
     }
 }
 

@@ -16,11 +16,13 @@ private:
     Pile covered;
     Pile waste;
 
-    void rotate();
-
+    void transferAllCards(Pile& from, Pile& to);
+    void transferCards(Pile& from, Pile& to, int n);
+    int stockMovement(Pile& from, Pile& to, int n);
 public:
     void addToCovered(const Card* c);
-    void moveForward();
+    int moveForward();
+    void moveBackward(int numCards);
     bool hasCardAvailable() const;
     bool hasCoveredCards() const;
     bool hasCards() const;
