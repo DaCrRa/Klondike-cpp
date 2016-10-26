@@ -29,6 +29,7 @@ public:
     void accept(MoveOriginVisitor* v);
     const Card* showAvailableCard() const;
     const Card* removeAvailableCard();
+    void recoverCard(const Card* c);
 };
 
 #endif

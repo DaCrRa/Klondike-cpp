@@ -19,6 +19,7 @@ private:
 public:
     Foundation(const int n) : NUM_CARDS_TO_COMPLETE(n) {}
     void add(const Card* c);
+    void recoverCard(const Card* c);
     bool cardCanBeAdded(const Card* c);
     bool hasCardAvailable() const;
     const Card* showAvailableCard() const;

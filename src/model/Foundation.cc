@@ -14,6 +14,10 @@ void Foundation::add(const Card* c) {
     pile.add(c);
 }
 
+void Foundation::recoverCard(const Card* c) {
+    pile.add(c);
+}
+
 bool Foundation::cardCanBeAdded(const Card* c) {
     if (!pile.hasCards()) {
         return c->getRank() == 1;

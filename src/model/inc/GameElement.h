@@ -10,6 +10,7 @@
 
 class GameElement {
 public:
+    virtual const Card* removeAvailableCard() = 0;
     virtual ~GameElement() {}
 };
 

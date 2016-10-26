@@ -46,6 +46,10 @@ void TableauPile::add(const Card* c) {
     uncoveredCards.add(c);
 }
 
+void TableauPile::recoverCard(const Card* c) {
+    uncoveredCards.add(c);
+}
+
 int TableauPile::getNumCoveredCards() const {
     return coveredCards.getNumberOfCards();
 }

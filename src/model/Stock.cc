@@ -15,6 +15,10 @@ void Stock::addToCovered(const Card* c) {
     covered.add(c);
 }
 
+void Stock::recoverCard(const Card* c) {
+
+}
+
 int Stock::moveForward() {
     return stockMovement(covered, waste, 3); // TODO Magic number!
 }
