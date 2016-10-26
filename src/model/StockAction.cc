@@ -20,9 +20,9 @@ bool StockAction::canBeDone() {
 }
 
 void StockAction::forwardAction() {
-    stock->moveForward();
+    cardsMoved = stock->moveForward();
 }
 
 void StockAction::undoAction() {
-
+    stock->moveBackward(cardsMoved);
 }
