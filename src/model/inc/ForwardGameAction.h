@@ -20,7 +20,8 @@ typedef std::shared_ptr<ForwardGameAction> ForwardGameActionPtr;
 
 class ForwardGameActionVisitor;
 
-class ForwardGameAction : public GameAction {
+class ForwardGameAction : public GameAction,
+    public std::enable_shared_from_this<ForwardGameAction> {
 private:
     ForwardGameActionObserverPtr observer;
 protected:
@@ -28,7 +29,7 @@ protected:
     void action() {
         forwardAction();
         if (observer) {
-            observer->onActionDone(duplicate());
+            observer->onActionDone(shared_from_this());
         }
     }
 public:
