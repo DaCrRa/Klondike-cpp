@@ -26,7 +26,7 @@ bool Move::canBeDone() {
 }
 
 void Move::undoAction() {
-
+    origin->recoverCard(dest->removeAvailableCard());
 }
 
 void Move::accept(ForwardGameActionVisitor* visitor) {

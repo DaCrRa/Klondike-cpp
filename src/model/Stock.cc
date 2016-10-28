@@ -16,7 +16,7 @@ void Stock::addToCovered(const Card* c) {
 }
 
 void Stock::recoverCard(const Card* c) {
-
+    waste.add(c);
 }
 
 int Stock::moveForward() {
