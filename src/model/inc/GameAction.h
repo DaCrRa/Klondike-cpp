@@ -17,6 +17,8 @@ class GameAction;
 typedef std::shared_ptr<GameAction> GameActionPtr;
 
 class GameAction {
+private:
+    int scoreDelta;
 protected:
     virtual void action() = 0;
 public:
@@ -24,6 +26,12 @@ public:
     void doAction() {
         assert(canBeDone());
         action();
+    }
+    void setScoreDelta(int d) {
+        scoreDelta = d;
+    }
+    int getScoreDelta() {
+        return scoreDelta;
     }
     virtual void acceptGameActionVisitor(GameActionVisitor* visitor) = 0;
     virtual ~GameAction() {}

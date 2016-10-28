@@ -24,6 +24,7 @@ void GameActionController::doAction(GameActionPtr action) {
     GameActionScoreCalculator gameActionScoreCalculator;
     action->acceptGameActionVisitor(&gameActionScoreCalculator);
     action->doAction();
+    action->setScoreDelta(gameActionScoreCalculator.getScoreDelta());
     game->updateScore(gameActionScoreCalculator.getScoreDelta());
 }
 
