@@ -9,20 +9,25 @@
 #define SRC_VIEWS_CONSOLE_MOVECARDVIEW_H_
 
 #include <GameActionController.h>
-#include <Move.h>
+#include <UserSelectedMove.h>
 
 #include <map>
 
-class MoveCardView {
+class MoveCardView : public MoveOriginVisitor {
 private:
     GameActionController* controller;
     std::map<GameElement*, char> gameElementTag;
+
+    MovePtr move;
 
     std::map<char, MoveOrigin*> tagPossibleOrigins();
     std::map<char, MoveDest*> tagPossibleDests(MoveOrigin* origin);
 public:
     MoveCardView(GameActionController* c);
-    void completeMove(Move* m);
+    void visit(Stock* s);
+    void visit(Foundation* f);
+    void visit(TableauPile* tp);
+    void completeMove(UserSelectedMove* m);
 };
 
 #endif /* SRC_VIEWS_CONSOLE_MOVECARDVIEW_H_ */

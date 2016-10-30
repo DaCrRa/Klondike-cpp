@@ -20,8 +20,8 @@ void GameActionScoreCalculator::visit(UndoGameAction* undoGameAction) {
 }
 
 void GameActionScoreCalculator::visit(Move* move) {
-    moveScoreCalculator = std::make_shared<MoveScoreCalculator>(move, scoreDelta);
-    move->acceptOriginVisitor(moveScoreCalculator.get());
+    moveScoreCalculator = std::make_shared<MoveScoreCalculator>(scoreDelta);
+    move->acceptMoveVisitor(moveScoreCalculator.get());
 }
 
 int GameActionScoreCalculator::getScoreDelta() const {

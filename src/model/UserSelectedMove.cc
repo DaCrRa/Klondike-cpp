@@ -22,3 +22,12 @@ void UserSelectedMove::acceptGameActionVisitor(GameActionVisitor* visitor) {
 MovePtr UserSelectedMove::getMove() {
     return m;
 }
+
+void UserSelectedMove::setMove(MovePtr m) {
+    this->m = m;
+    this->m->setObserver(observer);
+}
+
+ForwardGameActionObserverPtr UserSelectedMove::getFwdGameActionObserver() {
+    return observer;
+}

@@ -12,6 +12,8 @@
 #include <GameActionController.h>
 
 class RandomGameActionController : public GameActionController {
+private:
+    bool isAPossibleMoveOrigin(MoveOrigin* origin);
 public:
     RandomGameActionController(std::shared_ptr<Klondike>& game) : GameActionController(game) {};
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* v);

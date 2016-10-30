@@ -8,6 +8,9 @@
 #include <MoveCardView.h>
 
 #include <ItemSelectionDialog.h>
+#include <MoveFromStock.h>
+#include <MoveFromTableauPile.h>
+#include <MoveFromFoundation.h>
 
 MoveCardView::MoveCardView(GameActionController* c) :
     controller(c)
@@ -24,15 +27,28 @@ MoveCardView::MoveCardView(GameActionController* c) :
     }
 }
 
-void MoveCardView::completeMove(Move* move) {
+void MoveCardView::completeMove(UserSelectedMove* userSelectedMove) {
     std::map<char, MoveOrigin*> taggedPossibleOrigins = tagPossibleOrigins();
     ItemSelectionDialog<MoveOrigin*> dialogFrom("Move from: ", taggedPossibleOrigins, 'c');
     MoveOrigin* origin = dialogFrom.getSelectedItem();
+    origin->accept(this);
     std::map<char, MoveDest*> taggedPossibleDests = tagPossibleDests(origin);
     ItemSelectionDialog<MoveDest*> dialogTo("Move to: ", taggedPossibleDests, 'c');
     MoveDest* dest = dialogTo.getSelectedItem();
-    move->setOrigin(origin);
     move->setDest(dest);
+    userSelectedMove->setMove(move);
+}
+
+void MoveCardView::visit(Stock* s) {
+    move = MovePtr(new MoveFromStock(s));
+}
+
+void MoveCardView::visit(Foundation* f) {
+    move = MovePtr(new MoveFromFoundation(f));
+}
+
+void MoveCardView::visit(TableauPile* tp) {
+    move = MovePtr(new MoveFromTableauPile(tp));
 }
 
 std::map<char, MoveOrigin*> MoveCardView::tagPossibleOrigins() {

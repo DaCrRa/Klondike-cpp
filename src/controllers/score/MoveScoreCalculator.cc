@@ -7,6 +7,10 @@
 
 #include <MoveScoreCalculator.h>
 
+#include <MoveFromTableauPile.h>
+#include <MoveFromStock.h>
+#include <MoveFromFoundation.h>
+
 int MoveScoreCalculator::DestScoreCalculator::getScoreDelta() const {
     return scoreDelta;
 }
@@ -43,19 +47,19 @@ void MoveScoreCalculator::tableauPileDestroyed() {
     observedTableauPile = nullptr;
 }
 
-void MoveScoreCalculator::visit(Stock* stock) {
+void MoveScoreCalculator::visit(MoveFromStock* move) {
     FromStock destVisitor;
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();
 }
-void MoveScoreCalculator::visit(TableauPile* tableauPile) {
-    observedTableauPile = tableauPile;
-    tableauPile->setObserver(this);
+void MoveScoreCalculator::visit(MoveFromTableauPile* move) {
+    observedTableauPile = move->getOriginTableauPile();
+    observedTableauPile->setObserver(this);
     FromTableauPile destVisitor;
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();
 }
-void MoveScoreCalculator::visit(Foundation* foundation) {
+void MoveScoreCalculator::visit(MoveFromFoundation* move) {
     FromFoundation destVisitor;
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();

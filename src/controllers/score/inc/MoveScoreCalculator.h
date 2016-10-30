@@ -14,7 +14,7 @@
 
 #include <iostream>
 
-class MoveScoreCalculator : public MoveOriginVisitor, public TableauPileObserver {
+class MoveScoreCalculator : public MoveVisitor, public TableauPileObserver {
 private:
 
     static const int WASTE_TO_TABLEAU = 5;
@@ -49,19 +49,17 @@ private:
         void visit(Foundation* foundation);
     };
 
-    Move* move;
     TableauPile* observedTableauPile;
     int& scoreDelta;
 public:
-    MoveScoreCalculator(Move* m, int& scoreDelta) :
-        move(m),
+    MoveScoreCalculator(int& scoreDelta) :
         observedTableauPile(nullptr),
         scoreDelta(scoreDelta) {}
     void onCardTurnUp();
     void tableauPileDestroyed();
-    void visit(Stock* stock);
-    void visit(TableauPile* tableauPile);
-    void visit(Foundation* foundation);
+    void visit(MoveFromStock* move);
+    void visit(MoveFromTableauPile* move);
+    void visit(MoveFromFoundation* move);
     ~MoveScoreCalculator();
 };
 

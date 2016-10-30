@@ -38,6 +38,9 @@ public:
     void acceptGameActionVisitor(GameActionVisitor* visitor) {
         visitor->visit(this);
     }
+    void setObserver(ForwardGameActionObserverPtr observer) {
+        this->observer = observer;
+    }
     virtual void accept(ForwardGameActionVisitor* visitor) = 0;
     virtual ForwardGameActionPtr duplicate() = 0;
     virtual void undoAction() = 0;

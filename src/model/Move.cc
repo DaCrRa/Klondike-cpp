@@ -9,37 +9,26 @@
 
 #include <assert.h>
 
-void Move::setOrigin(MoveOrigin* o) {
-    origin = o;
-}
-
 void Move::setDest(MoveDest* d) {
     dest = d;
 }
 
 void Move::forwardAction() {
-    dest->add(origin->removeAvailableCard());
+    dest->add(getMoveOrigin()->removeAvailableCard());
 }
 
 bool Move::canBeDone() {
-    return dest->cardCanBeAdded(origin->showAvailableCard());
+    return dest->cardCanBeAdded(getMoveOrigin()->showAvailableCard());
 }
 
 void Move::undoAction() {
-    origin->recoverCard(dest->removeAvailableCard());
+    getMoveOrigin()->recoverCard(dest->removeAvailableCard());
 }
 
 void Move::accept(ForwardGameActionVisitor* visitor) {
     visitor->visit(this);
 }
 
-ForwardGameActionPtr Move::duplicate() {
-    return ForwardGameActionPtr(new Move(*this));
-}
-
-void Move::acceptOriginVisitor(MoveOriginVisitor* origVisitor) {
-    origin->accept(origVisitor);
-}
 
 void Move::acceptDestVisitor(MoveDestVisitor* destVisitor) {
     dest->accept(destVisitor);

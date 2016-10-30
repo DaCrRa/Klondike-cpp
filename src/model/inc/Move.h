@@ -12,6 +12,7 @@
 #include <ForwardGameActionVisitor.h>
 #include <MoveOrigin.h>
 #include <MoveDest.h>
+#include <MoveVisitor.h>
 
 #include <memory>
 
@@ -20,23 +21,22 @@ typedef std::shared_ptr<Move> MovePtr;
 
 class Move : public ForwardGameAction {
 private:
-    MoveOrigin* origin;
     MoveDest* dest;
 protected:
+    virtual MoveOrigin* getMoveOrigin() = 0;
     void forwardAction();
 public:
     Move(ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
         ForwardGameAction(o),
-        origin(nullptr),
         dest(nullptr) {}
-    void setOrigin(MoveOrigin* o);
     void setDest(MoveDest* d);
     bool canBeDone();
     void undoAction();
-    ForwardGameActionPtr duplicate();
+    virtual ForwardGameActionPtr duplicate() = 0;
     void accept(ForwardGameActionVisitor* visitor);
-    void acceptOriginVisitor(MoveOriginVisitor* origVisitor);
     void acceptDestVisitor(MoveDestVisitor* destVisitor);
+    virtual void acceptMoveVisitor(MoveVisitor* visitor) = 0;
+    virtual ~Move() {}
 };
 
 #endif /* SRC_MODEL_INC_MOVE_H_ */

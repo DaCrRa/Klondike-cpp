@@ -24,13 +24,13 @@ SelectActionView::SelectActionView(UserGameActionController* c) :
 void SelectActionView::getAction(GameActionPtr& c) {
     try {
         std::map<char, GameActionPtr> possibleActions({
-            {   'm', ForwardGameActionPtr(new Move(
+            {   'm', GameActionPtr(new UserSelectedMove(
                     ForwardGameActionObserverPtr(actionController->getGameActionHistoryController())))
             }
         });
 
-        ForwardGameActionPtr stockAction(new StockAction(actionController->getGame()->getStock(),
-                                         ForwardGameActionObserverPtr(actionController->getGameActionHistoryController())));
+        GameActionPtr stockAction(new StockAction(actionController->getGame()->getStock(),
+                                  ForwardGameActionObserverPtr(actionController->getGameActionHistoryController())));
 
         if (stockAction->canBeDone()) {
             possibleActions.insert({'s', stockAction});
@@ -62,16 +62,16 @@ void SelectActionView::visit(StockAction* stockAction) {
 }
 
 void SelectActionView::visit(UserSelectedMove* userSelectedMove) {
-    visit(userSelectedMove->getMove().get());
-}
-
-void SelectActionView::visit(Move* move) {
     try {
         MoveCardView moveCardView(actionController);
-        moveCardView.completeMove(move);
+        moveCardView.completeMove(userSelectedMove);
     } catch (std::exception& e) {
         throw IncompleteMoveException();
     }
+}
+
+void SelectActionView::visit(Move* move) {
+
 }
 
 void SelectActionView::visit(ForwardGameAction* fwdGameAction) {
