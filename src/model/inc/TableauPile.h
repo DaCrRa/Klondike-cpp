@@ -15,6 +15,7 @@ public:
         MAX_RANK_ACCEPTED(n) {}
     bool cardCanBeTurnUp();
     void turnUpCard();
+    void turnDownCard();
     void addToCovered(const Card* c);
     void add(const Card* c);
     void recoverCard(const Card* c);

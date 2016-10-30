@@ -13,6 +13,10 @@ void TableauPile::turnUpCard() {
     uncoveredCards.add(coveredCards.removeTop());
 }
 
+void TableauPile::turnDownCard() {
+    coveredCards.add(uncoveredCards.removeTop());
+}
+
 bool TableauPile::cardCanBeTurnUp() {
     return !uncoveredCards.hasCards() && coveredCards.hasCards();
 }

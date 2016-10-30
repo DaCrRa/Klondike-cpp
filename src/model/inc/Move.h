@@ -31,7 +31,7 @@ public:
         dest(nullptr) {}
     void setDest(MoveDest* d);
     bool canBeDone();
-    void undoAction();
+    virtual void undoAction();
     virtual ForwardGameActionPtr duplicate() = 0;
     void accept(ForwardGameActionVisitor* visitor);
     void acceptDestVisitor(MoveDestVisitor* destVisitor);
