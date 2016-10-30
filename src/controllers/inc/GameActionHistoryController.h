@@ -11,12 +11,16 @@
 #include <ForwardGameAction.h>
 #include <ForwardGameActionObserver.h>
 
+#include <vector>
+
 class GameActionHistoryController : public ForwardGameActionObserver {
 private:
-    ForwardGameActionPtr lastAction;
+    std::vector<ForwardGameActionPtr> actionHistory;
 public:
     void onActionDone(ForwardGameActionPtr action);
-    ForwardGameActionPtr getLastAction();
+    void onActionUndone(ForwardGameActionPtr action);
+    bool hasUndoableActions();
+    ForwardGameActionPtr getNextUndoableAction() const;
 };
 
 #endif /* SRC_CONTROLLERS_GAMEACTIONHISTORYCONTOLLER_H_ */

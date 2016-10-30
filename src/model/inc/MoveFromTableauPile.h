@@ -18,13 +18,13 @@ private:
 protected:
     MoveOrigin* getMoveOrigin();
     void forwardAction();
+    void undoImpl();
 public:
     MoveFromTableauPile(TableauPile* tp, ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
         Move(o),
         origin(tp),
         cardTurnedUp(false) {}
     ForwardGameActionPtr duplicate();
-    void undoAction();
     bool cardWasTurnUp();
     void acceptMoveVisitor(MoveVisitor* visitor);
 };

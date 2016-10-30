@@ -18,13 +18,13 @@ private:
     int cardsMoved = 0;
 protected:
     void forwardAction();
+    void undoImpl();
 public:
     StockAction(Stock* s, ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
         ForwardGameAction(o),
         stock(s) { }
     ForwardGameActionPtr duplicate();
     bool canBeDone();
-    void undoAction();
     void accept(ForwardGameActionVisitor* actionVisitor);
 };
 

@@ -21,7 +21,7 @@ bool Move::canBeDone() {
     return dest->cardCanBeAdded(getMoveOrigin()->showAvailableCard());
 }
 
-void Move::undoAction() {
+void Move::undoImpl() {
     getMoveOrigin()->recoverCard(dest->removeAvailableCard());
 }
 

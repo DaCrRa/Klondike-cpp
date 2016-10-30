@@ -23,6 +23,6 @@ void StockAction::forwardAction() {
     cardsMoved = stock->moveForward();
 }
 
-void StockAction::undoAction() {
+void StockAction::undoImpl() {
     stock->moveBackward(cardsMoved);
 }

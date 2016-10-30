@@ -26,6 +26,7 @@ private:
     ForwardGameActionObserverPtr observer;
 protected:
     virtual void forwardAction() = 0;
+    virtual void undoImpl() = 0;
     void action() {
         forwardAction();
         if (observer) {
@@ -41,9 +42,14 @@ public:
     void setObserver(ForwardGameActionObserverPtr observer) {
         this->observer = observer;
     }
+    void undoAction() {
+        undoImpl();
+        if (observer) {
+            observer->onActionUndone(shared_from_this());
+        }
+    }
     virtual void accept(ForwardGameActionVisitor* visitor) = 0;
     virtual ForwardGameActionPtr duplicate() = 0;
-    virtual void undoAction() = 0;
     virtual ~ForwardGameAction() {}
 };
 

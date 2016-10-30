@@ -27,11 +27,11 @@ void MoveFromTableauPile::forwardAction() {
     }
 }
 
-void MoveFromTableauPile::undoAction() {
+void MoveFromTableauPile::undoImpl() {
     if (cardTurnedUp) {
         origin->turnDownCard();
     }
-    Move::undoAction();
+    Move::undoImpl();
 }
 
 bool MoveFromTableauPile::cardWasTurnUp() {

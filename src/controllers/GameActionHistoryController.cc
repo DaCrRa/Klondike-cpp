@@ -9,11 +9,17 @@
 #include <GameActionHistoryController.h>
 
 void GameActionHistoryController::onActionDone(ForwardGameActionPtr action) {
-    lastAction = action;
+    actionHistory.push_back(action);
 }
 
-ForwardGameActionPtr GameActionHistoryController::getLastAction() {
-    ForwardGameActionPtr action = lastAction;
-    lastAction.reset();
-    return action;
+ForwardGameActionPtr GameActionHistoryController::getNextUndoableAction() const {
+    return actionHistory.back();
+}
+
+void GameActionHistoryController::onActionUndone(ForwardGameActionPtr action) {
+    actionHistory.pop_back();
+}
+
+bool GameActionHistoryController::hasUndoableActions() {
+    return !actionHistory.empty();
 }

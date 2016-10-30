@@ -36,9 +36,12 @@ void SelectActionView::getAction(GameActionPtr& c) {
             possibleActions.insert({'s', stockAction});
         }
 
-        GameActionPtr undoAction(new UndoGameAction(actionController->getGameActionHistoryController()->getLastAction()));
-        if (undoAction->canBeDone()) {
-            possibleActions.insert({'u', undoAction});
+        if (actionController->getGameActionHistoryController()->hasUndoableActions()) {
+            possibleActions.insert({'u',
+                                    GameActionPtr(
+                                        new UndoGameAction(actionController->getGameActionHistoryController()->getNextUndoableAction())
+                                    )
+                                   });
         }
 
         ItemSelectionDialog<GameActionPtr> dialog("Select action: ",

@@ -25,13 +25,13 @@ private:
 protected:
     virtual MoveOrigin* getMoveOrigin() = 0;
     virtual void forwardAction();
+    virtual void undoImpl();
 public:
     Move(ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
         ForwardGameAction(o),
         dest(nullptr) {}
     void setDest(MoveDest* d);
     bool canBeDone();
-    virtual void undoAction();
     virtual ForwardGameActionPtr duplicate() = 0;
     void accept(ForwardGameActionVisitor* visitor);
     void acceptDestVisitor(MoveDestVisitor* destVisitor);

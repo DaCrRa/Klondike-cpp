@@ -18,6 +18,7 @@ typedef std::shared_ptr<ForwardGameActionObserver> ForwardGameActionObserverPtr;
 class ForwardGameActionObserver {
 public:
     virtual void onActionDone(ForwardGameActionPtr action) = 0;
+    virtual void onActionUndone(ForwardGameActionPtr action) = 0;
     virtual ~ForwardGameActionObserver() {}
 };
 
