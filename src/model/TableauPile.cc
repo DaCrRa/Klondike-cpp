@@ -71,11 +71,7 @@ const Card* TableauPile::showAvailableCard() const {
 }
 
 const Card* TableauPile::removeAvailableCard() {
-    const Card* removedCard = uncoveredCards.removeTop();
-    if (cardCanBeTurnUp()) {
-        turnUpCard();
-    }
-    return removedCard;
+    return uncoveredCards.removeTop();
 }
 
 void TableauPile::accept(MoveOriginVisitor* v) {

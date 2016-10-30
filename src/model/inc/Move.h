@@ -24,7 +24,7 @@ private:
     MoveDest* dest;
 protected:
     virtual MoveOrigin* getMoveOrigin() = 0;
-    void forwardAction();
+    virtual void forwardAction();
 public:
     Move(ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
         ForwardGameAction(o),

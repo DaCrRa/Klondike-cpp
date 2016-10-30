@@ -22,3 +22,10 @@ void MoveFromTableauPile::acceptMoveVisitor(MoveVisitor* visitor) {
 TableauPile* MoveFromTableauPile::getOriginTableauPile() {
     return origin;
 }
+
+void MoveFromTableauPile::forwardAction() {
+    Move::forwardAction();
+    if (origin->cardCanBeTurnUp()) {
+        origin->turnUpCard();
+    }
+}

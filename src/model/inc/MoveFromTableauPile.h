@@ -16,6 +16,7 @@ private:
     TableauPile* origin;
 protected:
     MoveOrigin* getMoveOrigin();
+    void forwardAction();
 public:
     MoveFromTableauPile(TableauPile* tp, ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
         Move(o),
