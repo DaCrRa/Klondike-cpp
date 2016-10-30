@@ -27,7 +27,7 @@ public:
         assert(canBeDone());
         action();
     }
-    void setScoreDelta(int d) {
+    virtual void setScoreDelta(int d) {
         scoreDelta = d;
     }
     int getScoreDelta() {

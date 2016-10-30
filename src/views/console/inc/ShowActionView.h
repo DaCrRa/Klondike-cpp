@@ -20,6 +20,7 @@ public:
     void visit(UndoGameAction* undoGameAction);
     void visit(StockAction* action);
     void visit(Move* action);
+    void visit(UserSelectedMove* userSelectedMove);
     void show();
 };
 

@@ -13,6 +13,11 @@
 #include <MoveOrigin.h>
 #include <MoveDest.h>
 
+#include <memory>
+
+class Move;
+typedef std::shared_ptr<Move> MovePtr;
+
 class Move : public ForwardGameAction {
 private:
     MoveOrigin* origin;

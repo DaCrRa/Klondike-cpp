@@ -37,6 +37,7 @@ private:
 public:
     SelectActionView(UserGameActionController* c);
     void getAction(GameActionPtr& action);
+    void visit(UserSelectedMove* userSelectedMove);
     void visit(StockAction* stockAction);
     void visit(Move* move);
     void visit(ForwardGameAction* fwdGameAction);

@@ -10,6 +10,7 @@
 #include <ItemSelectionDialog.h>
 #include <StockAction.h>
 #include <Move.h>
+#include <UserSelectedMove.h>
 #include <MoveCardView.h>
 
 #include <iostream>
@@ -58,6 +59,10 @@ void SelectActionView::completeActionInfo(GameActionPtr& action) {
 void SelectActionView::visit(StockAction* stockAction) {
     // Nothing to complete for a StockAction
     std::cout << "Stock action selected!" << std::endl;
+}
+
+void SelectActionView::visit(UserSelectedMove* userSelectedMove) {
+    visit(userSelectedMove->getMove().get());
 }
 
 void SelectActionView::visit(Move* move) {

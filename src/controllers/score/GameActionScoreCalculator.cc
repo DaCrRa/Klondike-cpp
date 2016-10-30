@@ -1,5 +1,6 @@
 #include <GameActionScoreCalculator.h>
 #include <UndoGameAction.h>
+#include <UserSelectedMove.h>
 
 void GameActionScoreCalculator::visit(StockAction* stockAction) {
     scoreDelta = 0;
@@ -7,6 +8,10 @@ void GameActionScoreCalculator::visit(StockAction* stockAction) {
 
 void GameActionScoreCalculator::visit(ForwardGameAction* fwdGameAction) {
     fwdGameAction->accept(this);
+}
+
+void GameActionScoreCalculator::visit(UserSelectedMove* userSelectedMove) {
+    visit(userSelectedMove->getMove().get());
 }
 
 void GameActionScoreCalculator::visit(UndoGameAction* undoGameAction) {

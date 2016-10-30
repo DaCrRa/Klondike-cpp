@@ -6,6 +6,7 @@
  */
 
 #include <ShowActionView.h>
+#include <UserSelectedMove.h>
 
 #include <iostream>
 
@@ -21,6 +22,10 @@ void ShowActionView::visit(ForwardGameAction* fwdGameAction) {
 
 void ShowActionView::visit(UndoGameAction* undoGameAction) {
 
+}
+
+void ShowActionView::visit(UserSelectedMove* userSelectedMove) {
+    visit(userSelectedMove->getMove().get());
 }
 
 void ShowActionView::show() {

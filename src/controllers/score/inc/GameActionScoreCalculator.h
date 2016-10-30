@@ -18,6 +18,7 @@ public:
     GameActionScoreCalculator() : scoreDelta(0) {}
     void visit(ForwardGameAction* fwdGameAction);
     void visit(UndoGameAction* undoGameAction);
+    void visit(UserSelectedMove* userSelectedMove);
     void visit(StockAction* stockAction);
     void visit(Move* move);
     int getScoreDelta() const;
