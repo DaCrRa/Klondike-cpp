@@ -30,7 +30,7 @@ public:
     }
 };
 
-class SelectActionView : public ForwardGameActionVisitor, public GameActionVisitor {
+class SelectActionView :  public GameActionVisitor {
 private:
     void completeActionInfo(GameActionPtr& action);
     UserGameActionController* actionController;

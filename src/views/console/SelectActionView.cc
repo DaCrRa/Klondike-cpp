@@ -56,11 +56,6 @@ void SelectActionView::completeActionInfo(GameActionPtr& action) {
     action->acceptGameActionVisitor(this);
 }
 
-void SelectActionView::visit(StockAction* stockAction) {
-    // Nothing to complete for a StockAction
-    std::cout << "Stock action selected!" << std::endl;
-}
-
 void SelectActionView::visit(UserSelectedMove* userSelectedMove) {
     try {
         MoveCardView moveCardView(actionController);
@@ -70,12 +65,8 @@ void SelectActionView::visit(UserSelectedMove* userSelectedMove) {
     }
 }
 
-void SelectActionView::visit(Move* move) {
-
-}
-
 void SelectActionView::visit(ForwardGameAction* fwdGameAction) {
-    fwdGameAction->accept(this);
+    std::cout << "Stock action selected!" << std::endl;
 }
 
 void SelectActionView::visit(UndoGameAction* undoGameAction) {
