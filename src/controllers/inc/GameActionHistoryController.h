@@ -16,7 +16,10 @@
 class GameActionHistoryController : public ForwardGameActionObserver {
 private:
     std::vector<ForwardGameActionPtr> actionHistory;
+    std::vector<ForwardGameActionPtr>::iterator historyPosition;
 public:
+    GameActionHistoryController() :
+        historyPosition(actionHistory.end()) {}
     void onActionDone(ForwardGameActionPtr action);
     void onActionUndone(ForwardGameActionPtr action);
     bool hasUndoableActions();
