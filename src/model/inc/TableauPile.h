@@ -4,20 +4,15 @@
 #include <Pile.h>
 #include <MoveOrigin.h>
 #include <MoveDest.h>
-#include <TableauPileObserver.h>
 
 class TableauPile : public MoveOrigin, public MoveDest {
 private:
     Pile coveredCards;
     Pile uncoveredCards;
-    TableauPileObserver* observer;
     const int MAX_RANK_ACCEPTED;
 public:
     TableauPile(const int n) :
-        observer(nullptr),
         MAX_RANK_ACCEPTED(n) {}
-    void setObserver(TableauPileObserver* observer);
-    void unsetObserver();
     bool cardCanBeTurnUp();
     void turnUpCard();
     void addToCovered(const Card* c);
@@ -32,7 +27,6 @@ public:
     PileIterator uncoveredCardsEnd() const;
     void accept(MoveOriginVisitor* v);
     void accept(MoveDestVisitor* v);
-    ~TableauPile();
 };
 
 #endif
