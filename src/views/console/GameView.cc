@@ -36,6 +36,7 @@ void GameView::visit(UserGameActionController* c) {
 }
 
 void GameView::visit(RandomGameActionController* c) {
-    gameAction = c->getAction();
-    ShowActionView(gameAction).show();
+    ForwardGameActionPtr action = c->getAction();
+    gameAction = action;
+    ShowActionView(action).show();
 }
