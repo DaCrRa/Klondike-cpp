@@ -21,11 +21,10 @@ std::shared_ptr<Klondike>& GameActionController::getGame() {
 }
 
 void GameActionController::doAction(GameActionPtr action) {
-    GameActionScoreCalculator gameActionScoreCalculator;
-    action->acceptGameActionVisitor(&gameActionScoreCalculator);
     action->doAction();
-    action->setScoreDelta(gameActionScoreCalculator.getScoreDelta());
-    game->updateScore(gameActionScoreCalculator.getScoreDelta());
+    GameActionScoreCalculator gameActionScoreCalculator(action);
+    gameActionScoreCalculator.setActionScore();
+    game->updateScore(action->getScoreDelta());
 }
 
 std::vector<MoveOrigin*> GameActionController::getPossibleMoveOrigins() {

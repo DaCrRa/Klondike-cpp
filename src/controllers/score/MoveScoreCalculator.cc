@@ -39,34 +39,22 @@ void MoveScoreCalculator::FromFoundation::visit(Foundation* foundation) {
     scoreDelta = 0;
 }
 
-void MoveScoreCalculator::onCardTurnUp() {
-    scoreDelta += TURN_UP_TABLEAU_CARD;
-}
-
-void MoveScoreCalculator::tableauPileDestroyed() {
-    observedTableauPile = nullptr;
-}
-
 void MoveScoreCalculator::visit(MoveFromStock* move) {
     FromStock destVisitor;
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();
 }
 void MoveScoreCalculator::visit(MoveFromTableauPile* move) {
-    observedTableauPile = move->getOriginTableauPile();
-    observedTableauPile->setObserver(this);
     FromTableauPile destVisitor;
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();
+    if (move->cardWasTurnUp()) {
+        scoreDelta += TURN_UP_TABLEAU_CARD;
+    }
 }
+
 void MoveScoreCalculator::visit(MoveFromFoundation* move) {
     FromFoundation destVisitor;
     move->acceptDestVisitor(&destVisitor);
     scoreDelta = destVisitor.getScoreDelta();
-}
-
-MoveScoreCalculator::~MoveScoreCalculator() {
-    if (observedTableauPile != nullptr) {
-        observedTableauPile->unsetObserver();
-    }
 }

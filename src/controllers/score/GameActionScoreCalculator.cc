@@ -24,6 +24,7 @@ void GameActionScoreCalculator::visit(Move* move) {
     move->acceptMoveVisitor(moveScoreCalculator.get());
 }
 
-int GameActionScoreCalculator::getScoreDelta() const {
-    return scoreDelta;
+void GameActionScoreCalculator::setActionScore() {
+    action->acceptGameActionVisitor(this);
+    action->setScoreDelta(scoreDelta);
 }

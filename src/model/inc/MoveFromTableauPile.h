@@ -14,16 +14,18 @@
 class MoveFromTableauPile: public Move {
 private:
     TableauPile* origin;
+    bool cardTurnedUp;
 protected:
     MoveOrigin* getMoveOrigin();
     void forwardAction();
 public:
     MoveFromTableauPile(TableauPile* tp, ForwardGameActionObserverPtr o = ForwardGameActionObserverPtr()) :
         Move(o),
-        origin(tp) {}
+        origin(tp),
+        cardTurnedUp(false) {}
     ForwardGameActionPtr duplicate();
+    bool cardWasTurnUp();
     void acceptMoveVisitor(MoveVisitor* visitor);
-    TableauPile* getOriginTableauPile();
 };
 
 #endif /* SRC_MODEL_INC_MOVEFROMTABLEAU_H_ */

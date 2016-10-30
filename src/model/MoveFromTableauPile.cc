@@ -19,13 +19,14 @@ void MoveFromTableauPile::acceptMoveVisitor(MoveVisitor* visitor) {
     visitor->visit(this);
 }
 
-TableauPile* MoveFromTableauPile::getOriginTableauPile() {
-    return origin;
-}
-
 void MoveFromTableauPile::forwardAction() {
     Move::forwardAction();
     if (origin->cardCanBeTurnUp()) {
         origin->turnUpCard();
+        cardTurnedUp = true;
     }
+}
+
+bool MoveFromTableauPile::cardWasTurnUp() {
+    return cardTurnedUp;
 }

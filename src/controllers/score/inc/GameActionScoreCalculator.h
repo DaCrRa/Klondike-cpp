@@ -10,18 +10,25 @@
 
 #include <MoveScoreCalculator.h>
 
+#include <assert.h>
+
 class GameActionScoreCalculator : public GameActionVisitor, public ForwardGameActionVisitor {
 private:
     std::shared_ptr<MoveScoreCalculator> moveScoreCalculator;
+    GameActionPtr action;
     int scoreDelta;
 public:
-    GameActionScoreCalculator() : scoreDelta(0) {}
+    GameActionScoreCalculator(GameActionPtr a) :
+        scoreDelta(0),
+        action(a) {
+        assert(action);
+    }
+    void setActionScore();
     void visit(ForwardGameAction* fwdGameAction);
     void visit(UndoGameAction* undoGameAction);
     void visit(UserSelectedMove* userSelectedMove);
     void visit(StockAction* stockAction);
     void visit(Move* move);
-    int getScoreDelta() const;
 };
 
 #endif /* SRC_CONTROLLERS_SCORE_INC_GAMEACTIONSCORECALCULATOR_H_ */
