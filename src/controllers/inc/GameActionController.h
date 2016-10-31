@@ -14,15 +14,19 @@
 #include <ForwardGameAction.h>
 #include <ForwardGameActionVisitor.h>
 #include <GameActionControllerVisitor.h>
+#include <KlondikeAppStateContext.h>
 
 class GameActionController: public Controller {
 protected:
+    KlondikeAppStateContext& context;
     std::shared_ptr<Klondike>& game;
 public:
-    GameActionController(std::shared_ptr<Klondike>& game);
+    GameActionController(KlondikeAppStateContext& cntxt) :
+        context(cntxt),
+        game(context.getGame()) {};
     std::shared_ptr<Klondike>& getGame();
+    void pauseGame();
     void doAction(GameActionPtr action);
-    virtual GameActionController* clone() = 0;
     virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
     void accept(ControllerVisitor* visitor);
     std::vector<MoveOrigin*> getPossibleMoveOrigins();

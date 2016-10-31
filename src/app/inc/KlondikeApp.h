@@ -9,14 +9,15 @@
 #define SRC_APP_KLONDIKEAPP_H_
 
 #include <ConsoleView.h>
-#include <Logic.h>
+
+#include <KlondikeAppStateContext.h>
 
 class KlondikeApp {
 private:
     ConsoleView* view;
-    Logic* logic;
+    KlondikeAppStateContext* logic;
 public:
-    KlondikeApp(ConsoleView* view, Logic* logic);
+    KlondikeApp(ConsoleView* view, KlondikeAppStateContext* logic);
     void run();
 };
 

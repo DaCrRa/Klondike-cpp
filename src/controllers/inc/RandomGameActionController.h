@@ -15,9 +15,8 @@ class RandomGameActionController : public GameActionController {
 private:
     bool isAPossibleMoveOrigin(MoveOrigin* origin);
 public:
-    RandomGameActionController(std::shared_ptr<Klondike>& game) : GameActionController(game) {};
+    RandomGameActionController(KlondikeAppStateContext& context) : GameActionController(context) {};
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* v);
-    GameActionController* clone();
     ForwardGameActionPtr getAction();
 };
 

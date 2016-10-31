@@ -13,18 +13,9 @@
 
 #include <memory>
 
-class MainMenuView : public GameActionControllerVisitor {
-private:
-    size_t userControllerIndex;
-    size_t randomControllerIndex;
-
-    void startGame(StartController* startController, size_t gameActionControllerIndex);
-
-    std::function<void(size_t&)> assignGameActionControllerIndex;
+class MainMenuView {
 public:
     void interact(StartController* controller);
-    void visit(UserGameActionController* userController);
-    void visit(RandomGameActionController* randomController);
 };
 
 #endif /* SRC_VIEWS_CONSOLE_MAINMENUVIEW_H_ */

@@ -15,17 +15,16 @@
 
 class UserGameActionController: public GameActionController {
 private:
-    std::shared_ptr<GameActionHistoryController> historyController;
+    std::shared_ptr<GameActionHistoryController>& historyController;
 public:
-    UserGameActionController(std::shared_ptr<Klondike>& game) :
-        GameActionController(game),
-        historyController(new GameActionHistoryController()) {};
+    UserGameActionController(KlondikeAppStateContext& context) :
+        GameActionController(context),
+        historyController(context.getHistoryController()) {};
     UserGameActionController(const UserGameActionController& copy) :
-        GameActionController(copy.game),
-        historyController(new GameActionHistoryController(*(copy.historyController))) {}
+        GameActionController(copy.context),
+        historyController(copy.historyController) {}
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor);
     std::shared_ptr<GameActionHistoryController> getGameActionHistoryController();
-    GameActionController* clone();
 };
 
 #endif /* SRC_CONTROLLERS_INC_USERGAMEACTIONCONTROLLER_H_ */

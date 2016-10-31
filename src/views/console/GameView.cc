@@ -22,7 +22,7 @@ void GameView::interact(GameActionController* controller) {
         std::cout << e.what() << std::endl;
     } catch (NoActionException& e) {
         std::cout << e.what() << std::endl;
-        controller->getGame()->togglePause();
+        controller->pauseGame();
     }
 }
 

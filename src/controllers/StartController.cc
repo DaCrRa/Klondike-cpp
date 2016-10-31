@@ -6,45 +6,39 @@
  */
 
 #include <StartController.h>
-#include <UserGameActionController.h>
-#include <RandomGameActionController.h>
+#include <GameInProgressState.h>
+#include <DemoInProgressState.h>
+#include <GameActionHistoryController.h>
 
 #include <assert.h>
 
-StartController::StartController(std::shared_ptr<Klondike>& k, GameActionControllerCatalog& catalog) :
-    gameStatusController(k),
-    gameActionControllerCatalog(catalog),
-    terminateAppFlag(false)
-{
-
-}
+StartController::StartController(KlondikeAppStateContext& cntxt) :
+    context(cntxt) { }
 
 void StartController::startGame() {
-    gameStatusController.startNewGame();
+    context.getGame() = std::shared_ptr<Klondike>(new Klondike);
+    context.getHistoryController() = std::shared_ptr<GameActionHistoryController>(
+                                         new GameActionHistoryController());
+    context.getGame()->initialize();
+    context.setState(KlondikeAppStatePtr(new GameInProgressState()));
+}
+
+void StartController::startDemo() {
+    context.getGame() = std::shared_ptr<Klondike>(new Klondike);
+    context.getGame()->initialize();
+    context.setState(KlondikeAppStatePtr(new DemoInProgressState()));
 }
 
 void StartController::resumeGame() {
-    gameStatusController.resumeGame();
+    context.setState(KlondikeAppStatePtr(new GameInProgressState()));
 }
 
 void StartController::terminateApp() {
-    terminateAppFlag = true;
-}
-
-bool StartController::continueApp() {
-    return !terminateAppFlag;
+    context.resetState();
 }
 
 bool StartController::isGameInProgress() {
-    return gameStatusController.isGameInProgress();
-}
-
-const std::vector<std::shared_ptr<GameActionController> > StartController::getAvailableGameActionControllers() {
-    return gameActionControllerCatalog.getAvailableGameActionControllers();
-}
-
-void StartController::setSelectedGameActionController(size_t controller) {
-    gameActionControllerCatalog.selectGameActionController(controller);
+    return (bool)context.getGame();
 }
 
 void StartController::accept(ControllerVisitor* v) {

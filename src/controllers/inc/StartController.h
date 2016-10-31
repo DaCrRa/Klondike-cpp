@@ -8,10 +8,9 @@
 #ifndef SRC_CONTROLLERS_STARTCONTROLLER_H_
 #define SRC_CONTROLLERS_STARTCONTROLLER_H_
 
+#include <KlondikeAppStateContext.h>
 #include <Controller.h>
 #include <ControllerVisitor.h>
-#include <GameStatusController.h>
-#include <GameActionControllerCatalog.h>
 #include <Klondike.h>
 
 #include <memory>
@@ -19,18 +18,14 @@
 
 class StartController : public Controller {
 private:
-    GameStatusController gameStatusController;
-    GameActionControllerCatalog& gameActionControllerCatalog;
-    bool terminateAppFlag;
+    KlondikeAppStateContext& context;
 public:
-    StartController(std::shared_ptr<Klondike>& k, GameActionControllerCatalog& catalog);
-    bool isGameInProgress();
-    const std::vector<std::shared_ptr<GameActionController> > getAvailableGameActionControllers();
-    void setSelectedGameActionController(size_t controller);
+    StartController(KlondikeAppStateContext& ctxt);
     void startGame();
+    void startDemo();
     void resumeGame();
     void terminateApp();
-    bool continueApp();
+    bool isGameInProgress();
     void accept(ControllerVisitor* v);
 };
 

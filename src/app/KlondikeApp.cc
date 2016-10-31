@@ -7,13 +7,13 @@
 
 #include <KlondikeApp.h>
 
-KlondikeApp::KlondikeApp(ConsoleView* view, Logic* logic) :
+KlondikeApp::KlondikeApp(ConsoleView* view, KlondikeAppStateContext* logic) :
     view(view), logic(logic) {}
 
 void KlondikeApp::run() {
     try {
         while (true) {
-            view->interact(logic->getNextController());
+            view->interact(logic->getNextController().get());
         }
     } catch (NoMoreControllersException& e) {}
 }

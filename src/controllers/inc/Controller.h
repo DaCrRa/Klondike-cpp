@@ -8,7 +8,12 @@
 #ifndef SRC_CONTROLLER_H_
 #define SRC_CONTROLLER_H_
 
+#include <memory>
+
 class ControllerVisitor;
+
+class Controller;
+typedef std::shared_ptr<Controller> ControllerPtr;
 
 class Controller {
 public:

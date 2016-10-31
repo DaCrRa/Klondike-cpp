@@ -7,10 +7,9 @@
 
 #include <GameActionController.h>
 #include <GameActionScoreCalculator.h>
+#include <GamePausedState.h>
+#include <GameCompletedState.h>
 #include <Move.h>
-
-GameActionController::GameActionController(std::shared_ptr<Klondike>& g) :
-    game(g) {}
 
 void GameActionController::accept(ControllerVisitor* visitor) {
     visitor->visit(this);
@@ -20,11 +19,18 @@ std::shared_ptr<Klondike>& GameActionController::getGame() {
     return game;
 }
 
+void GameActionController::pauseGame() {
+    context.setState(KlondikeAppStatePtr(new GamePausedState()));
+}
+
 void GameActionController::doAction(GameActionPtr action) {
     action->doAction();
     GameActionScoreCalculator gameActionScoreCalculator(action);
     gameActionScoreCalculator.setActionScore();
     game->updateScore(action->getScoreDelta());
+    if (game->isCompleted()) {
+        context.setState(KlondikeAppStatePtr(new GameCompletedState()));
+    }
 }
 
 std::vector<MoveOrigin*> GameActionController::getPossibleMoveOrigins() {

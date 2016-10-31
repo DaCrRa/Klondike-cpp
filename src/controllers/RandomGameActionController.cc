@@ -55,7 +55,3 @@ bool RandomGameActionController::isAPossibleMoveOrigin(MoveOrigin* origin) {
 void RandomGameActionController::acceptGameActionControllerVisitor(GameActionControllerVisitor* v) {
     v->visit(this);
 }
-
-GameActionController* RandomGameActionController::clone() {
-    return new RandomGameActionController(*this);
-}

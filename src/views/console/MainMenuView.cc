@@ -7,24 +7,11 @@
 
 #include <MainMenuView.h>
 
-#include <UserGameActionController.h>
-#include <RandomGameActionController.h>
 #include <Menu.h>
 
 #include <assert.h>
 
 void MainMenuView::interact(StartController* startController) {
-
-    const std::vector<std::shared_ptr<GameActionController> >& gameActionControllers = startController->getAvailableGameActionControllers();
-
-    size_t index = 0;
-    for (auto gameActionController : gameActionControllers) {
-        assignGameActionControllerIndex = [&](size_t& gameActionControllerIndexReference) {
-            gameActionControllerIndexReference = index;
-        };
-        gameActionController->acceptGameActionControllerVisitor(this);
-        ++index;
-    }
 
     std::cout << std::endl;
     std::cout << "  ...---=== KLONDIKE ===---..." << std::endl;
@@ -39,10 +26,10 @@ void MainMenuView::interact(StartController* startController) {
     }
 
     options.push_back(std::make_pair(MenuOption("Start one-player klondike", 0), [&] {
-        startGame(startController, userControllerIndex);
+        startController->startGame();
     }));
     options.push_back(std::make_pair(MenuOption("Demo", 0), [&] {
-        startGame(startController, randomControllerIndex);
+        startController->startDemo();
     }));
 
     try {
@@ -52,19 +39,4 @@ void MainMenuView::interact(StartController* startController) {
         std::cout << "Bye!" << std::endl;
         startController->terminateApp();
     }
-}
-
-void MainMenuView::startGame(StartController* startController, size_t gameActionControllerIndex) {
-    startController->setSelectedGameActionController(gameActionControllerIndex);
-    startController->startGame();
-}
-
-void MainMenuView::visit(UserGameActionController* userController) {
-    assert(assignGameActionControllerIndex);
-    assignGameActionControllerIndex(this->userControllerIndex);
-}
-
-void MainMenuView::visit(RandomGameActionController* randomController) {
-    assert(assignGameActionControllerIndex);
-    assignGameActionControllerIndex(this->randomControllerIndex);
 }

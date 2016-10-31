@@ -10,8 +10,7 @@
 Klondike::Klondike() :
     tableau(NUM_TABLEAU_PILES, TableauPile(deck.getNumCardsPerSuit())),
     foundations(/*deck.getNumSuits()*/ 4, Foundation(deck.getNumCardsPerSuit())),
-    score(0),
-    paused(true)
+    score(0)
 {}
 
 void Klondike::initialize() {
@@ -25,7 +24,6 @@ void Klondike::initialize() {
     while (deck.hasCards()) {
         stock.addToCovered(deck.removeTop());
     }
-    paused = false;
 }
 
 bool Klondike::isCompleted() {
@@ -55,13 +53,4 @@ int Klondike::getScore() const {
 void Klondike::updateScore(int delta) {
     score += delta;
 }
-
-bool Klondike::isPaused() {
-    return paused;
-}
-
-void Klondike::togglePause() {
-    paused = !paused;
-}
-
 

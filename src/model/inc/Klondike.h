@@ -21,7 +21,6 @@ private:
     std::vector<Foundation> foundations;
     std::vector<TableauPile> tableau;
     int score;
-    bool paused;
 public:
     Klondike();
     void initialize();
@@ -31,8 +30,6 @@ public:
     std::vector<TableauPile>& getTableau();
     int getScore() const;
     void updateScore(int delta);
-    bool isPaused();
-    void togglePause();
 };
 
 #endif
