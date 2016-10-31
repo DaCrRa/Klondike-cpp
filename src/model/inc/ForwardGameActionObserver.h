@@ -19,6 +19,7 @@ class ForwardGameActionObserver {
 public:
     virtual void onActionDone(ForwardGameActionPtr action) = 0;
     virtual void onActionUndone(ForwardGameActionPtr action) = 0;
+    virtual void onActionRedone(ForwardGameActionPtr action) = 0;
     virtual ~ForwardGameActionObserver() {}
 };
 

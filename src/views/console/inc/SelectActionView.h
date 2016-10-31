@@ -38,10 +38,9 @@ public:
     SelectActionView(UserGameActionController* c);
     void getAction(GameActionPtr& action);
     void visit(UserSelectedMove* userSelectedMove);
-    void visit(StockAction* stockAction);
-    void visit(Move* move);
     void visit(ForwardGameAction* fwdGameAction);
     void visit(UndoGameAction* undoGameAction);
+    void visit(RedoGameAction* redoGameAction);
 };
 
 #endif /* SRC_INC_SELECTACTIONVIEW_H_ */

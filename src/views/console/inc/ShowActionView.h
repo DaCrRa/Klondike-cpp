@@ -15,7 +15,7 @@ class ShowActionView : public ForwardGameActionVisitor {
 private:
     ForwardGameActionPtr action;
 public:
-    ShowActionView(ForwardGameActionPtr action);
+    ShowActionView(ForwardGameActionPtr action = ForwardGameActionPtr());
     void visit(StockAction* action);
     void visit(Move* action);
     void show();

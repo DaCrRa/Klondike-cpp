@@ -26,6 +26,7 @@ public:
     void setActionScore();
     void visit(ForwardGameAction* fwdGameAction);
     void visit(UndoGameAction* undoGameAction);
+    void visit(RedoGameAction* undoGameAction);
     void visit(UserSelectedMove* userSelectedMove);
     void visit(StockAction* stockAction);
     void visit(Move* move);

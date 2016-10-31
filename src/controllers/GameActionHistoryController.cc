@@ -18,10 +18,22 @@ ForwardGameActionPtr GameActionHistoryController::getNextUndoableAction() const 
     return *(historyPosition - 1);
 }
 
+ForwardGameActionPtr GameActionHistoryController::getNextRedoableAction() const {
+    return *historyPosition;
+}
+
 void GameActionHistoryController::onActionUndone(ForwardGameActionPtr action) {
     historyPosition--;
 }
 
+void GameActionHistoryController::onActionRedone(ForwardGameActionPtr action) {
+    historyPosition++;
+}
+
 bool GameActionHistoryController::hasUndoableActions() {
     return historyPosition != actionHistory.begin();
+}
+
+bool GameActionHistoryController::hasRedoableActions() {
+    return historyPosition != actionHistory.end();
 }

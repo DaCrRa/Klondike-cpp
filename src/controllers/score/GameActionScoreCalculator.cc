@@ -1,5 +1,6 @@
 #include <GameActionScoreCalculator.h>
 #include <UndoGameAction.h>
+#include <RedoGameAction.h>
 #include <UserSelectedMove.h>
 
 void GameActionScoreCalculator::visit(StockAction* stockAction) {
@@ -18,6 +19,12 @@ void GameActionScoreCalculator::visit(UndoGameAction* undoGameAction) {
     ForwardGameActionPtr actionUndone = undoGameAction->getForwardGameAction();
     scoreDelta = -actionUndone->getScoreDelta();
 }
+
+void GameActionScoreCalculator::visit(RedoGameAction* redoGameAction) {
+    ForwardGameActionPtr actionRedone = redoGameAction->getForwardGameAction();
+    scoreDelta = actionRedone->getScoreDelta();
+}
+
 
 void GameActionScoreCalculator::visit(Move* move) {
     moveScoreCalculator = std::make_shared<MoveScoreCalculator>(scoreDelta);

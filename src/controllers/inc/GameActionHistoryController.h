@@ -22,8 +22,11 @@ public:
         historyPosition(actionHistory.end()) {}
     void onActionDone(ForwardGameActionPtr action);
     void onActionUndone(ForwardGameActionPtr action);
+    void onActionRedone(ForwardGameActionPtr action);
     bool hasUndoableActions();
+    bool hasRedoableActions();
     ForwardGameActionPtr getNextUndoableAction() const;
+    ForwardGameActionPtr getNextRedoableAction() const;
 };
 
 #endif /* SRC_CONTROLLERS_GAMEACTIONHISTORYCONTOLLER_H_ */

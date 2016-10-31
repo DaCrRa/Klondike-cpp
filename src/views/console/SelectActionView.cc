@@ -12,6 +12,8 @@
 #include <Move.h>
 #include <UserSelectedMove.h>
 #include <MoveCardView.h>
+#include <ShowActionView.h>
+#include <RedoGameAction.h>
 
 #include <iostream>
 
@@ -44,6 +46,14 @@ void SelectActionView::getAction(GameActionPtr& c) {
                                    });
         }
 
+        if (actionController->getGameActionHistoryController()->hasRedoableActions()) {
+            possibleActions.insert({'r',
+                                    GameActionPtr(
+                                        new RedoGameAction(actionController->getGameActionHistoryController()->getNextRedoableAction())
+                                    )
+                                   });
+        }
+
         ItemSelectionDialog<GameActionPtr> dialog("Select action: ",
                 std::move(possibleActions),
                 'c');
@@ -69,7 +79,8 @@ void SelectActionView::visit(UserSelectedMove* userSelectedMove) {
 }
 
 void SelectActionView::visit(ForwardGameAction* fwdGameAction) {
-    std::cout << "Stock action selected!" << std::endl;
+    ShowActionView v;
+    fwdGameAction->accept(&v);
 }
 
 void SelectActionView::visit(UndoGameAction* undoGameAction) {
@@ -77,3 +88,6 @@ void SelectActionView::visit(UndoGameAction* undoGameAction) {
     std::cout << "Undo last action..." << std::endl;
 }
 
+void SelectActionView::visit(RedoGameAction* redoGameAction) {
+    visit(redoGameAction->getForwardGameAction().get());
+}

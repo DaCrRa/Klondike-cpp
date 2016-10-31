@@ -48,6 +48,12 @@ public:
             observer->onActionUndone(shared_from_this());
         }
     }
+    void redoAction() {
+        forwardAction();
+        if (observer) {
+            observer->onActionRedone(shared_from_this());
+        }
+    }
     virtual void accept(ForwardGameActionVisitor* visitor) = 0;
     virtual ForwardGameActionPtr duplicate() = 0;
     virtual ~ForwardGameAction() {}

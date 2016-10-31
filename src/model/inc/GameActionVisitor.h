@@ -10,12 +10,14 @@
 
 class ForwardGameAction;
 class UndoGameAction;
+class RedoGameAction;
 class UserSelectedMove;
 
 class GameActionVisitor {
 public:
     virtual void visit(ForwardGameAction* fwdGameAction) = 0;
     virtual void visit(UndoGameAction* undoGameAction) = 0;
+    virtual void visit(RedoGameAction* undoGameAction) = 0;
     virtual void visit(UserSelectedMove* userSelectedMove) = 0;
     virtual ~GameActionVisitor() {}
 };
