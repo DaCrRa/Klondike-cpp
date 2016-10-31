@@ -56,3 +56,6 @@ void RandomGameActionController::acceptGameActionControllerVisitor(GameActionCon
     v->visit(this);
 }
 
+GameActionController* RandomGameActionController::clone() {
+    return new RandomGameActionController(*this);
+}

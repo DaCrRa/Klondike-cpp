@@ -16,7 +16,7 @@
 class GameActionControllerCatalog {
 private:
     const std::vector<std::shared_ptr<GameActionController> > availableControllers;
-    size_t selected;
+    std::shared_ptr<GameActionController> selectedController;
 public:
     GameActionControllerCatalog(std::shared_ptr<Klondike>& game);
     const std::vector<std::shared_ptr<GameActionController> >& getAvailableGameActionControllers();

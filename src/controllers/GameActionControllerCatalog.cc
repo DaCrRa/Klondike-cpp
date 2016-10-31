@@ -15,8 +15,7 @@ GameActionControllerCatalog::GameActionControllerCatalog(std::shared_ptr<Klondik
     availableControllers( {
     std::make_shared<UserGameActionController>(game),
         std::make_shared<RandomGameActionController>(game)
-}),
-selected(0) {}
+}) {}
 
 const std::vector<std::shared_ptr<GameActionController> >& GameActionControllerCatalog::getAvailableGameActionControllers() {
     return availableControllers;
@@ -24,11 +23,10 @@ const std::vector<std::shared_ptr<GameActionController> >& GameActionControllerC
 
 void GameActionControllerCatalog::selectGameActionController(size_t selected) {
     assert(selected < availableControllers.size());
-    this->selected = selected;
+    selectedController = std::shared_ptr<GameActionController>(availableControllers[selected]->clone());
 }
 
 std::shared_ptr<GameActionController> GameActionControllerCatalog::getSelectedGameActionController() {
-    assert(selected < availableControllers.size());
-    return availableControllers[selected];
+    return selectedController;
 }
 

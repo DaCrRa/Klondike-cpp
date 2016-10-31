@@ -22,6 +22,7 @@ public:
     GameActionController(std::shared_ptr<Klondike>& game);
     std::shared_ptr<Klondike>& getGame();
     void doAction(GameActionPtr action);
+    virtual GameActionController* clone() = 0;
     virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
     void accept(ControllerVisitor* visitor);
     std::vector<MoveOrigin*> getPossibleMoveOrigins();
