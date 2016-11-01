@@ -7,8 +7,6 @@
 
 #include <GameActionController.h>
 #include <GameActionScoreCalculator.h>
-#include <GamePausedState.h>
-#include <GameCompletedState.h>
 #include <Move.h>
 
 void GameActionController::accept(ControllerVisitor* visitor) {
@@ -20,7 +18,7 @@ std::shared_ptr<Klondike>& GameActionController::getGame() {
 }
 
 void GameActionController::pauseGame() {
-    context.setState(KlondikeAppStatePtr(new GamePausedState()));
+    observer.gamePaused();
 }
 
 void GameActionController::doAction(GameActionPtr action) {
@@ -29,7 +27,7 @@ void GameActionController::doAction(GameActionPtr action) {
     gameActionScoreCalculator.setActionScore();
     game->updateScore(action->getScoreDelta());
     if (game->isCompleted()) {
-        context.setState(KlondikeAppStatePtr(new GameCompletedState()));
+        observer.gameCompleted();
     }
 }
 

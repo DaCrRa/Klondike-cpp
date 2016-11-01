@@ -10,14 +10,14 @@
 
 #include <ConsoleView.h>
 
-#include <KlondikeAppStateContext.h>
+#include "../../controllers/inc/Logic.h"
 
 class KlondikeApp {
 private:
     ConsoleView* view;
-    KlondikeAppStateContext* logic;
+    Logic* logic;
 public:
-    KlondikeApp(ConsoleView* view, KlondikeAppStateContext* logic);
+    KlondikeApp(ConsoleView* view, Logic* logic);
     void run();
 };
 

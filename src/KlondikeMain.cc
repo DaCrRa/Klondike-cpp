@@ -1,11 +1,11 @@
 #include <ConsoleView.h>
-#include <KlondikeAppStateContext.h>
 #include <GamePausedState.h>
 #include <KlondikeApp.h>
+#include <Logic.h>
 
 int main(int argc, char* argv[]) {
     ConsoleView view;
-    KlondikeAppStateContext logic(KlondikeAppStatePtr(new GamePausedState()));
+    Logic logic;
 
     KlondikeApp(&view, &logic).run();
 }

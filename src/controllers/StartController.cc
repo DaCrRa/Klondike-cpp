@@ -7,38 +7,35 @@
 
 #include <StartController.h>
 #include <GameInProgressState.h>
-#include <DemoInProgressState.h>
+//#include <DemoInProgressState.h>
 #include <GameActionHistoryController.h>
 
 #include <assert.h>
 
-StartController::StartController(KlondikeAppStateContext& cntxt) :
-    context(cntxt) { }
+StartController::StartController(EventObserver& observer) :
+    eventObserver(observer) { }
 
 void StartController::startGame() {
-    context.getGame() = std::shared_ptr<Klondike>(new Klondike);
-    context.getHistoryController() = std::shared_ptr<GameActionHistoryController>(
-                                         new GameActionHistoryController());
-    context.getGame()->initialize();
-    context.setState(KlondikeAppStatePtr(new GameInProgressState()));
+    eventObserver.gameStarted();
 }
 
 void StartController::startDemo() {
-    context.getGame() = std::shared_ptr<Klondike>(new Klondike);
-    context.getGame()->initialize();
-    context.setState(KlondikeAppStatePtr(new DemoInProgressState()));
+//    context.getGame() = std::shared_ptr<Klondike>(new Klondike);
+//    context.getGame()->initialize();
+//    context.setState(StatePtr(new DemoInProgressState()));
 }
 
 void StartController::resumeGame() {
-    context.setState(KlondikeAppStatePtr(new GameInProgressState()));
+    eventObserver.gameResumed();
 }
 
 void StartController::terminateApp() {
-    context.resetState();
+    eventObserver.exitRequested();
 }
 
 bool StartController::isGameInProgress() {
-    return (bool)context.getGame();
+    //return (bool)context.getGame();
+    return false;
 }
 
 void StartController::accept(ControllerVisitor* v) {

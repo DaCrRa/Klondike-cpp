@@ -5,5 +5,22 @@
  *      Author: dancre
  */
 
-#include "inc/GamePausedState.h"
+#include <GamePausedState.h>
 
+#include <StatesBuilder.h>
+
+GamePausedState::GamePausedState(StatesBuilder& sb, EventObserver& observer) :
+    State(sb),
+    eventObserver(observer) {}
+
+ControllerPtr GamePausedState::getController() {
+    return ControllerPtr(new StartController(eventObserver));
+}
+
+StatePtr GamePausedState::transitionToExit() {
+    return statesBuilder.getExitState();
+}
+
+StatePtr GamePausedState::transitionToGameInProgress() {
+    return statesBuilder.getGameInProgressState();
+}

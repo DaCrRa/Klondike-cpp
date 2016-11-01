@@ -48,3 +48,7 @@ void BestScoresController::registerScore() {
     lastRegisteredPosition = insertScore(game->getScore());
     trimBestScores();
 }
+
+EventObserver& BestScoresController::getEventObserver() {
+    return observer;
+}

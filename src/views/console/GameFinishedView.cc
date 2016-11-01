@@ -24,5 +24,4 @@ void GameFinishedView::show(BestScoresController* bsc) {
         std::cout << std::endl;
         BestScoresView().showBestScores(bsc);
     }
-    game.reset();
 }

@@ -8,19 +8,19 @@
 #ifndef SRC_CONTROLLERS_STARTCONTROLLER_H_
 #define SRC_CONTROLLERS_STARTCONTROLLER_H_
 
-#include <KlondikeAppStateContext.h>
 #include <Controller.h>
 #include <ControllerVisitor.h>
 #include <Klondike.h>
+#include <EventObserver.h>
 
 #include <memory>
 #include <vector>
 
 class StartController : public Controller {
 private:
-    KlondikeAppStateContext& context;
+    EventObserver& eventObserver;
 public:
-    StartController(KlondikeAppStateContext& ctxt);
+    StartController(EventObserver& observer);
     void startGame();
     void startDemo();
     void resumeGame();

@@ -7,7 +7,7 @@
 
 #include <KlondikeApp.h>
 
-KlondikeApp::KlondikeApp(ConsoleView* view, KlondikeAppStateContext* logic) :
+KlondikeApp::KlondikeApp(ConsoleView* view, Logic* logic) :
     view(view), logic(logic) {}
 
 void KlondikeApp::run() {

@@ -28,4 +28,5 @@ void ConsoleView::visit(StartController* controller) {
 
 void ConsoleView::visit(BestScoresController* bsc) {
     GameFinishedView(bsc->getGame()).show(bsc);
+    bsc->getEventObserver().gamePaused();
 }

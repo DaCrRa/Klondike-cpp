@@ -11,11 +11,13 @@
 #include <Controller.h>
 #include <ControllerVisitor.h>
 #include <Klondike.h>
+#include <EventObserver.h>
 
 #include <memory>
 
 class BestScoresController : public Controller {
 private:
+    EventObserver& observer;
     std::shared_ptr<Klondike>& game;
     std::vector<int> bestScores;
     int lastRegisteredPosition;
@@ -24,7 +26,8 @@ private:
 public:
     static const int MAX_BEST_SCORES = 10;
 
-    BestScoresController(std::shared_ptr<Klondike>& g) :
+    BestScoresController(EventObserver& o, std::shared_ptr<Klondike>& g) :
+        observer(o),
         game(g),
         bestScores(0),
         lastRegisteredPosition(-1) {}
@@ -34,6 +37,7 @@ public:
     bool gameScoreIsInRanking();
     void registerScore();
     std::vector<int>& getBestScores();
+    EventObserver& getEventObserver();
 };
 
 #endif /* SRC_CONTROLLERS_INC_BESTSCORESCONTROLLER_H_ */

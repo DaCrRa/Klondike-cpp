@@ -14,16 +14,16 @@
 #include <ForwardGameAction.h>
 #include <ForwardGameActionVisitor.h>
 #include <GameActionControllerVisitor.h>
-#include <KlondikeAppStateContext.h>
+#include <EventObserver.h>
 
 class GameActionController: public Controller {
 protected:
-    KlondikeAppStateContext& context;
+    EventObserver& observer;
     std::shared_ptr<Klondike>& game;
 public:
-    GameActionController(KlondikeAppStateContext& cntxt) :
-        context(cntxt),
-        game(context.getGame()) {};
+    GameActionController(EventObserver& observer, std::shared_ptr<Klondike>& g) :
+        observer(observer),
+        game(g) {};
     std::shared_ptr<Klondike>& getGame();
     void pauseGame();
     void doAction(GameActionPtr action);

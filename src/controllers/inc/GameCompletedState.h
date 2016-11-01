@@ -8,17 +8,21 @@
 #ifndef SRC_CONTROLLERS_INC_GAMECOMPLETEDSTATE_H_
 #define SRC_CONTROLLERS_INC_GAMECOMPLETEDSTATE_H_
 
-#include <KlondikeAppState.h>
-#include <GamePausedState.h>
+#include <State.h>
 
-class GameCompletedState : public KlondikeAppState {
+#include <BestScoresController.h>
+#include <EventObserver.h>
+
+class GameCompletedState : public State {
+private:
+    EventObserver& eventObserver;
+    std::shared_ptr<BestScoresController>& bestScoresController;
 public:
-    ControllerPtr getController(KlondikeAppStateContext& context) {
-        context.getBestScoresController()->registerScore();
-        context.setState(KlondikeAppStatePtr(new GamePausedState()));
-        //context.getGame().reset();
-        return ControllerPtr(context.getBestScoresController());
-    }
+    GameCompletedState(StatesBuilder& sb,
+                       EventObserver& o,
+                       std::shared_ptr<BestScoresController>& bsc);
+    ControllerPtr getController();
+    StatePtr transitionToGamePaused();
 };
 
 #endif /* SRC_CONTROLLERS_INC_GAMECOMPLETEDSTATE_H_ */
