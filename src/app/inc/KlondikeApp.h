@@ -10,7 +10,7 @@
 
 #include <ConsoleView.h>
 
-#include "../../controllers/inc/Logic.h"
+#include <Logic.h>
 
 class KlondikeApp {
 private:

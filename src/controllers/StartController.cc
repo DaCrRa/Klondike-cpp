@@ -6,7 +6,6 @@
  */
 
 #include <StartController.h>
-#include <GameInProgressState.h>
 //#include <DemoInProgressState.h>
 #include <GameActionHistoryController.h>
 

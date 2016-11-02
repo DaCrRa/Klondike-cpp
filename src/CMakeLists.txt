@@ -5,6 +5,7 @@ add_subdirectory(controllers)
 add_subdirectory(views)
 add_subdirectory(app)
 add_subdirectory(actions)
+add_subdirectory(logic)
 
 add_executable(Klondike KlondikeMain.cc)
 
