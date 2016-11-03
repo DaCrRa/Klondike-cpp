@@ -6,22 +6,20 @@
  */
 
 #include <StartController.h>
-//#include <DemoInProgressState.h>
 #include <GameActionHistoryController.h>
 
 #include <assert.h>
 
-StartController::StartController(EventObserver& observer) :
+StartController::StartController(GameStatePtr s, EventObserver& observer) :
+    gameState(s),
     eventObserver(observer) { }
 
 void StartController::startGame() {
     eventObserver.gameStarted();
 }
 
+// TODO Consider removing
 void StartController::startDemo() {
-//    context.getGame() = std::shared_ptr<Klondike>(new Klondike);
-//    context.getGame()->initialize();
-//    context.setState(StatePtr(new DemoInProgressState()));
 }
 
 void StartController::resumeGame() {
@@ -33,8 +31,7 @@ void StartController::terminateApp() {
 }
 
 bool StartController::isGameInProgress() {
-    //return (bool)context.getGame();
-    return false;
+    return gameState->gameIsStarted();
 }
 
 void StartController::accept(ControllerVisitor* v) {

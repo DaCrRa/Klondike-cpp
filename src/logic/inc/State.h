@@ -12,6 +12,7 @@
 #include <assert.h>
 
 #include <Controller.h>
+#include <GameState.h>
 
 class StatesBuilder;
 

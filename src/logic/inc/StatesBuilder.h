@@ -13,9 +13,12 @@
 #include <GameInProgressState.h>
 #include <GameCompletedState.h>
 #include <ExitState.h>
+#include <NoGameStartedState.h>
+#include <GameStartedState.h>
 
 class StatesBuilder {
 private:
+    StatePtr initialState;
     StatePtr gamePaused;
     StatePtr gameInProgress;
     StatePtr gameCompleted;
@@ -25,11 +28,15 @@ public:
                   std::shared_ptr<Klondike>& game,
                   std::shared_ptr<GameActionHistoryController>& historyController,
                   std::shared_ptr<BestScoresController>& bestScoresController) :
-        gamePaused(new GamePausedState(*this, observer)),
+        initialState(new GamePausedState(*this, observer, GameStatePtr(new NoGameStartedState()))),
+        gamePaused(new GamePausedState(*this, observer, GameStatePtr(new GameStartedState()))),
         gameInProgress(new GameInProgressState(*this, observer, game, historyController)),
         gameCompleted(new GameCompletedState(*this, observer, bestScoresController)),
         exitState(new ExitState(*this)) {}
     StatePtr getInitialState() {
+        return initialState;
+    }
+    StatePtr getPausedState() {
         return gamePaused;
     }
     StatePtr getGameInProgressState() {

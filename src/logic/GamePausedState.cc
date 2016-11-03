@@ -9,12 +9,15 @@
 
 #include <StatesBuilder.h>
 
-GamePausedState::GamePausedState(StatesBuilder& sb, EventObserver& observer) :
+GamePausedState::GamePausedState(StatesBuilder& sb,
+                                 EventObserver& observer,
+                                 GameStatePtr gs) :
     State(sb),
-    eventObserver(observer) {}
+    eventObserver(observer),
+    gameState(gs) {}
 
 ControllerPtr GamePausedState::getController() {
-    return ControllerPtr(new StartController(eventObserver));
+    return ControllerPtr(new StartController(gameState, eventObserver));
 }
 
 StatePtr GamePausedState::transitionToExit() {

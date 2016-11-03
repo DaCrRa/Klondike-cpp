@@ -23,7 +23,7 @@ ControllerPtr GameInProgressState::getController() {
 }
 
 StatePtr GameInProgressState::transitionToGamePaused() {
-    return statesBuilder.getInitialState();
+    return statesBuilder.getPausedState();
 }
 
 StatePtr GameInProgressState::transitionToGameCompleted() {

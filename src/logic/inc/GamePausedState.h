@@ -11,11 +11,16 @@
 #include <StartController.h>
 #include <State.h>
 
+#include <GameState.h>
+
 class GamePausedState : public State {
 private:
     EventObserver& eventObserver;
+    GameStatePtr gameState;
 public:
-    GamePausedState(StatesBuilder& sb, EventObserver& observer);
+    GamePausedState(StatesBuilder& sb,
+                    EventObserver& observer,
+                    GameStatePtr gs);
     ControllerPtr getController();
     StatePtr transitionToExit();
     StatePtr transitionToGameInProgress();

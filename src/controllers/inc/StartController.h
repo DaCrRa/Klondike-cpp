@@ -12,15 +12,17 @@
 #include <ControllerVisitor.h>
 #include <Klondike.h>
 #include <EventObserver.h>
+#include <GameState.h>
 
 #include <memory>
 #include <vector>
 
 class StartController : public Controller {
 private:
+    GameStatePtr gameState;
     EventObserver& eventObserver;
 public:
-    StartController(EventObserver& observer);
+    StartController(GameStatePtr state, EventObserver& observer);
     void startGame();
     void startDemo();
     void resumeGame();
