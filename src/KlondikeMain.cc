@@ -1,5 +1,4 @@
 #include <ConsoleView.h>
-#include <GamePausedState.h>
 #include <KlondikeApp.h>
 #include <Logic.h>
 

@@ -8,12 +8,12 @@
 #ifndef SRC_CONTROLLERS_INC_EXITSTATE_H_
 #define SRC_CONTROLLERS_INC_EXITSTATE_H_
 
-#include <State.h>
+#include <AppState.h>
 
-class ExitState : public State {
+class ExitState : public AppState {
 public:
-    ExitState(StatesBuilder& sb) :
-        State(sb) {}
+    ExitState(AppStatesBuilder& sb) :
+        AppState(sb) {}
     ControllerPtr getController() {
         throw NoMoreControllersException();
     }

@@ -9,21 +9,21 @@
 #define SRC_CONTROLLERS_INC_GAMEINPROGRESSSTATE_H_
 
 #include <UserGameActionController.h>
-#include <State.h>
+#include <AppState.h>
 
-class GameInProgressState: public State {
+class GameInProgressState: public AppState {
 private:
     EventObserver& eventObserver;
     std::shared_ptr<Klondike>& game;
     std::shared_ptr<GameActionHistoryController>& historyController;
 public:
-    GameInProgressState(StatesBuilder& sb,
+    GameInProgressState(AppStatesBuilder& sb,
                         EventObserver& observer,
                         std::shared_ptr<Klondike>& g,
                         std::shared_ptr<GameActionHistoryController>& h);
     ControllerPtr getController();
-    StatePtr transitionToGamePaused();
-    StatePtr transitionToGameCompleted();
+    AppStatePtr transitionToNoGameInProgress();
+    AppStatePtr transitionToGameCompleted();
 };
 
 #endif /* SRC_CONTROLLERS_INC_GAMEINPROGRESSSTATE_H_ */

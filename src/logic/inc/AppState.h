@@ -14,10 +14,10 @@
 #include <Controller.h>
 #include <GameState.h>
 
-class StatesBuilder;
+class AppStatesBuilder;
 
-class State;
-typedef std::shared_ptr<State> StatePtr;
+class AppState;
+typedef std::shared_ptr<AppState> AppStatePtr;
 
 class NoMoreControllersException : public std::exception {
 public:
@@ -26,30 +26,30 @@ public:
     }
 };
 
-class State {
+class AppState {
 protected:
-    StatesBuilder& statesBuilder;
+    AppStatesBuilder& statesBuilder;
 public:
-    State(StatesBuilder& sb) :
+    AppState(AppStatesBuilder& sb) :
         statesBuilder(sb) {}
-    virtual StatePtr transitionToGameInProgress() {
+    virtual AppStatePtr transitionToGameInProgress() {
         assert(false);
-        return StatePtr();
+        return AppStatePtr();
     }
-    virtual StatePtr transitionToGamePaused() {
+    virtual AppStatePtr transitionToNoGameInProgress() {
         assert(false);
-        return StatePtr();
+        return AppStatePtr();
     }
-    virtual StatePtr transitionToGameCompleted() {
+    virtual AppStatePtr transitionToGameCompleted() {
         assert(false);
-        return StatePtr();
+        return AppStatePtr();
     }
-    virtual StatePtr transitionToExit() {
+    virtual AppStatePtr transitionToExit() {
         assert(false);
-        return StatePtr();
+        return AppStatePtr();
     }
     virtual ControllerPtr getController() = 0;
-    virtual ~State() {}
+    virtual ~AppState() {}
 };
 
 #endif /* SRC_CONTROLLERS_INC_STATE_H_ */

@@ -7,13 +7,13 @@
 
 #include <GameInProgressState.h>
 
-#include <StatesBuilder.h>
+#include <AppStatesBuilder.h>
 
-GameInProgressState::GameInProgressState(StatesBuilder& sb,
+GameInProgressState::GameInProgressState(AppStatesBuilder& sb,
         EventObserver& observer,
         std::shared_ptr<Klondike>& g,
         std::shared_ptr<GameActionHistoryController>& h) :
-    State(sb),
+    AppState(sb),
     eventObserver(observer),
     game(g),
     historyController(h) {}
@@ -22,10 +22,10 @@ ControllerPtr GameInProgressState::getController() {
     return ControllerPtr(new UserGameActionController(eventObserver, game, historyController));
 }
 
-StatePtr GameInProgressState::transitionToGamePaused() {
+AppStatePtr GameInProgressState::transitionToNoGameInProgress() {
     return statesBuilder.getPausedState();
 }
 
-StatePtr GameInProgressState::transitionToGameCompleted() {
+AppStatePtr GameInProgressState::transitionToGameCompleted() {
     return statesBuilder.getGameCompletedState();
 }

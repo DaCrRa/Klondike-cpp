@@ -8,21 +8,21 @@
 #ifndef SRC_CONTROLLERS_INC_GAMECOMPLETEDSTATE_H_
 #define SRC_CONTROLLERS_INC_GAMECOMPLETEDSTATE_H_
 
-#include <State.h>
+#include <AppState.h>
 
 #include <BestScoresController.h>
 #include <EventObserver.h>
 
-class GameCompletedState : public State {
+class GameCompletedState : public AppState {
 private:
     EventObserver& eventObserver;
     std::shared_ptr<BestScoresController>& bestScoresController;
 public:
-    GameCompletedState(StatesBuilder& sb,
+    GameCompletedState(AppStatesBuilder& sb,
                        EventObserver& o,
                        std::shared_ptr<BestScoresController>& bsc);
     ControllerPtr getController();
-    StatePtr transitionToGamePaused();
+    AppStatePtr transitionToNoGameInProgress();
 };
 
 #endif /* SRC_CONTROLLERS_INC_GAMECOMPLETEDSTATE_H_ */

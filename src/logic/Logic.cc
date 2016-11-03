@@ -26,7 +26,7 @@ void Logic::gameStarted() {
 }
 
 void Logic::gamePaused() {
-    currentState = currentState->transitionToGamePaused();
+    currentState = currentState->transitionToNoGameInProgress();
 }
 
 void Logic::gameResumed() {

@@ -6,12 +6,12 @@
  */
 
 #include <GameCompletedState.h>
-#include <StatesBuilder.h>
+#include <AppStatesBuilder.h>
 
-GameCompletedState::GameCompletedState(StatesBuilder& sb,
+GameCompletedState::GameCompletedState(AppStatesBuilder& sb,
                                        EventObserver& o,
                                        std::shared_ptr<BestScoresController>& bsc) :
-    State(sb),
+    AppState(sb),
     eventObserver(o),
     bestScoresController(bsc) {}
 
@@ -19,6 +19,6 @@ ControllerPtr GameCompletedState::getController() {
     return ControllerPtr(bestScoresController);
 }
 
-StatePtr GameCompletedState::transitionToGamePaused() {
+AppStatePtr GameCompletedState::transitionToNoGameInProgress() {
     return statesBuilder.getInitialState();
 }
