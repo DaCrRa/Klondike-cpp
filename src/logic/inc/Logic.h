@@ -10,6 +10,7 @@
 
 #include <Klondike.h>
 #include <EventObserver.h>
+#include <GameActionController.h>
 #include <GameActionHistoryController.h>
 #include <BestScoresController.h>
 #include <AppStatesBuilder.h>
@@ -22,10 +23,12 @@ private:
     std::shared_ptr<BestScoresController> bestScoresController;
     AppStatesBuilder statesBuildr;
     AppStatePtr currentState;
+    void start(std::shared_ptr<GameActionController> gameActionController);
 public:
     Logic();
     ControllerPtr getNextController();
     void gameStarted();
+    void demoStarted();
     void gamePaused();
     void gameResumed();
     void gameCompleted();

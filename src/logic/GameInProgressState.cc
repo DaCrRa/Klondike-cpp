@@ -10,16 +10,12 @@
 #include <AppStatesBuilder.h>
 
 GameInProgressState::GameInProgressState(AppStatesBuilder& sb,
-        EventObserver& observer,
-        std::shared_ptr<Klondike>& g,
-        std::shared_ptr<GameActionHistoryController>& h) :
+        std::shared_ptr<GameActionController> gac):
     AppState(sb),
-    eventObserver(observer),
-    game(g),
-    historyController(h) {}
+    gameActionController(gac) {}
 
 ControllerPtr GameInProgressState::getController() {
-    return ControllerPtr(new UserGameActionController(eventObserver, game, historyController));
+    return ControllerPtr(gameActionController);
 }
 
 AppStatePtr GameInProgressState::transitionToNoGameInProgress() {

@@ -18,8 +18,8 @@ void StartController::startGame() {
     eventObserver.gameStarted();
 }
 
-// TODO Consider removing
 void StartController::startDemo() {
+    eventObserver.demoStarted();
 }
 
 void StartController::resumeGame() {

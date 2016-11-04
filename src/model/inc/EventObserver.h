@@ -16,6 +16,7 @@ typedef std::shared_ptr<EventObserver> EventObserverPtr;
 class EventObserver {
 public:
     virtual void gameStarted() = 0;
+    virtual void demoStarted() = 0;
     virtual void gamePaused() = 0;
     virtual void gameResumed() = 0;
     virtual void gameCompleted() = 0;
