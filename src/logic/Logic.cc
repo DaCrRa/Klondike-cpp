@@ -29,19 +29,19 @@ void Logic::start(std::shared_ptr<GameActionController> gameActionController) {
     currentState = currentState->transitionToGameInProgress();
 }
 
-void Logic::gameStarted() {
+void Logic::userGameStartRequested() {
     start(std::shared_ptr<GameActionController>(new UserGameActionController(*this, game, historyController)));
 }
 
-void Logic::demoStarted() {
+void Logic::demoRequested() {
     start(std::shared_ptr<GameActionController>(new RandomGameActionController(*this, game)));
 }
 
-void Logic::gamePaused() {
+void Logic::gamePauseRequested() {
     currentState = currentState->transitionToNoGameInProgress();
 }
 
-void Logic::gameResumed() {
+void Logic::gameResumeRequested() {
     currentState = currentState->transitionToGameInProgress();
 }
 

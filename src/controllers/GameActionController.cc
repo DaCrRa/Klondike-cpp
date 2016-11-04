@@ -18,7 +18,7 @@ std::shared_ptr<Klondike>& GameActionController::getGame() {
 }
 
 void GameActionController::pauseGame() {
-    observer.gamePaused();
+    observer.gamePauseRequested();
 }
 
 void GameActionController::doAction(GameActionPtr action) {

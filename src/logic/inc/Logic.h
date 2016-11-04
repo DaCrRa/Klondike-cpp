@@ -27,10 +27,10 @@ private:
 public:
     Logic();
     ControllerPtr getNextController();
-    void gameStarted();
-    void demoStarted();
-    void gamePaused();
-    void gameResumed();
+    void userGameStartRequested();
+    void demoRequested();
+    void gamePauseRequested();
+    void gameResumeRequested();
     void gameCompleted();
     void exitRequested();
 };

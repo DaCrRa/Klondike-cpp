@@ -15,15 +15,15 @@ StartController::StartController(GameStatePtr s, EventObserver& observer) :
     eventObserver(observer) { }
 
 void StartController::startGame() {
-    eventObserver.gameStarted();
+    eventObserver.userGameStartRequested();
 }
 
 void StartController::startDemo() {
-    eventObserver.demoStarted();
+    eventObserver.demoRequested();
 }
 
 void StartController::resumeGame() {
-    eventObserver.gameResumed();
+    eventObserver.gameResumeRequested();
 }
 
 void StartController::terminateApp() {
