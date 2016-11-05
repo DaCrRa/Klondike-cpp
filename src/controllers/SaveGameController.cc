@@ -15,7 +15,6 @@ bool SaveGameController::nameCanBeUsed(const std::string& name) {
 
 void SaveGameController::save(const std::string& name) {
     assert(nameCanBeUsed(name));
-    eventObserver.gameSaved();
 }
 
 void SaveGameController::accept(ControllerVisitor* v) {

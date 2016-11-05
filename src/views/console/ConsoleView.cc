@@ -34,4 +34,5 @@ void ConsoleView::visit(BestScoresController* bsc) {
 
 void ConsoleView::visit(SaveGameController* controller) {
     SaveGameView().interact(controller);
+    eventObserver.gamePauseRequested();
 }
