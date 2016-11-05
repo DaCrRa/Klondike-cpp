@@ -21,10 +21,10 @@ void MainMenuView::interact(StartController* startController) {
 
     if (startController->isGameInProgress()) {
         options.push_back(std::make_pair(MenuOption("Resume game", 0), [&] {
-            startController->resumeGame();
+            eventObserver.gameResumeRequested();
         }));
         options.push_back(std::make_pair(MenuOption("Save game", 1), [&] {
-            startController->saveGame();
+            eventObserver.saveGameRequested();
         }));
     }
 
@@ -43,6 +43,6 @@ void MainMenuView::interact(StartController* startController) {
         (m.getUserSelection())();
     } catch (CancelledDialogException& e) {
         std::cout << "Bye!" << std::endl;
-        startController->terminateApp();
+        eventObserver.exitRequested();
     }
 }

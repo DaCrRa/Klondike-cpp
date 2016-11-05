@@ -10,11 +10,16 @@
 
 #include <StartController.h>
 #include <GameActionControllerVisitor.h>
+#include <EventObserver.h>
 
 #include <memory>
 
 class MainMenuView {
+private:
+    EventObserver& eventObserver;
 public:
+    MainMenuView(EventObserver& observer) :
+        eventObserver(observer) {}
     void interact(StartController* controller);
 };
 

@@ -14,12 +14,18 @@
 
 class NoGameInProgressState : public AppState {
 private:
+    std::shared_ptr<Klondike>& game;
+    std::shared_ptr<GameActionHistoryController>& historyController;
+    GameActionControllerHolder& holder;
     EventObserver& eventObserver;
     GameStatePtr gameState;
 public:
     NoGameInProgressState(AppStatesBuilder& sb,
-                          EventObserver& observer,
-                          GameStatePtr gs);
+                          std::shared_ptr<Klondike>& g,
+                          std::shared_ptr<GameActionHistoryController>& historyController,
+                          GameActionControllerHolder& holder,
+                          EventObserver& eventObserver,
+                          GameStatePtr gameState);
     ControllerPtr getController();
     AppStatePtr transitionToExit();
     AppStatePtr transitionToGameInProgress();

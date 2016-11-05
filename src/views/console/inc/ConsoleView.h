@@ -10,9 +10,14 @@
 
 #include <Controller.h>
 #include <ControllerVisitor.h>
+#include <EventObserver.h>
 
 class ConsoleView : public ControllerVisitor {
+private:
+    EventObserver& eventObserver;
 public:
+    ConsoleView(EventObserver& observer) :
+        eventObserver(observer) {};
     void interact(Controller* c);
     void visit(GameActionController* c);
     void visit(StartController* c);

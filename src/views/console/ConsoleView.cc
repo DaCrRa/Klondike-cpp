@@ -23,13 +23,13 @@ void ConsoleView::visit(GameActionController* controller) {
 }
 
 void ConsoleView::visit(StartController* controller) {
-    MainMenuView menu;
+    MainMenuView menu(eventObserver);
     menu.interact(controller);
 }
 
 void ConsoleView::visit(BestScoresController* bsc) {
     GameFinishedView(bsc->getGame()).show(bsc);
-    bsc->getEventObserver().gamePauseRequested();
+    eventObserver.gamePauseRequested();
 }
 
 void ConsoleView::visit(SaveGameController* controller) {

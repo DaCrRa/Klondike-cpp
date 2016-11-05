@@ -10,12 +10,12 @@
 #include <AppStatesBuilder.h>
 
 GameInProgressState::GameInProgressState(AppStatesBuilder& sb,
-        std::shared_ptr<GameActionController> gac):
+        GameActionControllerHolder& gameActionControllerHolder):
     AppState(sb),
-    gameActionController(gac) {}
+    gameActionControllerHolder(gameActionControllerHolder) {}
 
 ControllerPtr GameInProgressState::getController() {
-    return ControllerPtr(gameActionController);
+    return ControllerPtr(gameActionControllerHolder.getGameActionController());
 }
 
 AppStatePtr GameInProgressState::transitionToNoGameInProgress() {

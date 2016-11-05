@@ -8,14 +8,14 @@
 #ifndef SRC_CONTROLLERS_INC_GAMEINPROGRESSSTATE_H_
 #define SRC_CONTROLLERS_INC_GAMEINPROGRESSSTATE_H_
 
-#include <GameActionController.h>
+#include <GameActionControllerHolder.h>
 #include <AppState.h>
 
 class GameInProgressState: public AppState {
 private:
-    std::shared_ptr<GameActionController> gameActionController;
+    GameActionControllerHolder& gameActionControllerHolder;
 public:
-    GameInProgressState(AppStatesBuilder& sb, std::shared_ptr<GameActionController> gac);
+    GameInProgressState(AppStatesBuilder& sb, GameActionControllerHolder& gameActionControllerHolder);
     ControllerPtr getController();
     AppStatePtr transitionToNoGameInProgress();
     AppStatePtr transitionToGameCompleted();

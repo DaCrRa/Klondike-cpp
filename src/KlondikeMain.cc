@@ -3,8 +3,8 @@
 #include <Logic.h>
 
 int main(int argc, char* argv[]) {
-    ConsoleView view;
     Logic logic;
+    ConsoleView view(logic);
 
     KlondikeApp(&view, &logic).run();
 }
