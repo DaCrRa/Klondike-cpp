@@ -24,6 +24,7 @@ private:
 public:
     StartController(GameStatePtr state, EventObserver& observer);
     void startGame();
+    void saveGame();
     void startDemo();
     void resumeGame();
     void terminateApp();

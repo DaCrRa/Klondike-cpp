@@ -11,9 +11,10 @@
 #include <RandomGameActionController.h>
 
 Logic::Logic() :
-    statesBuildr(*this, game, historyController, bestScoresController),
+    statesBuildr(*this, game, historyController, bestScoresController, saveGameController),
     currentState(statesBuildr.getInitialState()),
-    bestScoresController(new BestScoresController(*this, game)) {
+    bestScoresController(new BestScoresController(*this, game)),
+    saveGameController(new SaveGameController(*this, game)) {
     assert(currentState);
 }
 
@@ -35,6 +36,14 @@ void Logic::userGameStartRequested() {
 
 void Logic::demoRequested() {
     start(std::shared_ptr<GameActionController>(new RandomGameActionController(*this, game)));
+}
+
+void Logic::saveGameRequested() {
+    currentState = currentState->transitionToSavingGame();
+}
+
+void Logic::gameSaved() {
+    currentState = currentState->transitionToNoGameInProgress();
 }
 
 void Logic::gamePauseRequested() {

@@ -27,3 +27,7 @@ AppStatePtr NoGameInProgressState::transitionToExit() {
 AppStatePtr NoGameInProgressState::transitionToGameInProgress() {
     return statesBuilder.getGameInProgressState();
 }
+
+AppStatePtr NoGameInProgressState::transitionToSavingGame() {
+    return statesBuilder.getSavingGameState();
+}

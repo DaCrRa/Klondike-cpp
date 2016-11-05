@@ -48,6 +48,10 @@ public:
         assert(false);
         return AppStatePtr();
     }
+    virtual AppStatePtr transitionToSavingGame() {
+        assert(false);
+        return AppStatePtr();
+    }
     virtual ControllerPtr getController() = 0;
     virtual ~AppState() {}
 };

@@ -9,6 +9,7 @@
 #include <GameView.h>
 #include <MainMenuView.h>
 #include <GameFinishedView.h>
+#include <SaveGameView.h>
 
 #include <BestScoresController.h>
 
@@ -29,4 +30,8 @@ void ConsoleView::visit(StartController* controller) {
 void ConsoleView::visit(BestScoresController* bsc) {
     GameFinishedView(bsc->getGame()).show(bsc);
     bsc->getEventObserver().gamePauseRequested();
+}
+
+void ConsoleView::visit(SaveGameController* controller) {
+    SaveGameView().interact(controller);
 }

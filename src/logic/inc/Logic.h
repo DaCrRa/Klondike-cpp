@@ -13,6 +13,7 @@
 #include <GameActionController.h>
 #include <GameActionHistoryController.h>
 #include <BestScoresController.h>
+#include <SaveGameController.h>
 #include <AppStatesBuilder.h>
 #include <assert.h>
 
@@ -21,6 +22,7 @@ private:
     std::shared_ptr<Klondike> game;
     std::shared_ptr<GameActionHistoryController> historyController;
     std::shared_ptr<BestScoresController> bestScoresController;
+    std::shared_ptr<SaveGameController> saveGameController;
     AppStatesBuilder statesBuildr;
     AppStatePtr currentState;
     void start(std::shared_ptr<GameActionController> gameActionController);
@@ -29,6 +31,8 @@ public:
     ControllerPtr getNextController();
     void userGameStartRequested();
     void demoRequested();
+    void saveGameRequested();
+    void gameSaved();
     void gamePauseRequested();
     void gameResumeRequested();
     void gameCompleted();

@@ -23,6 +23,7 @@ public:
     ControllerPtr getController();
     AppStatePtr transitionToExit();
     AppStatePtr transitionToGameInProgress();
+    AppStatePtr transitionToSavingGame();
 };
 
 #endif /* SRC_CONTROLLERS_INC_NOGAMEINPROGRESSSTATE_H_ */

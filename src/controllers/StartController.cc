@@ -18,6 +18,10 @@ void StartController::startGame() {
     eventObserver.userGameStartRequested();
 }
 
+void StartController::saveGame() {
+    eventObserver.saveGameRequested();
+}
+
 void StartController::startDemo() {
     eventObserver.demoRequested();
 }

@@ -23,10 +23,16 @@ void MainMenuView::interact(StartController* startController) {
         options.push_back(std::make_pair(MenuOption("Resume game", 0), [&] {
             startController->resumeGame();
         }));
+        options.push_back(std::make_pair(MenuOption("Save game", 1), [&] {
+            startController->saveGame();
+        }));
     }
 
-    options.push_back(std::make_pair(MenuOption("Start one-player klondike", 0), [&] {
+    options.push_back(std::make_pair(MenuOption("Start new one-player klondike", 0), [&] {
         startController->startGame();
+    }));
+    options.push_back(std::make_pair(MenuOption("Load saved game", 0), [&] {
+
     }));
     options.push_back(std::make_pair(MenuOption("Demo", 0), [&] {
         startController->startDemo();
