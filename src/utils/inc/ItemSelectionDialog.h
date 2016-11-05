@@ -12,6 +12,7 @@
 #include <map>
 #include <exception>
 #include <iostream>
+#include <limits>
 
 class CancelledDialogException : public std::exception {
 public:
@@ -49,6 +50,8 @@ public:
             }
             selected = allowedChars.find(userInput);
         }
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.clear();
         return selected->second;
     }
 private:
