@@ -7,6 +7,7 @@
 
 #include <GameFinishedView.h>
 #include <BestScoresView.h>
+#include <PressEnterToContinue.h>
 
 #include <iostream>
 
@@ -15,9 +16,7 @@ void GameFinishedView::show(BestScoresController* bsc) {
     std::cout << std::endl;
     std::cout << "Game completed!!" << std::endl;
     std::cout << std::endl;
-    std::cout << "Press enter to continue...";
-    std::cin.get();
-    std::cin.get();
+    PressEnterToContinue().waitForEnter();
     std::cout << std::endl;
     if (bsc->gameScoreIsInRanking()) {
         std::cout << "CONGRATULATIONS!! Your score is in top " << BestScoresController::MAX_BEST_SCORES << std::endl;

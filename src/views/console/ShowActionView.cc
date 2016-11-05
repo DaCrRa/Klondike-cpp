@@ -6,6 +6,7 @@
  */
 
 #include <ShowActionView.h>
+#include <PressEnterToContinue.h>
 
 #include <iostream>
 
@@ -16,8 +17,7 @@ ShowActionView::ShowActionView(ForwardGameActionPtr act) :
 }
 
 void ShowActionView::show() {
-    std::cout << "Press enter for next move...";
-    std::cin.get();
+    PressEnterToContinue("Press enter for next move...").waitForEnter();
     std::cout << std::endl;
     action->accept(this);
 }

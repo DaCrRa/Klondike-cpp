@@ -6,6 +6,7 @@
  */
 
 #include <BestScoresView.h>
+#include <PressEnterToContinue.h>
 
 #include <iostream>
 #include <iomanip>
@@ -26,9 +27,7 @@ void BestScoresView::showBestScores(BestScoresController* bsc) {
         std::cout << std::setw(scoresColumnWidth) << *it << std::endl;
     }
     std::cout << std::endl;
-    std::cout << "Press enter to continue...";
-    std::cin.get();
-    std::cin.get();
+    PressEnterToContinue().waitForEnter();
 }
 
 int BestScoresView::getNumOfDigits(long value) {
