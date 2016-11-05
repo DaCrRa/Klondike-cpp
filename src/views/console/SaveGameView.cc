@@ -6,11 +6,17 @@
  */
 
 #include <SaveGameView.h>
+#include <StringInputDialog.h>
 
 #include <iostream>
 
 void SaveGameView::interact(SaveGameController* saveGameController) {
-    std::cout << "SAVE GAME" << std::endl;
-    saveGameController->save("");
+    StringInputDialog inputDialog("Insert game name: ");
+    std::string gameName = inputDialog.getUserInput();
+    if (!gameName.empty()) {
+
+    } else {
+        std::cout << "Cancelled!" << std::endl;
+    }
 }
 

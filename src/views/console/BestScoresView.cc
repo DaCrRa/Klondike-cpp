@@ -31,7 +31,7 @@ void BestScoresView::showBestScores(BestScoresController* bsc) {
     std::cin.get();
 }
 
-int BestScoresView::getNumOfDigits(int value) {
+int BestScoresView::getNumOfDigits(long value) {
     int digits = 0;
     if (value < 0) {
         digits++;

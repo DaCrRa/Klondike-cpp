@@ -12,7 +12,7 @@
 
 class BestScoresView {
 private:
-    int getNumOfDigits(int value);
+    int getNumOfDigits(long value);
 public:
     void showBestScores(BestScoresController* bsc);
 };
