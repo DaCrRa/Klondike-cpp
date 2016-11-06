@@ -12,6 +12,7 @@
 #include <Foundation.h>
 #include <Stock.h>
 #include <TableauPile.h>
+#include <KlondikeVisitor.h>
 
 class Klondike {
 private:
@@ -30,6 +31,7 @@ public:
     std::vector<TableauPile>& getTableau();
     int getScore() const;
     void updateScore(int delta);
+    void accept(KlondikeVisitor* vistor);
 };
 
 #endif

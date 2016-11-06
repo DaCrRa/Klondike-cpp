@@ -54,3 +54,15 @@ void Klondike::updateScore(int delta) {
     score += delta;
 }
 
+void Klondike::accept(KlondikeVisitor* visitor) {
+    visitor->visitScore(score);
+    visitor->visitStock(&stock);
+    for(Foundation& foundation : foundations) {
+        visitor->visitFoundation(&foundation);
+    }
+    visitor->allFoundationsVisited();
+    for(TableauPile& tableauPile : tableau) {
+        visitor->visitTableauPile(&tableauPile);
+    }
+    visitor->allTableauPilesVisited();
+}
