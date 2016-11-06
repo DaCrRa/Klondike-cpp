@@ -7,16 +7,32 @@
 
 #include <SaveGameView.h>
 #include <StringInputDialog.h>
+#include <YesNoDialog.h>
 
 #include <iostream>
 
-void SaveGameView::interact(SaveGameController* saveGameController) {
+std::string SaveGameView::getGameName(SaveGameController* saveGameController) {
     StringInputDialog inputDialog("Insert game name: ");
-    std::string gameName = inputDialog.getUserInput();
-    if (!gameName.empty()) {
-
-    } else {
-        std::cout << "Cancelled!" << std::endl;
+    while (true) {
+        std::string gameName = inputDialog.getUserInput();
+        YesNoDialog overwriteDialog(
+            std::string("A game exists with this name: \"") +
+            gameName +
+            "\". Overwrite? ");
+        if (gameName.empty()) {
+            throw CancelledSaveException();
+        }
+        if (!saveGameController->existsGameWithName(gameName) || overwriteDialog.userSaidYes()) {
+            return gameName;
+        }
     }
 }
 
+void SaveGameView::interact(SaveGameController* saveGameController) {
+    try {
+        std::string gameName = getGameName(saveGameController);
+        saveGameController->save(gameName);
+    } catch (CancelledSaveException& e) {
+        std::cout << e.what() << std::endl;
+    }
+}

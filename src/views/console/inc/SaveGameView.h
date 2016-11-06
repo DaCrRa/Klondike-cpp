@@ -10,7 +10,16 @@
 
 #include <SaveGameController.h>
 
+class CancelledSaveException : public std::exception {
+public:
+    const char* what() const throw() {
+        return "Save game cancelled!";
+    };
+};
+
 class SaveGameView {
+private:
+    std::string getGameName(SaveGameController* saveGameController);
 public:
     void interact(SaveGameController* saveGameController);
 };
