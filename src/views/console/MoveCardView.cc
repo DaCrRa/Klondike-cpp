@@ -11,20 +11,25 @@
 #include <MoveFromStock.h>
 #include <MoveFromTableauPile.h>
 #include <MoveFromFoundation.h>
+#include <KlondikeConsoleRenderer.h>
 
 MoveCardView::MoveCardView(UserGameActionController* c) :
     controller(c)
 {
-    std::shared_ptr<Klondike>& game = controller->getGame();
-    gameElementTag.insert(std::pair<GameElement*, char>(game->getStock(), 's'));
-    char foundationTag = 'A';
-    for (std::vector<Foundation>::iterator it = game->getFoundations().begin() ; it != game->getFoundations().end() ; ++it) {
-        gameElementTag.insert(std::pair<GameElement*, char>(it.base(), foundationTag++));
-    }
-    char tableauPileTag = '1';
-    for (std::vector<TableauPile>::iterator it = game->getTableau().begin() ; it != game->getTableau().end() ; ++it) {
-        gameElementTag.insert(std::pair<GameElement*, char>(it.base(), tableauPileTag++));
-    }
+    char foundationTag = KlondikeConsoleRenderer::FOUNDATION_BASE_TAG;
+    char tableauPileTag = KlondikeConsoleRenderer::TABLEAU_PILE_BASE_TAG;
+
+    KlondikeLambdaVisitor gameElementTagger;
+
+    gameElementTagger.setVisitStockFunction([&](Stock* s)->void{
+        gameElementTag.insert(std::pair<GameElement*, char>(s, 's'));
+    }).setVisitFoundationFunction([&](Foundation* f)->void{
+        gameElementTag.insert(std::pair<GameElement*, char>(f, foundationTag++));
+    }).setVisitTableauPileFunction([&](TableauPile* tp)->void{
+        gameElementTag.insert(std::pair<GameElement*, char>(tp, tableauPileTag++));
+    });
+
+    controller->getGame()->accept(&gameElementTagger);
 }
 
 void MoveCardView::completeMove(UserSelectedMove* userSelectedMove) {
