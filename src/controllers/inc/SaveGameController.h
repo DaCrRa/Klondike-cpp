@@ -19,11 +19,12 @@ class SaveGameController: public Controller {
 private:
     EventObserver& eventObserver;
     std::shared_ptr<Klondike>& game;
+    std::vector<std::string> savedGamesNames;
 public:
     SaveGameController(EventObserver& observer, std::shared_ptr<Klondike>& g) :
         eventObserver(observer),
         game(g) {};
-    bool nameCanBeUsed(const std::string& name);
+    bool existsGameWithName(const std::string& name);
     void save(const std::string& name);
     void accept(ControllerVisitor* v);
 };
