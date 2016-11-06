@@ -8,14 +8,14 @@
 #ifndef SRC_VIEWS_CONSOLE_MOVECARDVIEW_H_
 #define SRC_VIEWS_CONSOLE_MOVECARDVIEW_H_
 
-#include <GameActionController.h>
+#include <UserGameActionController.h>
 #include <UserSelectedMove.h>
 
 #include <map>
 
 class MoveCardView : public MoveOriginVisitor {
 private:
-    GameActionController* controller;
+    UserGameActionController* controller;
     std::map<GameElement*, char> gameElementTag;
 
     MovePtr move;
@@ -23,7 +23,7 @@ private:
     std::map<char, MoveOrigin*> tagPossibleOrigins();
     std::map<char, MoveDest*> tagPossibleDests(MoveOrigin* origin);
 public:
-    MoveCardView(GameActionController* c);
+    MoveCardView(UserGameActionController* c);
     void visit(Stock* s);
     void visit(Foundation* f);
     void visit(TableauPile* tp);

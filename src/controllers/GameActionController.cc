@@ -31,30 +31,6 @@ void GameActionController::doAction(GameActionPtr action) {
     }
 }
 
-std::vector<MoveOrigin*> GameActionController::getPossibleMoveOrigins() {
-    MoveOrigFinder originFinder;
-    game->accept(&originFinder);
-    return originFinder.getPossibleOrigins();
-}
-
-void GameActionController::MoveOrigFinder::visitStock(Stock* stock) {
-    if (stock->hasCardAvailable()) {
-        possibleOrigins.push_back(stock);
-    }
-}
-
-void GameActionController::MoveOrigFinder::visitTableauPile(TableauPile* tp) {
-    if (tp->hasCardAvailable()) {
-        possibleOrigins.push_back(tp);
-    }
-}
-
-void GameActionController::MoveOrigFinder::visitFoundation(Foundation* f) {
-    if (f->hasCardAvailable()) {
-        possibleOrigins.push_back(f);
-    }
-}
-
 void GameActionController::MoveDestFinder::visitTableauPile(TableauPile* tp) {
     if (tp->cardCanBeAdded(origin->showAvailableCard())) {
         possibleDests.push_back(tp);

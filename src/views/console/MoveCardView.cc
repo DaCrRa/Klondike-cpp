@@ -12,7 +12,7 @@
 #include <MoveFromTableauPile.h>
 #include <MoveFromFoundation.h>
 
-MoveCardView::MoveCardView(GameActionController* c) :
+MoveCardView::MoveCardView(UserGameActionController* c) :
     controller(c)
 {
     std::shared_ptr<Klondike>& game = controller->getGame();

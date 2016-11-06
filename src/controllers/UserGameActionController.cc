@@ -14,3 +14,27 @@ void UserGameActionController::acceptGameActionControllerVisitor(GameActionContr
 std::shared_ptr<GameActionHistoryController> UserGameActionController::getGameActionHistoryController() {
     return historyController;
 }
+
+std::vector<MoveOrigin*> UserGameActionController::getPossibleMoveOrigins() {
+    MoveOrigFinder originFinder;
+    game->accept(&originFinder);
+    return originFinder.getPossibleOrigins();
+}
+
+void UserGameActionController::MoveOrigFinder::visitStock(Stock* stock) {
+    if (stock->hasCardAvailable()) {
+        possibleOrigins.push_back(stock);
+    }
+}
+
+void UserGameActionController::MoveOrigFinder::visitTableauPile(TableauPile* tp) {
+    if (tp->hasCardAvailable()) {
+        possibleOrigins.push_back(tp);
+    }
+}
+
+void UserGameActionController::MoveOrigFinder::visitFoundation(Foundation* f) {
+    if (f->hasCardAvailable()) {
+        possibleOrigins.push_back(f);
+    }
+}

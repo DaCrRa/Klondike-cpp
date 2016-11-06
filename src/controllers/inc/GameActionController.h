@@ -21,18 +21,6 @@ protected:
     EventObserver& observer;
     std::shared_ptr<Klondike>& game;
 
-    class MoveOrigFinder : public KlondikeVisitor {
-    private:
-        std::vector<MoveOrigin*> possibleOrigins;
-    public:
-        void visitStock(Stock* stock);
-        void visitTableauPile(TableauPile* tp);
-        void visitFoundation(Foundation* f);
-        std::vector<MoveOrigin*> getPossibleOrigins() {
-            return possibleOrigins;
-        }
-    };
-
     class MoveDestFinder : public KlondikeVisitor {
     private:
         MoveOrigin* origin;
@@ -55,7 +43,6 @@ public:
     void doAction(GameActionPtr action);
     virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
     void accept(ControllerVisitor* visitor);
-    std::vector<MoveOrigin*> getPossibleMoveOrigins();
     std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* origin);
     ~GameActionController() {}
 };
