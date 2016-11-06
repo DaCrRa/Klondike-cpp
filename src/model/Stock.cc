@@ -75,3 +75,14 @@ bool Stock::hasCoveredCards() const {
 bool Stock::hasCards() const {
     return hasCoveredCards() || hasCardAvailable();
 }
+
+void Stock::acceptStockVisitor(StockVisitor* visitor) {
+    for (const Card* c : covered) {
+        visitor->visitCoveredCard(c);
+    }
+    visitor->allCoveredCardsVisited();
+    for (const Card* c : waste) {
+        visitor->visitWasteCard(c);
+    }
+    visitor->allWasteCardsVisited();
+}

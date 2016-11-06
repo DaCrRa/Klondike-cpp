@@ -10,6 +10,7 @@
 
 #include <Pile.h>
 #include <MoveOrigin.h>
+#include <StockVisitor.h>
 
 class Stock : public MoveOrigin {
 private:
@@ -30,6 +31,7 @@ public:
     const Card* showAvailableCard() const;
     const Card* removeAvailableCard();
     void recoverCard(const Card* c);
+    void acceptStockVisitor(StockVisitor* visitor);
 };
 
 #endif

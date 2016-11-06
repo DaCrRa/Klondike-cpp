@@ -74,3 +74,14 @@ void TableauPile::accept(MoveOriginVisitor* v) {
 void TableauPile::accept(MoveDestVisitor* v) {
     v->visit(this);
 }
+
+void TableauPile::acceptTableauPileVisitor(TableauPileVisitor* visitor) {
+    for (const Card* c : coveredCards) {
+        visitor->visitCoveredCard(c);
+    }
+    visitor->allCoveredCardsVisited();
+    for (const Card* c : uncoveredCards) {
+        visitor->visitUncoveredCard(c);
+    }
+    visitor->allUncoveredCardsVisited();
+}

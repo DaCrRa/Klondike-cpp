@@ -4,6 +4,7 @@
 #include <Pile.h>
 #include <MoveOrigin.h>
 #include <MoveDest.h>
+#include <TableauPileVisitor.h>
 
 class TableauPile : public MoveOrigin, public MoveDest {
 private:
@@ -28,6 +29,7 @@ public:
     PileIterator uncoveredCardsEnd() const;
     void accept(MoveOriginVisitor* v);
     void accept(MoveDestVisitor* v);
+    void acceptTableauPileVisitor(TableauPileVisitor* visitor);
 };
 
 #endif
