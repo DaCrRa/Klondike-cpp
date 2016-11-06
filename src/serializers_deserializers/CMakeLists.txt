@@ -1,0 +1,4 @@
+add_subdirectory(plain_text)
+
+add_library(KlondikeSerializer INTERFACE)
+target_include_directories(KlondikeSerializer INTERFACE .)

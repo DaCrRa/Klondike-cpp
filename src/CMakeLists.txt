@@ -6,6 +6,7 @@ add_subdirectory(views)
 add_subdirectory(app)
 add_subdirectory(actions)
 add_subdirectory(logic)
+add_subdirectory(serializers_deserializers)
 
 add_executable(Klondike KlondikeMain.cc)
 
