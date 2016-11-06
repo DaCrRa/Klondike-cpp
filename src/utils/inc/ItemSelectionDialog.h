@@ -45,13 +45,13 @@ public:
             std::cout << title.c_str() << std::flush;
             char userInput;
             std::cin >> userInput;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.clear();
             if (userInput == cancelFlag) {
                 throw CancelledDialogException();
             }
             selected = allowedChars.find(userInput);
         }
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cin.clear();
         return selected->second;
     }
 private:
