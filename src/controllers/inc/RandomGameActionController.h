@@ -12,8 +12,6 @@
 #include <GameActionController.h>
 
 class RandomGameActionController : public GameActionController {
-private:
-    bool isAPossibleMoveOrigin(MoveOrigin* origin);
 public:
     RandomGameActionController(EventObserver& observer, std::shared_ptr<Klondike>& g) :
         GameActionController(observer, g) {};

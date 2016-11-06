@@ -16,40 +16,36 @@
 
 ForwardGameActionPtr RandomGameActionController::getAction() {
     std::vector<ForwardGameActionPtr> actions;
+
     ForwardGameActionPtr stockAction(new StockAction(game->getStock()));
     if(stockAction->canBeDone()) {
         actions.push_back(stockAction);
     }
-    if( isAPossibleMoveOrigin(game->getStock()) ) {
-        for (MoveDest* dest : getPossibleMoveDests(game->getStock())) {
-            MovePtr move(new MoveFromStock(game->getStock()));
+
+    KlondikeLambdaVisitor possibleMoveFinder;
+    possibleMoveFinder.setVisitStockFunction([&](Stock* s)->void{
+        for (MoveDest* dest : getPossibleMoveDests(s)) {
+            MovePtr move(new MoveFromStock(s));
             move->setDest(dest);
             actions.push_back(move);
         }
-    }
-    for(Foundation& foundation : game->getFoundations()) {
-        if( isAPossibleMoveOrigin(&foundation) ) {
-            for (MoveDest* dest : getPossibleMoveDests(&foundation)) {
-                MovePtr move(new MoveFromFoundation(&foundation));
-                move->setDest(dest);
-                actions.push_back(move);
-            }
+    }).setVisitTableauPileFunction([&](TableauPile* tp)->void{
+        for (MoveDest* dest : getPossibleMoveDests(tp)) {
+            MovePtr move(new MoveFromTableauPile(tp));
+            move->setDest(dest);
+            actions.push_back(move);
         }
-    }
-    for(TableauPile& tableauPile : game->getTableau()) {
-        if( isAPossibleMoveOrigin(&tableauPile) ) {
-            for (MoveDest* dest : getPossibleMoveDests(&tableauPile)) {
-                MovePtr move(new MoveFromTableauPile(&tableauPile));
-                move->setDest(dest);
-                actions.push_back(move);
-            }
+    }).setVisitFoundationFunction([&](Foundation* f)->void{
+        for (MoveDest* dest : getPossibleMoveDests(f)) {
+            MovePtr move(new MoveFromFoundation(f));
+            move->setDest(dest);
+            actions.push_back(move);
         }
-    }
-    return actions[std::rand() % actions.size()];
-}
+    });
 
-bool RandomGameActionController::isAPossibleMoveOrigin(MoveOrigin* origin) {
-    return origin->hasCardAvailable();
+    game->accept(&possibleMoveFinder);
+
+    return actions[std::rand() % actions.size()];
 }
 
 void RandomGameActionController::acceptGameActionControllerVisitor(GameActionControllerVisitor* v) {
