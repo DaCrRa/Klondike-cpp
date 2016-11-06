@@ -55,7 +55,7 @@ public:
         return selected->second;
     }
 private:
-    const std::string& title;
+    const std::string title;
     char cancelFlag;
     const typename std::map<char, T> allowedChars;
 };
