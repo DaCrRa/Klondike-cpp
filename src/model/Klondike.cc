@@ -38,14 +38,6 @@ Stock* Klondike::getStock() {
     return &stock;
 }
 
-std::vector<Foundation>& Klondike::getFoundations() {
-    return foundations;
-}
-
-std::vector<TableauPile>& Klondike::getTableau() {
-    return tableau;
-}
-
 int Klondike::getScore() const {
     return score;
 }

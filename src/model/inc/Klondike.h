@@ -27,8 +27,6 @@ public:
     void initialize();
     bool isCompleted();
     Stock* getStock();
-    std::vector<Foundation>& getFoundations();
-    std::vector<TableauPile>& getTableau();
     int getScore() const;
     void updateScore(int delta);
     void accept(KlondikeVisitor* vistor);
