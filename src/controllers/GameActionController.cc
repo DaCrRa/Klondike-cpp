@@ -32,34 +32,46 @@ void GameActionController::doAction(GameActionPtr action) {
 }
 
 std::vector<MoveOrigin*> GameActionController::getPossibleMoveOrigins() {
-    std::vector<MoveOrigin*> possibleMoveOrigins;
-    if (game->getStock()->hasCardAvailable()) {
-        possibleMoveOrigins.push_back(game->getStock());
+    MoveOrigFinder originFinder;
+    game->accept(&originFinder);
+    return originFinder.getPossibleOrigins();
+}
+
+void GameActionController::MoveOrigFinder::visitStock(Stock* stock) {
+    if (stock->hasCardAvailable()) {
+        possibleOrigins.push_back(stock);
     }
-    for (TableauPile& tableauPile : game->getTableau()) {
-        if (tableauPile.hasCardAvailable()) {
-            possibleMoveOrigins.push_back(&tableauPile);
-        }
+}
+
+void GameActionController::MoveOrigFinder::visitTableauPile(TableauPile* tp) {
+    if (tp->hasCardAvailable()) {
+        possibleOrigins.push_back(tp);
     }
-    for (Foundation& foundation : game->getFoundations()) {
-        if (foundation.hasCardAvailable()) {
-            possibleMoveOrigins.push_back(&foundation);
-        }
+}
+
+void GameActionController::MoveOrigFinder::visitFoundation(Foundation* f) {
+    if (f->hasCardAvailable()) {
+        possibleOrigins.push_back(f);
     }
-    return possibleMoveOrigins;
+}
+
+void GameActionController::MoveDestFinder::visitTableauPile(TableauPile* tp) {
+    if (tp->cardCanBeAdded(origin->showAvailableCard())) {
+        possibleDests.push_back(tp);
+    }
+}
+
+void GameActionController::MoveDestFinder::visitFoundation(Foundation* f) {
+    if (f->cardCanBeAdded(origin->showAvailableCard())) {
+        possibleDests.push_back(f);
+    }
 }
 
 std::vector<MoveDest*> GameActionController::getPossibleMoveDests(MoveOrigin* origin) {
-    std::vector<MoveDest*> possibleMoveDests;
-    for (TableauPile& tableauPile : game->getTableau()) {
-        if (tableauPile.cardCanBeAdded(origin->showAvailableCard())) {
-            possibleMoveDests.push_back(&tableauPile);
-        }
+    if (!origin->hasCardAvailable()) {
+        return std::vector<MoveDest*>();
     }
-    for (Foundation& foundation : game->getFoundations()) {
-        if (foundation.cardCanBeAdded(origin->showAvailableCard())) {
-            possibleMoveDests.push_back(&foundation);
-        }
-    }
-    return possibleMoveDests;
+    MoveDestFinder destFinder(origin);
+    game->accept(&destFinder);
+    return destFinder.getPossibleDests();
 }
