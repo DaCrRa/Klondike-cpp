@@ -1,3 +1,7 @@
+
+#ifndef KLONDIKESERIALIZER_H_
+#define KLONDIKESERIALIZER_H_
+
 #include <Klondike.h>
 
 #include <memory>
@@ -11,3 +15,5 @@ public:
     virtual void serialize(std::ostream& outputStream) = 0;
     virtual ~KlondikeSerializer() {}
 };
+
+#endif
