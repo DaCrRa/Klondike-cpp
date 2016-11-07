@@ -12,13 +12,12 @@
 
 bool SaveGameController::existsGameWithName(const std::string& name) {
     assert(!name.empty());
-    return std::find(savedGamesNames.begin(), savedGamesNames.end(), name)
-           != savedGamesNames.end();
+    return saver.existsGameWithName(name);
 }
 
 void SaveGameController::save(const std::string& name) {
     assert(!name.empty());
-    savedGamesNames.push_back(name);
+    saver.save(name);
 }
 
 void SaveGameController::accept(ControllerVisitor* v) {
