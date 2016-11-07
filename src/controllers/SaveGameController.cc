@@ -15,9 +15,9 @@ bool SaveGameController::existsGameWithName(const std::string& name) {
     return saver.existsGameWithName(name);
 }
 
-void SaveGameController::save(const std::string& name) {
+bool SaveGameController::save(const std::string& name) {
     assert(!name.empty());
-    saver.save(name);
+    return saver.save(name);
 }
 
 void SaveGameController::accept(ControllerVisitor* v) {

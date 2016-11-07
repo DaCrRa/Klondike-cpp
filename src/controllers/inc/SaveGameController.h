@@ -30,7 +30,7 @@ public:
         serializer(game),
         saver(serializer) {};
     bool existsGameWithName(const std::string& name);
-    void save(const std::string& name);
+    bool save(const std::string& name);
     void accept(ControllerVisitor* v);
 };
 

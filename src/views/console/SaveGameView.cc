@@ -31,7 +31,11 @@ std::string SaveGameView::getGameName(SaveGameController* saveGameController) {
 void SaveGameView::interact(SaveGameController* saveGameController) {
     try {
         std::string gameName = getGameName(saveGameController);
-        saveGameController->save(gameName);
+        while (!saveGameController->save(gameName)) {
+            std::cout << "Error saving game!" << std::endl;
+            gameName = getGameName(saveGameController);
+        }
+        std::cout << "Game saved!" << std::endl;
     } catch (CancelledSaveException& e) {
         std::cout << e.what() << std::endl;
     }
