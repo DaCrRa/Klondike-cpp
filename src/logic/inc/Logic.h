@@ -9,6 +9,7 @@
 #define SRC_CONTROLLERS_INC_LOGIC_H_
 
 #include <Klondike.h>
+#include <KlondikeSaver.h>
 #include <EventObserver.h>
 #include <GameActionControllerHolder.h>
 #include <GameActionHistoryController.h>
@@ -24,10 +25,11 @@ private:
     std::shared_ptr<GameActionHistoryController> historyController;
     std::shared_ptr<BestScoresController> bestScoresController;
     std::shared_ptr<SaveGameController> saveGameController;
+    KlondikeSaver& saver;
     AppStatesBuilder statesBuildr;
     AppStatePtr currentState;
 public:
-    Logic();
+    Logic(KlondikeSaver& saver);
     ControllerPtr getNextController();
     void gameStarted();
     void saveGameRequested();

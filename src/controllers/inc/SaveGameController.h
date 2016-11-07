@@ -12,8 +12,7 @@
 #include <ControllerVisitor.h>
 #include <EventObserver.h>
 #include <Klondike.h>
-#include <KlondikeToFileSaver.h>
-#include <KlondikePlainTextSerializer.h>
+#include <KlondikeSaver.h>
 
 #include <memory>
 
@@ -21,14 +20,14 @@ class SaveGameController: public Controller {
 private:
     EventObserver& eventObserver;
     std::shared_ptr<Klondike>& game;
-    KlondikePlainTextSerializer serializer;
-    KlondikeToFileSaver saver;
+    KlondikeSaver& saver;
 public:
-    SaveGameController(EventObserver& observer, std::shared_ptr<Klondike>& g) :
+    SaveGameController(EventObserver& observer,
+                       std::shared_ptr<Klondike>& g,
+                       KlondikeSaver& s) :
         eventObserver(observer),
         game(g),
-        serializer(game),
-        saver(serializer) {};
+        saver(s) {};
     bool existsGameWithName(const std::string& name);
     bool save(const std::string& name);
     void accept(ControllerVisitor* v);

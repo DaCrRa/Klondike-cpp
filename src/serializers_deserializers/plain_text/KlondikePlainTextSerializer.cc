@@ -7,9 +7,9 @@
 
 #include <KlondikePlainTextSerializer.h>
 
-void KlondikePlainTextSerializer::serialize(std::ostream& os) {
+void KlondikePlainTextSerializer::serialize(std::shared_ptr<Klondike>& g, std::ostream& os) {
     KlondikePlainTextSerializerVisitor visitor(os);
-    game->accept(&visitor);
+    g->accept(&visitor);
 }
 
 void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::visitScore(int score) {

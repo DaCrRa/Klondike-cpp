@@ -51,9 +51,7 @@ private:
         void allTableauPilesVisited();
     };
 public:
-    KlondikePlainTextSerializer(std::shared_ptr<Klondike>& g) :
-        KlondikeSerializer(g) {}
-    void serialize(std::ostream& outputStream);
+    void serialize(std::shared_ptr<Klondike>& game, std::ostream& outputStream);
 };
 
 #endif /* SRC_MODEL_INC_KLONDIKEPLAINTEXTSERIALIZER_H_ */

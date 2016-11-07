@@ -27,7 +27,7 @@ bool KlondikeToFileSaver::save(const std::string& name) {
         if (!fileoutputStream.good()) {
             return false;
         }
-        serializer.serialize(fileoutputStream);
+        serializer.serialize(game, fileoutputStream);
         return true;
     } catch (...) {
         return false;

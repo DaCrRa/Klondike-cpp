@@ -7,12 +7,8 @@
 #include <memory>
 
 class KlondikeSerializer {
-protected:
-    std::shared_ptr<Klondike>& game;
 public:
-    KlondikeSerializer(std::shared_ptr<Klondike>& g) :
-        game(g) {}
-    virtual void serialize(std::ostream& outputStream) = 0;
+    virtual void serialize(std::shared_ptr<Klondike>& g, std::ostream& outputStream) = 0;
     virtual ~KlondikeSerializer() {}
 };
 
