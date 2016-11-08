@@ -39,6 +39,5 @@ void ConsoleView::visit(SaveGameController* controller) {
 }
 
 void ConsoleView::visit(LoadGameController* controller) {
-    LoadGameView().interact(controller);
-    eventObserver.gamePauseRequested();
+    LoadGameView(eventObserver).interact(controller);
 }

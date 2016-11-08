@@ -15,6 +15,7 @@ void LoadGameView::interact(LoadGameController* lgc) {
     std::vector<std::string> savedGames = lgc->listSavedGames();
     if (savedGames.empty()) {
         std::cout << "No saved games to load!" << std::endl;
+        eventObserver.gamePauseRequested();
     } else {
         std::cout << "Available games for loading:" << std::endl;
         std::cout << std::endl;
@@ -31,6 +32,7 @@ void LoadGameView::interact(LoadGameController* lgc) {
             std::cout << "Loading " << selectedGameName << std::endl;
         } catch (CancelledDialogException& e) {
             std::cout << "Cancelled load game!" << std::endl;
+            eventObserver.gamePauseRequested();
         }
     }
 }
