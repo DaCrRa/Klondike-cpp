@@ -23,6 +23,7 @@ public:
     void visit(StartController* c);
     void visit(BestScoresController* sc);
     void visit(SaveGameController* sc);
+    void visit(LoadGameController* sc);
 };
 
 #endif /* SRC_VIEWS_CONSOLE_CONSOLEVIEW_H_ */

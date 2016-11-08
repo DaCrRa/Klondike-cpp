@@ -36,3 +36,9 @@ void ConsoleView::visit(SaveGameController* controller) {
     SaveGameView().interact(controller);
     eventObserver.gamePauseRequested();
 }
+
+#include <iostream>
+void ConsoleView::visit(LoadGameController* controller) {
+    std::cout << "interacting with a load game controller" << std::endl;
+    eventObserver.gamePauseRequested();
+}
