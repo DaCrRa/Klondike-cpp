@@ -15,7 +15,7 @@
 
 class UserGameActionController: public GameActionController {
 private:
-    std::shared_ptr<GameActionHistoryController>& historyController;
+    std::shared_ptr<GameActionHistoryController> historyController;
     class MoveOrigFinder : public KlondikeVisitor {
     private:
         std::vector<MoveOrigin*> possibleOrigins;
@@ -29,10 +29,9 @@ private:
     };
 public:
     UserGameActionController(EventObserver& observer,
-                             std::shared_ptr<Klondike>& g,
-                             std::shared_ptr<GameActionHistoryController>& historyController) :
+                             std::shared_ptr<Klondike>& g) :
         GameActionController(observer, g),
-        historyController(historyController) {};
+        historyController(new GameActionHistoryController()) {};
     std::vector<MoveOrigin*> getPossibleMoveOrigins();
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor);
     std::shared_ptr<GameActionHistoryController> getGameActionHistoryController();

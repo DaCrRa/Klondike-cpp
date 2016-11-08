@@ -6,7 +6,6 @@
  */
 
 #include <StartController.h>
-#include <GameActionHistoryController.h>
 #include <UserGameActionController.h>
 #include <RandomGameActionController.h>
 
@@ -15,7 +14,6 @@
 void StartController::start(std::shared_ptr<GameActionController> gameActionController) {
     game = std::shared_ptr<Klondike>(new Klondike());
     game->initialize();
-    historyController = std::shared_ptr<GameActionHistoryController>(new GameActionHistoryController());
     gameActionControllerHolder.setGameActionController(gameActionController);
     eventObserver.gameStarted();
 }
@@ -32,7 +30,7 @@ StartController::StartController(std::shared_ptr<Klondike>& g,
     eventObserver(observer) { }
 
 void StartController::startGame() {
-    start(std::shared_ptr<GameActionController>(new UserGameActionController(eventObserver, game, historyController)));
+    start(std::shared_ptr<GameActionController>(new UserGameActionController(eventObserver, game)));
 }
 
 void StartController::startDemo() {
