@@ -2,6 +2,6 @@ file(GLOB klondike_plain_text_serializer_source_files
     "*.cc"
 )
 
-add_library(KlondikePlainTextSerializer SHARED ${klondike_plain_text_serializer_source_files})
-target_link_libraries(KlondikePlainTextSerializer KlondikeSerializer)
-target_include_directories(KlondikePlainTextSerializer PUBLIC "inc")
+add_library(KlondikePlainTextSerializerDeserializer SHARED ${klondike_plain_text_serializer_source_files})
+target_link_libraries(KlondikePlainTextSerializerDeserializer KlondikeSerializerDeserializer)
+target_include_directories(KlondikePlainTextSerializerDeserializer PUBLIC "inc")

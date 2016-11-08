@@ -14,6 +14,6 @@ add_executable(Klondike KlondikeMain.cc)
 target_link_libraries(Klondike KlondikeModel
                                KlondikeApp
                                KlondikeController
-                               KlondikePlainTextSerializer
+                               KlondikePlainTextSerializerDeserializer
                                KlondikeToFileSaver
                                KlondikeConsoleView)
