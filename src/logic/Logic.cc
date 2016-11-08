@@ -10,7 +10,7 @@
 #include <UserGameActionController.h>
 #include <RandomGameActionController.h>
 
-Logic::Logic(KlondikeSaver& saver) :
+Logic::Logic(KlondikeSaver& saver, KlondikeLoader& loader) :
     statesBuildr(*this,
                  game,
                  gameActionControllerHolder,
@@ -21,7 +21,7 @@ Logic::Logic(KlondikeSaver& saver) :
     currentState(statesBuildr.getInitialState()),
     bestScoresController(new BestScoresController(game)),
     saveGameController(new SaveGameController(game, saver)),
-    loadGameController(new LoadGameController (/* *this, game, loader*/)),
+    loadGameController(new LoadGameController (/* *this, game,*/ loader)),
     saver(saver) {
     assert(currentState);
 }

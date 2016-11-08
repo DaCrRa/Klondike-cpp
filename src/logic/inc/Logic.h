@@ -10,6 +10,7 @@
 
 #include <Klondike.h>
 #include <KlondikeSaver.h>
+#include <KlondikeLoader.h>
 #include <EventObserver.h>
 #include <GameActionControllerHolder.h>
 #include <GameActionHistoryController.h>
@@ -31,7 +32,7 @@ private:
     AppStatesBuilder statesBuildr;
     AppStatePtr currentState;
 public:
-    Logic(KlondikeSaver& saver);
+    Logic(KlondikeSaver& saver, KlondikeLoader& loader);
     ControllerPtr getNextController();
     void gameStarted();
     void saveGameRequested();

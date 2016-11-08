@@ -11,9 +11,14 @@
 #include <Controller.h>
 #include <ControllerVisitor.h>
 
+#include <KlondikeLoader.h>
+
 class LoadGameController: public Controller {
+private:
+    KlondikeLoader& loader;
 public:
-    LoadGameController();
+    LoadGameController(KlondikeLoader& s) :
+        loader(s) {};
     void accept(ControllerVisitor* v);
 };
 

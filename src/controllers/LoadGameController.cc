@@ -7,11 +7,6 @@
 
 #include <LoadGameController.h>
 
-LoadGameController::LoadGameController() {
-    // TODO Auto-generated constructor stub
-
-}
-
 void LoadGameController::accept(ControllerVisitor* v) {
     v->visit(this);
 }
