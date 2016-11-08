@@ -19,7 +19,7 @@
 class GameActionController: public Controller {
 protected:
     EventObserver& observer;
-    std::shared_ptr<Klondike>& game;
+    std::shared_ptr<Klondike> game;
 
     class MoveDestFinder : public KlondikeVisitor {
     private:
@@ -35,9 +35,11 @@ protected:
     };
 
 public:
-    GameActionController(EventObserver& observer, std::shared_ptr<Klondike>& g) :
-        observer(observer),
-        game(g) {};
+    GameActionController(EventObserver& observer) :
+        observer(observer) {};
+    void setGame(std::shared_ptr<Klondike>& g) {
+        game = g;
+    }
     std::shared_ptr<Klondike>& getGame();
     void pauseGame();
     void doAction(GameActionPtr action);

@@ -14,7 +14,6 @@ Logic::Logic(KlondikeSaver& saver, KlondikeLoader& loader) :
     statesBuildr(*this,
                  game,
                  gameActionControllerHolder,
-                 historyController,
                  bestScoresController,
                  saveGameController,
                  loadGameController),

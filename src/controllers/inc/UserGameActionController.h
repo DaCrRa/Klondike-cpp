@@ -28,9 +28,8 @@ private:
         }
     };
 public:
-    UserGameActionController(EventObserver& observer,
-                             std::shared_ptr<Klondike>& g) :
-        GameActionController(observer, g),
+    UserGameActionController(EventObserver& observer) :
+        GameActionController(observer),
         historyController(new GameActionHistoryController()) {};
     std::vector<MoveOrigin*> getPossibleMoveOrigins();
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor);

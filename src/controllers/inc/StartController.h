@@ -13,7 +13,6 @@
 #include <Klondike.h>
 #include <EventObserver.h>
 #include <GameActionControllerHolder.h>
-#include <GameActionHistoryController.h>
 #include <GameState.h>
 
 #include <memory>
@@ -22,14 +21,12 @@
 class StartController : public Controller {
 private:
     std::shared_ptr<Klondike>& game;
-    std::shared_ptr<GameActionHistoryController>& historyController;
     GameActionControllerHolder& gameActionControllerHolder;
     GameStatePtr gameState;
     EventObserver& eventObserver;
     void start(std::shared_ptr<GameActionController> gameActionController);
 public:
     StartController(std::shared_ptr<Klondike>& g,
-                    std::shared_ptr<GameActionHistoryController>& h,
                     GameActionControllerHolder& holder,
                     GameStatePtr state,
                     EventObserver& observer);

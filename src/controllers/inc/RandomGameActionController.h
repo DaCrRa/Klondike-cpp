@@ -13,8 +13,8 @@
 
 class RandomGameActionController : public GameActionController {
 public:
-    RandomGameActionController(EventObserver& observer, std::shared_ptr<Klondike>& g) :
-        GameActionController(observer, g) {};
+    RandomGameActionController(EventObserver& observer) :
+        GameActionController(observer) {};
     void acceptGameActionControllerVisitor(GameActionControllerVisitor* v);
     ForwardGameActionPtr getAction();
 };

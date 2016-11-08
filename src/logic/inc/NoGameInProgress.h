@@ -16,14 +16,12 @@ class NoGameInProgressState : public AppState,
     public std::enable_shared_from_this<NoGameInProgressState> {
 private:
     std::shared_ptr<Klondike>& game;
-    std::shared_ptr<GameActionHistoryController>& historyController;
     GameActionControllerHolder& holder;
     EventObserver& eventObserver;
     GameStatePtr gameState;
 public:
     NoGameInProgressState(AppStatesBuilder& sb,
                           std::shared_ptr<Klondike>& g,
-                          std::shared_ptr<GameActionHistoryController>& historyController,
                           GameActionControllerHolder& holder,
                           EventObserver& eventObserver,
                           GameStatePtr gameState);

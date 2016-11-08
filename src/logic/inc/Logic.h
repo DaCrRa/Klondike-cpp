@@ -13,7 +13,6 @@
 #include <KlondikeLoader.h>
 #include <EventObserver.h>
 #include <GameActionControllerHolder.h>
-#include <GameActionHistoryController.h>
 #include <BestScoresController.h>
 #include <SaveGameController.h>
 #include <LoadGameController.h>
@@ -24,7 +23,6 @@ class Logic : public EventObserver {
 private:
     std::shared_ptr<Klondike> game;
     GameActionControllerHolder gameActionControllerHolder;
-    std::shared_ptr<GameActionHistoryController> historyController;
     std::shared_ptr<BestScoresController> bestScoresController;
     std::shared_ptr<SaveGameController> saveGameController;
     std::shared_ptr<LoadGameController> loadGameController;

@@ -13,28 +13,27 @@
 
 void StartController::start(std::shared_ptr<GameActionController> gameActionController) {
     game = std::shared_ptr<Klondike>(new Klondike());
+    gameActionController->setGame(game);
     game->initialize();
     gameActionControllerHolder.setGameActionController(gameActionController);
     eventObserver.gameStarted();
 }
 
 StartController::StartController(std::shared_ptr<Klondike>& g,
-                                 std::shared_ptr<GameActionHistoryController>& h,
                                  GameActionControllerHolder& gameActionControllerHolder,
                                  GameStatePtr s,
                                  EventObserver& observer) :
     game(g),
-    historyController(h),
     gameActionControllerHolder(gameActionControllerHolder),
     gameState(s),
     eventObserver(observer) { }
 
 void StartController::startGame() {
-    start(std::shared_ptr<GameActionController>(new UserGameActionController(eventObserver, game)));
+    start(std::shared_ptr<GameActionController>(new UserGameActionController(eventObserver)));
 }
 
 void StartController::startDemo() {
-    start(std::shared_ptr<GameActionController>(new RandomGameActionController(eventObserver, game)));
+    start(std::shared_ptr<GameActionController>(new RandomGameActionController(eventObserver)));
 }
 
 bool StartController::isGameInProgress() {

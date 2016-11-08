@@ -9,7 +9,6 @@
 #define SRC_CONTROLLERS_INC_STATESBUILDER_H_
 
 #include <GameActionController.h>
-#include <GameActionHistoryController.h>
 #include <SaveGameController.h>
 #include <NoGameInProgress.h>
 #include <GameInProgressState.h>
@@ -33,19 +32,16 @@ public:
     AppStatesBuilder(EventObserver& observer,
                      std::shared_ptr<Klondike>& game,
                      GameActionControllerHolder& gameActionControllerHolder,
-                     std::shared_ptr<GameActionHistoryController>& historyController,
                      std::shared_ptr<BestScoresController>& bestScoresController,
                      std::shared_ptr<SaveGameController>& saveGameController,
                      std::shared_ptr<LoadGameController>& loadGameController) :
         initialState(new NoGameInProgressState(*this,
                                                game,
-                                               historyController,
                                                gameActionControllerHolder,
                                                observer,
                                                GameStatePtr(new NoGameStartedState()))),
         gamePaused(new NoGameInProgressState(*this,
                                              game,
-                                             historyController,
                                              gameActionControllerHolder,
                                              observer,
                                              GameStatePtr(new GameStartedState()))),
