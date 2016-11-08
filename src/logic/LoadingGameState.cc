@@ -22,6 +22,6 @@ AppStatePtr LoadingGameState::transitionToGameInProgress() {
 }
 
 AppStatePtr LoadingGameState::transitionToNoGameInProgress() {
-    return statesBuilder.getInitialState();
+    return previousState;
 }
 

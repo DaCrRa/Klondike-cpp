@@ -28,7 +28,7 @@ private:
     AppStatePtr gameCompleted;
     AppStatePtr exitState;
     AppStatePtr savingGameState;
-    AppStatePtr loadingGameState;
+    std::shared_ptr<LoadingGameState> loadingGameState;
 public:
     AppStatesBuilder(EventObserver& observer,
                      std::shared_ptr<Klondike>& game,
@@ -72,7 +72,8 @@ public:
     AppStatePtr getSavingGameState() {
         return savingGameState;
     }
-    AppStatePtr getLoadingGameState() {
+    AppStatePtr getLoadingGameState(AppStatePtr previous) {
+        loadingGameState->setPreviousState(previous);
         return loadingGameState;
     }
 };

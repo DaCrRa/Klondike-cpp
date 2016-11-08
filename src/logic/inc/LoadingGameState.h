@@ -15,9 +15,13 @@
 
 class LoadingGameState: public AppState {
 private:
+    AppStatePtr previousState;
     std::shared_ptr<LoadGameController>& loadGameController;
 public:
     LoadingGameState(AppStatesBuilder& sb, std::shared_ptr<LoadGameController>& lgc);
+    void setPreviousState(AppStatePtr prev) {
+        previousState = prev;
+    }
     ControllerPtr getController();
     AppStatePtr transitionToGameInProgress();
     AppStatePtr transitionToNoGameInProgress();
