@@ -20,7 +20,7 @@ Logic::Logic(KlondikeSaver& saver) :
                  loadGameController),
     currentState(statesBuildr.getInitialState()),
     bestScoresController(new BestScoresController(game)),
-    saveGameController(new SaveGameController(*this, game, saver)),
+    saveGameController(new SaveGameController(game, saver)),
     loadGameController(new LoadGameController (/* *this, game, loader*/)),
     saver(saver) {
     assert(currentState);
