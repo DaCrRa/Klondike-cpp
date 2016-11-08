@@ -10,14 +10,17 @@
 
 #include <Controller.h>
 #include <ControllerVisitor.h>
+#include <EventObserver.h>
 
 #include <KlondikeLoader.h>
 
 class LoadGameController: public Controller {
 private:
+    EventObserver& eventObserver;
     KlondikeLoader& loader;
 public:
-    LoadGameController(KlondikeLoader& s) :
+    LoadGameController(EventObserver& o, KlondikeLoader& s) :
+        eventObserver(o),
         loader(s) {};
     std::vector<std::string> listSavedGames();
     void accept(ControllerVisitor* v);
