@@ -1,0 +1,4 @@
+add_subdirectory(to_from_file)
+
+add_library(KlondikeSaverLoader INTERFACE)
+target_include_directories(KlondikeSaverLoader INTERFACE .)
