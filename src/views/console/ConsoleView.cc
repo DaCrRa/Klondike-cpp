@@ -10,6 +10,7 @@
 #include <MainMenuView.h>
 #include <GameFinishedView.h>
 #include <SaveGameView.h>
+#include <LoadGameView.h>
 
 #include <BestScoresController.h>
 
@@ -37,8 +38,7 @@ void ConsoleView::visit(SaveGameController* controller) {
     eventObserver.gamePauseRequested();
 }
 
-#include <iostream>
 void ConsoleView::visit(LoadGameController* controller) {
-    std::cout << "interacting with a load game controller" << std::endl;
+    LoadGameView().interact(controller);
     eventObserver.gamePauseRequested();
 }
