@@ -37,3 +37,7 @@ AppStatePtr NoGameInProgressState::transitionToGameInProgress() {
 AppStatePtr NoGameInProgressState::transitionToSavingGame() {
     return statesBuilder.getSavingGameState();
 }
+
+AppStatePtr NoGameInProgressState::transitionToLoadingGame() {
+    return statesBuilder.getLoadingGameState();
+}

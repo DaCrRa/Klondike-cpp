@@ -15,6 +15,7 @@
 #include <GameActionHistoryController.h>
 #include <BestScoresController.h>
 #include <SaveGameController.h>
+#include <LoadGameController.h>
 #include <AppStatesBuilder.h>
 #include <assert.h>
 
@@ -25,6 +26,7 @@ private:
     std::shared_ptr<GameActionHistoryController> historyController;
     std::shared_ptr<BestScoresController> bestScoresController;
     std::shared_ptr<SaveGameController> saveGameController;
+    std::shared_ptr<LoadGameController> loadGameController;
     KlondikeSaver& saver;
     AppStatesBuilder statesBuildr;
     AppStatePtr currentState;

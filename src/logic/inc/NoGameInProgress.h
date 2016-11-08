@@ -30,6 +30,7 @@ public:
     AppStatePtr transitionToExit();
     AppStatePtr transitionToGameInProgress();
     AppStatePtr transitionToSavingGame();
+    AppStatePtr transitionToLoadingGame();
 };
 
 #endif /* SRC_CONTROLLERS_INC_NOGAMEINPROGRESSSTATE_H_ */

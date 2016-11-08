@@ -16,10 +16,12 @@ Logic::Logic(KlondikeSaver& saver) :
                  gameActionControllerHolder,
                  historyController,
                  bestScoresController,
-                 saveGameController),
+                 saveGameController,
+                 loadGameController),
     currentState(statesBuildr.getInitialState()),
     bestScoresController(new BestScoresController(game)),
     saveGameController(new SaveGameController(*this, game, saver)),
+    loadGameController(new LoadGameController (/* *this, game, loader*/)),
     saver(saver) {
     assert(currentState);
 }
