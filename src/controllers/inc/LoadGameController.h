@@ -19,6 +19,7 @@ private:
 public:
     LoadGameController(KlondikeLoader& s) :
         loader(s) {};
+    std::vector<std::string> listSavedGames();
     void accept(ControllerVisitor* v);
 };
 
