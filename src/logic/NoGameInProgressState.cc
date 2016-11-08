@@ -10,18 +10,16 @@
 #include <AppStatesBuilder.h>
 
 NoGameInProgressState::NoGameInProgressState(AppStatesBuilder& sb,
-        std::shared_ptr<Klondike>& g,
-        GameActionControllerHolder& holder,
+        GameSessionStarter& starter,
         EventObserver& eventObserver,
         GameStatePtr gameStates) :
     AppState(sb),
-    game(g),
-    holder(holder),
+    gameSessionStarter(starter),
     eventObserver(eventObserver),
     gameState(gameStates) {}
 
 ControllerPtr NoGameInProgressState::getController() {
-    return ControllerPtr(new StartController(game, holder, gameState, eventObserver));
+    return ControllerPtr(new StartController(gameSessionStarter, gameState, eventObserver));
 }
 
 AppStatePtr NoGameInProgressState::transitionToExit() {

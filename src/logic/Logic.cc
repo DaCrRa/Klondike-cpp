@@ -12,11 +12,12 @@
 
 Logic::Logic(KlondikeSaver& saver, KlondikeLoader& loader) :
     statesBuildr(*this,
-                 game,
                  gameActionControllerHolder,
+                 gameSessionStarter,
                  bestScoresController,
                  saveGameController,
                  loadGameController),
+    gameSessionStarter(game, gameActionControllerHolder),
     currentState(statesBuildr.getInitialState()),
     bestScoresController(new BestScoresController(game)),
     saveGameController(new SaveGameController(game, saver)),

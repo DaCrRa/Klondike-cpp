@@ -12,19 +12,14 @@
 #include <assert.h>
 
 void StartController::start(std::shared_ptr<GameActionController> gameActionController) {
-    game = std::shared_ptr<Klondike>(new Klondike());
-    gameActionController->setGame(game);
-    game->initialize();
-    gameActionControllerHolder.setGameActionController(gameActionController);
+    sessionStarter.startSession(gameActionController);
     eventObserver.gameStarted();
 }
 
-StartController::StartController(std::shared_ptr<Klondike>& g,
-                                 GameActionControllerHolder& gameActionControllerHolder,
+StartController::StartController(GameSessionStarter& starter,
                                  GameStatePtr s,
                                  EventObserver& observer) :
-    game(g),
-    gameActionControllerHolder(gameActionControllerHolder),
+    sessionStarter(starter),
     gameState(s),
     eventObserver(observer) { }
 

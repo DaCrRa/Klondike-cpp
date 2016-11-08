@@ -23,6 +23,7 @@ class Logic : public EventObserver {
 private:
     std::shared_ptr<Klondike> game;
     GameActionControllerHolder gameActionControllerHolder;
+    GameSessionStarter gameSessionStarter;
     std::shared_ptr<BestScoresController> bestScoresController;
     std::shared_ptr<SaveGameController> saveGameController;
     std::shared_ptr<LoadGameController> loadGameController;
