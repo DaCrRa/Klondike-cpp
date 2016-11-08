@@ -37,6 +37,10 @@ void Logic::saveGameRequested() {
     currentState = currentState->transitionToSavingGame();
 }
 
+void Logic::loadGameRequested() {
+    currentState = currentState->transitionToLoadingGame();
+}
+
 void Logic::gamePauseRequested() {
     currentState = currentState->transitionToNoGameInProgress();
 }

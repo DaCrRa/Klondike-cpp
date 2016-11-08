@@ -33,6 +33,7 @@ public:
     ControllerPtr getNextController();
     void gameStarted();
     void saveGameRequested();
+    void loadGameRequested();
     void gamePauseRequested();
     void gameResumeRequested();
     void gameCompleted();

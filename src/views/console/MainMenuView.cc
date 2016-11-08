@@ -32,7 +32,7 @@ void MainMenuView::interact(StartController* startController) {
         startController->startGame();
     }));
     options.push_back(std::make_pair(MenuOption("Load saved game", 0), [&] {
-
+        eventObserver.loadGameRequested();
     }));
     options.push_back(std::make_pair(MenuOption("Demo", 0), [&] {
         startController->startDemo();

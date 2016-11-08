@@ -52,6 +52,11 @@ public:
         assert(false);
         return AppStatePtr();
     }
+    virtual AppStatePtr transitionToLoadingGame() {
+        assert(false);
+        return AppStatePtr();
+    }
+
     virtual ControllerPtr getController() = 0;
     virtual ~AppState() {}
 };

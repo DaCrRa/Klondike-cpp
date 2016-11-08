@@ -17,6 +17,7 @@ class EventObserver {
 public:
     virtual void gameStarted() = 0;
     virtual void saveGameRequested() = 0;
+    virtual void loadGameRequested() = 0;
     virtual void gamePauseRequested() = 0;
     virtual void gameResumeRequested() = 0;
     virtual void gameCompleted() = 0;
