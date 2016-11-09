@@ -4,7 +4,7 @@
 
 Deck::Deck() : remainingCards(NUM_CARDS_PER_SUIT * NUM_SUITS) {
     for (int i = 0; i < remainingCards; ++i) {
-        cards.push_back(Card(i%2 + 1));
+        cards.push_back(Card(i, i%2 + 1));
     }
 }
 

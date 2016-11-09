@@ -4,10 +4,13 @@
 class Card {
 
 private:
+    int cardId;
     int rank;
 
 public:
-    Card(int r);
+    Card(int cardId, int rank);
+
+    int getCardId() const;
 
     int getRank() const;
 

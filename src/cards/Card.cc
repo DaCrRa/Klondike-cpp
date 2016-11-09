@@ -1,8 +1,13 @@
 #include <Card.h>
 
-Card::Card(int r) :
+Card::Card(int id, int r) :
+    cardId(id),
     rank(r)
 {
+}
+
+int Card::getCardId() const {
+    return cardId;
 }
 
 int Card::getRank() const {

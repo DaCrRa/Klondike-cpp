@@ -40,7 +40,7 @@ void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::allTableau
 }
 
 void KlondikePlainTextSerializer::StockPlainTextSerializer::visitCoveredCard(const Card* covered) {
-    outputStream << covered->getRank() << std::endl;
+    outputStream << covered->getCardId() << std::endl;
 }
 
 void KlondikePlainTextSerializer::StockPlainTextSerializer::allCoveredCardsVisited() {
@@ -48,14 +48,14 @@ void KlondikePlainTextSerializer::StockPlainTextSerializer::allCoveredCardsVisit
 }
 
 void KlondikePlainTextSerializer::StockPlainTextSerializer::visitWasteCard(const Card* wasteCard) {
-    outputStream << wasteCard->getRank() << std::endl;
+    outputStream << wasteCard->getCardId() << std::endl;
 }
 void KlondikePlainTextSerializer::StockPlainTextSerializer::allWasteCardsVisited() {
     outputStream << "END_OF_WASTE" << std::endl;
 }
 
 void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::visitCoveredCard(const Card* covered) {
-    outputStream << covered->getRank() << std::endl;
+    outputStream << covered->getCardId() << std::endl;
 }
 
 void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::allCoveredCardsVisited() {
@@ -63,7 +63,7 @@ void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::allCoveredCard
 }
 
 void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::visitUncoveredCard(const Card* uncovered) {
-    outputStream << uncovered->getRank() << std::endl;
+    outputStream << uncovered->getCardId() << std::endl;
 }
 
 void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::allUncoveredCardsVisited() {
