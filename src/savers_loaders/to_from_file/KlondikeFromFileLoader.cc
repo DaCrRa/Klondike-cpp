@@ -7,6 +7,8 @@
 
 #include <KlondikeFromFileLoader.h>
 
+#include <fstream>
+
 std::vector<std::string> KlondikeFromFileLoader::listSavedGames() {
     std::vector<std::string> savedGames;
     for (auto& entry : std::experimental::filesystem::directory_iterator(path)) {
@@ -18,5 +20,8 @@ std::vector<std::string> KlondikeFromFileLoader::listSavedGames() {
 }
 
 std::shared_ptr<Klondike> KlondikeFromFileLoader::loadGame(const std::string& gameName) {
-    return std::shared_ptr<Klondike>(new Klondike());
+    std::shared_ptr<Klondike> game;
+    std::ifstream inputStream(path / gameName);
+    deserializer.deserialize(game, inputStream);
+    return game;
 }
