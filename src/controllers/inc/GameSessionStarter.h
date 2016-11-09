@@ -20,7 +20,8 @@ public:
                        GameActionControllerHolder& gach) :
         game(g),
         gameActionControllerHolder(gach) {}
-    void startSession(std::shared_ptr<GameActionController> actionController);
+    void startSession(std::shared_ptr<Klondike>& g,
+                      std::shared_ptr<GameActionController> actionController);
 };
 
 #endif /* SRC_CONTROLLERS_INC_GAMESESSIONSTARTER_H_ */
