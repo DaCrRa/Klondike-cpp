@@ -11,7 +11,7 @@
 #include <fstream>
 
 KlondikeToFileSaver::KlondikeToFileSaver(KlondikeSerializer& s)  :
-    path(std::experimental::filesystem::current_path() / "saved_klondikes"),
+    path(KlondikeFileSaverLoader::KLONDIKE_SAVED_GAMES_LOCATION),
     serializer(s) {
     std::experimental::filesystem::create_directories(path);
     assert(std::experimental::filesystem::is_directory(path));
