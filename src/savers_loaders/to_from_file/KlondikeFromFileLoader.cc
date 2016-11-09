@@ -16,3 +16,7 @@ std::vector<std::string> KlondikeFromFileLoader::listSavedGames() {
     }
     return savedGames;
 }
+
+std::shared_ptr<Klondike> KlondikeFromFileLoader::loadGame(const std::string& gameName) {
+    return std::shared_ptr<Klondike>(new Klondike());
+}

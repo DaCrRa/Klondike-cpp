@@ -18,6 +18,7 @@ public:
     KlondikeFromFileLoader() :
         path(KlondikeFileSaverLoader::KLONDIKE_SAVED_GAMES_LOCATION) {}
     std::vector<std::string> listSavedGames();
+    std::shared_ptr<Klondike> loadGame(const std::string& gameName);
 };
 
 #endif /* SRC_SAVERS_LOADERS_TO_FROM_FILE_INC_KLONDIKEFROMFILELOADER_H_ */
