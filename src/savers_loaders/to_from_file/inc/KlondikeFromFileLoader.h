@@ -9,10 +9,14 @@
 #define SRC_SAVERS_LOADERS_TO_FROM_FILE_INC_KLONDIKEFROMFILELOADER_H_
 
 #include <KlondikeLoader.h>
+#include <KlondikeSavedGamesLocation.h>
 
 class KlondikeFromFileLoader: public KlondikeLoader {
+private:
+    std::experimental::filesystem::path path;
 public:
-    KlondikeFromFileLoader();
+    KlondikeFromFileLoader() :
+        path(KlondikeFileSaverLoader::KLONDIKE_SAVED_GAMES_LOCATION) {}
     std::vector<std::string> listSavedGames();
 };
 

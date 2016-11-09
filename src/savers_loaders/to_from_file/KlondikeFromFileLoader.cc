@@ -7,10 +7,12 @@
 
 #include <KlondikeFromFileLoader.h>
 
-KlondikeFromFileLoader::KlondikeFromFileLoader() {
-    // TODO Auto-generated constructor stub
-}
-
 std::vector<std::string> KlondikeFromFileLoader::listSavedGames() {
-    return std::vector<std::string>({"one saved game", "two saved Games"});
+    std::vector<std::string> savedGames;
+    for (auto& entry : std::experimental::filesystem::directory_iterator(path)) {
+        if (std::experimental::filesystem::is_regular_file(entry)) {
+            savedGames.push_back(entry.path().filename());
+        }
+    }
+    return savedGames;
 }
