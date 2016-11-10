@@ -12,6 +12,11 @@
 #include <Klondike.h>
 
 class KlondikePlainTextDeserializer: public KlondikeDeserializer {
+private:
+    std::vector<int> deserializePile(
+        std::string& readString,
+        std::istream& inputStream,
+        const std::string& endMark);
 public:
     void deserialize(std::shared_ptr<Klondike>& g, std::istream& inputStream);
 };
