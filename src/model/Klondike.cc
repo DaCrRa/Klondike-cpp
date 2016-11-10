@@ -26,6 +26,9 @@ void Klondike::initialize() {
     }
 }
 
+void Klondike::initialize(KlondikeInitParameters& params) {
+}
+
 bool Klondike::isCompleted() {
     bool completed = true;
     for (std::vector<Foundation>::iterator it = foundations.begin(); it != foundations.end() && completed; ++it) {

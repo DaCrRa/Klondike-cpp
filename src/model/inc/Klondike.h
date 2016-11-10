@@ -13,6 +13,7 @@
 #include <Stock.h>
 #include <TableauPile.h>
 #include <KlondikeVisitor.h>
+#include <KlondikeInitParameters.h>
 
 class Klondike {
 private:
@@ -25,6 +26,7 @@ private:
 public:
     Klondike();
     void initialize();
+    void initialize(KlondikeInitParameters& params);
     bool isCompleted();
     Stock* getStock();
     int getScore() const;
