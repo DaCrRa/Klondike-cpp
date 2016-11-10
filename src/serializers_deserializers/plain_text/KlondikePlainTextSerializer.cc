@@ -6,6 +6,7 @@
  */
 
 #include <KlondikePlainTextSerializer.h>
+#include <KlondilePlainTextSerializerDeserializerConstants.h>
 
 void KlondikePlainTextSerializer::serialize(std::shared_ptr<Klondike>& g, std::ostream& os) {
     KlondikePlainTextSerializerVisitor visitor(os);
@@ -14,7 +15,7 @@ void KlondikePlainTextSerializer::serialize(std::shared_ptr<Klondike>& g, std::o
 
 void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::visitScore(int score) {
     outputStream << score << std::endl;
-    outputStream << "END_OF_SCORE" << std::endl;
+    outputStream << KlondikePlainTextSerializerDeserializer::SCORE_END_MARK << std::endl;
 }
 
 void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::visitStock(Stock* s) {
@@ -23,11 +24,11 @@ void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::visitStock
 }
 
 void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::visitFoundation(Foundation* f) {
-    outputStream << "END_OF_FOUNDATION" << std::endl;
+    outputStream << KlondikePlainTextSerializerDeserializer::FOUNDATION_END_MARK << std::endl;
 }
 
 void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::allFoundationsVisited() {
-    outputStream << "END_OF_FOUNDATIONS" << std::endl;
+    outputStream << KlondikePlainTextSerializerDeserializer::FOUNDATIONS_END_MARK << std::endl;
 }
 
 void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::visitTableauPile(TableauPile* tp) {
@@ -36,7 +37,7 @@ void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::visitTable
 }
 
 void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::allTableauPilesVisited() {
-    outputStream << "END_OF_TABLEAU" << std::endl;
+    outputStream << KlondikePlainTextSerializerDeserializer::TABLEAU_END_MARK << std::endl;
 }
 
 void KlondikePlainTextSerializer::StockPlainTextSerializer::visitCoveredCard(const Card* covered) {
@@ -44,14 +45,14 @@ void KlondikePlainTextSerializer::StockPlainTextSerializer::visitCoveredCard(con
 }
 
 void KlondikePlainTextSerializer::StockPlainTextSerializer::allCoveredCardsVisited() {
-    outputStream << "END_OF_STOCK" << std::endl;
+    outputStream << KlondikePlainTextSerializerDeserializer::STOCK_END_MARK << std::endl;
 }
 
 void KlondikePlainTextSerializer::StockPlainTextSerializer::visitWasteCard(const Card* wasteCard) {
     outputStream << wasteCard->getCardId() << std::endl;
 }
 void KlondikePlainTextSerializer::StockPlainTextSerializer::allWasteCardsVisited() {
-    outputStream << "END_OF_WASTE" << std::endl;
+    outputStream << KlondikePlainTextSerializerDeserializer::WASTE_END_MARK << std::endl;
 }
 
 void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::visitCoveredCard(const Card* covered) {
@@ -59,7 +60,7 @@ void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::visitCoveredCa
 }
 
 void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::allCoveredCardsVisited() {
-    outputStream << "END_OF_TABLEAU_COVERED" << std::endl;
+    outputStream << KlondikePlainTextSerializerDeserializer::TABLEAU_PILE_COVERED_END_MARK << std::endl;
 }
 
 void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::visitUncoveredCard(const Card* uncovered) {
@@ -67,5 +68,5 @@ void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::visitUncovered
 }
 
 void KlondikePlainTextSerializer::TableauPilePlainTextSerializer::allUncoveredCardsVisited() {
-    outputStream << "END_OF_TABLEAU_PILE" << std::endl;
+    outputStream << KlondikePlainTextSerializerDeserializer::TABLEAU_PILE_END_MARK << std::endl;
 }
