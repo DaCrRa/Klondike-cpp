@@ -7,6 +7,7 @@
 
 #include <KlondikePlainTextDeserializer.h>
 #include <KlondilePlainTextSerializerDeserializerConstants.h>
+#include <KlondikeDeserializedInitParameters.h>
 
 std::vector<int> KlondikePlainTextDeserializer::deserializePile(
     std::string& readString,
@@ -24,57 +25,47 @@ std::vector<int> KlondikePlainTextDeserializer::deserializePile(
 
 #include <iostream>
 void KlondikePlainTextDeserializer::deserialize(std::shared_ptr<Klondike>& g, std::istream& inputStream) {
+    KlondikeDeserializedInitParameters deserializedParameters;
+
     int score;
     inputStream >> score;
-    std::cout << "Score is " << score << std::endl;
-    std::string mark;
-    inputStream >> mark;
-    std::cout << "mark: " << mark << std::endl;
-    if (mark != KlondikePlainTextSerializerDeserializer::SCORE_END_MARK) {
-
-    } else {
-        std::cout << "score ok" << std::endl;
-    }
+    deserializedParameters.setScore(score);
 
     std::string readString;
     inputStream >> readString;
-    std::vector<int> stockIndexes = deserializePile(readString,
-                                    inputStream,
-                                    KlondikePlainTextSerializerDeserializer::STOCK_END_MARK);
-    std::cout << "stock ok!" << std::endl;
-    std::cout << stockIndexes.size() << std::endl;
+    if (readString != KlondikePlainTextSerializerDeserializer::SCORE_END_MARK) {
+        throw std::exception();
+    }
 
-    std::vector<int> wasteIndexes = deserializePile(readString,
-                                    inputStream,
-                                    KlondikePlainTextSerializerDeserializer::WASTE_END_MARK);
-    std::cout << "waste ok!" << std::endl;
-    std::cout << wasteIndexes.size() << std::endl;
+    inputStream >> readString;
+    deserializedParameters.setStockCardsIds(deserializePile(readString,
+                                            inputStream,
+                                            KlondikePlainTextSerializerDeserializer::STOCK_END_MARK));
+
+    deserializedParameters.setWasteCardsIds(deserializePile(readString,
+                                            inputStream,
+                                            KlondikePlainTextSerializerDeserializer::WASTE_END_MARK));
 
     while (readString != KlondikePlainTextSerializerDeserializer::FOUNDATIONS_END_MARK) {
-        std::vector<int> foundationIndexes = deserializePile(readString,
-                                             inputStream,
-                                             KlondikePlainTextSerializerDeserializer::FOUNDATION_END_MARK);
-        std::cout << "foundation ok!" << std::endl;
-        std::cout << foundationIndexes.size() << std::endl;
+        deserializedParameters.addFoundation();
+        deserializedParameters.setLastFoundationCardsIds(deserializePile(readString,
+                inputStream,
+                KlondikePlainTextSerializerDeserializer::FOUNDATION_END_MARK));
     }
-    std::cout << "foundations ok!" << std::endl;
 
     inputStream >> readString;
     while (readString != KlondikePlainTextSerializerDeserializer::TABLEAU_END_MARK) {
-        std::vector<int> tableauCoveredIndexes = deserializePile(readString,
+        deserializedParameters.addTableauPile();
+        deserializedParameters.setLastTableauPileCoveredCardsIds(deserializePile(readString,
                 inputStream,
-                KlondikePlainTextSerializerDeserializer::TABLEAU_PILE_COVERED_END_MARK);
-        std::cout << "tableau pile covered ok!" << std::endl;
-        std::cout << tableauCoveredIndexes.size() << std::endl;
+                KlondikePlainTextSerializerDeserializer::TABLEAU_PILE_COVERED_END_MARK));
 
-        std::vector<int> tableauUncoveredIndexes = deserializePile(readString,
+        deserializedParameters.setLastTableauPileUncoveredCardsIds(deserializePile(readString,
                 inputStream,
-                KlondikePlainTextSerializerDeserializer::TABLEAU_PILE_END_MARK);
-        std::cout << "tableau pile ok!" << std::endl;
-        std::cout << tableauUncoveredIndexes.size() << std::endl;
+                KlondikePlainTextSerializerDeserializer::TABLEAU_PILE_END_MARK));
     }
-    std::cout << "tableau ok!" << std::endl;
 
     g = std::shared_ptr<Klondike>(new Klondike());
+    g->initialize(deserializedParameters);
 }
 

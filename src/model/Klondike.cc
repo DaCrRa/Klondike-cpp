@@ -30,6 +30,30 @@ void Klondike::initialize() {
 }
 
 void Klondike::initialize(KlondikeInitParameters& params) {
+    score = params.getScore();
+    for(int id : params.getStockCardsIds()) {
+        stock.addToCovered(deck.removeCard(id));
+    }
+    for(int id : params.getWasteCardsIds()) {
+        stock.recoverCard(deck.removeCard(id));
+    }
+    for(std::vector<int> foundationIds : params.getFoundationsCardsIds()) {
+        foundations.push_back(Foundation(deck.getNumCardsPerSuit()));
+        for(int id : foundationIds) {
+            foundations.back().recoverCard(deck.removeCard(id));
+        }
+    }
+    assert(params.getTableauInitParams().size() == NUM_TABLEAU_PILES);
+    std::vector<TableauPile>::iterator it = tableau.begin();
+    for(std::shared_ptr<TableauPileInitParameters> tableauPileParams : params.getTableauInitParams()) {
+        for(int cardId : tableauPileParams->getCoveredCardsIds()) {
+            it->addToCovered(deck.removeCard(cardId));
+        }
+        for(int cardId : tableauPileParams->getUncoveredCardsIds()) {
+            it->recoverCard(deck.removeCard(cardId));
+        }
+        ++it;
+    }
 }
 
 bool Klondike::isCompleted() {
