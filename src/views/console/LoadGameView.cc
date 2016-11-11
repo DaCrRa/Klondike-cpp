@@ -30,7 +30,10 @@ void LoadGameView::interact(LoadGameController* lgc) {
         try {
             std::string selectedGameName = m.getUserSelection();
             std::cout << "Loading " << selectedGameName << std::endl;
-            lgc->loadGame(selectedGameName);
+
+            if (!lgc->loadGame(selectedGameName)) {
+                std::cout << "Could not load game!" << std::endl;
+            }
         } catch (CancelledDialogException& e) {
             std::cout << "Cancelled load game!" << std::endl;
             eventObserver.gamePauseRequested();
