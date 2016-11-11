@@ -9,7 +9,7 @@ private:
     static const int NUM_SUITS = 26;
 
     std::vector<Card> cards;
-    int remainingCards;
+    std::vector<int> remainingCardIds;
 public:
     Deck();
     const Card* removeTop();
