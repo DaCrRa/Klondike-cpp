@@ -57,3 +57,10 @@ void Foundation::accept(MoveOriginVisitor* v) {
 void Foundation::accept(MoveDestVisitor* v) {
     v->visit(this);
 }
+
+void Foundation::acceptFoundationVisitor(FoundationVisitor* v) {
+    for (const Card* c : pile) {
+        v->visitCard(c);
+    }
+    v->allCardsVisited();
+}

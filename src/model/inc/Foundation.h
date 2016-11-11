@@ -11,6 +11,7 @@
 #include <Pile.h>
 #include <MoveDest.h>
 #include <MoveOrigin.h>
+#include <FoundationVisitor.h>
 
 class Foundation : public MoveDest, public MoveOrigin {
 private:
@@ -29,6 +30,7 @@ public:
     const Card* top() const;
     void accept(MoveOriginVisitor* v);
     void accept(MoveDestVisitor* v);
+    void acceptFoundationVisitor(FoundationVisitor* v);
 };
 
 #endif
