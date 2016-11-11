@@ -7,13 +7,16 @@
 
 #include <Klondike.h>
 
+#include <assert.h>
+
 Klondike::Klondike() :
     tableau(NUM_TABLEAU_PILES, TableauPile(deck.getNumCardsPerSuit())),
-    foundations(/*deck.getNumSuits()*/ 4, Foundation(deck.getNumCardsPerSuit())),
     score(0)
 {}
 
 void Klondike::initialize() {
+    assert(foundations.empty());
+    foundations = std::vector<Foundation>(/*deck.getNumSuits()*/ 4, Foundation(deck.getNumCardsPerSuit()));
     int i = 0;
     for (std::vector<TableauPile>::iterator it = tableau.begin(); it != tableau.end(); ++it, ++i) {
         for (int j = 0; j < i + 1; j++) {
