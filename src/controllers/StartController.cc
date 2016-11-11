@@ -13,6 +13,7 @@
 
 void StartController::start(std::shared_ptr<GameActionController> gameActionController) {
     std::shared_ptr<Klondike> game(new Klondike());
+    game->initialize();
     sessionStarter.startSession(game, gameActionController);
     eventObserver.gameStarted();
 }

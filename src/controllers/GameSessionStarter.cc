@@ -11,7 +11,6 @@ void GameSessionStarter::startSession(std::shared_ptr<Klondike>& g,
                                       std::shared_ptr<GameActionController> actionController) {
     game = g;
     actionController->setGame(game);
-    game->initialize();
     gameActionControllerHolder.setGameActionController(actionController);
 }
 
