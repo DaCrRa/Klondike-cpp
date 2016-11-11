@@ -2,6 +2,8 @@
 
 #include <assert.h>
 
+#include <algorithm>
+
 Deck::Deck() {
     int numberOfCards = NUM_CARDS_PER_SUIT * NUM_SUITS;
     for (int i = 0; i < numberOfCards; ++i) {
@@ -14,6 +16,13 @@ const Card* Deck::removeTop() {
     assert(hasCards());
     int cardId = remainingCardIds.back();
     remainingCardIds.pop_back();
+    return &cards[cardId];
+}
+
+const Card* Deck::removeCard(int cardId) {
+    remainingCardIds.erase(std::find(remainingCardIds.begin(),
+                                     remainingCardIds.end(),
+                                     cardId));
     return &cards[cardId];
 }
 

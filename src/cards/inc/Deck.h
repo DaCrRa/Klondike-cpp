@@ -13,6 +13,7 @@ private:
 public:
     Deck();
     const Card* removeTop();
+    const Card* removeCard(int cardId);
     bool hasCards();
     int getNumCardsPerSuit() const;
     int getNumSuits() const;
