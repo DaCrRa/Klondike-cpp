@@ -37,6 +37,15 @@ private:
         void visitUncoveredCard(const Card* uncovered);
         void allUncoveredCardsVisited();
     };
+    class FoundationPlainTextSerializer : public FoundationVisitor {
+    private:
+        std::ostream& outputStream;
+    public:
+        FoundationPlainTextSerializer(std::ostream& os) :
+            outputStream(os) {}
+        void visitCard(const Card* card);
+        void allCardsVisited();
+    };
     class KlondikePlainTextSerializerVisitor : public KlondikeVisitor {
     private:
         std::ostream& outputStream;
