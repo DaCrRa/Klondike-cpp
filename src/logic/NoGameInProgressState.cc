@@ -9,17 +9,20 @@
 
 #include <AppStatesBuilder.h>
 
-NoGameInProgressState::NoGameInProgressState(AppStatesBuilder& sb,
-        GameSessionStarter& starter,
-        EventObserver& eventObserver,
-        GameStatePtr gameStates) :
+NoGameInProgressState::NoGameInProgressState(
+    AppStatesBuilder& sb,
+    std::shared_ptr<DeckFactory> factory,
+    GameSessionStarter& starter,
+    EventObserver& eventObserver,
+    GameStatePtr gameStates) :
     AppState(sb),
+    deckFactory(factory),
     gameSessionStarter(starter),
     eventObserver(eventObserver),
     gameState(gameStates) {}
 
 ControllerPtr NoGameInProgressState::getController() {
-    return ControllerPtr(new StartController(gameSessionStarter, gameState, eventObserver));
+    return ControllerPtr(new StartController(deckFactory, gameSessionStarter, gameState, eventObserver));
 }
 
 AppStatePtr NoGameInProgressState::transitionToExit() {

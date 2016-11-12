@@ -22,6 +22,7 @@ std::vector<std::string> KlondikeFromFileLoader::listSavedGames() {
 std::shared_ptr<Klondike> KlondikeFromFileLoader::loadGame(const std::string& gameName) {
     std::shared_ptr<Klondike> game;
     std::ifstream inputStream(path / gameName);
+    deserializer.setDeckFactory(deckFactory);
     deserializer.deserialize(game, inputStream);
     return game;
 }

@@ -1,3 +1,5 @@
+add_subdirectory(test_cards)
+
 file(GLOB cards_source_files
     "*.cc"
 )

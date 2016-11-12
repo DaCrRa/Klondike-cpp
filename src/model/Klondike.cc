@@ -9,7 +9,8 @@
 
 #include <assert.h>
 
-Klondike::Klondike() :
+Klondike::Klondike(Deck& d) :
+    deck(d),
     tableau(NUM_TABLEAU_PILES, TableauPile(deck.getNumCardsPerSuit())),
     score(0)
 {}

@@ -1,20 +1,21 @@
+#ifndef _DECK_H
+#define _DECK_H
+
 #include <Card.h>
 
 #include <vector>
 
 class Deck {
-private:
-    // 52 cards
-    static const int NUM_CARDS_PER_SUIT = 2;
-    static const int NUM_SUITS = 26;
-
+protected:
     std::vector<Card> cards;
     std::vector<int> remainingCardIds;
 public:
-    Deck();
     const Card* removeTop();
     const Card* removeCard(int cardId);
     bool hasCards();
-    int getNumCardsPerSuit() const;
-    int getNumSuits() const;
+    virtual int getNumCardsPerSuit() const = 0;
+    virtual int getNumSuits() const = 0;
+    virtual ~Deck() {}
 };
+
+#endif

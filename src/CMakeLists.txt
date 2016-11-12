@@ -11,7 +11,8 @@ add_subdirectory(savers_loaders)
 
 add_executable(Klondike KlondikeMain.cc)
 
-target_link_libraries(Klondike KlondikeModel
+target_link_libraries(Klondike TestCards
+                               KlondikeModel
                                KlondikeApp
                                KlondikeController
                                KlondikePlainTextSerializerDeserializer

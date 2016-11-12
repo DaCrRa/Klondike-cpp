@@ -13,18 +13,21 @@
 #include <EventObserver.h>
 #include <GameSessionStarter.h>
 #include <GameState.h>
+#include <DeckFactory.h>
 
 #include <memory>
 #include <vector>
 
 class StartController : public Controller {
 private:
+    std::shared_ptr<DeckFactory> deckFactory;
     GameSessionStarter sessionStarter;
     GameStatePtr gameState;
     EventObserver& eventObserver;
     void start(std::shared_ptr<GameActionController> gameActionController);
 public:
-    StartController(GameSessionStarter& starter,
+    StartController(std::shared_ptr<DeckFactory> factory,
+                    GameSessionStarter& starter,
                     GameStatePtr state,
                     EventObserver& observer);
     void startGame();

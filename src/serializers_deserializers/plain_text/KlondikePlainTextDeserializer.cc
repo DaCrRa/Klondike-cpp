@@ -9,6 +9,8 @@
 #include <KlondilePlainTextSerializerDeserializerConstants.h>
 #include <KlondikeDeserializedInitParameters.h>
 
+#include <istream>
+
 std::vector<int> KlondikePlainTextDeserializer::deserializePile(
     std::string& readString,
     std::istream& inputStream,
@@ -23,7 +25,6 @@ std::vector<int> KlondikePlainTextDeserializer::deserializePile(
     return deckIndexes;
 }
 
-#include <iostream>
 void KlondikePlainTextDeserializer::deserialize(std::shared_ptr<Klondike>& g, std::istream& inputStream) {
     KlondikeDeserializedInitParameters deserializedParameters;
 
@@ -65,7 +66,7 @@ void KlondikePlainTextDeserializer::deserialize(std::shared_ptr<Klondike>& g, st
                 KlondikePlainTextSerializerDeserializer::TABLEAU_PILE_END_MARK));
     }
 
-    g = std::shared_ptr<Klondike>(new Klondike());
+    g = std::shared_ptr<Klondike>(new Klondike(deckFactory->getDeck()));
     g->initialize(deserializedParameters);
 }
 

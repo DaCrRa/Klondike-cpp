@@ -10,8 +10,9 @@
 #include <UserGameActionController.h>
 #include <RandomGameActionController.h>
 
-Logic::Logic(KlondikeSaver& saver, KlondikeLoader& loader) :
+Logic::Logic(std::shared_ptr<DeckFactory> factory, KlondikeSaver& saver, KlondikeLoader& loader) :
     statesBuildr(*this,
+                 factory,
                  gameActionControllerHolder,
                  gameSessionStarter,
                  bestScoresController,
@@ -21,7 +22,7 @@ Logic::Logic(KlondikeSaver& saver, KlondikeLoader& loader) :
     currentState(statesBuildr.getInitialState()),
     bestScoresController(new BestScoresController(game)),
     saveGameController(new SaveGameController(game, saver)),
-    loadGameController(new LoadGameController (*this, gameSessionStarter, loader)),
+    loadGameController(new LoadGameController (*this, factory, gameSessionStarter, loader)),
     saver(saver) {
     assert(currentState);
 }

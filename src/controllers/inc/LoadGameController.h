@@ -13,6 +13,7 @@
 #include <EventObserver.h>
 #include <GameSessionStarter.h>
 #include <KlondikeLoader.h>
+#include <DeckFactory.h>
 
 class LoadGameController: public Controller {
 private:
@@ -21,11 +22,15 @@ private:
     KlondikeLoader& loader;
 public:
     LoadGameController(EventObserver& o,
+                       std::shared_ptr<DeckFactory> factory,
                        GameSessionStarter& sessionStarter,
                        KlondikeLoader& l) :
         eventObserver(o),
         gameSessionStarter(sessionStarter),
-        loader(l) {};
+        loader(l)
+    {
+        loader.setDeckFactory(factory);
+    };
     std::vector<std::string> listSavedGames();
     bool loadGame(std::string& gameName);
     void accept(ControllerVisitor* v);

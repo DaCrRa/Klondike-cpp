@@ -12,6 +12,7 @@
 #include <KlondikeSaver.h>
 #include <KlondikeLoader.h>
 #include <EventObserver.h>
+#include <DeckFactory.h>
 #include <GameActionControllerHolder.h>
 #include <BestScoresController.h>
 #include <SaveGameController.h>
@@ -31,7 +32,7 @@ private:
     AppStatesBuilder statesBuildr;
     AppStatePtr currentState;
 public:
-    Logic(KlondikeSaver& saver, KlondikeLoader& loader);
+    Logic(std::shared_ptr<DeckFactory> factory, KlondikeSaver& saver, KlondikeLoader& loader);
     ControllerPtr getNextController();
     void gameStarted();
     void saveGameRequested();
