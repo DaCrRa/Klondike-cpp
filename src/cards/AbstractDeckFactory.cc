@@ -5,11 +5,11 @@
  *      Author: dancre
  */
 
-#include <DeckFactory.h>
+#include <AbstractDeckFactory.h>
 
 
 
-Deck& DeckFactory::getDeck() {
+Deck& AbstractDeckFactory::getDeck() {
     return *deck;
 }
 

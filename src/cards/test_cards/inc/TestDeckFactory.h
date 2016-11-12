@@ -8,13 +8,14 @@
 #ifndef SRC_CARDS_TEST_CARDS_INC_TESTDECKFACTORY_H_
 #define SRC_CARDS_TEST_CARDS_INC_TESTDECKFACTORY_H_
 
-#include <DeckFactory.h>
+#include <AbstractDeckFactory.h>
+
 #include <TestDeck.h>
 
-class TestDeckFactory : public DeckFactory {
+class TestDeckFactory : public AbstractDeckFactory {
 public:
     TestDeckFactory() :
-        DeckFactory(std::shared_ptr<Deck>(new TestDeck())) {}
+        AbstractDeckFactory(std::shared_ptr<Deck>(new TestDeck())) {}
 };
 
 

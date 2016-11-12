@@ -8,18 +8,17 @@
 #ifndef SRC_SAVERS_LOADERS_KLONDIKELOADER_H_
 #define SRC_SAVERS_LOADERS_KLONDIKELOADER_H_
 
+#include <AbstractDeckFactory.h>
 #include <Klondike.h>
-#include <DeckFactory.h>
-
 #include <vector>
 #include <string>
 #include <memory>
 
 class KlondikeLoader {
 protected:
-    std::shared_ptr<DeckFactory> deckFactory;
+    std::shared_ptr<AbstractDeckFactory> deckFactory;
 public:
-    void setDeckFactory(std::shared_ptr<DeckFactory> factory) {
+    void setDeckFactory(std::shared_ptr<AbstractDeckFactory> factory) {
         deckFactory = factory;
     }
     virtual std::vector<std::string> listSavedGames() = 0;

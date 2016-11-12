@@ -8,7 +8,7 @@
 #include <Logic.h>
 
 int main(int argc, char* argv[]) {
-    std::shared_ptr<DeckFactory> deckFactory(new TestDeckFactory());
+    std::shared_ptr<AbstractDeckFactory> deckFactory(new TestDeckFactory());
     KlondikePlainTextSerializer serializer;
     KlondikePlainTextDeserializer deserializer;
     KlondikeToFileSaver toFileSaver(serializer);

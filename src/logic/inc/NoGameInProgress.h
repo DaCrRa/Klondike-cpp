@@ -15,13 +15,13 @@
 class NoGameInProgressState : public AppState,
     public std::enable_shared_from_this<NoGameInProgressState> {
 private:
-    std::shared_ptr<DeckFactory> deckFactory;
+    std::shared_ptr<AbstractDeckFactory> deckFactory;
     GameSessionStarter& gameSessionStarter;
     EventObserver& eventObserver;
     GameStatePtr gameState;
 public:
     NoGameInProgressState(AppStatesBuilder& sb,
-                          std::shared_ptr<DeckFactory> factory,
+                          std::shared_ptr<AbstractDeckFactory> factory,
                           GameSessionStarter& starter,
                           EventObserver& eventObserver,
                           GameStatePtr gameState);

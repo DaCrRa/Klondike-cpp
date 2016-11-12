@@ -18,7 +18,7 @@ void StartController::start(std::shared_ptr<GameActionController> gameActionCont
     eventObserver.gameStarted();
 }
 
-StartController::StartController(std::shared_ptr<DeckFactory> factory,
+StartController::StartController(std::shared_ptr<AbstractDeckFactory> factory,
                                  GameSessionStarter& starter,
                                  GameStatePtr s,
                                  EventObserver& observer) :

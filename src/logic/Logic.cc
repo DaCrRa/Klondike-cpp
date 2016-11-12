@@ -10,7 +10,7 @@
 #include <UserGameActionController.h>
 #include <RandomGameActionController.h>
 
-Logic::Logic(std::shared_ptr<DeckFactory> factory, KlondikeSaver& saver, KlondikeLoader& loader) :
+Logic::Logic(std::shared_ptr<AbstractDeckFactory> factory, KlondikeSaver& saver, KlondikeLoader& loader) :
     statesBuildr(*this,
                  factory,
                  gameActionControllerHolder,

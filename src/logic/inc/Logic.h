@@ -12,13 +12,13 @@
 #include <KlondikeSaver.h>
 #include <KlondikeLoader.h>
 #include <EventObserver.h>
-#include <DeckFactory.h>
 #include <GameActionControllerHolder.h>
 #include <BestScoresController.h>
 #include <SaveGameController.h>
 #include <LoadGameController.h>
 #include <AppStatesBuilder.h>
 #include <assert.h>
+#include <AbstractDeckFactory.h>
 
 class Logic : public EventObserver {
 private:
@@ -32,7 +32,7 @@ private:
     AppStatesBuilder statesBuildr;
     AppStatePtr currentState;
 public:
-    Logic(std::shared_ptr<DeckFactory> factory, KlondikeSaver& saver, KlondikeLoader& loader);
+    Logic(std::shared_ptr<AbstractDeckFactory> factory, KlondikeSaver& saver, KlondikeLoader& loader);
     ControllerPtr getNextController();
     void gameStarted();
     void saveGameRequested();

@@ -30,7 +30,7 @@ private:
     std::shared_ptr<LoadingGameState> loadingGameState;
 public:
     AppStatesBuilder(EventObserver& observer,
-                     std::shared_ptr<DeckFactory> factory,
+                     std::shared_ptr<AbstractDeckFactory> factory,
                      GameActionControllerHolder& gameActionControllerHolder,
                      GameSessionStarter& starter,
                      std::shared_ptr<BestScoresController>& bestScoresController,

@@ -11,7 +11,7 @@
 
 NoGameInProgressState::NoGameInProgressState(
     AppStatesBuilder& sb,
-    std::shared_ptr<DeckFactory> factory,
+    std::shared_ptr<AbstractDeckFactory> factory,
     GameSessionStarter& starter,
     EventObserver& eventObserver,
     GameStatePtr gameStates) :

@@ -8,25 +8,24 @@
 #ifndef SRC_CONTROLLERS_STARTCONTROLLER_H_
 #define SRC_CONTROLLERS_STARTCONTROLLER_H_
 
+#include <AbstractDeckFactory.h>
 #include <Controller.h>
 #include <ControllerVisitor.h>
 #include <EventObserver.h>
 #include <GameSessionStarter.h>
 #include <GameState.h>
-#include <DeckFactory.h>
-
 #include <memory>
 #include <vector>
 
 class StartController : public Controller {
 private:
-    std::shared_ptr<DeckFactory> deckFactory;
+    std::shared_ptr<AbstractDeckFactory> deckFactory;
     GameSessionStarter sessionStarter;
     GameStatePtr gameState;
     EventObserver& eventObserver;
     void start(std::shared_ptr<GameActionController> gameActionController);
 public:
-    StartController(std::shared_ptr<DeckFactory> factory,
+    StartController(std::shared_ptr<AbstractDeckFactory> factory,
                     GameSessionStarter& starter,
                     GameStatePtr state,
                     EventObserver& observer);
