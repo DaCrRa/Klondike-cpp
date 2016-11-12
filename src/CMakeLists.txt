@@ -9,12 +9,12 @@ add_subdirectory(logic)
 add_subdirectory(serializers_deserializers)
 add_subdirectory(savers_loaders)
 
-add_executable(Klondike KlondikeMain.cc)
+add_executable(KlondikeTest KlondikeTestMain.cc)
 
-target_link_libraries(Klondike TestCards
-                               KlondikeModel
-                               KlondikeApp
-                               KlondikeController
-                               KlondikePlainTextSerializerDeserializer
-                               KlondikeFileSaverLoader
-                               KlondikeConsoleView)
+target_link_libraries(KlondikeTest TestCards
+                                   KlondikeModel
+                                   KlondikeApp
+                                   KlondikeController
+                                   KlondikePlainTextSerializerDeserializer
+                                   KlondikeFileSaverLoader
+                                   KlondikeConsoleView)
