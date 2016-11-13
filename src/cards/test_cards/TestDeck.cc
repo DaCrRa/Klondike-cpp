@@ -15,6 +15,10 @@ TestDeck::TestDeck() {
     }
 }
 
+DeckType TestDeck::getDeckType() const {
+	return TEST_DECK;
+}
+
 int TestDeck::getNumCardsPerSuit() const {
     return 2;
 }

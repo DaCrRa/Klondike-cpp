@@ -15,6 +15,10 @@ SpanishDeck::SpanishDeck() {
     }
 }
 
+DeckType SpanishDeck::getDeckType() const {
+	return SPANISH_DECK;
+}
+
 int SpanishDeck::getNumCardsPerSuit() const {
     return 2;
 }

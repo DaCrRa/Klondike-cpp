@@ -10,13 +10,15 @@
 
 #include <AbstractDeckFactory.h>
 
-#include <TestDeck.h>
+#include <SpanishDeck.h>
+#include <FrenchDeck.h>
 
-class TestDeckFactory : public AbstractDeckFactory {
+class DeckFactory : public AbstractDeckFactory {
 public:
-    TestDeckFactory() :
+    DeckFactory() :
         AbstractDeckFactory( {
-        std::shared_ptr<Deck>(new TestDeck())
+    		std::shared_ptr<Deck>(new SpanishDeck()),
+            std::shared_ptr<Deck>(new FrenchDeck())
     }) {}
 };
 
