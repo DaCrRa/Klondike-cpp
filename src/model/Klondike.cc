@@ -78,6 +78,7 @@ void Klondike::updateScore(int delta) {
 }
 
 void Klondike::accept(KlondikeVisitor* visitor) {
+    visitor->visitDeckType(deck->getDeckType());
     visitor->visitScore(score);
     visitor->visitStock(&stock);
     for(Foundation& foundation : foundations) {

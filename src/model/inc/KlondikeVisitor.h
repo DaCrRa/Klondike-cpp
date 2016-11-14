@@ -11,11 +11,13 @@
 #include <Foundation.h>
 #include <Stock.h>
 #include <TableauPile.h>
+#include <DeckTypes.h>
 
 #include <functional>
 
 class KlondikeVisitor {
 public:
+    virtual void visitDeckType(DeckType type) {}
     virtual void visitScore(int score) {}
     virtual void visitStock(Stock* s) {}
     virtual void visitTableauPile(TableauPile* tp) {}
@@ -27,6 +29,7 @@ public:
 
 class KlondikeLambdaVisitor : public KlondikeVisitor {
 private:
+    std::function<void(DeckType)> visitDeckTypeFunction;
     std::function<void(int)> visitScoreFunction;
     std::function<void(Stock*)> visitStockFunction;
     std::function<void(TableauPile*)> visitTableauPileFunction;
@@ -35,12 +38,17 @@ private:
     std::function<void()> allFoundationsVisitedFunction;
 public:
     KlondikeLambdaVisitor() :
+        visitDeckTypeFunction([&](...)->void{}),
         visitScoreFunction([&](...)->void{}),
         visitStockFunction([&](...)->void{}),
         visitTableauPileFunction([&](...)->void{}),
         visitFoundationFunction([&](...)->void{}),
         allTableauPilesVisitedFunction([&](...)->void{}),
         allFoundationsVisitedFunction([&](...)->void{}) {}
+    KlondikeLambdaVisitor& setVisitDeckTypeFunction(std::function<void(DeckType)> f) {
+        visitDeckTypeFunction = f;
+        return *this;
+    }
     KlondikeLambdaVisitor& setVisitScoreFunction(std::function<void(int)> f) {
         visitScoreFunction = f;
         return *this;
@@ -64,6 +72,9 @@ public:
     KlondikeLambdaVisitor& setAllFoundationsVisitedFunction(std::function<void()> f) {
         allFoundationsVisitedFunction = f;
         return *this;
+    }
+    void visitDeckType(DeckType type) {
+        visitDeckTypeFunction(type);
     }
     void visitScore(int score) {
         visitScoreFunction(score);
