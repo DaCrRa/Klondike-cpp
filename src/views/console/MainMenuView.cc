@@ -6,6 +6,7 @@
  */
 
 #include <MainMenuView.h>
+#include <SelectDeckView.h>
 
 #include <Menu.h>
 
@@ -29,12 +30,14 @@ void MainMenuView::interact(StartController* startController) {
     }
 
     options.push_back(std::make_pair(MenuOption("Start new one-player klondike", 0), [&] {
+        SelectDeckView(startController->getDeckFactory()).selectDeck();
         startController->startGame();
     }));
     options.push_back(std::make_pair(MenuOption("Load saved game", 0), [&] {
         eventObserver.loadGameRequested();
     }));
     options.push_back(std::make_pair(MenuOption("Demo", 0), [&] {
+        SelectDeckView(startController->getDeckFactory()).selectDeck();
         startController->startDemo();
     }));
 
