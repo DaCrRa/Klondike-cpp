@@ -13,6 +13,11 @@ void KlondikePlainTextSerializer::serialize(std::shared_ptr<Klondike>& g, std::o
     g->accept(&visitor);
 }
 
+void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::visitDeckType(DeckType type) {
+    outputStream << type << std::endl;
+    outputStream << KlondikePlainTextSerializerDeserializer::DECKTYPE_END_MARK << std::endl;
+}
+
 void KlondikePlainTextSerializer::KlondikePlainTextSerializerVisitor::visitScore(int score) {
     outputStream << score << std::endl;
     outputStream << KlondikePlainTextSerializerDeserializer::SCORE_END_MARK << std::endl;

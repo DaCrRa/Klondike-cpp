@@ -11,6 +11,7 @@
 #include <string>
 
 namespace KlondikePlainTextSerializerDeserializer {
+const std::string DECKTYPE_END_MARK = "END_OF_DECKTYPE";
 const std::string SCORE_END_MARK = "END_OF_SCORE";
 const std::string STOCK_END_MARK = "END_OF_STOCK";
 const std::string WASTE_END_MARK = "END_OF_WASTE";

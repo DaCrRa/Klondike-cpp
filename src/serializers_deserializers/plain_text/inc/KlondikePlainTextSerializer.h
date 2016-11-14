@@ -52,6 +52,7 @@ private:
     public:
         KlondikePlainTextSerializerVisitor (std::ostream& os) :
             outputStream(os) {}
+        void visitDeckType(DeckType type);
         void visitScore(int score);
         void visitStock(Stock* s);
         void visitFoundation(Foundation* f);
