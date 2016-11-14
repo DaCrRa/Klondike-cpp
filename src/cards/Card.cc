@@ -1,10 +1,11 @@
 #include <Card.h>
 
-Card::Card(int id, int r) :
+Card::Card(int id, int r, int s, int c) :
     cardId(id),
-    rank(r)
-{
-}
+    rank(r),
+    suit(s),
+    color(c)
+{}
 
 int Card::getCardId() const {
     return cardId;
@@ -15,13 +16,11 @@ int Card::getRank() const {
 }
 
 bool Card::hasSameSuit(const Card* c) const {
-    //TODO
-    return true;
+    return suit == c->suit;
 }
 
 bool Card::hasSameColor(const Card* c) const {
-    //TODO
-    return false;
+    return color == c->color;
 }
 
 int Card::compareRank(const Card* c) const {

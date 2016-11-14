@@ -5,10 +5,13 @@ class Card {
 
 private:
     int cardId;
+
     int rank;
+    int suit;
+    int color;
 
 public:
-    Card(int cardId, int rank);
+    Card(int cardId, int rank, int suit, int color);
 
     int getCardId() const;
 

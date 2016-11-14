@@ -12,8 +12,8 @@
 
 class SpanishDeck: public Deck {
 private:
-    int NUM_CARDS_PER_SUIT = 13;
-    int NUM_SUITS = 4;
+    const int NUM_CARDS_PER_SUIT = 10;
+    const int NUM_SUITS = 4;
 public:
     SpanishDeck();
     DeckPtr newDeck() const;
