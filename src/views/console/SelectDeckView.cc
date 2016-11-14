@@ -25,7 +25,7 @@ void SelectDeckView::selectDeck() {
             options.push_back(std::make_pair(MenuOption(std::string(deckDescriptions[type]), 0), type));
         }
         Menu<DeckType> m("Select a deck:", std::move(options));
-        m.getUserSelection();
+        deckFactory.setSelectedDeck(m.getUserSelection());
     }
 }
 
