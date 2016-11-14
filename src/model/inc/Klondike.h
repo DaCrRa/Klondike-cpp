@@ -18,13 +18,13 @@
 class Klondike {
 private:
     const int NUM_TABLEAU_PILES = 7;
-    Deck& deck;
+    DeckPtr deck;
     Stock stock;
     std::vector<Foundation> foundations;
     std::vector<TableauPile> tableau;
     int score;
 public:
-    Klondike(Deck& d);
+    Klondike(DeckPtr d);
     void initialize();
     void initialize(KlondikeInitParameters& params);
     bool isCompleted();

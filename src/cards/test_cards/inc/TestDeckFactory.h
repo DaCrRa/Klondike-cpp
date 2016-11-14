@@ -15,7 +15,9 @@
 class TestDeckFactory : public AbstractDeckFactory {
 public:
     TestDeckFactory() :
-        AbstractDeckFactory(std::shared_ptr<Deck>(new TestDeck())) {}
+        AbstractDeckFactory( {
+        std::shared_ptr<Deck>(new TestDeck())
+    }) {}
 };
 
 

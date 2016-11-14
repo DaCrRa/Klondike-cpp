@@ -9,49 +9,49 @@
 
 #include <assert.h>
 
-Klondike::Klondike(Deck& d) :
+Klondike::Klondike(DeckPtr d) :
     deck(d),
-    tableau(NUM_TABLEAU_PILES, TableauPile(deck.getNumCardsPerSuit())),
+    tableau(NUM_TABLEAU_PILES, TableauPile(deck->getNumCardsPerSuit())),
     score(0)
 {}
 
 void Klondike::initialize() {
     assert(foundations.empty());
-    foundations = std::vector<Foundation>(/*deck.getNumSuits()*/ 4, Foundation(deck.getNumCardsPerSuit()));
+    foundations = std::vector<Foundation>(deck->getNumSuits(), Foundation(deck->getNumCardsPerSuit()));
     int i = 0;
     for (std::vector<TableauPile>::iterator it = tableau.begin(); it != tableau.end(); ++it, ++i) {
         for (int j = 0; j < i + 1; j++) {
-            it->addToCovered(deck.removeTop());
+            it->addToCovered(deck->removeTop());
         }
         it->turnUpCard();
     }
-    while (deck.hasCards()) {
-        stock.addToCovered(deck.removeTop());
+    while (deck->hasCards()) {
+        stock.addToCovered(deck->removeTop());
     }
 }
 
 void Klondike::initialize(KlondikeInitParameters& params) {
     score = params.getScore();
     for(int id : params.getStockCardsIds()) {
-        stock.addToCovered(deck.removeCard(id));
+        stock.addToCovered(deck->removeCard(id));
     }
     for(int id : params.getWasteCardsIds()) {
-        stock.recoverCard(deck.removeCard(id));
+        stock.recoverCard(deck->removeCard(id));
     }
     for(std::vector<int> foundationIds : params.getFoundationsCardsIds()) {
-        foundations.push_back(Foundation(deck.getNumCardsPerSuit()));
+        foundations.push_back(Foundation(deck->getNumCardsPerSuit()));
         for(int id : foundationIds) {
-            foundations.back().recoverCard(deck.removeCard(id));
+            foundations.back().recoverCard(deck->removeCard(id));
         }
     }
     assert(params.getTableauInitParams().size() == NUM_TABLEAU_PILES);
     std::vector<TableauPile>::iterator it = tableau.begin();
     for(std::shared_ptr<TableauPileInitParameters> tableauPileParams : params.getTableauInitParams()) {
         for(int cardId : tableauPileParams->getCoveredCardsIds()) {
-            it->addToCovered(deck.removeCard(cardId));
+            it->addToCovered(deck->removeCard(cardId));
         }
         for(int cardId : tableauPileParams->getUncoveredCardsIds()) {
-            it->recoverCard(deck.removeCard(cardId));
+            it->recoverCard(deck->removeCard(cardId));
         }
         ++it;
     }
