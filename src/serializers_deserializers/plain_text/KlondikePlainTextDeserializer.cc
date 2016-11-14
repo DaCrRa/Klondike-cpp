@@ -11,6 +11,13 @@
 
 #include <istream>
 
+std::istream& operator>>(std::istream& is, DeckType& type) {
+    int deckTypeAsInt;
+    is >> deckTypeAsInt;
+    type = static_cast<DeckType>(deckTypeAsInt);
+    return is;
+}
+
 std::vector<int> KlondikePlainTextDeserializer::deserializePile(
     std::string& readString,
     std::istream& inputStream,
@@ -26,13 +33,22 @@ std::vector<int> KlondikePlainTextDeserializer::deserializePile(
 }
 
 void KlondikePlainTextDeserializer::deserialize(std::shared_ptr<Klondike>& g, std::istream& inputStream) {
+
+    DeckType t;
+    inputStream >> t;
+    std::string readString;
+    inputStream >> readString;
+    if (readString != KlondikePlainTextSerializerDeserializer::DECKTYPE_END_MARK) {
+        throw std::exception();
+    }
+    deckFactory->setSelectedDeck(t);
+
     KlondikeDeserializedInitParameters deserializedParameters;
 
     int score;
     inputStream >> score;
     deserializedParameters.setScore(score);
 
-    std::string readString;
     inputStream >> readString;
     if (readString != KlondikePlainTextSerializerDeserializer::SCORE_END_MARK) {
         throw std::exception();
