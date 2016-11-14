@@ -15,6 +15,14 @@ FrenchDeck::FrenchDeck() {
     }
 }
 
+DeckPtr FrenchDeck::newDeck() const {
+    return DeckPtr(new FrenchDeck());
+}
+
+DeckType FrenchDeck::getDeckType() const {
+    return FRENCH_DECK;
+}
+
 int FrenchDeck::getNumCardsPerSuit() const {
     return 2;
 }

@@ -16,6 +16,8 @@ private:
     int NUM_SUITS = 4;
 public:
     SpanishDeck();
+    DeckPtr newDeck() const;
+    DeckType getDeckType() const;
     int getNumCardsPerSuit() const;
     int getNumSuits() const;
 };
