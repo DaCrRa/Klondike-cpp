@@ -39,6 +39,10 @@ bool StartController::isGameInProgress() {
     return gameState->gameIsStarted();
 }
 
+AbstractDeckFactory& StartController::getDeckFactory() {
+    return *deckFactory;
+}
+
 void StartController::accept(ControllerVisitor* v) {
     v->visit(this);
 }

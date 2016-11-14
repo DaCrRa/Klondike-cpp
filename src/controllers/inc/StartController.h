@@ -32,6 +32,7 @@ public:
     void startGame();
     void startDemo();
     bool isGameInProgress();
+    AbstractDeckFactory& getDeckFactory();
     void accept(ControllerVisitor* v);
 };
 
