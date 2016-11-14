@@ -30,15 +30,13 @@ void MainMenuView::interact(StartController* startController) {
     }
 
     options.push_back(std::make_pair(MenuOption("Start new one-player klondike", 0), [&] {
-        SelectDeckView(startController->getDeckFactory()).selectDeck();
-        startController->startGame();
+        selectDeckAndStart(startController->getDeckFactory(), [&]()->void {startController->startGame();});
     }));
     options.push_back(std::make_pair(MenuOption("Load saved game", 0), [&] {
         eventObserver.loadGameRequested();
     }));
     options.push_back(std::make_pair(MenuOption("Demo", 0), [&] {
-        SelectDeckView(startController->getDeckFactory()).selectDeck();
-        startController->startDemo();
+        selectDeckAndStart(startController->getDeckFactory(), [&]()->void {startController->startDemo();});
     }));
 
     try {
@@ -49,3 +47,11 @@ void MainMenuView::interact(StartController* startController) {
         eventObserver.exitRequested();
     }
 }
+
+void MainMenuView::selectDeckAndStart(AbstractDeckFactory& factory, std::function<void()> startFunction) {
+    try {
+        SelectDeckView(factory).selectDeck();
+        startFunction();
+    } catch (CancelledDialogException& e) {}
+}
+

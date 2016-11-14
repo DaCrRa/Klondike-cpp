@@ -12,6 +12,7 @@
 #include <GameActionControllerVisitor.h>
 #include <EventObserver.h>
 
+#include <functional>
 #include <memory>
 
 class MainMenuView {
@@ -21,6 +22,8 @@ public:
     MainMenuView(EventObserver& observer) :
         eventObserver(observer) {}
     void interact(StartController* controller);
+    void selectDeckAndStart(AbstractDeckFactory& factory,
+                            std::function<void()> startFunction);
 };
 
 #endif /* SRC_VIEWS_CONSOLE_MAINMENUVIEW_H_ */

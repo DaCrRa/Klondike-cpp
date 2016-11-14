@@ -24,11 +24,8 @@ void SelectDeckView::selectDeck() {
         for (DeckType type : deckFactory.getDeckTypes()) {
             options.push_back(std::make_pair(MenuOption(std::string(deckDescriptions[type]), 0), type));
         }
-        try {
-            Menu<DeckType> m("Select a deck:", std::move(options));
-            m.getUserSelection();
-        } catch (CancelledDialogException& e) {
-        }
+        Menu<DeckType> m("Select a deck:", std::move(options));
+        m.getUserSelection();
     }
 }
 
