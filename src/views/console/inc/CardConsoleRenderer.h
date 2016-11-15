@@ -10,9 +10,11 @@
 
 #include <Card.h>
 
-class CardConsoleRenderer {
+class CardConsoleRenderer : public CardVisitor {
 public:
     void renderCard(const Card* c);
+    void visitRank(int rank) const;
+    void visitSuit(int suit) const;
 };
 
 #endif
