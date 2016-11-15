@@ -1,6 +1,8 @@
 #ifndef CARD_H
 #define CARD_H
 
+#include <CardVisitor.h>
+
 class Card {
 
 private:
@@ -22,6 +24,8 @@ public:
     bool hasSameColor(const Card* c) const;
 
     int compareRank(const Card* c) const;
+
+    void acceptCardVisitor(const CardVisitor& visitor) const;
 };
 
 #endif

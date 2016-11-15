@@ -26,3 +26,8 @@ bool Card::hasSameColor(const Card* c) const {
 int Card::compareRank(const Card* c) const {
     return this->rank - c->rank;
 }
+
+void Card::acceptCardVisitor(const CardVisitor& visitor) const {
+    visitor.visitRank(rank);
+    visitor.visitSuit(suit);
+}
