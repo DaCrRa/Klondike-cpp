@@ -11,7 +11,7 @@
 
 Klondike::Klondike(DeckPtr d) :
     deck(d),
-    tableau(NUM_TABLEAU_PILES, TableauPile(deck->getNumCardsPerSuit())),
+    tableau(NUM_TABLEAU_PILES, TableauPile(deck->getNumCardsPerSuit() - 1 )),
     score(0)
 {}
 

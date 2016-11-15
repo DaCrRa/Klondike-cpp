@@ -20,7 +20,7 @@ void Foundation::recoverCard(const Card* c) {
 
 bool Foundation::cardCanBeAdded(const Card* c) {
     if (!pile.hasCards()) {
-        return c->getRank() == 1;
+        return c->getRank() == 0;
     } else {
         return c->hasSameSuit(pile.top()) && c->compareRank(pile.top()) == 1;
     }
