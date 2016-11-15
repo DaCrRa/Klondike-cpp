@@ -8,7 +8,6 @@
 #include <SpanishDeck.h>
 
 SpanishDeck::SpanishDeck() {
-    int numberOfCards = NUM_CARDS_PER_SUIT * NUM_SUITS;
     int cardSequenceNumber = 0;
     for (int suit = 0; suit < NUM_SUITS; ++suit) {
         for (int rank = 0; rank < NUM_CARDS_PER_SUIT; ++rank) {
@@ -28,7 +27,7 @@ DeckType SpanishDeck::getDeckType() const {
 }
 
 int SpanishDeck::getNumCardsPerSuit() const {
-    return 2;
+    return NUM_CARDS_PER_SUIT;
 }
 
 int SpanishDeck::getNumSuits() const {

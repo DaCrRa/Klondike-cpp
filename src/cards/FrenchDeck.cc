@@ -8,7 +8,6 @@
 #include <FrenchDeck.h>
 
 FrenchDeck::FrenchDeck() {
-    int numberOfCards = NUM_CARDS_PER_SUIT * NUM_SUITS;
     int cardSequenceNumber = 0;
     for (int suit = 0; suit < NUM_SUITS; ++suit) {
         int color = suit % NUM_COLORS;
@@ -29,7 +28,7 @@ DeckType FrenchDeck::getDeckType() const {
 }
 
 int FrenchDeck::getNumCardsPerSuit() const {
-    return 2;
+    return NUM_CARDS_PER_SUIT;
 }
 
 int FrenchDeck::getNumSuits() const {
