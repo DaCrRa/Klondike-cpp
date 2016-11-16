@@ -6,8 +6,10 @@
 
 const Card* Deck::removeTop() {
     assert(hasCards());
-    int cardId = remainingCardIds.back();
-    remainingCardIds.pop_back();
+    int cardId = remainingCardIds[std::rand() % remainingCardIds.size()];
+    remainingCardIds.erase(std::find(remainingCardIds.begin(),
+                                     remainingCardIds.end(),
+                                     cardId));
     return &cards[cardId];
 }
 
