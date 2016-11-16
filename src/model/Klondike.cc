@@ -21,12 +21,12 @@ void Klondike::initialize() {
     int i = 0;
     for (std::vector<TableauPile>::iterator it = tableau.begin(); it != tableau.end(); ++it, ++i) {
         for (int j = 0; j < i + 1; j++) {
-            it->addToCovered(deck->removeTop());
+            it->addToCovered(deck->removeRandomCard());
         }
         it->turnUpCard();
     }
     while (deck->hasCards()) {
-        stock.addToCovered(deck->removeTop());
+        stock.addToCovered(deck->removeRandomCard());
     }
 }
 

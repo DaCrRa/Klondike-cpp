@@ -4,16 +4,15 @@
 
 #include <algorithm>
 
-const Card* Deck::removeTop() {
+const Card* Deck::removeRandomCard() {
     assert(hasCards());
-    int cardId = remainingCardIds[std::rand() % remainingCardIds.size()];
-    remainingCardIds.erase(std::find(remainingCardIds.begin(),
-                                     remainingCardIds.end(),
-                                     cardId));
-    return &cards[cardId];
+
+    return removeCard(remainingCardIds[std::rand() % remainingCardIds.size()]);
 }
 
 const Card* Deck::removeCard(int cardId) {
+    assert(hasCards());
+
     remainingCardIds.erase(std::find(remainingCardIds.begin(),
                                      remainingCardIds.end(),
                                      cardId));

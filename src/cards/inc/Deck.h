@@ -15,7 +15,7 @@ protected:
     std::vector<Card> cards;
     std::vector<int> remainingCardIds;
 public:
-    const Card* removeTop();
+    const Card* removeRandomCard();
     const Card* removeCard(int cardId);
     bool hasCards();
     virtual DeckType getDeckType() const = 0;
