@@ -35,3 +35,6 @@ DeckPtr AbstractDeckFactory::getDeck() {
     return decks[selectedDeckType]->newDeck();
 }
 
+DeckType AbstractDeckFactory::getDeckType() {
+    return selectedDeckType;
+}

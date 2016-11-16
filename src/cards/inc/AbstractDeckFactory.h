@@ -27,6 +27,7 @@ public:
     std::vector<DeckType> getDeckTypes();
     int getNumberOfAvailableDecks();
     DeckPtr getDeck();
+    DeckType getDeckType();
 };
 
 #endif /* SRC_CARDS_INC_ABSTRACTDECKFACTORY_H_ */
