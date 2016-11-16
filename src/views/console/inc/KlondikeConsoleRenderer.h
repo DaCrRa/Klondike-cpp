@@ -9,18 +9,22 @@
 #define SRC_INC_KLONDIKECONSOLERENDERER_H_
 
 #include <Klondike.h>
+#include <DeckTypes.h>
 #include <TestCardRenderer.h>
+#include <SpanishCardRenderer.h>
+#include <FrenchCardRenderer.h>
 
+#include <map>
 #include <memory>
 
 class KlondikeConsoleRenderer: public KlondikeVisitor {
 private:
-    TestCardRenderer cardRenderer;
+    std::shared_ptr<CardConsoleRenderer> cardRenderer;
     std::shared_ptr<Klondike>& game;
     char foundationTag = FOUNDATION_BASE_TAG;
     char tableauPileTag = TABLEAU_PILE_BASE_TAG;
 public:
-    KlondikeConsoleRenderer(std::shared_ptr<Klondike>& g) : game(g) {};
+    KlondikeConsoleRenderer(std::shared_ptr<Klondike>& g);
     void render();
     void visitScore(int score);
     void visitStock(Stock* s);

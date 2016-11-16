@@ -11,6 +11,15 @@
 #include <iterator>
 #include <assert.h>
 
+KlondikeConsoleRenderer::KlondikeConsoleRenderer(std::shared_ptr<Klondike>& g) : game(g) {
+	std::map<DeckType, std::shared_ptr<CardConsoleRenderer> > renderers({
+		{SPANISH_DECK, std::shared_ptr<CardConsoleRenderer>(new SpanishCardRenderer())},
+		{FRENCH_DECK,  std::shared_ptr<CardConsoleRenderer>(new FrenchCardRenderer())},
+		{TEST_DECK,    std::shared_ptr<CardConsoleRenderer>(new TestCardRenderer())}
+	});
+	//cardRenderer = renderers[deckType];
+}
+
 void KlondikeConsoleRenderer::render() {
     std::cout << std::endl;
     game->accept(this);
@@ -31,7 +40,7 @@ void KlondikeConsoleRenderer::visitStock(Stock* stock) {
     }
     if (stock->hasCardAvailable()) {
         std::cout << " --> ";
-        cardRenderer.renderCard(stock->showAvailableCard());
+        cardRenderer->renderCard(stock->showAvailableCard());
     }
     std::cout << std::endl;
     std::cout << std::endl;
@@ -47,7 +56,7 @@ void KlondikeConsoleRenderer::visitFoundation(Foundation* f) {
         std::cout << "...";
     }
     if (f->getNumCards() > 0) {
-        cardRenderer.renderCard(f->top());
+        cardRenderer->renderCard(f->top());
     }
     if (f->isCompleted()) {
         std::cout << "  COMPLETED!";
@@ -64,7 +73,7 @@ void KlondikeConsoleRenderer::visitTableauPile(TableauPile* tp) {
         std::cout << "[";
     }
     for (PileIterator it = tp->uncoveredCardsBegin(); it != tp->uncoveredCardsEnd(); ++it) {
-        cardRenderer.renderCard(*it);
+        cardRenderer->renderCard(*it);
     }
     std::cout << std::endl;
 }
