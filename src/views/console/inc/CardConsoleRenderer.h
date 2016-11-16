@@ -12,9 +12,10 @@
 
 class CardConsoleRenderer : public CardVisitor {
 public:
-    void renderCard(const Card* c);
-    void visitRank(int rank) const;
-    void visitSuit(int suit) const;
+    virtual void renderCard(const Card* c) = 0;
+    virtual void visitRank(int rank) const = 0;
+    virtual void visitSuit(int suit) const = 0;
+    virtual ~CardConsoleRenderer() {}
 };
 
 #endif

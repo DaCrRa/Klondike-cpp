@@ -9,13 +9,13 @@
 #define SRC_INC_KLONDIKECONSOLERENDERER_H_
 
 #include <Klondike.h>
-#include <CardConsoleRenderer.h>
+#include <TestCardRenderer.h>
 
 #include <memory>
 
 class KlondikeConsoleRenderer: public KlondikeVisitor {
 private:
-    CardConsoleRenderer cardRenderer;
+    TestCardRenderer cardRenderer;
     std::shared_ptr<Klondike>& game;
     char foundationTag = FOUNDATION_BASE_TAG;
     char tableauPileTag = TABLEAU_PILE_BASE_TAG;
