@@ -10,13 +10,16 @@
 
 #include <Controller.h>
 #include <ControllerVisitor.h>
+#include <AbstractDeckFactory.h>
 #include <EventObserver.h>
 
 class ConsoleView : public ControllerVisitor {
 private:
+    AbstractDeckFactory& deckFactory;
     EventObserver& eventObserver;
 public:
-    ConsoleView(EventObserver& observer) :
+    ConsoleView(AbstractDeckFactory& factory, EventObserver& observer) :
+        deckFactory(factory),
         eventObserver(observer) {};
     void interact(Controller* c);
     void visit(GameActionController* c);

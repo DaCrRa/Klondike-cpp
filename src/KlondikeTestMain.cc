@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     KlondikeFromFileLoader fromFileLoader(deserializer);
 
     Logic logic(deckFactory, toFileSaver, fromFileLoader);
-    ConsoleView view(logic);
+    ConsoleView view(*deckFactory, logic);
 
     KlondikeApp(&view, &logic).run();
 }

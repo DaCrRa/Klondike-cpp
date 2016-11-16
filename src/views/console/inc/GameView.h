@@ -13,6 +13,7 @@
 #include <KlondikeConsoleRenderer.h>
 #include <Klondike.h>
 #include <GameActionController.h>
+#include <DeckTypes.h>
 
 class GameView : public GameActionControllerVisitor {
 private:
@@ -21,7 +22,8 @@ private:
 
     void selectGameAction(GameActionController* controller);
 public:
-    GameView(std::shared_ptr<Klondike>& game) : renderer(game) {};
+    GameView(std::shared_ptr<Klondike>& game, DeckType t) :
+        renderer(game, t) {};
     void interact(GameActionController* c);
     void visit(UserGameActionController* c);
     void visit(RandomGameActionController* c);

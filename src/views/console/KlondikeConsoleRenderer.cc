@@ -11,13 +11,14 @@
 #include <iterator>
 #include <assert.h>
 
-KlondikeConsoleRenderer::KlondikeConsoleRenderer(std::shared_ptr<Klondike>& g) : game(g) {
-	std::map<DeckType, std::shared_ptr<CardConsoleRenderer> > renderers({
-		{SPANISH_DECK, std::shared_ptr<CardConsoleRenderer>(new SpanishCardRenderer())},
-		{FRENCH_DECK,  std::shared_ptr<CardConsoleRenderer>(new FrenchCardRenderer())},
-		{TEST_DECK,    std::shared_ptr<CardConsoleRenderer>(new TestCardRenderer())}
-	});
-	//cardRenderer = renderers[deckType];
+KlondikeConsoleRenderer::KlondikeConsoleRenderer(std::shared_ptr<Klondike>& g, DeckType deckType) :
+    game(g) {
+    std::map<DeckType, std::shared_ptr<CardConsoleRenderer> > renderers({
+        {SPANISH_DECK, std::shared_ptr<CardConsoleRenderer>(new SpanishCardRenderer())},
+        {FRENCH_DECK,  std::shared_ptr<CardConsoleRenderer>(new FrenchCardRenderer())},
+        {TEST_DECK,    std::shared_ptr<CardConsoleRenderer>(new TestCardRenderer())}
+    });
+    cardRenderer = renderers[deckType];
 }
 
 void KlondikeConsoleRenderer::render() {

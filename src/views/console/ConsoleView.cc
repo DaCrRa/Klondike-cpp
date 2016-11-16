@@ -19,7 +19,7 @@ void ConsoleView::interact(Controller* controller) {
 }
 
 void ConsoleView::visit(GameActionController* controller) {
-    GameView view(controller->getGame());
+    GameView view(controller->getGame(), deckFactory.getDeckType());
     view.interact(controller);
 }
 
@@ -29,7 +29,7 @@ void ConsoleView::visit(StartController* controller) {
 }
 
 void ConsoleView::visit(BestScoresController* bsc) {
-    GameFinishedView(bsc->getGame()).show(bsc);
+    GameFinishedView(bsc->getGame(), deckFactory.getDeckType()).show(bsc);
     eventObserver.gamePauseRequested();
 }
 

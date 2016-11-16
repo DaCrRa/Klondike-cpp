@@ -24,7 +24,7 @@ private:
     char foundationTag = FOUNDATION_BASE_TAG;
     char tableauPileTag = TABLEAU_PILE_BASE_TAG;
 public:
-    KlondikeConsoleRenderer(std::shared_ptr<Klondike>& g);
+    KlondikeConsoleRenderer(std::shared_ptr<Klondike>& g, DeckType deckType);
     void render();
     void visitScore(int score);
     void visitStock(Stock* s);
