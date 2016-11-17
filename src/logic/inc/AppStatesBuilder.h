@@ -20,7 +20,7 @@
 #include <LoadingGameState.h>
 
 class AppStatesBuilder {
-private:
+protected:
     AppStatePtr initialState;
     AppStatePtr gamePaused;
     AppStatePtr gameInProgress;
@@ -28,7 +28,7 @@ private:
     AppStatePtr exitState;
     AppStatePtr savingGameState;
     std::shared_ptr<LoadingGameState> loadingGameState;
-public:
+
     AppStatesBuilder(EventObserver& observer,
                      std::shared_ptr<AbstractDeckFactory> factory,
                      GameActionControllerHolder& gameActionControllerHolder,
@@ -36,21 +36,13 @@ public:
                      std::shared_ptr<BestScoresController>& bestScoresController,
                      std::shared_ptr<SaveGameController>& saveGameController,
                      std::shared_ptr<LoadGameController>& loadGameController) :
-        initialState(new NoGameInProgressState(*this,
-                                               factory,
-                                               starter,
-                                               observer,
-                                               GameStatePtr(new NoGameStartedState()))),
-        gamePaused(new NoGameInProgressState(*this,
-                                             factory,
-                                             starter,
-                                             observer,
-                                             GameStatePtr(new GameStartedState()))),
         gameInProgress(new GameInProgressState(*this, gameActionControllerHolder)),
         gameCompleted(new GameCompletedState(*this, observer, bestScoresController)),
         exitState(new ExitState(*this)),
         savingGameState(new SavingGameState(*this, saveGameController)),
         loadingGameState(new LoadingGameState(*this, loadGameController)) {}
+
+public:
     AppStatePtr getInitialState() {
         return initialState;
     }

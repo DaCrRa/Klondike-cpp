@@ -17,11 +17,13 @@
 #include <SaveGameController.h>
 #include <LoadGameController.h>
 #include <AppStatesBuilder.h>
-#include <assert.h>
 #include <AbstractDeckFactory.h>
 
+#include <assert.h>
+#include <memory>
+
 class Logic : public EventObserver {
-private:
+protected:
     std::shared_ptr<Klondike> game;
     GameActionControllerHolder gameActionControllerHolder;
     GameSessionStarter gameSessionStarter;
@@ -29,10 +31,14 @@ private:
     std::shared_ptr<SaveGameController> saveGameController;
     std::shared_ptr<LoadGameController> loadGameController;
     KlondikeSaver& saver;
-    AppStatesBuilder statesBuildr;
+    std::shared_ptr<AppStatesBuilder> statesBuildr;
     AppStatePtr currentState;
+    Logic(std::shared_ptr<AbstractDeckFactory> factory,
+          KlondikeSaver& saver,
+          KlondikeLoader& loader,
+          std::shared_ptr<AppStatesBuilder> builder);
+
 public:
-    Logic(std::shared_ptr<AbstractDeckFactory> factory, KlondikeSaver& saver, KlondikeLoader& loader);
     ControllerPtr getNextController();
     void gameStarted();
     void saveGameRequested();

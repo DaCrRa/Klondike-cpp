@@ -6,7 +6,6 @@
  */
 
 #include <NoGameInProgress.h>
-#include <LocalStartController.h>
 
 #include <AppStatesBuilder.h>
 
@@ -21,10 +20,6 @@ NoGameInProgressState::NoGameInProgressState(
     gameSessionStarter(starter),
     eventObserver(eventObserver),
     gameState(gameStates) {}
-
-ControllerPtr NoGameInProgressState::getController() {
-    return ControllerPtr(new LocalStartController(deckFactory, gameSessionStarter, gameState, eventObserver));
-}
 
 AppStatePtr NoGameInProgressState::transitionToExit() {
     return statesBuilder.getExitState();

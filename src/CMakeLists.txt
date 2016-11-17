@@ -12,7 +12,7 @@ add_subdirectory(savers_loaders)
 add_executable(Klondike KlondikeMain.cc)
 
 target_link_libraries(Klondike KlondikeApp
-                               KlondikeLogic
+                               KlondikeLocalLogic
                                KlondikePlainTextSerializerDeserializer
                                KlondikeFileSaverLoader
                                KlondikeConsoleView)
@@ -21,7 +21,7 @@ add_executable(KlondikeTest KlondikeTestMain.cc)
 
 target_link_libraries(KlondikeTest TestCards
                                    KlondikeApp
-                                   KlondikeLogic
+                                   KlondikeLocalLogic
                                    KlondikePlainTextSerializerDeserializer
                                    KlondikeFileSaverLoader
                                    KlondikeConsoleView)

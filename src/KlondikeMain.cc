@@ -5,7 +5,7 @@
 #include <KlondikePlainTextDeserializer.h>
 #include <KlondikeToFileSaver.h>
 #include <KlondikeFromFileLoader.h>
-#include <Logic.h>
+#include <LocalLogic.h>
 
 #include <iostream>
 int main(int argc, char* argv[]) {
@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
     KlondikeToFileSaver toFileSaver(serializer);
     KlondikeFromFileLoader fromFileLoader(deserializer);
 
-    Logic logic(deckFactory, toFileSaver, fromFileLoader);
+    LocalLogic logic(deckFactory, toFileSaver, fromFileLoader);
     ConsoleView view(*deckFactory, logic);
 
     KlondikeApp(&view, &logic).run();

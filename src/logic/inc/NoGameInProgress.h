@@ -8,13 +8,15 @@
 #ifndef SRC_CONTROLLERS_INC_NOGAMEINPROGRESSSTATE_H_
 #define SRC_CONTROLLERS_INC_NOGAMEINPROGRESSSTATE_H_
 
-#include <StartController.h>
+#include <AbstractDeckFactory.h>
+#include <GameSessionStarter.h>
 #include <GameState.h>
 #include <AppState.h>
 
 class NoGameInProgressState : public AppState,
     public std::enable_shared_from_this<NoGameInProgressState> {
-private:
+
+protected:
     std::shared_ptr<AbstractDeckFactory> deckFactory;
     GameSessionStarter& gameSessionStarter;
     EventObserver& eventObserver;
@@ -25,11 +27,12 @@ public:
                           GameSessionStarter& starter,
                           EventObserver& eventObserver,
                           GameStatePtr gameState);
-    ControllerPtr getController();
+    virtual ControllerPtr getController() = 0;
     AppStatePtr transitionToExit();
     AppStatePtr transitionToGameInProgress();
     AppStatePtr transitionToSavingGame();
     AppStatePtr transitionToLoadingGame();
+    virtual ~NoGameInProgressState() {}
 };
 
 #endif /* SRC_CONTROLLERS_INC_NOGAMEINPROGRESSSTATE_H_ */

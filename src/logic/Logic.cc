@@ -10,16 +10,13 @@
 #include <UserGameActionController.h>
 #include <RandomGameActionController.h>
 
-Logic::Logic(std::shared_ptr<AbstractDeckFactory> factory, KlondikeSaver& saver, KlondikeLoader& loader) :
-    statesBuildr(*this,
-                 factory,
-                 gameActionControllerHolder,
-                 gameSessionStarter,
-                 bestScoresController,
-                 saveGameController,
-                 loadGameController),
+Logic::Logic(std::shared_ptr<AbstractDeckFactory> factory,
+             KlondikeSaver& saver,
+             KlondikeLoader& loader,
+             std::shared_ptr<AppStatesBuilder> builder) :
+    statesBuildr(builder),
     gameSessionStarter(game, gameActionControllerHolder),
-    currentState(statesBuildr.getInitialState()),
+    currentState(statesBuildr->getInitialState()),
     bestScoresController(new BestScoresController(game)),
     saveGameController(new SaveGameController(game, saver)),
     loadGameController(new LoadGameController (*this, factory, gameSessionStarter, loader)),
