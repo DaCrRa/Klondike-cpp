@@ -8,16 +8,8 @@
 #include <StartController.h>
 #include <UserGameActionController.h>
 #include <RandomGameActionController.h>
-#include <KlondikeImpl.h>
 
 #include <assert.h>
-
-void StartController::start(std::shared_ptr<GameActionController> gameActionController) {
-    std::shared_ptr<Klondike> game(new KlondikeImpl(deckFactory->getDeck()));
-    game->initialize();
-    sessionStarter.startSession(game, gameActionController);
-    eventObserver.gameStarted();
-}
 
 StartController::StartController(std::shared_ptr<AbstractDeckFactory> factory,
                                  GameSessionStarter& starter,

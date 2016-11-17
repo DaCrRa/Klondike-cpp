@@ -18,12 +18,12 @@
 #include <vector>
 
 class StartController : public Controller {
-private:
+protected:
     std::shared_ptr<AbstractDeckFactory> deckFactory;
     GameSessionStarter sessionStarter;
     GameStatePtr gameState;
     EventObserver& eventObserver;
-    void start(std::shared_ptr<GameActionController> gameActionController);
+    virtual void start(std::shared_ptr<GameActionController> gameActionController) = 0;
 public:
     StartController(std::shared_ptr<AbstractDeckFactory> factory,
                     GameSessionStarter& starter,
@@ -34,6 +34,7 @@ public:
     bool isGameInProgress();
     AbstractDeckFactory& getDeckFactory();
     void accept(ControllerVisitor* v);
+    virtual ~StartController() {}
 };
 
 #endif /* SRC_CONTROLLERS_STARTCONTROLLER_H_ */
