@@ -1,5 +1,5 @@
 add_subdirectory(plain_text)
 
 add_library(KlondikeSerializerDeserializer INTERFACE)
-target_link_libraries(KlondikeSerializerDeserializer INTERFACE KlondikeModel)
+target_link_libraries(KlondikeSerializerDeserializer INTERFACE KlondikeModelImpl)
 target_include_directories(KlondikeSerializerDeserializer INTERFACE .)

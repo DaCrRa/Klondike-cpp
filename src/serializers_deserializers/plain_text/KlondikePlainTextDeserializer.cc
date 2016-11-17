@@ -8,6 +8,7 @@
 #include <KlondikePlainTextDeserializer.h>
 #include <KlondilePlainTextSerializerDeserializerConstants.h>
 #include <KlondikeDeserializedInitParameters.h>
+#include <KlondikeImpl.h>
 
 #include <istream>
 
@@ -82,7 +83,7 @@ void KlondikePlainTextDeserializer::deserialize(std::shared_ptr<Klondike>& g, st
                 KlondikePlainTextSerializerDeserializer::TABLEAU_PILE_END_MARK));
     }
 
-    g = std::shared_ptr<Klondike>(new Klondike(deckFactory->getDeck()));
+    g = std::shared_ptr<Klondike>(new KlondikeImpl(deckFactory->getDeck()));
     g->initialize(deserializedParameters);
 }
 

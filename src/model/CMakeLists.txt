@@ -1,3 +1,5 @@
+add_subdirectory(implementation)
+
 file(GLOB klondike_model_source_files
     "*.cc"
 )

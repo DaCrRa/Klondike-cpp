@@ -9,29 +9,27 @@
 #define KLONDIKE_H_
 
 #include <Deck.h>
-#include <Foundation.h>
 #include <Stock.h>
-#include <TableauPile.h>
 #include <KlondikeVisitor.h>
 #include <KlondikeInitParameters.h>
 
 class Klondike {
-private:
-    const int NUM_TABLEAU_PILES = 7;
+protected:
     DeckPtr deck;
     Stock stock;
     std::vector<Foundation> foundations;
     std::vector<TableauPile> tableau;
-    int score;
+    int score = 0;
 public:
-    Klondike(DeckPtr d);
-    void initialize();
-    void initialize(KlondikeInitParameters& params);
-    bool isCompleted();
-    Stock* getStock();
-    int getScore() const;
-    void updateScore(int delta);
+    Klondike() {}
+    virtual void initialize() = 0;
+    virtual void initialize(KlondikeInitParameters& params) = 0;
+    virtual bool isCompleted() = 0;
+    virtual Stock* getStock() = 0;
+    virtual int getScore() const = 0;
+    virtual void updateScore(int delta) = 0;
     void accept(KlondikeVisitor* vistor);
+    virtual ~Klondike() {}
 };
 
 #endif

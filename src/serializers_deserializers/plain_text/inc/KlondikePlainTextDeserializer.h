@@ -9,7 +9,6 @@
 #define SRC_SERIALIZERS_DESERIALIZERS_PLAIN_TEXT_INC_KLONDIKEPLAINTEXTDESERIALIZER_H_
 
 #include <KlondikeDeserializer.h>
-#include <Klondike.h>
 
 class KlondikePlainTextDeserializer: public KlondikeDeserializer {
 private:

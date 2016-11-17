@@ -6,6 +6,7 @@ file(GLOB klondike_controller_source_files
 
 add_library(KlondikeController SHARED ${klondike_controller_source_files})
 target_link_libraries(KlondikeController KlondikeActions
+                                         KlondikeModelImpl # TO BE DECOUPLED
                                          KlondikeScore
                                          KlondikeSaverLoader)
 target_include_directories(KlondikeController PUBLIC "inc")
