@@ -21,6 +21,7 @@ public:
     const Card* showTopCard() const;
     const Pile showLastCards(int n) const;
     const Card* removeTopCard();
+    Pile removeLastCards(int n);
     PileIterator begin() const;
     PileIterator end() const;
 };

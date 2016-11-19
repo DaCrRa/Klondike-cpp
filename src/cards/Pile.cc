@@ -28,6 +28,15 @@ const Pile Pile::showLastCards(int n) const {
     return p;
 }
 
+Pile Pile::removeLastCards(int n) {
+    assert(n <= getNumberOfCards());
+    Pile p;
+    for (PileIterator it = end() - n; it != end(); it = cards.erase(it)) {
+        p.add(*it);
+    }
+    return p;
+}
+
 int Pile::getNumberOfCards() const {
     return cards.size();
 }
