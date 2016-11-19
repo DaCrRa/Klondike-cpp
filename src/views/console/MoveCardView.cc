@@ -8,6 +8,7 @@
 #include <MoveCardView.h>
 
 #include <ItemSelectionDialog.h>
+#include <LimitedIntDialog.h>
 #include <MoveFromStock.h>
 #include <MoveFromTableauPile.h>
 #include <MoveFromFoundation.h>
@@ -53,7 +54,13 @@ void MoveCardView::visit(Foundation* f) {
 }
 
 void MoveCardView::visit(TableauPile* tp) {
-    move = MovePtr(new MoveFromTableauPile(tp));
+	std::shared_ptr<MoveFromTableauPile> moveFromTableauPile(new MoveFromTableauPile(tp));
+	if (tp->getNumCardsAvailableToMove() > 1) {
+		LimitedInputDialog numCardsDialog("Number of cards:", 0, tp->getNumCardsAvailableToMove());
+		int numberOfCards = numCardsDialog.getUserInput();
+		moveFromTableauPile->setNumberOfCards(numberOfCards);
+	}
+	move = moveFromTableauPile;
 }
 
 std::map<char, MoveOrigin*> MoveCardView::tagPossibleOrigins() {
