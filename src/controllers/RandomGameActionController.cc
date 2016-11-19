@@ -30,10 +30,13 @@ ForwardGameActionPtr RandomGameActionController::getAction() {
             actions.push_back(move);
         }
     }).setVisitTableauPileFunction([&](TableauPile* tp)->void{
-        for (MoveDest* dest : getPossibleMoveDests(tp)) {
-            MovePtr move(new MoveFromTableauPile(tp));
-            move->setDest(dest);
-            actions.push_back(move);
+        for (int i = 1; i <= tp->getNumCardsAvailableToMove(); ++i) {
+            for (MoveDest* dest : getPossibleMoveDests(tp, i)) {
+                std::shared_ptr<MoveFromTableauPile> move(new MoveFromTableauPile(tp));
+                move->setDest(dest);
+                move->setNumberOfCards(i);
+                actions.push_back(move);
+            }
         }
     }).setVisitFoundationFunction([&](Foundation* f)->void{
         for (MoveDest* dest : getPossibleMoveDests(f)) {
