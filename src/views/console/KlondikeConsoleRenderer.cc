@@ -41,7 +41,9 @@ void KlondikeConsoleRenderer::visitStock(Stock* stock) {
     }
     if (stock->getNumCardsAvailableToMove() > 0) {
         std::cout << " --> ";
-        cardRenderer->renderCard(stock->showAvailableCard());
+        for (const Card* c : stock->showAvailableCards(Foundation::MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION)) {
+            cardRenderer->renderCard(c);
+        }
     }
     std::cout << std::endl;
     std::cout << std::endl;

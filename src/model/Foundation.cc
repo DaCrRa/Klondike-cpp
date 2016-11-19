@@ -49,8 +49,9 @@ int Foundation::getNumCardsAvailableToMove() const {
     return std::min(getNumCards(), Foundation::MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION);
 }
 
-const Card* Foundation::showAvailableCard() const {
-    return pile.showTopCard();
+const Pile Foundation::showAvailableCards(int n) const {
+    assert(n <= getNumCardsAvailableToMove());
+    return pile.showLastCards(n);
 }
 
 const Card* Foundation::removeAvailableCard() {

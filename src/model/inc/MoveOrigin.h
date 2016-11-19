@@ -8,7 +8,7 @@
 #ifndef SRC_MODEL_INC_MOVEORIGIN_H_
 #define SRC_MODEL_INC_MOVEORIGIN_H_
 
-#include <Card.h>
+#include <Pile.h>
 #include <GameElement.h>
 #include <MoveOriginVisitor.h>
 
@@ -16,7 +16,7 @@ class MoveOrigin : virtual public GameElement {
 public:
     virtual void recoverCard(const Card* c) = 0;
     virtual int getNumCardsAvailableToMove() const = 0;
-    virtual const Card* showAvailableCard() const = 0;
+    virtual const Pile showAvailableCards(int n) const = 0;
     virtual void accept(MoveOriginVisitor* v) = 0;
     virtual ~MoveOrigin() {}
 };

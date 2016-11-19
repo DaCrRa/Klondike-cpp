@@ -30,7 +30,7 @@ public:
     bool hasCoveredCards() const;
     bool hasCards() const;
     void accept(MoveOriginVisitor* v);
-    const Card* showAvailableCard() const;
+    const Pile showAvailableCards(int n) const;
     const Card* removeAvailableCard();
     void recoverCard(const Card* c);
     void acceptStockVisitor(StockVisitor* visitor);

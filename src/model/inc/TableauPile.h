@@ -22,7 +22,7 @@ public:
     void recoverCard(const Card* c);
     bool cardsCanBeAdded(const Pile& cards) const;
     int getNumCardsAvailableToMove() const;
-    const Card* showAvailableCard() const;
+    const Pile showAvailableCards(int n) const;
     const Card* removeAvailableCard();
     int getNumCoveredCards() const;
     PileIterator uncoveredCardsBegin() const;

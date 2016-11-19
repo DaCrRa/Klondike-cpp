@@ -32,9 +32,7 @@ void GameActionController::doAction(GameActionPtr action) {
 }
 
 void GameActionController::MoveDestFinder::checkIfIsPossibleDestAndAddIt(MoveDest* dest) {
-    Pile cardsToMove;
-    cardsToMove.add(origin->showAvailableCard());
-    if (dest->cardsCanBeAdded(cardsToMove)) {
+    if (dest->cardsCanBeAdded(origin->showAvailableCards(1))) {
         possibleDests.push_back(dest);
     }
 }

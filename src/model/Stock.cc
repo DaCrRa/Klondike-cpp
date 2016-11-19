@@ -60,9 +60,9 @@ void Stock::accept(MoveOriginVisitor* v) {
     v->visit(this);
 }
 
-const Card* Stock::showAvailableCard() const {
-    assert(getNumCardsAvailableToMove() > 0);
-    return waste.showTopCard();
+const Pile Stock::showAvailableCards(int n) const {
+    assert(n <= getNumCardsAvailableToMove());
+    return waste.showLastCards(n);
 }
 
 const Card* Stock::removeAvailableCard() {

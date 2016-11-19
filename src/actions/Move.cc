@@ -20,9 +20,7 @@ void Move::forwardAction() {
 }
 
 bool Move::canBeDone() {
-    Pile cardsToMove;
-    cardsToMove.add(getMoveOrigin()->showAvailableCard());
-    return dest->cardsCanBeAdded(cardsToMove);
+    return dest->cardsCanBeAdded(getMoveOrigin()->showAvailableCards(1));
 }
 
 void Move::undoImpl() {
