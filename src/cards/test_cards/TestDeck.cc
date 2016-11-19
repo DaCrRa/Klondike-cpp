@@ -10,7 +10,7 @@
 TestDeck::TestDeck() {
     int numberOfCards = NUM_CARDS_PER_SUIT * NUM_SUITS;
     for (int i = 0; i < numberOfCards; ++i) {
-        cards.push_back(Card(i, i%2, 0, 0));
+        cards.push_back(Card(i, i%2, 0, i));
         remainingCardIds.push_back(i);
     }
 }
