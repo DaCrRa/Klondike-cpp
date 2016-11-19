@@ -22,7 +22,7 @@ bool Foundation::cardCanBeAdded(const Card* c) {
     if (!pile.hasCards()) {
         return c->getRank() == 0;
     } else {
-        return c->hasSameSuit(pile.top()) && c->compareRank(pile.top()) == 1;
+        return c->hasSameSuit(pile.showTopCard()) && c->compareRank(pile.showTopCard()) == 1;
     }
 }
 
@@ -35,7 +35,7 @@ int Foundation::getNumCards() const {
 }
 
 const Card* Foundation::top() const {
-    return pile.top();
+    return pile.showTopCard();
 }
 
 bool Foundation::hasCardAvailable() const {
@@ -43,11 +43,11 @@ bool Foundation::hasCardAvailable() const {
 }
 
 const Card* Foundation::showAvailableCard() const {
-    return pile.top();
+    return pile.showTopCard();
 }
 
 const Card* Foundation::removeAvailableCard() {
-    return pile.removeTop();
+    return pile.removeTopCard();
 }
 
 void Foundation::accept(MoveOriginVisitor* v) {

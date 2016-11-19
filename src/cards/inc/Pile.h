@@ -18,8 +18,8 @@ public:
     void add(const std::vector<const Card*>& cards);
     bool hasCards() const;
     int getNumberOfCards() const;
-    const Card* top() const;
-    const Card* removeTop();
+    const Card* showTopCard() const;
+    const Card* removeTopCard();
     PileIterator begin() const;
     PileIterator end() const;
 };

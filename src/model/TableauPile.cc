@@ -10,11 +10,11 @@
 
 void TableauPile::turnUpCard() {
     assert(cardCanBeTurnUp());
-    uncoveredCards.add(coveredCards.removeTop());
+    uncoveredCards.add(coveredCards.removeTopCard());
 }
 
 void TableauPile::turnDownCard() {
-    coveredCards.add(uncoveredCards.removeTop());
+    coveredCards.add(uncoveredCards.removeTopCard());
 }
 
 bool TableauPile::cardCanBeTurnUp() {
@@ -27,7 +27,7 @@ void TableauPile::addToCovered(const Card* c) {
 
 bool TableauPile::cardCanBeAdded(const Card* c) {
     if (uncoveredCards.hasCards()) {
-        return !c->hasSameColor(uncoveredCards.top()) && c->compareRank(uncoveredCards.top()) == -1;
+        return !c->hasSameColor(uncoveredCards.showTopCard()) && c->compareRank(uncoveredCards.showTopCard()) == -1;
     } else {
         return !coveredCards.hasCards() && c->getRank() == MAX_RANK_ACCEPTED;
     }
@@ -59,11 +59,11 @@ bool TableauPile::hasCardAvailable() const {
 }
 
 const Card* TableauPile::showAvailableCard() const {
-    return uncoveredCards.top();
+    return uncoveredCards.showTopCard();
 }
 
 const Card* TableauPile::removeAvailableCard() {
-    return uncoveredCards.removeTop();
+    return uncoveredCards.removeTopCard();
 }
 
 void TableauPile::accept(MoveOriginVisitor* v) {

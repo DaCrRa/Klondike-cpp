@@ -14,7 +14,7 @@ bool Pile::hasCards() const {
     return !cards.empty();
 }
 
-const Card* Pile::top() const {
+const Card* Pile::showTopCard() const {
     assert(hasCards());
     return cards.back();
 }
@@ -23,8 +23,8 @@ int Pile::getNumberOfCards() const {
     return cards.size();
 }
 
-const Card* Pile::removeTop() {
-    const Card* top = this->top();
+const Card* Pile::removeTopCard() {
+    const Card* top = this->showTopCard();
     cards.pop_back();
     return top;
 }

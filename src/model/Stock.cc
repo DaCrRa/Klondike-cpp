@@ -46,7 +46,7 @@ void Stock::transferAllCards(Pile& from, Pile& to) {
 void Stock::transferCards(Pile& from, Pile& to, int n) {
     assert(from.getNumberOfCards() >= n);
     for (int i = 0; i < n; i++) {
-        to.add(from.removeTop());
+        to.add(from.removeTopCard());
     }
 }
 
@@ -60,12 +60,12 @@ void Stock::accept(MoveOriginVisitor* v) {
 
 const Card* Stock::showAvailableCard() const {
     assert(hasCardAvailable());
-    return waste.top();
+    return waste.showTopCard();
 }
 
 const Card* Stock::removeAvailableCard() {
     assert(hasCardAvailable());
-    return waste.removeTop();
+    return waste.removeTopCard();
 }
 
 bool Stock::hasCoveredCards() const {
