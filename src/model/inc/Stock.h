@@ -31,7 +31,7 @@ public:
     bool hasCards() const;
     void accept(MoveOriginVisitor* v);
     const Pile showAvailableCards(int n) const;
-    const Card* removeAvailableCard();
+    Pile removeCards(int n);
     void recoverCard(const Card* c);
     void acceptStockVisitor(StockVisitor* visitor);
 };

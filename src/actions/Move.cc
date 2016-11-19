@@ -18,8 +18,7 @@ int Move::getNumberOfCards() {
 }
 
 void Move::forwardAction() {
-    Pile cardsToMove;
-    cardsToMove.add(getMoveOrigin()->removeAvailableCard());
+    Pile cardsToMove(getMoveOrigin()->removeCards(numberOfCards));
     dest->addCards(cardsToMove);
 }
 
@@ -28,7 +27,10 @@ bool Move::canBeDone() {
 }
 
 void Move::undoImpl() {
-    getMoveOrigin()->recoverCard(dest->removeAvailableCard());
+    Pile cardsToMove(dest->removeCards(numberOfCards));
+    for (const Card* c : cardsToMove) {
+        getMoveOrigin()->recoverCard(c);
+    }
 }
 
 void Move::accept(ForwardGameActionVisitor* visitor) {

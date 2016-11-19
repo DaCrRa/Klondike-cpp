@@ -23,7 +23,7 @@ public:
     bool cardsCanBeAdded(const Pile& cards) const;
     int getNumCardsAvailableToMove() const;
     const Pile showAvailableCards(int n) const;
-    const Card* removeAvailableCard();
+    Pile removeCards(int n);
     int getNumCoveredCards() const;
     PileIterator uncoveredCardsBegin() const;
     PileIterator uncoveredCardsEnd() const;

@@ -54,8 +54,9 @@ const Pile Foundation::showAvailableCards(int n) const {
     return pile.showLastCards(n);
 }
 
-const Card* Foundation::removeAvailableCard() {
-    return pile.removeTopCard();
+Pile Foundation::removeCards(int n) {
+    assert(n <= getNumCardsAvailableToMove());
+    return pile.removeLastCards(n);
 }
 
 void Foundation::accept(MoveOriginVisitor* v) {

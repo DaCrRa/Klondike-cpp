@@ -26,7 +26,7 @@ public:
     bool cardsCanBeAdded(const Pile& cards) const;
     int getNumCardsAvailableToMove() const;
     const Pile showAvailableCards(int n) const;
-    const Card* removeAvailableCard();
+    Pile removeCards(int n);
     bool isCompleted() const;
     int getNumCards() const;
     const Card* top() const;

@@ -66,8 +66,9 @@ const Pile TableauPile::showAvailableCards(int n) const {
     return uncoveredCards.showLastCards(n);
 }
 
-const Card* TableauPile::removeAvailableCard() {
-    return uncoveredCards.removeTopCard();
+Pile TableauPile::removeCards(int n) {
+    assert(n <= getNumCardsAvailableToMove());
+    return uncoveredCards.removeLastCards(n);
 }
 
 void TableauPile::accept(MoveOriginVisitor* v) {

@@ -65,9 +65,9 @@ const Pile Stock::showAvailableCards(int n) const {
     return waste.showLastCards(n);
 }
 
-const Card* Stock::removeAvailableCard() {
-    assert(getNumCardsAvailableToMove() > 0);
-    return waste.removeTopCard();
+Pile Stock::removeCards(int n) {
+    assert(n <= getNumCardsAvailableToMove());
+    return waste.removeLastCards(n);
 }
 
 bool Stock::hasCoveredCards() const {

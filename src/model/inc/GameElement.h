@@ -8,9 +8,11 @@
 #ifndef SRC_MODEL_INC_GAMEELEMENT_H_
 #define SRC_MODEL_INC_GAMEELEMENT_H_
 
+#include <Pile.h>
+
 class GameElement {
 public:
-    virtual const Card* removeAvailableCard() = 0;
+    virtual Pile removeCards(int n) = 0;
     virtual ~GameElement() {}
 };
 
