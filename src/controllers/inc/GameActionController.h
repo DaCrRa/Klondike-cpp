@@ -25,6 +25,7 @@ protected:
     private:
         MoveOrigin* origin;
         std::vector<MoveDest*> possibleDests;
+        void checkIfIsPossibleDestAndAddIt(MoveDest* dest);
     public:
         MoveDestFinder(MoveOrigin* orig) : origin(orig) {}
         void visitTableauPile(TableauPile* tp);

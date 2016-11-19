@@ -31,20 +31,20 @@ void GameActionController::doAction(GameActionPtr action) {
     }
 }
 
-void GameActionController::MoveDestFinder::visitTableauPile(TableauPile* tp) {
+void GameActionController::MoveDestFinder::checkIfIsPossibleDestAndAddIt(MoveDest* dest) {
     Pile cardsToMove;
     cardsToMove.add(origin->showAvailableCard());
-    if (tp->cardsCanBeAdded(cardsToMove)) {
-        possibleDests.push_back(tp);
+    if (dest->cardsCanBeAdded(cardsToMove)) {
+        possibleDests.push_back(dest);
     }
 }
 
+void GameActionController::MoveDestFinder::visitTableauPile(TableauPile* tp) {
+    checkIfIsPossibleDestAndAddIt(tp);
+}
+
 void GameActionController::MoveDestFinder::visitFoundation(Foundation* f) {
-    Pile cardsToMove;
-    cardsToMove.add(origin->showAvailableCard());
-    if (f->cardsCanBeAdded(cardsToMove)) {
-        possibleDests.push_back(f);
-    }
+    checkIfIsPossibleDestAndAddIt(f);
 }
 
 std::vector<MoveDest*> GameActionController::getPossibleMoveDests(MoveOrigin* origin) {
