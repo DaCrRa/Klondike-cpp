@@ -25,6 +25,7 @@ public:
         origin(tp),
         cardTurnedUp(false) {}
     ForwardGameActionPtr duplicate();
+    void setNumberOfCards(int n);
     bool cardWasTurnUp();
     void acceptMoveVisitor(MoveVisitor* visitor);
 };

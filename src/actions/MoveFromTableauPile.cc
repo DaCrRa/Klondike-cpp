@@ -34,6 +34,10 @@ void MoveFromTableauPile::undoImpl() {
     Move::undoImpl();
 }
 
+void MoveFromTableauPile::setNumberOfCards(int n) {
+    numberOfCards = n;
+}
+
 bool MoveFromTableauPile::cardWasTurnUp() {
     return cardTurnedUp;
 }
