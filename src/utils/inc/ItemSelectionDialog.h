@@ -14,13 +14,7 @@
 #include <iostream>
 #include <limits>
 
-class CancelledDialogException : public std::exception {
-public:
-    const char* what() const throw() {
-        return "Cancelled dialog!";
-    };
-};
-
+#include <CancelledDialogException.h>
 
 template <typename T>
 class ItemSelectionDialog {
