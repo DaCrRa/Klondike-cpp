@@ -14,7 +14,7 @@
 
 class MoveDest : virtual public GameElement {
 public:
-    virtual bool cardsCanBeAdded(const Pile& c) = 0;
+    virtual bool cardsCanBeAdded(const Pile& c) const = 0;
     virtual void addCards(Pile& c) = 0;
     virtual void accept(MoveDestVisitor* visitor) = 0;
     virtual ~MoveDest() {}

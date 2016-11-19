@@ -25,7 +25,7 @@ void TableauPile::addToCovered(const Card* c) {
     coveredCards.add(c);
 }
 
-bool TableauPile::cardsCanBeAdded(const Pile& cards) {
+bool TableauPile::cardsCanBeAdded(const Pile& cards) const {
     const Card* c = *(cards.begin());
     if (uncoveredCards.hasCards()) {
         return !c->hasSameColor(uncoveredCards.showTopCard()) && c->compareRank(uncoveredCards.showTopCard()) == -1;

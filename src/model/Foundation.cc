@@ -18,7 +18,7 @@ void Foundation::recoverCard(const Card* c) {
     pile.add(c);
 }
 
-bool Foundation::cardsCanBeAdded(const Pile& cards) {
+bool Foundation::cardsCanBeAdded(const Pile& cards) const {
     if (cards.getNumberOfCards() != 1) {
         return false;
     }
