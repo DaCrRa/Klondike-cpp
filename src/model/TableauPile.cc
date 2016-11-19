@@ -22,7 +22,6 @@ bool TableauPile::cardCanBeTurnUp() {
 }
 
 void TableauPile::addToCovered(const Card* c) {
-    //TODO Assert we are in initial state of Klondike
     coveredCards.add(c);
 }
 
