@@ -57,8 +57,8 @@ PileIterator TableauPile::uncoveredCardsEnd() const {
     return uncoveredCards.end();
 }
 
-bool TableauPile::hasCardAvailable() const {
-    return uncoveredCards.hasCards();
+int TableauPile::getNumCardsAvailableToMove() const {
+    return uncoveredCards.getNumberOfCards();
 }
 
 const Card* TableauPile::showAvailableCard() const {

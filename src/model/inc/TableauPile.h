@@ -21,7 +21,7 @@ public:
     void addCards(Pile& cards);
     void recoverCard(const Card* c);
     bool cardsCanBeAdded(const Pile& cards) const;
-    bool hasCardAvailable() const;
+    int getNumCardsAvailableToMove() const;
     const Card* showAvailableCard() const;
     const Card* removeAvailableCard();
     int getNumCoveredCards() const;

@@ -22,19 +22,19 @@ std::vector<MoveOrigin*> UserGameActionController::getPossibleMoveOrigins() {
 }
 
 void UserGameActionController::MoveOrigFinder::visitStock(Stock* stock) {
-    if (stock->hasCardAvailable()) {
+    if (stock->getNumCardsAvailableToMove() > 0) {
         possibleOrigins.push_back(stock);
     }
 }
 
 void UserGameActionController::MoveOrigFinder::visitTableauPile(TableauPile* tp) {
-    if (tp->hasCardAvailable()) {
+    if (tp->getNumCardsAvailableToMove() > 0) {
         possibleOrigins.push_back(tp);
     }
 }
 
 void UserGameActionController::MoveOrigFinder::visitFoundation(Foundation* f) {
-    if (f->hasCardAvailable()) {
+    if (f->getNumCardsAvailableToMove() > 0) {
         possibleOrigins.push_back(f);
     }
 }

@@ -8,6 +8,9 @@
 #include <Foundation.h>
 
 #include <assert.h>
+#include <algorithm>
+
+const int Foundation::MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION = 1;
 
 void Foundation::addCards(Pile& cards) {
     assert(cardsCanBeAdded(cards));
@@ -42,8 +45,8 @@ const Card* Foundation::top() const {
     return pile.showTopCard();
 }
 
-bool Foundation::hasCardAvailable() const {
-    return pile.hasCards();
+int Foundation::getNumCardsAvailableToMove() const {
+    return std::min(getNumCards(), Foundation::MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION);
 }
 
 const Card* Foundation::showAvailableCard() const {

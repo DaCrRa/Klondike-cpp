@@ -15,6 +15,7 @@
 
 class Foundation : public MoveDest, public MoveOrigin {
 private:
+    static const int MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION;
     Pile pile;
     const int NUM_CARDS_TO_COMPLETE;
 public:
@@ -22,7 +23,7 @@ public:
     void addCards(Pile& cards);
     void recoverCard(const Card* c);
     bool cardsCanBeAdded(const Pile& cards) const;
-    bool hasCardAvailable() const;
+    int getNumCardsAvailableToMove() const;
     const Card* showAvailableCard() const;
     const Card* removeAvailableCard();
     bool isCompleted() const;

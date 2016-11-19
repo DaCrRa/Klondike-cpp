@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <assert.h>
 
+const int Stock::MAX_CARDS_ALLOWED_TO_MOVE_FROM_WASTE = 1;
+
 void Stock::addToCovered(const Card* c) {
     // TODO assert we are in initial state
     covered.add(c);
@@ -50,8 +52,8 @@ void Stock::transferCards(Pile& from, Pile& to, int n) {
     }
 }
 
-bool Stock::hasCardAvailable() const {
-    return waste.hasCards();
+int Stock::getNumCardsAvailableToMove() const {
+    return std::min(waste.getNumberOfCards(), Stock::MAX_CARDS_ALLOWED_TO_MOVE_FROM_WASTE);
 }
 
 void Stock::accept(MoveOriginVisitor* v) {
@@ -59,12 +61,12 @@ void Stock::accept(MoveOriginVisitor* v) {
 }
 
 const Card* Stock::showAvailableCard() const {
-    assert(hasCardAvailable());
+    assert(getNumCardsAvailableToMove() > 0);
     return waste.showTopCard();
 }
 
 const Card* Stock::removeAvailableCard() {
-    assert(hasCardAvailable());
+    assert(getNumCardsAvailableToMove() > 0);
     return waste.removeTopCard();
 }
 
@@ -73,7 +75,7 @@ bool Stock::hasCoveredCards() const {
 }
 
 bool Stock::hasCards() const {
-    return hasCoveredCards() || hasCardAvailable();
+    return ( covered.getNumberOfCards() + waste.getNumberOfCards() ) > 0;
 }
 
 void Stock::acceptStockVisitor(StockVisitor* visitor) {

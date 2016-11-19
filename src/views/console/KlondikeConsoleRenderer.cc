@@ -39,7 +39,7 @@ void KlondikeConsoleRenderer::visitStock(Stock* stock) {
     } else {
         std::cout << "[_]";
     }
-    if (stock->hasCardAvailable()) {
+    if (stock->getNumCardsAvailableToMove() > 0) {
         std::cout << " --> ";
         cardRenderer->renderCard(stock->showAvailableCard());
     }

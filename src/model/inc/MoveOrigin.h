@@ -15,7 +15,7 @@
 class MoveOrigin : virtual public GameElement {
 public:
     virtual void recoverCard(const Card* c) = 0;
-    virtual bool hasCardAvailable() const = 0;
+    virtual int getNumCardsAvailableToMove() const = 0;
     virtual const Card* showAvailableCard() const = 0;
     virtual void accept(MoveOriginVisitor* v) = 0;
     virtual ~MoveOrigin() {}

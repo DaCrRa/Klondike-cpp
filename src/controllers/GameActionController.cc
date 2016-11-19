@@ -48,7 +48,7 @@ void GameActionController::MoveDestFinder::visitFoundation(Foundation* f) {
 }
 
 std::vector<MoveDest*> GameActionController::getPossibleMoveDests(MoveOrigin* origin) {
-    if (!origin->hasCardAvailable()) {
+    if (origin->getNumCardsAvailableToMove() == 0) {
         return std::vector<MoveDest*>();
     }
     MoveDestFinder destFinder(origin);
