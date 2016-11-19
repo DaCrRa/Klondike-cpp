@@ -9,16 +9,20 @@
 
 #include <assert.h>
 
-void Foundation::add(const Card* c) {
-    assert(cardCanBeAdded(c));
-    pile.add(c);
+void Foundation::addCards(Pile& cards) {
+    assert(cardsCanBeAdded(cards));
+    pile.add(cards.removeTopCard());
 }
 
 void Foundation::recoverCard(const Card* c) {
     pile.add(c);
 }
 
-bool Foundation::cardCanBeAdded(const Card* c) {
+bool Foundation::cardsCanBeAdded(const Pile& cards) {
+    if (cards.getNumberOfCards() != 1) {
+        return false;
+    }
+    const Card* c = *(cards.begin());
     if (!pile.hasCards()) {
         return c->getRank() == 0;
     } else {

@@ -8,14 +8,14 @@
 #ifndef SRC_MODEL_INC_MOVEDEST_H_
 #define SRC_MODEL_INC_MOVEDEST_H_
 
-#include <Card.h>
+#include <Pile.h>
 #include <GameElement.h>
 #include <MoveDestVisitor.h>
 
 class MoveDest : virtual public GameElement {
 public:
-    virtual bool cardCanBeAdded(const Card* c) = 0;
-    virtual void add(const Card* c) = 0;
+    virtual bool cardsCanBeAdded(const Pile& c) = 0;
+    virtual void addCards(Pile& c) = 0;
     virtual void accept(MoveDestVisitor* visitor) = 0;
     virtual ~MoveDest() {}
 };

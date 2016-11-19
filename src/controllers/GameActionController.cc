@@ -32,13 +32,17 @@ void GameActionController::doAction(GameActionPtr action) {
 }
 
 void GameActionController::MoveDestFinder::visitTableauPile(TableauPile* tp) {
-    if (tp->cardCanBeAdded(origin->showAvailableCard())) {
+    Pile cardsToMove;
+    cardsToMove.add(origin->showAvailableCard());
+    if (tp->cardsCanBeAdded(cardsToMove)) {
         possibleDests.push_back(tp);
     }
 }
 
 void GameActionController::MoveDestFinder::visitFoundation(Foundation* f) {
-    if (f->cardCanBeAdded(origin->showAvailableCard())) {
+    Pile cardsToMove;
+    cardsToMove.add(origin->showAvailableCard());
+    if (f->cardsCanBeAdded(cardsToMove)) {
         possibleDests.push_back(f);
     }
 }

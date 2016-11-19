@@ -19,9 +19,9 @@ private:
     const int NUM_CARDS_TO_COMPLETE;
 public:
     Foundation(const int n) : NUM_CARDS_TO_COMPLETE(n) {}
-    void add(const Card* c);
+    void addCards(Pile& cards);
     void recoverCard(const Card* c);
-    bool cardCanBeAdded(const Card* c);
+    bool cardsCanBeAdded(const Pile& cards);
     bool hasCardAvailable() const;
     const Card* showAvailableCard() const;
     const Card* removeAvailableCard();

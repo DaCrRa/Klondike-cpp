@@ -14,11 +14,15 @@ void Move::setDest(MoveDest* d) {
 }
 
 void Move::forwardAction() {
-    dest->add(getMoveOrigin()->removeAvailableCard());
+    Pile cardsToMove;
+    cardsToMove.add(getMoveOrigin()->removeAvailableCard());
+    dest->addCards(cardsToMove);
 }
 
 bool Move::canBeDone() {
-    return dest->cardCanBeAdded(getMoveOrigin()->showAvailableCard());
+    Pile cardsToMove;
+    cardsToMove.add(getMoveOrigin()->showAvailableCard());
+    return dest->cardsCanBeAdded(cardsToMove);
 }
 
 void Move::undoImpl() {
