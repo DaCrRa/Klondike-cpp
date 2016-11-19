@@ -13,6 +13,10 @@ void Move::setDest(MoveDest* d) {
     dest = d;
 }
 
+int Move::getNumberOfCards() {
+    return numberOfCards;
+}
+
 void Move::forwardAction() {
     Pile cardsToMove;
     cardsToMove.add(getMoveOrigin()->removeAvailableCard());
@@ -20,7 +24,7 @@ void Move::forwardAction() {
 }
 
 bool Move::canBeDone() {
-    return dest->cardsCanBeAdded(getMoveOrigin()->showAvailableCards(1));
+    return dest->cardsCanBeAdded(getMoveOrigin()->showAvailableCards(numberOfCards));
 }
 
 void Move::undoImpl() {

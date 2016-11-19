@@ -23,6 +23,7 @@ class Move : public ForwardGameAction {
 private:
     MoveDest* dest;
 protected:
+    int numberOfCards = 1;
     virtual MoveOrigin* getMoveOrigin() = 0;
     virtual void forwardAction();
     virtual void undoImpl();
@@ -31,6 +32,7 @@ public:
         ForwardGameAction(o),
         dest(nullptr) {}
     void setDest(MoveDest* d);
+    int getNumberOfCards();
     bool canBeDone();
     virtual ForwardGameActionPtr duplicate() = 0;
     void accept(ForwardGameActionVisitor* visitor);
