@@ -21,7 +21,7 @@ private:
     MovePtr move;
 
     std::map<char, MoveOrigin*> tagPossibleOrigins();
-    std::map<char, MoveDest*> tagPossibleDests(MoveOrigin* origin);
+    std::map<char, MoveDest*> tagPossibleDests(MoveOrigin* origin, int numberOfCards);
 public:
     MoveCardView(UserGameActionController* c);
     void visit(Stock* s);

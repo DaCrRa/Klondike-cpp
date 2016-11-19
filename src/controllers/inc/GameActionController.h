@@ -24,10 +24,13 @@ protected:
     class MoveDestFinder : public KlondikeVisitor {
     private:
         MoveOrigin* origin;
+        int numberOfCards;
         std::vector<MoveDest*> possibleDests;
         void checkIfIsPossibleDestAndAddIt(MoveDest* dest);
     public:
-        MoveDestFinder(MoveOrigin* orig) : origin(orig) {}
+        MoveDestFinder(MoveOrigin* orig, int n) :
+            origin(orig),
+            numberOfCards(n) {}
         void visitTableauPile(TableauPile* tp);
         void visitFoundation(Foundation* f);
         std::vector<MoveDest*> getPossibleDests() {
@@ -46,7 +49,7 @@ public:
     void doAction(GameActionPtr action);
     virtual void acceptGameActionControllerVisitor(GameActionControllerVisitor* visitor) = 0;
     void accept(ControllerVisitor* visitor);
-    std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* origin);
+    std::vector<MoveDest*> getPossibleMoveDests(MoveOrigin* origin, int numberOfCards = 1);
     ~GameActionController() {}
 };
 

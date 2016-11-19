@@ -37,7 +37,7 @@ void MoveCardView::completeMove(UserSelectedMove* userSelectedMove) {
     ItemSelectionDialog<MoveOrigin*> dialogFrom("Move from: ", taggedPossibleOrigins, 'c');
     MoveOrigin* origin = dialogFrom.getSelectedItem();
     origin->accept(this);
-    std::map<char, MoveDest*> taggedPossibleDests = tagPossibleDests(origin);
+    std::map<char, MoveDest*> taggedPossibleDests = tagPossibleDests(origin, move->getNumberOfCards());
     ItemSelectionDialog<MoveDest*> dialogTo("Move to: ", taggedPossibleDests, 'c');
     MoveDest* dest = dialogTo.getSelectedItem();
     move->setDest(dest);
@@ -65,9 +65,9 @@ std::map<char, MoveOrigin*> MoveCardView::tagPossibleOrigins() {
     return possibleOrigins;
 }
 
-std::map<char, MoveDest*> MoveCardView::tagPossibleDests(MoveOrigin* origin) {
+std::map<char, MoveDest*> MoveCardView::tagPossibleDests(MoveOrigin* origin, int numberOfCards) {
     std::map<char, MoveDest*> possibleDests;
-    std::vector<MoveDest*> availableDests = controller->getPossibleMoveDests(origin);
+    std::vector<MoveDest*> availableDests = controller->getPossibleMoveDests(origin, numberOfCards);
     for (std::vector<MoveDest*>::iterator it = availableDests.begin(); it != availableDests.end(); ++it) {
         possibleDests[gameElementTag[*it]] = *it;
     }
