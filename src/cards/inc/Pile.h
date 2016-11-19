@@ -19,6 +19,7 @@ public:
     bool hasCards() const;
     int getNumberOfCards() const;
     const Card* showTopCard() const;
+    const Pile showLastCards(int n) const;
     const Card* removeTopCard();
     PileIterator begin() const;
     PileIterator end() const;

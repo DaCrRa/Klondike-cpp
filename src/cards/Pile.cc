@@ -19,6 +19,15 @@ const Card* Pile::showTopCard() const {
     return cards.back();
 }
 
+const Pile Pile::showLastCards(int n) const {
+    assert(n <= getNumberOfCards());
+    Pile p;
+    for (PileIterator it = end() - n; it != end(); ++it) {
+        p.add(*it);
+    }
+    return p;
+}
+
 int Pile::getNumberOfCards() const {
     return cards.size();
 }
