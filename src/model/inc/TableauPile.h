@@ -9,7 +9,6 @@
 class TableauPile : public MoveOrigin, public MoveDest {
 private:
     Pile coveredCards;
-    Pile uncoveredCards;
     const int MAX_RANK_ACCEPTED;
 public:
     TableauPile(const int n) :
@@ -18,13 +17,13 @@ public:
     void turnUpCard();
     void turnDownCard();
     void addToCovered(const Card* c);
-    void addCards(Pile& cards);
+    int getNumCoveredCards() const;
     void recoverCard(const Card* c);
-    bool cardsCanBeAdded(const Pile& cards) const;
     int getNumCardsAvailableToMove() const;
     const Pile showAvailableCards(int n) const;
     Pile removeCards(int n);
-    int getNumCoveredCards() const;
+    bool cardMeetsFirstCardCondition(const Card* card) const;
+    bool addCardCondition(const Card* referenceCard, const Card* cardToAdd) const;
     PileIterator uncoveredCardsBegin() const;
     PileIterator uncoveredCardsEnd() const;
     void accept(MoveOriginVisitor* v);

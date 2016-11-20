@@ -13,9 +13,14 @@
 #include <MoveDestVisitor.h>
 
 class MoveDest : virtual public GameElement {
+protected:
+    Pile faceUpCards;
 public:
-    virtual bool cardsCanBeAdded(const Pile& c) const = 0;
-    virtual void addCards(Pile& c) = 0;
+    virtual bool cardMeetsFirstCardCondition(const Card* card) const = 0;
+    virtual bool addCardCondition(const Card* referenceCard, const Card* cardToAdd) const = 0;
+    bool cardCanBeAdded(const Card* cardToAdd) const;
+    bool cardsCanBeAdded(const Pile& cards) const;
+    void addCard(const Card* c);
     virtual void accept(MoveDestVisitor* visitor) = 0;
     virtual ~MoveDest() {}
 };

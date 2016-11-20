@@ -19,7 +19,9 @@ int Move::getNumberOfCards() {
 
 void Move::forwardAction() {
     Pile cardsToMove(getMoveOrigin()->removeCards(numberOfCards));
-    dest->addCards(cardsToMove);
+    for (const Card* c : cardsToMove) {
+        dest->addCard(c);
+    }
 }
 
 bool Move::canBeDone() {

@@ -10,39 +10,32 @@
 
 void TableauPile::turnUpCard() {
     assert(cardCanBeTurnUp());
-    uncoveredCards.add(coveredCards.removeTopCard());
+    faceUpCards.add(coveredCards.removeTopCard());
 }
 
 void TableauPile::turnDownCard() {
-    coveredCards.add(uncoveredCards.removeTopCard());
+    coveredCards.add(faceUpCards.removeTopCard());
 }
 
 bool TableauPile::cardCanBeTurnUp() {
-    return !uncoveredCards.hasCards() && coveredCards.hasCards();
+    return !faceUpCards.hasCards() && coveredCards.hasCards();
 }
 
 void TableauPile::addToCovered(const Card* c) {
     coveredCards.add(c);
 }
 
-bool TableauPile::cardsCanBeAdded(const Pile& cards) const {
-    const Card* c = *(cards.begin());
-    if (uncoveredCards.hasCards()) {
-        return !c->hasSameColor(uncoveredCards.showTopCard()) && c->compareRank(uncoveredCards.showTopCard()) == -1;
-    } else {
-        return !coveredCards.hasCards() && c->getRank() == MAX_RANK_ACCEPTED;
-    }
+bool TableauPile::cardMeetsFirstCardCondition(const Card* card) const {
+    return !coveredCards.hasCards() && card->getRank() == MAX_RANK_ACCEPTED;
 }
 
-void TableauPile::addCards(Pile& cards) {
-    assert(cardsCanBeAdded(cards));
-    for (const Card* c : cards) {
-        uncoveredCards.add(c);
-    }
+bool TableauPile::addCardCondition(const Card* referenceCard, const Card* cardToAdd) const {
+    return !cardToAdd->hasSameColor(referenceCard) &&
+           cardToAdd->compareRank(referenceCard) == -1;
 }
 
 void TableauPile::recoverCard(const Card* c) {
-    uncoveredCards.add(c);
+    faceUpCards.add(c);
 }
 
 int TableauPile::getNumCoveredCards() const {
@@ -50,25 +43,25 @@ int TableauPile::getNumCoveredCards() const {
 }
 
 PileIterator TableauPile::uncoveredCardsBegin() const {
-    return uncoveredCards.begin();
+    return faceUpCards.begin();
 }
 
 PileIterator TableauPile::uncoveredCardsEnd() const {
-    return uncoveredCards.end();
+    return faceUpCards.end();
 }
 
 int TableauPile::getNumCardsAvailableToMove() const {
-    return uncoveredCards.getNumberOfCards();
+    return faceUpCards.getNumberOfCards();
 }
 
 const Pile TableauPile::showAvailableCards(int n) const {
     assert(n <= getNumCardsAvailableToMove());
-    return uncoveredCards.showLastCards(n);
+    return faceUpCards.showLastCards(n);
 }
 
 Pile TableauPile::removeCards(int n) {
     assert(n <= getNumCardsAvailableToMove());
-    return uncoveredCards.removeLastCards(n);
+    return faceUpCards.removeLastCards(n);
 }
 
 void TableauPile::accept(MoveOriginVisitor* v) {
@@ -84,7 +77,7 @@ void TableauPile::acceptTableauPileVisitor(TableauPileVisitor* visitor) {
         visitor->visitCoveredCard(c);
     }
     visitor->allCoveredCardsVisited();
-    for (const Card* c : uncoveredCards) {
+    for (const Card* c : faceUpCards) {
         visitor->visitUncoveredCard(c);
     }
     visitor->allUncoveredCardsVisited();

@@ -12,37 +12,29 @@
 
 const int Foundation::MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION = 1;
 
-void Foundation::addCards(Pile& cards) {
-    assert(cardsCanBeAdded(cards));
-    pile.add(cards.removeTopCard());
-}
-
 void Foundation::recoverCard(const Card* c) {
-    pile.add(c);
+    faceUpCards.add(c);
 }
 
-bool Foundation::cardsCanBeAdded(const Pile& cards) const {
-    if (cards.getNumberOfCards() != 1) {
-        return false;
-    }
-    const Card* c = *(cards.begin());
-    if (!pile.hasCards()) {
-        return c->getRank() == 0;
-    } else {
-        return c->hasSameSuit(pile.showTopCard()) && c->compareRank(pile.showTopCard()) == 1;
-    }
+bool Foundation::cardMeetsFirstCardCondition(const Card* card) const {
+    return card->getRank() == 0;
+}
+
+bool Foundation::addCardCondition(const Card* referenceCard, const Card* cardToAdd) const {
+    return cardToAdd->hasSameSuit(referenceCard) &&
+           cardToAdd->compareRank(referenceCard) == 1;
 }
 
 bool Foundation::isCompleted() const {
-    return pile.getNumberOfCards() == NUM_CARDS_TO_COMPLETE;
+    return faceUpCards.getNumberOfCards() == NUM_CARDS_TO_COMPLETE;
 }
 
 int Foundation::getNumCards() const {
-    return pile.getNumberOfCards();
+    return faceUpCards.getNumberOfCards();
 }
 
 const Card* Foundation::top() const {
-    return pile.showTopCard();
+    return faceUpCards.showTopCard();
 }
 
 int Foundation::getNumCardsAvailableToMove() const {
@@ -51,12 +43,12 @@ int Foundation::getNumCardsAvailableToMove() const {
 
 const Pile Foundation::showAvailableCards(int n) const {
     assert(n <= getNumCardsAvailableToMove());
-    return pile.showLastCards(n);
+    return faceUpCards.showLastCards(n);
 }
 
 Pile Foundation::removeCards(int n) {
     assert(n <= getNumCardsAvailableToMove());
-    return pile.removeLastCards(n);
+    return faceUpCards.removeLastCards(n);
 }
 
 void Foundation::accept(MoveOriginVisitor* v) {
@@ -68,7 +60,7 @@ void Foundation::accept(MoveDestVisitor* v) {
 }
 
 void Foundation::acceptFoundationVisitor(FoundationVisitor* v) {
-    for (const Card* c : pile) {
+    for (const Card* c : faceUpCards) {
         v->visitCard(c);
     }
     v->allCardsVisited();
