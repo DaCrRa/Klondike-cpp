@@ -4,6 +4,7 @@
 #include <Card.h>
 
 #include <vector>
+#include <functional>
 
 typedef std::vector<const Card*>::const_iterator PileIterator;
 
@@ -22,6 +23,7 @@ public:
     const Pile showLastCards(int n) const;
     const Card* removeTopCard();
     Pile removeLastCards(int n);
+    bool isOrdered(std::function<bool(const Card*, const Card*)> orderingCriteria) const;
     PileIterator begin() const;
     PileIterator end() const;
 };

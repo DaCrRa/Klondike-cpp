@@ -47,6 +47,20 @@ const Card* Pile::removeTopCard() {
     return top;
 }
 
+bool Pile::isOrdered(std::function<bool(const Card*, const Card*)> orderingCriteria) const {
+    if (!hasCards()) {
+        return false;
+    }
+    bool ordered = true;
+    const Card* card = *begin();
+    for (PileIterator it = begin() + 1; it != end() && ordered; ++it) {
+        const Card* nextCard = *it;
+        ordered &= orderingCriteria(card, nextCard);
+        card = nextCard;
+    }
+    return ordered;
+}
+
 PileIterator Pile::begin() const {
     return cards.begin();
 }
