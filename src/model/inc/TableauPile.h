@@ -18,10 +18,7 @@ public:
     void turnDownCard();
     void addToCovered(const Card* c);
     int getNumCoveredCards() const;
-    void recoverCard(const Card* c);
     int getNumCardsAvailableToMove() const;
-    const Pile showAvailableCards(int n) const;
-    Pile removeCards(int n);
     bool cardMeetsFirstCardCondition(const Card* card) const;
     bool addCardCondition(const Card* referenceCard, const Card* cardToAdd) const;
     PileIterator uncoveredCardsBegin() const;

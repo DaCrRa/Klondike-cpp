@@ -20,10 +20,7 @@ public:
     static const int MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION;
 
     Foundation(const int n) : NUM_CARDS_TO_COMPLETE(n) {}
-    void recoverCard(const Card* c);
     int getNumCardsAvailableToMove() const;
-    const Pile showAvailableCards(int n) const;
-    Pile removeCards(int n);
     bool cardMeetsFirstCardCondition(const Card* card) const;
     bool addCardCondition(const Card* referenceCard, const Card* cardToAdd) const ;
     bool isCompleted() const;

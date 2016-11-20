@@ -14,19 +14,15 @@ const int Stock::MAX_CARDS_ALLOWED_TO_MOVE_FROM_WASTE = 1;
 
 void Stock::addToCovered(const Card* c) {
     // TODO assert we are in initial state
-    covered.add(c);
-}
-
-void Stock::recoverCard(const Card* c) {
-    waste.add(c);
+    stock.add(c);
 }
 
 int Stock::moveForward() {
-    return stockMovement(covered, waste, 3); // TODO Magic number!
+    return stockMovement(stock, faceUpCards, 3); // TODO Magic number!
 }
 
 void Stock::moveBackward(int numCards) {
-    stockMovement(waste, covered, numCards);
+    stockMovement(faceUpCards, stock, numCards);
 }
 
 int Stock::stockMovement(Pile& from, Pile& to, int n) {
@@ -53,37 +49,27 @@ void Stock::transferCards(Pile& from, Pile& to, int n) {
 }
 
 int Stock::getNumCardsAvailableToMove() const {
-    return std::min(waste.getNumberOfCards(), Stock::MAX_CARDS_ALLOWED_TO_MOVE_FROM_WASTE);
+    return std::min(faceUpCards.getNumberOfCards(), Stock::MAX_CARDS_ALLOWED_TO_MOVE_FROM_WASTE);
 }
 
 void Stock::accept(MoveOriginVisitor* v) {
     v->visit(this);
 }
 
-const Pile Stock::showAvailableCards(int n) const {
-    assert(n <= getNumCardsAvailableToMove());
-    return waste.showLastCards(n);
-}
-
-Pile Stock::removeCards(int n) {
-    assert(n <= getNumCardsAvailableToMove());
-    return waste.removeLastCards(n);
-}
-
 bool Stock::hasCoveredCards() const {
-    return covered.hasCards();
+    return stock.hasCards();
 }
 
 bool Stock::hasCards() const {
-    return ( covered.getNumberOfCards() + waste.getNumberOfCards() ) > 0;
+    return ( stock.getNumberOfCards() + faceUpCards.getNumberOfCards() ) > 0;
 }
 
 void Stock::acceptStockVisitor(StockVisitor* visitor) {
-    for (const Card* c : covered) {
+    for (const Card* c : stock) {
         visitor->visitCoveredCard(c);
     }
     visitor->allCoveredCardsVisited();
-    for (const Card* c : waste) {
+    for (const Card* c : faceUpCards) {
         visitor->visitWasteCard(c);
     }
     visitor->allWasteCardsVisited();

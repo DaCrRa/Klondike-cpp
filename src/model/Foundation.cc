@@ -12,10 +12,6 @@
 
 const int Foundation::MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION = 1;
 
-void Foundation::recoverCard(const Card* c) {
-    faceUpCards.add(c);
-}
-
 bool Foundation::cardMeetsFirstCardCondition(const Card* card) const {
     return card->getRank() == 0;
 }
@@ -39,16 +35,6 @@ const Card* Foundation::top() const {
 
 int Foundation::getNumCardsAvailableToMove() const {
     return std::min(getNumCards(), Foundation::MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION);
-}
-
-const Pile Foundation::showAvailableCards(int n) const {
-    assert(n <= getNumCardsAvailableToMove());
-    return faceUpCards.showLastCards(n);
-}
-
-Pile Foundation::removeCards(int n) {
-    assert(n <= getNumCardsAvailableToMove());
-    return faceUpCards.removeLastCards(n);
 }
 
 void Foundation::accept(MoveOriginVisitor* v) {

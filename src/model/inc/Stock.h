@@ -16,8 +16,7 @@ class Stock : public MoveOrigin {
 private:
     static const int MAX_CARDS_ALLOWED_TO_MOVE_FROM_WASTE;
 
-    Pile covered;
-    Pile waste;
+    Pile stock;
 
     void transferAllCards(Pile& from, Pile& to);
     void transferCards(Pile& from, Pile& to, int n);
@@ -30,9 +29,6 @@ public:
     bool hasCoveredCards() const;
     bool hasCards() const;
     void accept(MoveOriginVisitor* v);
-    const Pile showAvailableCards(int n) const;
-    Pile removeCards(int n);
-    void recoverCard(const Card* c);
     void acceptStockVisitor(StockVisitor* visitor);
 };
 

@@ -34,10 +34,6 @@ bool TableauPile::addCardCondition(const Card* referenceCard, const Card* cardTo
            cardToAdd->compareRank(referenceCard) == -1;
 }
 
-void TableauPile::recoverCard(const Card* c) {
-    faceUpCards.add(c);
-}
-
 int TableauPile::getNumCoveredCards() const {
     return coveredCards.getNumberOfCards();
 }
@@ -52,16 +48,6 @@ PileIterator TableauPile::uncoveredCardsEnd() const {
 
 int TableauPile::getNumCardsAvailableToMove() const {
     return faceUpCards.getNumberOfCards();
-}
-
-const Pile TableauPile::showAvailableCards(int n) const {
-    assert(n <= getNumCardsAvailableToMove());
-    return faceUpCards.showLastCards(n);
-}
-
-Pile TableauPile::removeCards(int n) {
-    assert(n <= getNumCardsAvailableToMove());
-    return faceUpCards.removeLastCards(n);
 }
 
 void TableauPile::accept(MoveOriginVisitor* v) {

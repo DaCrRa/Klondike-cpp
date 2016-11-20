@@ -13,8 +13,6 @@
 #include <MoveDestVisitor.h>
 
 class MoveDest : virtual public GameElement {
-protected:
-    Pile faceUpCards;
 public:
     virtual bool cardMeetsFirstCardCondition(const Card* card) const = 0;
     virtual bool addCardCondition(const Card* referenceCard, const Card* cardToAdd) const = 0;
