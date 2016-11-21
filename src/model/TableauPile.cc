@@ -26,7 +26,7 @@ void TableauPile::addToCovered(const Card* c) {
 }
 
 bool TableauPile::cardMeetsFirstCardCondition(const Card* card) const {
-    return !coveredCards.hasCards() && card->getRank() == MAX_RANK_ACCEPTED;
+    return card->getRank() == MAX_RANK_ACCEPTED;
 }
 
 bool TableauPile::addCardCondition(const Card* referenceCard, const Card* cardToAdd) const {
