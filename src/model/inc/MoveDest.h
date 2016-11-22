@@ -14,8 +14,6 @@
 
 class MoveDest : virtual public GameElement {
 public:
-    virtual bool cardMeetsFirstCardCondition(const Card* card) const = 0;
-    virtual bool addCardCondition(const Card* referenceCard, const Card* cardToAdd) const = 0;
     virtual bool cardCanBeAdded(const Card* cardToAdd) const = 0;
     virtual bool cardsCanBeAdded(const Pile& cards) const = 0;
     virtual void addCard(const Card* c) = 0;
