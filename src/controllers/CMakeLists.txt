@@ -1,5 +1,6 @@
 add_subdirectory(score)
 add_subdirectory(local)
+add_subdirectory(remote)
 
 file(GLOB klondike_controller_source_files
     "*.cc"
