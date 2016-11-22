@@ -22,7 +22,6 @@ public:
     void initialize();
     void initialize(KlondikeInitParameters& params);
     bool isCompleted();
-    Stock* getStock();
     int getScore() const;
     void updateScore(int delta);
 };

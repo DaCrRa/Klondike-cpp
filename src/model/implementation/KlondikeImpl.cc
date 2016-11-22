@@ -74,10 +74,6 @@ bool KlondikeImpl::isCompleted() {
     return completed;
 }
 
-Stock* KlondikeImpl::getStock() {
-    return stock.get();
-}
-
 int KlondikeImpl::getScore() const {
     return score;
 }

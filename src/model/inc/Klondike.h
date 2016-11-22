@@ -25,7 +25,7 @@ public:
     virtual void initialize() = 0;
     virtual void initialize(KlondikeInitParameters& params) = 0;
     virtual bool isCompleted() = 0;
-    virtual Stock* getStock() = 0;
+    Stock* getStock();
     virtual int getScore() const = 0;
     virtual void updateScore(int delta) = 0;
     void accept(KlondikeVisitor* vistor);

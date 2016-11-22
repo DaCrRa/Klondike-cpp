@@ -7,6 +7,10 @@
 
 #include <Klondike.h>
 
+Stock* Klondike::getStock() {
+    return stock.get();
+}
+
 void Klondike::accept(KlondikeVisitor* visitor) {
     visitor->visitDeckType(deck->getDeckType());
     visitor->visitScore(score);
