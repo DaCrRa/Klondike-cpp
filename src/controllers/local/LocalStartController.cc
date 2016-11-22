@@ -15,9 +15,6 @@ LocalStartController::LocalStartController(std::shared_ptr<AbstractDeckFactory> 
         EventObserver& observer) :
     StartController(factory, starter, state, observer) {}
 
-void LocalStartController::start(std::shared_ptr<GameActionController> gameActionController) {
-    std::shared_ptr<Klondike> game(new KlondikeImpl(deckFactory->getDeck()));
-    game->initialize();
-    sessionStarter.startSession(game, gameActionController);
-    eventObserver.gameStarted();
+std::shared_ptr<Klondike> LocalStartController::instantiateKlondike() {
+    return std::shared_ptr<Klondike>(new KlondikeImpl(deckFactory->getDeck()));
 }

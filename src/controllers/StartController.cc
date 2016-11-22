@@ -20,6 +20,13 @@ StartController::StartController(std::shared_ptr<AbstractDeckFactory> factory,
     gameState(s),
     eventObserver(observer) { }
 
+void StartController::start(std::shared_ptr<GameActionController> gameActionController) {
+    std::shared_ptr<Klondike> game = instantiateKlondike();
+    game->initialize();
+    sessionStarter.startSession(game, gameActionController);
+    eventObserver.gameStarted();
+}
+
 void StartController::startGame() {
     start(std::shared_ptr<GameActionController>(new UserGameActionController(eventObserver)));
 }

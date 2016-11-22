@@ -18,12 +18,14 @@
 #include <vector>
 
 class StartController : public Controller {
+private:
+    void start(std::shared_ptr<GameActionController> gameActionController);
 protected:
     std::shared_ptr<AbstractDeckFactory> deckFactory;
     GameSessionStarter sessionStarter;
     GameStatePtr gameState;
     EventObserver& eventObserver;
-    virtual void start(std::shared_ptr<GameActionController> gameActionController) = 0;
+    virtual std::shared_ptr<Klondike> instantiateKlondike() = 0;
 public:
     StartController(std::shared_ptr<AbstractDeckFactory> factory,
                     GameSessionStarter& starter,

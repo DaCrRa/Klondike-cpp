@@ -12,7 +12,7 @@
 
 class LocalStartController : public StartController {
 private:
-    void start(std::shared_ptr<GameActionController> gameActionController);
+    std::shared_ptr<Klondike> instantiateKlondike();
 public:
     LocalStartController(std::shared_ptr<AbstractDeckFactory> factory,
                          GameSessionStarter& starter,
