@@ -12,24 +12,24 @@
 #include <MoveOrigin.h>
 #include <StockVisitor.h>
 
-class Stock : public MoveOrigin {
-private:
+#include <memory>
+
+class Stock;
+typedef std::shared_ptr<Stock> StockPtr;
+
+class Stock : virtual public MoveOrigin {
+protected:
     static const int MAX_CARDS_ALLOWED_TO_MOVE_FROM_WASTE;
 
-    Pile stock;
-
-    void transferAllCards(Pile& from, Pile& to);
-    void transferCards(Pile& from, Pile& to, int n);
-    int stockMovement(Pile& from, Pile& to, int n);
 public:
-    void addToCovered(const Card* c);
-    int moveForward();
-    void moveBackward(int numCards);
-    int getNumCardsAvailableToMove() const;
-    bool hasCoveredCards() const;
-    bool hasCards() const;
-    void accept(MoveOriginVisitor* v);
-    void acceptStockVisitor(StockVisitor* visitor);
+    virtual int moveForward() = 0;
+    virtual void moveBackward(int numCards) = 0;
+    virtual int getNumCardsAvailableToMove() const = 0;
+    virtual bool hasCoveredCards() const = 0;
+    virtual bool hasCards() const = 0;
+    virtual void accept(MoveOriginVisitor* v) = 0;
+    virtual void acceptStockVisitor(StockVisitor* visitor) = 0;
+    virtual ~Stock() {}
 };
 
 #endif

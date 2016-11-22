@@ -13,22 +13,26 @@
 #include <MoveOrigin.h>
 #include <FoundationVisitor.h>
 
-class Foundation : public MoveDest, public MoveOrigin {
-private:
-    const int NUM_CARDS_TO_COMPLETE;
+#include <memory>
+
+class Foundation;
+typedef std::shared_ptr<Foundation> FoundationPtr;
+
+class Foundation : virtual public MoveDest, virtual public MoveOrigin {
 public:
     static const int MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION;
 
-    Foundation(const int n) : NUM_CARDS_TO_COMPLETE(n) {}
-    int getNumCardsAvailableToMove() const;
-    bool cardMeetsFirstCardCondition(const Card* card) const;
-    bool addCardCondition(const Card* referenceCard, const Card* cardToAdd) const ;
-    bool isCompleted() const;
-    int getNumCards() const;
-    const Card* top() const;
-    void accept(MoveOriginVisitor* v);
-    void accept(MoveDestVisitor* v);
-    void acceptFoundationVisitor(FoundationVisitor* v);
+    Foundation() {}
+    virtual int getNumCardsAvailableToMove() const = 0;
+    virtual bool cardMeetsFirstCardCondition(const Card* card) const = 0;
+    virtual bool addCardCondition(const Card* referenceCard, const Card* cardToAdd) const = 0;
+    virtual bool isCompleted() const = 0;
+    virtual int getNumCards() const = 0;
+    virtual const Card* top() const = 0;
+    virtual void accept(MoveOriginVisitor* v) = 0;
+    virtual void accept(MoveDestVisitor* v) = 0;
+    virtual void acceptFoundationVisitor(FoundationVisitor* v) = 0;
+    virtual ~Foundation() {}
 };
 
 #endif

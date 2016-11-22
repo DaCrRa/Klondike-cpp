@@ -1,15 +1,15 @@
 /*
- * MoveDest.cc
+ * MoveDestImpl.cc
  *
- *  Created on: 20 Nov 2016
+ *  Created on: 21 Nov 2016
  *      Author: dancre
  */
 
-#include <MoveDest.h>
+#include <MoveDestImpl.h>
 
 #include <assert.h>
 
-bool MoveDest::cardCanBeAdded(const Card* cardToAdd) const {
+bool MoveDestImpl::cardCanBeAdded(const Card* cardToAdd) const {
     if (! faceUpCards.hasCards()) {
         return cardMeetsFirstCardCondition(cardToAdd);
     } else {
@@ -17,7 +17,7 @@ bool MoveDest::cardCanBeAdded(const Card* cardToAdd) const {
     }
 }
 
-bool MoveDest::cardsCanBeAdded(const Pile& cards) const {
+bool MoveDestImpl::cardsCanBeAdded(const Pile& cards) const {
     if (!cards.hasCards()) {
         return false;
     }
@@ -28,7 +28,7 @@ bool MoveDest::cardsCanBeAdded(const Pile& cards) const {
     });
 }
 
-void MoveDest::addCard(const Card* c) {
+void MoveDestImpl::addCard(const Card* c) {
     assert(cardCanBeAdded(c));
     faceUpCards.add(c);
 }

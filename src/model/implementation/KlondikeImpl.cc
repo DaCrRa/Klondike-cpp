@@ -6,52 +6,60 @@
  */
 
 #include <KlondikeImpl.h>
+#include <FoundationImpl.h>
 
 #include <assert.h>
 
 KlondikeImpl::KlondikeImpl(DeckPtr d) {
     deck = d;
-    tableau = std::vector<TableauPile>(NUM_TABLEAU_PILES, TableauPile(deck->getNumCardsPerSuit() - 1 )),
+    stockImpl = std::shared_ptr<StockImpl> (new StockImpl());
+    for (int i = 0; i < NUM_TABLEAU_PILES; i++) {
+        tableauImpl.push_back(std::shared_ptr<TableauPileImpl>(new TableauPileImpl(deck->getNumCardsPerSuit() - 1 )));
+    }
+    stock = stockImpl;
+    tableau.insert(tableau.end(), tableauImpl.begin(), tableauImpl.end());
     score = 0;
 }
 
 void KlondikeImpl::initialize() {
     assert(foundations.empty());
-    foundations = std::vector<Foundation>(deck->getNumSuits(), Foundation(deck->getNumCardsPerSuit()));
+    std::vector<FoundationPtr> foundations(deck->getNumSuits(),
+                                           FoundationPtr(new FoundationImpl(deck->getNumCardsPerSuit())));
     int i = 0;
-    for (std::vector<TableauPile>::iterator it = tableau.begin(); it != tableau.end(); ++it, ++i) {
+    for (std::shared_ptr<TableauPileImpl> tableauPile : tableauImpl) {
         for (int j = 0; j < i + 1; j++) {
-            it->addToCovered(deck->removeRandomCard());
+            tableauPile->addToCovered(deck->removeRandomCard());
         }
-        it->turnUpCard();
+        tableauPile->turnUpCard();
+        i++;
     }
     while (deck->hasCards()) {
-        stock.addToCovered(deck->removeRandomCard());
+        stockImpl->addToCovered(deck->removeRandomCard());
     }
 }
 
 void KlondikeImpl::initialize(KlondikeInitParameters& params) {
     score = params.getScore();
     for(int id : params.getStockCardsIds()) {
-        stock.addToCovered(deck->removeCard(id));
+        stockImpl->addToCovered(deck->removeCard(id));
     }
     for(int id : params.getWasteCardsIds()) {
-        stock.recoverCard(deck->removeCard(id));
+        stockImpl->recoverCard(deck->removeCard(id));
     }
     for(std::vector<int> foundationIds : params.getFoundationsCardsIds()) {
-        foundations.push_back(Foundation(deck->getNumCardsPerSuit()));
+        foundations.push_back(FoundationPtr(new FoundationImpl(deck->getNumCardsPerSuit())));
         for(int id : foundationIds) {
-            foundations.back().recoverCard(deck->removeCard(id));
+            foundations.back()->recoverCard(deck->removeCard(id));
         }
     }
     assert(params.getTableauInitParams().size() == NUM_TABLEAU_PILES);
-    std::vector<TableauPile>::iterator it = tableau.begin();
+    std::vector<std::shared_ptr<TableauPileImpl> >::iterator it = tableauImpl.begin();
     for(std::shared_ptr<TableauPileInitParameters> tableauPileParams : params.getTableauInitParams()) {
         for(int cardId : tableauPileParams->getCoveredCardsIds()) {
-            it->addToCovered(deck->removeCard(cardId));
+            (*it)->addToCovered(deck->removeCard(cardId));
         }
         for(int cardId : tableauPileParams->getUncoveredCardsIds()) {
-            it->recoverCard(deck->removeCard(cardId));
+            (*it)->recoverCard(deck->removeCard(cardId));
         }
         ++it;
     }
@@ -59,14 +67,14 @@ void KlondikeImpl::initialize(KlondikeInitParameters& params) {
 
 bool KlondikeImpl::isCompleted() {
     bool completed = true;
-    for (std::vector<Foundation>::iterator it = foundations.begin(); it != foundations.end() && completed; ++it) {
-        completed &= it->isCompleted();
+    for (FoundationPtr foundation : foundations) {
+        completed &= foundation->isCompleted();
     }
     return completed;
 }
 
 Stock* KlondikeImpl::getStock() {
-    return &stock;
+    return stock.get();
 }
 
 int KlondikeImpl::getScore() const {

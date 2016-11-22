@@ -10,13 +10,13 @@
 void Klondike::accept(KlondikeVisitor* visitor) {
     visitor->visitDeckType(deck->getDeckType());
     visitor->visitScore(score);
-    visitor->visitStock(&stock);
-    for(Foundation& foundation : foundations) {
-        visitor->visitFoundation(&foundation);
+    visitor->visitStock(stock.get());
+    for(FoundationPtr foundation : foundations) {
+        visitor->visitFoundation(foundation.get());
     }
     visitor->allFoundationsVisited();
-    for(TableauPile& tableauPile : tableau) {
-        visitor->visitTableauPile(&tableauPile);
+    for(TableauPilePtr tableauPile : tableau) {
+        visitor->visitTableauPile(tableauPile.get());
     }
     visitor->allTableauPilesVisited();
 }

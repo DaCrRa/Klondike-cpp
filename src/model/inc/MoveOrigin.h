@@ -12,22 +12,12 @@
 #include <GameElement.h>
 #include <MoveOriginVisitor.h>
 
-#include <assert.h>
-
 class MoveOrigin : virtual public GameElement {
 public:
-    void recoverCard(const Card* c) {
-        faceUpCards.add(c);
-    }
+    virtual void recoverCard(const Card* c) = 0;
     virtual int getNumCardsAvailableToMove() const = 0;
-    const Pile showAvailableCards(int n) const {
-        assert(n <= getNumCardsAvailableToMove());
-        return faceUpCards.showLastCards(n);
-    }
-    Pile removeCards(int n) {
-        assert(n <= getNumCardsAvailableToMove());
-        return GameElement::removeCards(n);
-    }
+    virtual const Pile showAvailableCards(int n) const = 0;
+    virtual Pile removeCards(int n) = 0;
     virtual void accept(MoveOriginVisitor* v) = 0;
     virtual ~MoveOrigin() {}
 };

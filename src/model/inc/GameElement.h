@@ -11,12 +11,8 @@
 #include <Pile.h>
 
 class GameElement {
-protected:
-    Pile faceUpCards;
 public:
-    virtual Pile removeCards(int n) {
-        return faceUpCards.removeLastCards(n);
-    }
+    virtual Pile removeCards(int n) = 0;
     virtual ~GameElement() {}
 };
 

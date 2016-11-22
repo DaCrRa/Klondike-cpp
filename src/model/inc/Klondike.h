@@ -16,9 +16,9 @@
 class Klondike {
 protected:
     DeckPtr deck;
-    Stock stock;
-    std::vector<Foundation> foundations;
-    std::vector<TableauPile> tableau;
+    StockPtr stock;
+    std::vector<FoundationPtr> foundations;
+    std::vector<TableauPilePtr> tableau;
     int score = 0;
 public:
     Klondike() {}
