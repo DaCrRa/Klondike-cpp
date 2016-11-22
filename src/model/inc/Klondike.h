@@ -21,7 +21,6 @@ protected:
     std::vector<TableauPilePtr> tableau;
     int score = 0;
 public:
-    Klondike() {}
     virtual void initialize() = 0;
     virtual void initialize(KlondikeInitParameters& params) = 0;
     virtual bool isCompleted() = 0;
