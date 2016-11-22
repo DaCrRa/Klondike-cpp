@@ -1,4 +1,5 @@
 add_subdirectory(implementation)
+add_subdirectory(proxy)
 
 file(GLOB klondike_model_source_files
     "*.cc"
