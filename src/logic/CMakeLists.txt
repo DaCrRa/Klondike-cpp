@@ -1,4 +1,5 @@
 add_subdirectory(local)
+add_subdirectory(remote)
 
 file(GLOB klondike_logic_source_files
     "*.cc"
