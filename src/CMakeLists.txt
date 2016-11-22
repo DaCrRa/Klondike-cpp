@@ -17,6 +17,14 @@ target_link_libraries(Klondike KlondikeApp
                                KlondikeFileSaverLoader
                                KlondikeConsoleView)
 
+add_executable(KlondikeClient KlondikeClient.cc)
+
+target_link_libraries(KlondikeClient KlondikeApp
+                                     KlondikeRemoteLogic
+                                     KlondikePlainTextSerializerDeserializer
+                                     KlondikeFileSaverLoader
+                                     KlondikeConsoleView)
+
 add_executable(KlondikeTest KlondikeTestMain.cc)
 
 target_link_libraries(KlondikeTest TestCards
