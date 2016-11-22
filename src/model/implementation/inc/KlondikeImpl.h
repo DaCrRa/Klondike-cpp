@@ -24,8 +24,6 @@ public:
     void initialize();
     void initialize(KlondikeInitParameters& params);
     bool isCompleted();
-    int getScore() const;
-    void updateScore(int delta);
 };
 
 #endif /* SRC_MODEL_IMPLEMENTATION_INC_KLONDIKEIMPL_H_ */

@@ -74,11 +74,3 @@ bool KlondikeImpl::isCompleted() {
     }
     return completed;
 }
-
-int KlondikeImpl::getScore() const {
-    return score;
-}
-
-void KlondikeImpl::updateScore(int delta) {
-    score += delta;
-}

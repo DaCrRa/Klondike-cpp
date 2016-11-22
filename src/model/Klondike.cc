@@ -7,6 +7,14 @@
 
 #include <Klondike.h>
 
+int Klondike::getScore() const {
+    return score;
+}
+
+void Klondike::updateScore(int delta) {
+    score += delta;
+}
+
 Stock* Klondike::getStock() {
     return stock.get();
 }
