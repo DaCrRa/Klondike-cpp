@@ -23,8 +23,9 @@ KlondikeImpl::KlondikeImpl(DeckPtr d) {
 
 void KlondikeImpl::initialize() {
     assert(foundations.empty());
-    std::vector<FoundationPtr> foundations(deck->getNumSuits(),
-                                           FoundationPtr(new FoundationImpl(deck->getNumCardsPerSuit())));
+    for (int i = 0; i < deck->getNumSuits(); i++) {
+        foundations.push_back(FoundationPtr(new FoundationImpl(deck->getNumCardsPerSuit())));
+    }
     int i = 0;
     for (std::shared_ptr<TableauPileImpl> tableauPile : tableauImpl) {
         for (int j = 0; j < i + 1; j++) {
