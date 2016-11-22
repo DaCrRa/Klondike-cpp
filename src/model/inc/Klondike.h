@@ -8,14 +8,14 @@
 #ifndef KLONDIKE_H_
 #define KLONDIKE_H_
 
-#include <Deck.h>
+#include <DeckTypes.h>
 #include <Stock.h>
 #include <KlondikeVisitor.h>
 #include <KlondikeInitParameters.h>
 
 class Klondike {
 protected:
-    DeckPtr deck;
+    DeckType deckType;
     StockPtr stock;
     std::vector<FoundationPtr> foundations;
     std::vector<TableauPilePtr> tableau;

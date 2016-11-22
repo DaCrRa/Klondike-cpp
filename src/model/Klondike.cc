@@ -12,7 +12,7 @@ Stock* Klondike::getStock() {
 }
 
 void Klondike::accept(KlondikeVisitor* visitor) {
-    visitor->visitDeckType(deck->getDeckType());
+    visitor->visitDeckType(deckType);
     visitor->visitScore(score);
     visitor->visitStock(stock.get());
     for(FoundationPtr foundation : foundations) {

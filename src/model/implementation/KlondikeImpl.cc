@@ -12,6 +12,7 @@
 
 KlondikeImpl::KlondikeImpl(DeckPtr d) {
     deck = d;
+    deckType = deck->getDeckType();
     stockImpl = std::shared_ptr<StockImpl> (new StockImpl());
     for (int i = 0; i < NUM_TABLEAU_PILES; i++) {
         tableauImpl.push_back(std::shared_ptr<TableauPileImpl>(new TableauPileImpl(deck->getNumCardsPerSuit() - 1 )));
