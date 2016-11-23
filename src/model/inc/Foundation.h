@@ -24,8 +24,6 @@ public:
 
     Foundation() {}
     virtual int getNumCardsAvailableToMove() const = 0;
-    virtual bool cardMeetsFirstCardCondition(const Card* card) const = 0;
-    virtual bool addCardCondition(const Card* referenceCard, const Card* cardToAdd) const = 0;
     virtual bool isCompleted() const = 0;
     virtual int getNumCards() const = 0;
     virtual const Card* top() const = 0;

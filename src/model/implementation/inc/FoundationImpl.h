@@ -19,7 +19,6 @@ class FoundationImpl : public Foundation,
 private:
     const int NUM_CARDS_TO_COMPLETE;
 public:
-    static const int MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION;
 
     FoundationImpl(const int n) : NUM_CARDS_TO_COMPLETE(n) {}
     bool isCompleted() const;

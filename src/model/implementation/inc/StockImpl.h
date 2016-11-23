@@ -13,6 +13,8 @@
 
 class StockImpl : public Stock, public MoveOriginImpl {
 private:
+    static const int MAX_CARDS_ALLOWED_TO_MOVE_FROM_WASTE;
+
     Pile stock;
     void transferAllCards(Pile& from, Pile& to);
     void transferCards(Pile& from, Pile& to, int n);

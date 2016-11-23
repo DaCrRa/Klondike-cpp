@@ -18,8 +18,6 @@ class Stock;
 typedef std::shared_ptr<Stock> StockPtr;
 
 class Stock : virtual public MoveOrigin {
-protected:
-    static const int MAX_CARDS_ALLOWED_TO_MOVE_FROM_WASTE;
 
 public:
     virtual int moveForward() = 0;

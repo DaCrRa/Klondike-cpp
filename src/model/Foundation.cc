@@ -7,8 +7,6 @@
 
 #include <Foundation.h>
 
-#include <algorithm>
-
 const int Foundation::MAX_CARDS_ALLOWED_TO_MOVE_FROM_FOUNDATION = 1;
 
 

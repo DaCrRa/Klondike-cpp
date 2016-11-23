@@ -7,6 +7,7 @@
 
 #include <FoundationImpl.h>
 
+
 bool FoundationImpl::isCompleted() const {
     return faceUpCards.getNumberOfCards() == NUM_CARDS_TO_COMPLETE;
 }
