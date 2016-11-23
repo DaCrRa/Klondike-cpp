@@ -17,10 +17,12 @@ class TableauPileImpl : public TableauPile,
     public MoveDestImpl {
 
 private:
+    const int MAX_RANK_ACCEPTED;
     Pile coveredCards;
 public:
     TableauPileImpl(const int n) :
-        TableauPile(n) {}
+        MAX_RANK_ACCEPTED(n),
+        TableauPile() {}
 
     void addToCovered(const Card* c);
     bool cardCanBeTurnUp();

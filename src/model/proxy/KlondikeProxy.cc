@@ -8,6 +8,7 @@
 #include <KlondikeProxy.h>
 #include <StockProxy.h>
 #include <FoundationProxy.h>
+#include <TableauPileProxy.h>
 
 #include <iostream>
 
@@ -25,6 +26,7 @@ void KlondikeProxy::initialize() {
     int gameId = 1;
     stock = StockPtr(new StockProxy(host, gameId, 's'));
     foundations.push_back(FoundationPtr(new FoundationProxy(host, gameId, 'A')));
+    tableau.push_back(TableauPilePtr(new TableauPileProxy(host, gameId, '1')));
 }
 
 void KlondikeProxy::initialize(KlondikeInitParameters& params) {
@@ -36,6 +38,7 @@ void KlondikeProxy::initialize(KlondikeInitParameters& params) {
     gameId = 1;
     stock = StockPtr(new StockProxy(host, gameId, 's'));
     foundations.push_back(FoundationPtr(new FoundationProxy(host, gameId, 'A')));
+    tableau.push_back(TableauPilePtr(new TableauPileProxy(host, gameId, '1')));
 }
 
 bool KlondikeProxy::isCompleted() {
