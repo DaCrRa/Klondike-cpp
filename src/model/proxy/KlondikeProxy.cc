@@ -7,6 +7,7 @@
 
 #include <KlondikeProxy.h>
 #include <StockProxy.h>
+#include <FoundationProxy.h>
 
 #include <iostream>
 
@@ -23,6 +24,7 @@ void KlondikeProxy::initialize() {
     // Deserialize the JSON and instantiate proxies...
     int gameId = 1;
     stock = StockPtr(new StockProxy(host, gameId, 's'));
+    foundations.push_back(FoundationPtr(new FoundationProxy(host, gameId, 'A')));
 }
 
 void KlondikeProxy::initialize(KlondikeInitParameters& params) {
@@ -33,6 +35,7 @@ void KlondikeProxy::initialize(KlondikeInitParameters& params) {
     // Deserialize the JSON and instantiate proxies...
     gameId = 1;
     stock = StockPtr(new StockProxy(host, gameId, 's'));
+    foundations.push_back(FoundationPtr(new FoundationProxy(host, gameId, 'A')));
 }
 
 bool KlondikeProxy::isCompleted() {

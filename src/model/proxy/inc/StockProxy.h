@@ -14,7 +14,8 @@
 class StockProxy : public Stock, public MoveOriginProxy {
 public:
     StockProxy(const std::string& h, int id, char elementId) :
-        MoveOriginProxy(h, id, elementId) {}
+        MoveOriginProxy(h, id, elementId),
+        GameElementProxy(h, id, elementId) {}
     int getNumCardsAvailableToMove() const;
     int moveForward();
     void moveBackward(int numCards);

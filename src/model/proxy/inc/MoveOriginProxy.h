@@ -13,7 +13,7 @@
 
 #include <sstream>
 
-class MoveOriginProxy : virtual public MoveOrigin, public GameElementProxy {
+class MoveOriginProxy : virtual public MoveOrigin, virtual public GameElementProxy {
 public:
     MoveOriginProxy(const std::string& h, int id, char elementId) :
         GameElementProxy(h, id, elementId) {}
@@ -24,6 +24,7 @@ public:
     }
     int getNumCardsAvailableToMove() const {
         httpRequest("GET", std::vector<std::string>({"numCardsAvailableToMove"}));
+        return 1;
     }
     const Pile showAvailableCards(int n) const {
         std::stringstream paramStream;
